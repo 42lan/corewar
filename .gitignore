@@ -1,0 +1,15 @@
+# Binaries
+asm
+corewar
+
+# C
+*.obj
+*.dep
+*.so
+*.a
+
+# Custom
+*.cor
+*.old
+*.tmp
+**/tmp/
