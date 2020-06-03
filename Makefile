@@ -32,6 +32,7 @@ LIBFTMO     = $(LIBFT_DIR)/libftmo.a
 ###########################
 
 SRC_FILES_COMMON	=	common/cw_champion.c \
+						common/cw_op_list.c \
 
 SRC_FILES_ASM		=	asm/cw_asm_main.c \
 
@@ -54,8 +55,9 @@ SRC_ASM		= $(SRC_COMMON) $(patsubst %, $(SRC_DIR)/%, $(SRC_FILES_ASM))
 SRC_CW		= $(SRC_COMMON) $(patsubst %, $(SRC_DIR)/%, $(SRC_FILES_CW))
 SRC = $(SRC_COMMON) $(SRC_ASM) $(SRC_CW)
 
-OBJ_ASM = $(patsubst %, $(OBJ_DIR)/%.o, $(SRC_FILES_ASM))
-OBJ_CW = $(patsubst %, $(OBJ_DIR)/%.o, $(SRC_FILES_CW))
+OBJ_COMMON	= $(patsubst %, $(OBJ_DIR)/%.o, $(SRC_FILES_COMMON))
+OBJ_ASM = $(OBJ_COMMON) $(patsubst %, $(OBJ_DIR)/%.o, $(SRC_FILES_ASM))
+OBJ_CW = $(OBJ_COMMON) $(patsubst %, $(OBJ_DIR)/%.o, $(SRC_FILES_CW))
 OBJ = $(OBJ_ASM) $(OBJ_CW)
 
 DEP = $(patsubst %, $(DEP_DIR)/%.d, $(SRC_FILES))
