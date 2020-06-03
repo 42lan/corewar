@@ -11,10 +11,15 @@
 
 typedef int				t_cw_arg_type;
 
-#define T_REG 1
-#define T_DIR 2
-#define T_IND 4
-#define T_LAB 8
+# define T_REG 1
+# define T_DIR 2
+# define T_IND 4
+# define T_LAB 8
+
+# define CW_T_REG T_REG
+# define CW_T_DIR T_DIR
+# define CW_T_IND T_IND
+# define CW_T_LAB T_LAB
 
 /*
 ** t_cw_op:
@@ -45,6 +50,38 @@ struct					s_cw_op
 	t_bool				has2;
 };
 
-const t_cw_op			*cw_op_list();
+const t_cw_op			*cw_op_list(void);
+
+/*
+** t_cw_coding_code:
+**
+** An uint2 number, present in the coding byte.
+** Represent the type of the arguments of the op.
+*/
+
+typedef char			t_cw_coding_code;
+
+# define CW_REG_CODE 1
+# define CW_DIR_CODE 2
+# define CW_IND_CODE 3
+
+/*
+** t_cw_coding_byte:
+**
+** Some op have a byte used to describe what are it's arguments.
+** It is composed of up to 3 t_cw_coding_code, packed to the left of the byte.
+*/
+
+typedef char			t_cw_coding_byte;
+
+# define CW_IND_SIZE 2
+# define CW_REG_SIZE 4
+# define CW_DIR_SIZE CW_REG_SIZE
+
+t_cw_arg_type			cw_op_get_arg_type(t_cw_coding_code code);
+void					cw_op_get_arg_types(t_cw_arg_type *out3,
+											t_cw_coding_byte coding_byte);
+t_cw_coding_byte		cw_op_get_coding_byte(t_cw_arg_type type, int index);
+t_cw_coding_byte		cw_op_get_coding_code(t_cw_arg_type type);
 
 #endif

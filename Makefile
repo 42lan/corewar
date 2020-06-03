@@ -33,6 +33,10 @@ LIBFTMO     = $(LIBFT_DIR)/libftmo.a
 
 SRC_FILES_COMMON	=	common/cw_champion.c \
 						common/cw_op_list.c \
+						common/cw_op_get_arg_type.c \
+						common/cw_op_get_arg_types.c \
+						common/cw_op_get_coding_code.c \
+						common/cw_op_get_coding_byte.c \
 
 SRC_FILES_ASM		=	asm/cw_asm_main.c \
 

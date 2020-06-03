@@ -5,7 +5,7 @@
 ** Return a pointer that do not need to be freed.
 */
 
-const t_cw_op		*cw_op_list()
+const t_cw_op		*cw_op_list(void)
 {
 	static t_cw_op    op_list[17] =
 	{
