@@ -79,7 +79,7 @@ typedef unsigned char	t_cw_coding_byte;
 # define CW_DIR_SIZE CW_REG_SIZE
 
 t_cw_coding_code		cw_op_get_coding_code(t_cw_arg_type type);
-void					cw_op_get_coding_codes(t_cw_arg_code *out3,
+void					cw_op_get_coding_codes(t_cw_coding_code *out3,
 											t_cw_coding_byte coding_byte);
 
 t_cw_arg_type			cw_op_get_arg_type(t_cw_coding_code code);
