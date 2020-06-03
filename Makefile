@@ -35,7 +35,7 @@ SRC_FILES_COMMON	=	common/cw_champion.c \
 
 SRC_FILES_ASM		=	asm/cw_asm_main.c \
 
-SRC_FILES_CW		=	corewar/cw_main.c \
+SRC_FILES_CW		=	vm/cw_vm_main.c \
 
 SRC_FILES = $(SRC_FILES_COMMON) $(SRC_FILES_ASM) $(SRC_FILES_CW)
 
@@ -100,7 +100,7 @@ $(OBJ_DIR):
 	mkdir -p $@
 	mkdir -p $@/common
 	mkdir -p $@/asm
-	mkdir -p $@/corewar
+	mkdir -p $@/vm
 	@printf "\e[0m" || true
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/% | $(OBJ_DIR)
