@@ -13,3 +13,6 @@ corewar
 *.old
 *.tmp
 **/tmp/
+
+# Tag file
+tags
