@@ -16,12 +16,11 @@
 
 int		cw_vm_parsing(int argc, char **argv)
 {
-	int		i;
-	int		value;
-	char	**split;
+	int			i;
+	int			value;
 
 	i = -1;
-	while (++i < argv)
+	while (++i < argc)
 	{
 		if (ft_strequ(argv[i] + ft_strspn(argv[i], " \t"), "-dump") == 1)
 		{
@@ -31,4 +30,5 @@ int		cw_vm_parsing(int argc, char **argv)
 
 		}
 	}
+	return (CW_SUCCESS);
 }

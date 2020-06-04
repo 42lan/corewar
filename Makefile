@@ -6,7 +6,7 @@
 #    By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by bleplat           #+#    #+#              #
-#    Updated: 2020/06/04 14:49:14 by jthierce         ###   ########.fr        #
+#    Updated: 2020/06/04 19:08:35 by jthierce         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ SRC_FILES_COMMON	=	common/cw_champion.c \
 						common/cw_op_get_coding_code.c \
 						common/cw_op_get_coding_byte.c \
 
-SRC_FILES_ASM		=	asm/cw_asm_main.c \
+SRC_FILES_ASM		=#	asm/cw_asm_main.c \
 
 SRC_FILES_CW		=	vm/cw_vm_main.c \
 						vm/cw_vm_parsing.c
@@ -72,7 +72,7 @@ DEP = $(patsubst %, $(DEP_DIR)/%.d, $(SRC_FILES))
 ###   C O M P I L E R   ###
 ###########################
 
-CC = clang
+CC = gcc
 
 DEFINES = _DARWIN_USE_64_BIT_INODE
 CDEFINES = $(patsubst %, -D%, $(DEFINES))
@@ -90,7 +90,7 @@ LDFLAGS += -L $(LIBFT_DIR) -lft
 ###########################
 
 .PHONY: all
-all: $(NAME_ASM) $(NAME_CW)
+all: $(NAME_CW) #$(NAME_ASM)
 
 $(NAME_ASM): $(LIBFT) $(OBJ_ASM)
 	@printf "\e[92m" || true
