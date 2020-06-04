@@ -31,7 +31,8 @@ LIBFTMO     = $(LIBFT_DIR)/libftmo.a
 ###    S O U R C E S    ###
 ###########################
 
-SRC_FILES_COMMON	=	common/cw_champion.c \
+SRC_FILES_COMMON	=	common/ft_printerr.c \
+						common/cw_champion.c \
 						common/cw_op_list.c \
 						common/cw_op_get_arg_type.c \
 						common/cw_op_get_arg_types.c \
