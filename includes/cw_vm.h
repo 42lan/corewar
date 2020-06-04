@@ -13,8 +13,10 @@
 #ifndef CW_VM_H
 # define CW_VM_H
 
+# include <stdlib.h>
 # include "cw_errors.h"
+# include "cw_vm_parsing.h"
 
-int		cw_vm_parsing(int argc, char **argv);
+int		cw_vm_parsing(int argc, char **argv, t_cw_data *data);
 
 #endif
