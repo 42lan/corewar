@@ -6,7 +6,7 @@
 #    By: bleplat <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/07 09:05:04 by bleplat           #+#    #+#              #
-#    Updated: 2020/03/01 17:16:28 by bleplat          ###   ########.fr        #
+#    Updated: 2020/06/04 18:23:18 by amalsago         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -263,6 +263,8 @@ FNT_1 =		ft_welcome.c \
 			ft_readb.c \
 			ft_bigendian32.c \
 			ft_bigendian16.c \
+			ft_strcspn.c \
+			ft_strspn.c \
 
 FNT_2 =		ftmo_malloc.c \
 			ftmo_free.c \
@@ -283,7 +285,6 @@ FNT_2 =		ftmo_malloc.c \
 			ft_strstr.c \
 			ft_strnstr.c \
 			ft_memmove.c \
-
 
 FNT = $(FNT_1) $(FNT_2)
 
