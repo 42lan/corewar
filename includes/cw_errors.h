@@ -24,6 +24,12 @@
 
 # define CW_ERROR_ASM -60
 
+/*
+** vm specific error codes:
+*/
+
+# define CW_VM_NO_ARG 5
+# define CW_VM_NO_VALID_ARGUMENT_DUMP 6
 
 /*
 ** corewar specific error codes:
