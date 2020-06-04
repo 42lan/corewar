@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cw_vm_main.c                                       :+:      :+:    :+:   */
+/*   cw_vm_usage.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/04 18:04:40 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/04 23:54:39 by amalsago         ###   ########.fr       */
+/*   Created: 2020/06/04 21:07:33 by amalsago          #+#    #+#             */
+/*   Updated: 2020/06/05 01:39:34 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "cw_vm.h"
+#include <unistd.h>
 
-int			main(int argc, char **argv)
+int		cw_vm_usage(void)
 {
-	t_cw_data data;
-	if (argc < 2)
-		return (cw_vm_usage());
-	cw_vm_parsing(argc - 1 , argv + 1, &data);
-	return (CW_SUCCESS);
+	ft_printerr(STDERR_FILENO, "usage: " \
+			"./corewar [-dump nbr_cycles] [[-n number] champion1.cor] ...\n");
+	exit(CW_VM_NO_ARG);
 }

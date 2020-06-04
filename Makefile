@@ -6,7 +6,7 @@
 #    By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by bleplat           #+#    #+#              #
-#    Updated: 2020/06/04 19:08:35 by jthierce         ###   ########.fr        #
+#    Updated: 2020/06/05 01:44:23 by amalsago         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,8 @@ SRC_FILES_COMMON	=	common/cw_champion.c \
 SRC_FILES_ASM		=#	asm/cw_asm_main.c \
 
 SRC_FILES_CW		=	vm/cw_vm_main.c \
-						vm/cw_vm_parsing.c
+						vm/cw_vm_parsing.c \
+						vm/cw_vm_usage.c
 
 SRC_FILES = $(SRC_FILES_COMMON) $(SRC_FILES_ASM) $(SRC_FILES_CW)
 
