@@ -11,8 +11,9 @@
 ** Common error codes:
 */
 
-# define CW_SUCCESS 0
-# define CW_ERROR -1
+# define CW_ERROR		-1
+# define CW_SUCCESS		0
+# define CW_FAILURE		1
 
 # define CW_ERROR_DEFAULT -1
 # define CW_ERROR_MALLOC_FAILED -30
