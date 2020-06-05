@@ -13,7 +13,7 @@
 #ifndef CW_VM_PARSING_H
 # define CW_VM_PARSING_H
 
-# define CW_FILENAME_MAX_LEN	128
+# include "cw_vm.h"
 
 /*
 ** Data struct create with parsing
@@ -21,13 +21,15 @@
 ** nbr_cycles	- dump the memory in nbr_cycles
 ** number		- number of the next players
 ** filename		- name of the filename
+** filenumber	- id of players (-1 is a default value)
 */
 
 typedef struct		s_cw_data
 {
 	unsigned int	nbr_cycles;
 	unsigned int	number;
-	char			filename[CW_FILENAME_MAX_LEN];
+	char			filename[CW_MAX_PLAYERS][CW_FILENAME_MAX_LEN];
+	int				filenumber[CW_MAX_PLAYERS];
 }					t_cw_data;
 
 
