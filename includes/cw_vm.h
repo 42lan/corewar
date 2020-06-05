@@ -23,6 +23,6 @@
 
 int		cw_vm_usage(void);
 int		cw_vm_parsing(int argc, char **argv, t_cw_data *data);
-int		cw_vm_read_player(t_cw_data *data, t_cw_champion players);
+int		cw_vm_read_player(t_cw_data *data, t_cw_player *players);
 
 #endif

@@ -26,9 +26,9 @@
 
 typedef struct		s_cw_data
 {
-	unsigned int	nbr_cycles;
-	unsigned int	number;
-	char			filename[CW_MAX_PLAYERS][CW_FILENAME_MAX_LEN];
+	int				nbr_cycles;
+	int				number;
+	char			*filename[CW_MAX_PLAYERS];
 	int				filenumber[CW_MAX_PLAYERS];
 }					t_cw_data;
 

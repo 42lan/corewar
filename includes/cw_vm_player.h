@@ -13,7 +13,7 @@
 #ifndef CW_VM_PLAYER_H
 # define CW_VM_PLAYER_H
 
-# include cw_champion.h
+# include "cw_champion.h"
 
 /*
 ** Struct player
@@ -28,5 +28,7 @@ typedef struct		s_cw_player{
 	unsigned char	*code;
 	unsigned int	number;
 }					t_cw_player;
+
+void	cw_parsing_number_player(t_cw_data *data, t_cw_player *players);
 
 #endif
