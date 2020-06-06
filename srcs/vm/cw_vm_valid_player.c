@@ -14,6 +14,11 @@
 #include "cw_vm.h"
 #include "cw_vm_player.h"
 
+/*
+** cw_vm_read_magic_number() reads first 4 bytes of `.cor` file and checks
+** the validity of magic number
+*/
+
 int		cw_vm_read_magic_number(int fd)
 {
 	unsigned char	magic_number[4];
@@ -26,7 +31,7 @@ int		cw_vm_read_magic_number(int fd)
 		return (CW_VM_READ_ERROR);
 	}
 	magic_number_int = ft_bigendian32_read(magic_number);
-	if (magic_number_int != 0xea83f3)
+	if (magic_number_int != CW_EXEC_MAGIC)
 	{
 		ft_dprintf(2, "{RED}NOT VALID MAGIC NUMBER\n{}");
 		close(fd);
