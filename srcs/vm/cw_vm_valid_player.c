@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/06 15:33:02 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/06 22:21:28 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/06 22:51:33 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,32 @@ int		cw_vm_read_exec_code_len(int fd, t_cw_player *player)
 }
 
 /*
+** cw_vm_read_champion_comment() reads next 2048 bytes representnig champions
+** comment
+*/
+
+int		cw_vm_read_champion_comment(int fd, t_cw_player *player)
+{
+	int		i;
+	char	comment[CW_COMMENT_LENGTH + 1];
+
+	i = -1;
+	if (read(fd, comment, CW_COMMENT_LENGTH) != CW_COMMENT_LENGTH)
+	{
+		close(fd);
+		ft_dprintf(2, "{RED}ERROR READ CHAMPION COMMENT\n{}");
+		return (CW_VM_READ_ERROR);
+	}
+	comment[ft_strlen(comment)] = '\0';
+	if ((player->champion->comment = ft_strdup(comment)) == NULL)
+	{
+		ft_dprintf(2, "{red}ERROR MALLOC FAILED\n{}");
+		return (CW_ERROR_MALLOC_FAILED);
+	}
+	return (CW_SUCCESS);
+}
+
+/*
 ** cw_vm_valid_player() opens `.cor` file, create champions and checks the
 ** validity of data provided in `.cor`
 */
@@ -142,7 +168,8 @@ int		cw_vm_valid_player(t_cw_data *data, t_cw_player *players)
 		if (((ret = cw_vm_read_magic_number(fd)) != CW_SUCCESS)
 			|| ((ret = cw_vm_read_champion_name(fd, &players[i])) != CW_SUCCESS)
 			|| ((ret = cw_vm_read_champion_null(fd)) != CW_SUCCESS)
-			|| ((ret = cw_vm_read_exec_code_len(fd, &players[i])) != CW_SUCCESS))
+			|| ((ret = cw_vm_read_exec_code_len(fd, &players[i])) != CW_SUCCESS)
+			|| ((ret = cw_vm_read_champion_comment(fd, &players[i]) != CW_SUCCESS)))
 		{
 			while (i != -1)
 				cw_champion_destroy(&players[i--].champion);
