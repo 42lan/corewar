@@ -35,6 +35,7 @@
 # define CW_VM_ERROR_OPEN_FAILED -7
 # define CW_VM_ERROR_NOT_VALID_PLAYER 8
 # define CW_VM_READ_ERROR 9
+# define CW_VN_ERROR_NAME_TOO_LONG 10
 
 /*
 ** corewar specific error codes:
