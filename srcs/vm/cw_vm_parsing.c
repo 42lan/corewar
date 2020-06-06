@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 14:06:54 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/06 15:49:23 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/06 16:35:37 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	cw_vm_print_data(t_cw_data *data)
 	i = -1;
 	ft_printf("Number of cycles    = %d\n", data->nbr_cycles);
 	ft_printf("Number of players   = %d\n", data->nbr_players);
-	while (++i < CW_MAX_PLAYERS && data->filename[i])
+	while (++i < data->nbr_players && data->filename[i])
 	{
 		ft_printf("Player %d:\n", i + 1);
 		ft_printf(" assigned ID  = %d\n", data->assigned_nbr[i]);
