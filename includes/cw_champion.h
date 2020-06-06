@@ -1,6 +1,8 @@
 #ifndef CW_CHAMPION_H
 # define CW_CHAMPION_H
 
+# define CW_EXEC_MAGIC		0xea83f3
+
 /*
 ** t_cw_champion:
 **
