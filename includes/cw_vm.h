@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 15:01:47 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/06 00:38:43 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/06 15:46:07 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 
 typedef struct	s_cw_vm
 {
+	t_cw_data	data;
 	t_cw_player	player[CW_MAX_PLAYERS];
 	t_bool		dump;
 
