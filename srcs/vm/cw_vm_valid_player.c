@@ -103,12 +103,16 @@ int		cw_vm_valid_player(t_cw_data *data, t_cw_player *players)
 	{
 		if ((fd = open(data->filename[i], O_RDONLY)) == -1)
 		{
+			while (i != -1)
+				cw_champion_destroy(&players[--i].champion);
 			free(players);
 			ft_dprintf(2, "{red}Cannot open file\n{}");
 			exit(CW_VM_ERROR_OPEN_FAILED);
 		}
 		if (cw_champion_create(&players[i].champion) != CW_SUCCESS)
 		{
+			while (i != -1)
+				cw_champion_destroy(&players[i--].champion);
 			free(players);
 			ft_dprintf(2, "{red}champion_create() failed\n{}");
 			exit(CW_VM_ERROR_OPEN_FAILED);
