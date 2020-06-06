@@ -27,10 +27,6 @@ static void	cw_swap_number_player(t_cw_data *data, int i1, int i2)
 	data->filename[i2] = tmp_str;
 }
 
-/*
-** Sort player in order in stucture data depending on option
-*/
-
 static void	cw_sort_number_player(t_cw_data *data)
 {
 	int i;
@@ -50,6 +46,10 @@ static void	cw_sort_number_player(t_cw_data *data)
 		}
 	}
 }
+
+/*
+** Sort player in order in stucture data depending on option
+*/
 
 void		cw_parsing_number_player(t_cw_data *data)
 {
