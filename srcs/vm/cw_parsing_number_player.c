@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/05 18:38:37 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/06 11:53:06 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/06 13:10:16 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	cw_swap_number_player(t_cw_data *data, int i1, int i2)
 	char	*tmp_str;
 	int		tmp_nb;
 
-	tmp_nb = data->assigned_nbassigned_nbr[i1];
+	tmp_nb = data->assigned_nbr[i1];
 	data->assigned_nbr[i1] = data->assigned_nbr[i2];
 	data->assigned_nbr[i2] = tmp_nb;
 	tmp_str = data->filename[i1];
