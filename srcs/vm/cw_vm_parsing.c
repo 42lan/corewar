@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 14:06:54 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/06 16:39:55 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/06 16:42:27 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,9 @@ int		cw_vm_is_valid_extension(const char *av, const char *extension)
 
 int		cw_vm_set_player(t_cw_vm *vm, int assigned_nbr, char *filename)
 {
-	int			i;
 	static int	j = 0;
 	static int	cnt = 0;
 
-	i = 0;
 	if (filename == NULL || filename[0] == '\0')
 		ft_printerr("Player's filename expected");
 	if (cw_vm_is_valid_extension(filename, ".cor") == CW_FAILURE)
@@ -75,10 +73,8 @@ int		cw_vm_set_player(t_cw_vm *vm, int assigned_nbr, char *filename)
 
 void	cw_vm_set_dump(t_cw_vm *vm, char **av, int *i)
 {
-	int			value;
 	char		*tmp;
 
-	value = 0;
 	if (*av == NULL || *av[0] == '\0' || !ft_isstrnum(*av))
 		ft_printerr("A positive number expected after -dump");
 	tmp = ft_strtrim(*av);
