@@ -29,6 +29,7 @@
 ** vm specific error codes:
 */
 
+# define CW_VM_USAGE 3
 # define CW_VM_NO_ARG 5
 # define CW_VM_NO_VALID_ARGUMENT_DUMP 6
 
