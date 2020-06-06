@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/05 18:38:37 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/05 18:38:37 by jthierce         ###   ########.fr       */
+/*   Updated: 2020/06/06 00:43:26 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	cw_sort_number_player(t_cw_data *data)
 	int i;
 
 	i = -1;
-	while (++i + 1 < data->number)
+	while (++i + 1 < data->nbr_players)
 	{
 		if (data->filenumber[i] > data->filenumber[i + 1])
 		{
@@ -41,11 +41,11 @@ static void	cw_sort_number_player(t_cw_data *data)
 		}
 	}
 	i = -1;
-	while (++i < data->number)
-		if (data->filenumber[i] > 0 && data->filenumber[i] <= data->number)
+	while (++i < data->nbr_players)
+		if (data->filenumber[i] > 0 && data->filenumber[i] <= data->nbr_players)
 			cw_swap_number_player(data, i, data->filenumber[i] - 1);
 	i = -1;
-	while (++i + 1 < data->number)
+	while (++i + 1 < data->nbr_players)
 	{
 		if (data->filenumber[i] < 0 &&
 		data->filenumber[i] > data->filenumber[i + 1])
@@ -64,6 +64,6 @@ void		cw_parsing_number_player(t_cw_data *data, t_cw_player *players)
 	(void)players;
 	(void)i;
 	cw_sort_number_player(data);
-	//while (++i < data->number)
+	//while (++i < data->nbr_players)
 	//	(players[i])->name = 
 }

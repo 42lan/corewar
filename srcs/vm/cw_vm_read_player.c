@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/05 13:20:57 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/05 13:20:57 by jthierce         ###   ########.fr       */
+/*   Updated: 2020/06/06 00:43:44 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 int			cw_vm_read_player(t_cw_data *data, t_cw_player *players)
 {
-	if (!(players = malloc(sizeof(t_cw_champion) * data->number)))
+	if (!(players = malloc(sizeof(t_cw_champion) * data->nbr_players)))
 	{
 		ft_printf("{red}MALLOC ERROR\n");
 		exit (CW_ERROR_MALLOC_FAILED);
