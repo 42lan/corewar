@@ -66,10 +66,10 @@ int		cw_vm_read_champion_name(int fd, t_cw_player *player)
 
 /*
 ** cw_vm_read_champion_null() reads next 4 bytes `.cor` and look if
-** the name is not too long
+** the name or comment is not too long
 */
 
-int		cw_vm_read_champion_null(int fd)
+int		cw_vm_read_champion_null(int fd, char *str)
 {
 	char	str[CW_CHAMPION_NULL];
 
@@ -81,7 +81,7 @@ int		cw_vm_read_champion_null(int fd)
 	}
 	if (ft_memcmp(str, "\0\0\0\0", CW_CHAMPION_NULL) != 0)
 	{
-		ft_dprintf(2, "{red}NAME IS TOO LONG\n{}");
+		ft_dprintf(2, "{red}%s IS TOO LONG\n{}", str);
 		return (CW_VN_ERROR_NAME_TOO_LONG);
 	}
 	return (CW_SUCCESS);
@@ -167,9 +167,10 @@ int		cw_vm_valid_player(t_cw_data *data, t_cw_player *players)
 		}
 		if (((ret = cw_vm_read_magic_number(fd)) != CW_SUCCESS)
 			|| ((ret = cw_vm_read_champion_name(fd, &players[i])) != CW_SUCCESS)
-			|| ((ret = cw_vm_read_champion_null(fd)) != CW_SUCCESS)
+			|| ((ret = cw_vm_read_champion_null(fd, "NAME")) != CW_SUCCESS)
 			|| ((ret = cw_vm_read_exec_code_len(fd, &players[i])) != CW_SUCCESS)
-			|| ((ret = cw_vm_read_champion_comment(fd, &players[i]) != CW_SUCCESS)))
+			|| ((ret = cw_vm_read_champion_comment(fd, &players[i]) != CW_SUCCESS))
+			|| ((ret = cw_vm_read_champion_null(fd, "COMMENT")) != CW_SUCCESS))
 		{
 			while (i != -1)
 				cw_champion_destroy(&players[i--].champion);
