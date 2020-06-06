@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 14:06:54 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/06 16:35:37 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/06 16:39:55 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,9 +101,8 @@ void	cw_vm_set_player_helper(t_cw_vm *vm, int ac, char **av, int *i)
 
 	if (*i + 1 < ac)
 	{
-		if (!ft_isstrnum(av[*i + 1]) && ft_atoi(av[*i + 1]) <= 0)
-			ft_printerr("Player's assigns unique ID should be greater that 0");
-		assigned_nbr = ft_atoi(av[*i + 1]);
+		if (ft_atoi32check(&assigned_nbr, av[*i + 1]) != 0)
+			ft_printerr("Player's assigned ID should be between 1 and INT_MAX");
 		cw_vm_set_player(vm, assigned_nbr, av[*i + 2]);
 		*i += 2;
 	}
@@ -129,9 +128,7 @@ int		cw_vm_parsing(int ac, char **av, t_cw_vm *vm)
 		if (vm->data.nbr_players >= CW_MAX_PLAYERS)
 			ft_printerr("Max number of players exceeded");
 		if (cw_vm_is_valid_extension(tmp, ".cor") == CW_SUCCESS)
-		{
 			cw_vm_set_player(vm, 0, tmp);
-		}
 		else if (ft_strnequ(tmp, "-n\0", 3))
 			cw_vm_set_player_helper(vm, ac, av, &i);
 		else
