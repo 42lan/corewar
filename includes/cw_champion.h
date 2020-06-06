@@ -4,6 +4,7 @@
 # define CW_EXEC_MAGIC			0xea83f3
 # define CW_PROG_NAME_LENGTH	128
 # define CW_CHAMPION_NULL		4
+# define CW_EXEC_CODE_LEN		4
 
 /*
 ** t_cw_champion:

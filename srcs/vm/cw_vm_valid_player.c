@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/06 15:33:02 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/06 21:33:33 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/06 22:01:06 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,26 @@ int		cw_vm_read_champion_null(int fd)
 }
 
 /*
+** cw_vm_read_exec_code_size() reads next 4 bytes representing the size
+** of champion's executable code
+*/
+
+int		cw_vm_read_exec_code_size(int fd, t_cw_player *player)
+{
+	unsigned char	size[4];
+
+	ft_printf("---------\n");
+	if (read(fd, size, CW_EXEC_CODE_SIZE) != CW_EXEC_CODE_SIZE)
+	{
+		close(fd);
+		ft_dprintf(2, "{RED}ERROR READ CHAMPION EXEC CODE SIZE\n{}");
+		return (CW_VM_READ_ERROR);
+	}
+	ft_printf("%s\n", size);
+	return (CW_SUCCESS);
+}
+
+/*
 ** cw_vm_valid_player() opens `.cor` file, create champions and checks the
 ** validity of data provided in `.cor`
 */
@@ -116,6 +136,7 @@ int		cw_vm_valid_player(t_cw_data *data, t_cw_player *players)
 		if (((ret = cw_vm_read_magic_number(fd)) != CW_SUCCESS)
 			|| ((ret = cw_vm_read_champion_name(fd, &players[i])) != CW_SUCCESS)
 			|| ((ret = cw_vm_read_champion_null(fd)) != CW_SUCCESS))
+			|| ((ret = cw_vm_read_exec_code_size(fd, &players[i])) != CW_SUCCESS))
 		{
 			while (i != -1)
 				cw_champion_destroy(&players[i--].champion);
