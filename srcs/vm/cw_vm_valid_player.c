@@ -57,7 +57,33 @@ int		cw_vm_read_champion_name(int fd, t_cw_player *player)
 	}
 	name[ft_strlen(name)] = '\0';
 	if ((player->champion->name = ft_strdup(name)) == NULL)
+	{
+		ft_dprintf(2, "{red}ERROR MALLOC FAILED\n{}");
 		return (CW_ERROR_MALLOC_FAILED);
+	}
+	return (CW_SUCCESS);
+}
+
+/*
+** cw_vm_read_champion_null() reads next 4 bytes `.cor` and look if
+** the name is not too long
+*/
+
+int		cw_vm_read_champion_null(int fd)
+{
+	char	str[CW_CHAMPION_NULL];
+
+	if (read(fd, str, CW_CHAMPION_NULL) != CW_CHAMPION_NULL)
+	{
+		close(fd);
+		ft_dprintf(2, "{RED}ERROR READ CHAMPION NULL\n{}");
+		return (CW_VM_READ_ERROR);
+	}
+	if (ft_memcmp(str, "\0\0\0\0", CW_CHAMPION_NULL) != 0)
+	{
+		ft_dprintf(2, "{red}NAME IS TOO LONG\n{}");
+		return (CW_VN_ERROR_NAME_TOO_LONG);
+	}
 	return (CW_SUCCESS);
 }
 
@@ -88,8 +114,11 @@ int		cw_vm_valid_player(t_cw_data *data, t_cw_player *players)
 			exit(CW_VM_ERROR_OPEN_FAILED);
 		}
 		if (((ret = cw_vm_read_magic_number(fd)) != CW_SUCCESS)
-			|| ((ret =cw_vm_read_champion_name(fd, &players[i])) != CW_SUCCESS))
+			|| ((ret = cw_vm_read_champion_name(fd, &players[i])) != CW_SUCCESS)
+			|| ((ret = cw_vm_read_champion_null(fd)) != CW_SUCCESS))
 		{
+			while (i != -1)
+				cw_champion_destroy(&players[i--].champion);
 			free(players);
 			exit(ret);
 		}
