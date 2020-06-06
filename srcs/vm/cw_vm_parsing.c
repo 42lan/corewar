@@ -56,6 +56,7 @@ int		cw_vm_set_player(t_cw_vm *vm, int assigned_nbr, char *filename)
 {
 	int			i;
 	static int	j = 0;
+	static int	cnt = 0;
 
 	i = 0;
 	if (filename == NULL || filename[0] == '\0')
@@ -63,7 +64,7 @@ int		cw_vm_set_player(t_cw_vm *vm, int assigned_nbr, char *filename)
 	if (cw_vm_is_valid_extension(filename, ".cor") == CW_FAILURE)
 		ft_printerr("Player's filename has an incorrect extension");
 	vm->data.filename[j] = ft_strdup(filename);
-	vm->data.assigned_nbr[j++] = (assigned_nbr > 0) ? assigned_nbr : -1;
+	vm->data.assigned_nbr[j++] = (assigned_nbr > 0) ? assigned_nbr : --cnt;
 	vm->data.nbr_players += 1;
 	return (CW_SUCCESS);
 }
