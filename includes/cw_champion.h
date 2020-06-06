@@ -1,7 +1,8 @@
 #ifndef CW_CHAMPION_H
 # define CW_CHAMPION_H
 
-# define CW_EXEC_MAGIC		0xea83f3
+# define CW_EXEC_MAGIC			0xea83f3
+# define CW_PROG_NAME_LENGTH	128
 
 /*
 ** t_cw_champion:
