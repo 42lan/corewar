@@ -6,7 +6,7 @@
 #    By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by bleplat           #+#    #+#              #
-#    Updated: 2020/06/05 18:43:55 by jthierce         ###   ########.fr        #
+#    Updated: 2020/06/06 10:37:28 by amalsago         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -111,6 +111,7 @@ WHITE		= '\033[0;37m'
 ### M A I N   R U L E S ###
 ###########################
 
+.SILENT:
 .PHONY: all
 all: $(NAME_CW) #$(NAME_ASM)
 
@@ -133,7 +134,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/% | $(OBJ_DIR)
 	@printf $(CR)$(WHITE)"[ $(PROJECT_NAME): %s ]"$(EOC) $@
 
 $(LIBFT):
-	@make -C $(LIBFT_DIR) libft.a
+	@make -sC $(LIBFT_DIR) libft.a
 
 .PHONY: clean
 clean:
@@ -142,7 +143,7 @@ clean:
 		&& printf $(CR)$(RED)"✗ Object files of $(PROJECT_NAME) are cleaned\n"$(EOC); \
 	fi
 	@if [ -d $(LIBFT_DIR) ]; then \
-		make -C $(LIBFT_DIR) $@; \
+		make -sC $(LIBFT_DIR) $@; \
 	fi
 
 .PHONY: fclean
@@ -153,7 +154,7 @@ fclean: clean
 		&& printf $(CR)$(RED)"✗ Executable files of $(PROJECT_NAME) are cleaned\n"$(EOC); \
 	fi
 	@if [ -d $(LIBFT_DIR) ]; then \
-		make -C $(LIBFT_DIR) $@; \
+		make -sC $(LIBFT_DIR) $@; \
 	fi
 
 .PHONY: re
@@ -188,7 +189,7 @@ optimized: all
 
 $(LIBFTMO):
 	@printf "\e[35m" || true
-	@make -C $(LIBFT_DIR) libftmo.a
+	@make -sC $(LIBFT_DIR) libftmo.a
 	@printf "\e[35m" || true
 	@#cp $(LIBFT_DIR)/libftmo.so $@
 	@printf "\e[0m" || true

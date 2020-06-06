@@ -6,7 +6,7 @@
 #    By: bleplat <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/07 09:05:04 by bleplat           #+#    #+#              #
-#    Updated: 2020/06/05 10:42:41 by amalsago         ###   ########.fr        #
+#    Updated: 2020/06/06 10:40:46 by amalsago         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -368,6 +368,7 @@ WHITE		= '\033[0;37m'
 ### M A I N   R U L E S ###
 ###########################
 
+.SILENT:
 .PHONY: upgrade_and_all
 upgrade_and_all: upgrade all
 
@@ -388,7 +389,7 @@ $(NAME_2): $(OBJ_C) $(OBJ_2)
 	@#$(CC) $(CFLAGS)  -o $@ $^
 	@#chmod -x $@ || true
 	@printf $(CR)$(GREEN)"✓ $@ is created\n"$(EOC)
-	@make ftmo_help
+	@make -s ftmo_help
 
 $(OBJ_DIR):
 	@mkdir -p $@
