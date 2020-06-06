@@ -14,7 +14,9 @@
 # define CW_VM_PLAYER_H
 
 # include <fcntl.h>
+# include <unistd.h>
 # include "cw_champion.h"
+# include "cw_common.h"
 
 /*
 ** Struct s_cw_player
@@ -29,13 +31,11 @@
 
 typedef struct		s_cw_player
 {
-	char			*name;
-	char			*comment;
-	unsigned int	code_len;
-	unsigned char	*code;
+	t_cw_champion	*champion;
 	unsigned int	number;
 }					t_cw_player;
 
 void	cw_parsing_number_player(t_cw_data *data);
+int		cw_vm_valid_player(t_cw_data *data, t_cw_player *players);
 
 #endif

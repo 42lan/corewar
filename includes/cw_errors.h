@@ -32,6 +32,9 @@
 # define CW_VM_USAGE 3
 # define CW_VM_NO_ARG 5
 # define CW_VM_NO_VALID_ARGUMENT_DUMP 6
+# define CW_VM_ERROR_OPEN_FAILED -7
+# define CW_VM_ERROR_NOT_VALID_PLAYER 8
+# define CW_VM_READ_ERROR 9
 
 /*
 ** corewar specific error codes:
