@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 18:04:40 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/06 10:52:15 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/06 11:53:27 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void		cw_vm_init_struct_vm(t_cw_vm *vm)
 void		cw_vm_init_struct_data(t_cw_data *data)
 {
 	ft_bzero(data, sizeof(data));
-	ft_memset(data->filenumber, -1, sizeof(data->filenumber));
+	ft_memset(data->assigned_nbr, -1, sizeof(data->assigned_nbr));
 }
 
 int			main(int argc, char **argv)

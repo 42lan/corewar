@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 14:06:54 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/06 10:36:08 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/06 11:50:45 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,16 @@
 */
 void	cw_vm_print_data(t_cw_data *data)
 {
-	ft_printf("data->nbr_cycles   = %d\n", data->nbr_cycles);
-	ft_printf("data->nbr_players  = %d\n", data->nbr_players);
+	int		i;
+
+	i = -1;
+	ft_printf("data->nbr_cycles      = %d\n", data->nbr_cycles);
+	ft_printf("data->nbr_players     = %d\n", data->nbr_players);
+	while (++i < CW_MAX_PLAYERS)
+	{
+		ft_printf("data->filename[%d]     = %s\n", i, data->filename[i]);
+		ft_printf("data->assigned_nbr[%d] = %d\n", i, data->assigned_nbr[i]);
+	}
 }
 
 /*
@@ -47,17 +55,20 @@ int		cw_vm_is_valid_extension(const char *argv, const char *extension)
 
 int		cw_vm_get_player(t_cw_data *data, char **argv)
 {
-	int		i;
+	int			i;
+	char		*filename;
+	static int	j = 0;
+
 	i = 0;
 	if (ft_isstrnum(argv[i]))
-	{
-		// save -n id
-		i += 1;
-	}
+		data->assigned_nbr[j] = ft_atoi(argv[i++]);
 	if (argv[i] == NULL || argv[i][0] == '\0')
 		ft_printerr("filename is empty");
-	if (cw_vm_is_valid_extension(argv[i], ".cor") == CW_FAILURE)
+	// ALLOC
+	filename = ft_strtrim(argv[i]);
+	if (cw_vm_is_valid_extension(filename, ".cor") == CW_FAILURE)
 		ft_printerr("filename has incorrect extension");
+	data->filename[j++] = filename;
 	data->nbr_players += 1;
 	return (CW_SUCCESS);
 }
@@ -78,7 +89,6 @@ int		cw_vm_get_data(char **argv)
 		ft_dprintf(2, "invalid data");
 		exit(CW_VM_NO_VALID_ARGUMENT_DUMP);
 	}
-	argv++;
 	return (value);
 }
 
@@ -98,7 +108,6 @@ int		cw_vm_parsing(int argc, char **argv, t_cw_vm *vm, t_cw_data *data)
 	{
 		if (++i < argc)
 		{
-			ft_printf("---\n");
 			data->nbr_cycles = cw_vm_get_data(argv + i++);
 			vm->dump = 1;
 		}
@@ -111,7 +120,7 @@ int		cw_vm_parsing(int argc, char **argv, t_cw_vm *vm, t_cw_data *data)
 			ft_printerr("Max number of players exceeded");
 		if (ft_strnequ(argv[i], "-n\0", 3) && i + 2 < argc)
 		{
-			cw_vm_get_player(data, argv + i + 2);
+			cw_vm_get_player(data, argv + i + 1);
 			i += 2;
 		}
 		else
