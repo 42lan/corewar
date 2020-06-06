@@ -21,11 +21,13 @@
 
 int			cw_vm_read_player(t_cw_data *data, t_cw_player *players)
 {
+	ft_printf("{yellow}-------------ENTER IN READ PLAYER-------------\n{}");
 	if (!(players = malloc(sizeof(t_cw_champion) * data->nbr_players)))
 	{
 		ft_printf("{red}MALLOC ERROR\n");
 		exit (CW_ERROR_MALLOC_FAILED);
 	}
 	cw_parsing_number_player(data);
+	cw_vm_print_data(data);	//debug function
 	return (CW_SUCCESS);
 }

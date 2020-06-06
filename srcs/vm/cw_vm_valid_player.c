@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cw_vm_main.c                                       :+:      :+:    :+:   */
+/*   cw_vm_valid_player.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/04 18:04:40 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/06 16:21:46 by jthierce         ###   ########.fr       */
+/*   Created: 2020/06/06 15:33:02 by jthierce          #+#    #+#             */
+/*   Updated: 2020/06/06 15:33:02 by jthierce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "cw_vm.h"
+#include "cw_vm_player.h"
 
-void		cw_vm_init_struct_vm(t_cw_vm *vm)
+int		cw_vm_read_magic_number(t_cw_data *data, t_cw_player *players, int number)
 {
-	ft_bzero(vm, sizeof(vm));
-	ft_memset(vm->data.assigned_nbr, -1, sizeof(vm->data.assigned_nbr));
+	open(data->filename[number], O_RDONLY);
 }
 
-int			main(int argc, char **argv)
+int		cw_vm_valid_player(t_cw_data *data, t_cw_player *players)
 {
-	t_cw_vm		vm;
+	int i;
 
-	if (argc < 2)
-		cw_vm_usage();
-	cw_vm_init_struct_vm(&vm);
-	cw_vm_parsing(argc - 1 , argv + 1, &vm);
-	cw_vm_read_player(&vm.data, vm.player);
-	return (CW_SUCCESS);
+	i = -1;
+	while (++i < data->nbr_players)
+	{
+		cw_vm_read_magic_number();
+	}
 }

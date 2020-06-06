@@ -13,6 +13,7 @@
 #ifndef CW_VM_PLAYER_H
 # define CW_VM_PLAYER_H
 
+# include <fcntl.h>
 # include "cw_champion.h"
 
 /*
