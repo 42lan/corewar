@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 14:06:54 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/06 16:50:01 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/06 17:53:51 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,9 +97,9 @@ void	cw_vm_set_player_helper(t_cw_vm *vm, int ac, char **av, int *i)
 
 	if (*i + 1 < ac)
 	{
-		if (ft_atoi32check(&assigned_nbr, av[*i + 1]) <= 0)
-			cw_vm_set_player(vm, assigned_nbr, av[*i + 2]);
-		ft_printerr("Player's assigned ID should be between 1 and INT_MAX");
+		if (ft_atoi32check(&assigned_nbr, av[*i + 1]) != 0 || assigned_nbr <= 0)
+			ft_printerr("Player's assigned ID should be between 1 and INT_MAX");
+		cw_vm_set_player(vm, assigned_nbr, av[*i + 2]);
 		*i += 2;
 	}
 	else
