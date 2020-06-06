@@ -27,19 +27,14 @@ static void	cw_swap_number_player(t_cw_data *data, int i1, int i2)
 	data->filename[i2] = tmp_str;
 }
 
+/*
+** Sort player in order in stucture data depending on option
+*/
+
 static void	cw_sort_number_player(t_cw_data *data)
 {
 	int i;
 
-	i = -1;
-	while (++i + 1 < data->nbr_players)
-	{
-		if (data->assigned_nbr[i] > data->assigned_nbr[i + 1])
-		{
-			cw_swap_number_player(data, i, i + 1);
-			i = -1;
-		}
-	}
 	i = -1;
 	while (++i < data->nbr_players)
 		if (data->assigned_nbr[i] > 0 && data->assigned_nbr[i] <= data->nbr_players)
@@ -56,14 +51,18 @@ static void	cw_sort_number_player(t_cw_data *data)
 	}
 }
 
-void		cw_parsing_number_player(t_cw_data *data, t_cw_player *players)
+void		cw_parsing_number_player(t_cw_data *data)
 {
 	int i;
 
 	i = -1;
-	(void)players;
-	(void)i;
+	while (++i + 1 < data->nbr_players)
+	{
+		if (data->assigned_nbr[i] > data->assigned_nbr[i + 1])
+		{
+			cw_swap_number_player(data, i, i + 1);
+			i = -1;
+		}
+	}
 	cw_sort_number_player(data);
-	//while (++i < data->nbr_players)
-	//	(players[i])->name = 
 }

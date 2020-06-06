@@ -35,6 +35,6 @@ typedef struct		s_cw_player
 	unsigned int	number;
 }					t_cw_player;
 
-void	cw_parsing_number_player(t_cw_data *data, t_cw_player *players);
+void	cw_parsing_number_player(t_cw_data *data);
 
 #endif
