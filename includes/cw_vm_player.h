@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 14:38:41 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/04 14:38:41 by jthierce         ###   ########.fr       */
+/*   Updated: 2020/06/06 10:41:58 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,18 @@
 # include "cw_champion.h"
 
 /*
-** Struct player
+** Struct s_cw_player
 **
-** All information of player
+** All information about player
+** name		- player's name
+** comment	- player's comment
+** code_len	- player's executable code size
+** code		- player's executable code
+** number	- player's unique ID number
 */
 
-typedef struct		s_cw_player{
+typedef struct		s_cw_player
+{
 	char			*name;
 	char			*comment;
 	unsigned int	code_len;
