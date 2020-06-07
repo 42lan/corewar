@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 15:01:47 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/07 11:05:50 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/07 13:45:39 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,10 @@
 
 typedef struct	s_cw_vm
 {
-	t_cw_data	data;
-	t_cw_player	players[CW_MAX_PLAYERS];
-	t_bool		dump;
+	t_cw_data		data;
+	t_bool			dump;
+	t_cw_player		players[CW_MAX_PLAYERS];
+	unsigned char	arena[CW_MEM_SIZE + 1];
 
 }				t_cw_vm;
 

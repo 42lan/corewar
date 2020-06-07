@@ -17,51 +17,42 @@
 ** Verify if the space in arena is enough to place all player
 */
 
-static void	cw_vm_verify_enough_space(t_cw_vm *vm)
+static void		cw_vm_verify_enough_space(t_cw_vm *vm)
 {
-	unsigned int total;
-	int i;
-	int j;
+	int			i;
+	int			j;
+	unsigned	total;
+	unsigned	delta;
 
-	total = 0;
 	i = -1;
 	j = 0;
-	ft_printf("{blue}salut0.5  %d \n{}", vm->data.nbr_players);
+	total = 0;
+	delta = (unsigned int)(CW_MEM_SIZE / vm->data.nbr_players);
 	while (++i < vm->data.nbr_players)
-	{
-		ft_printf("{pink}%d\n{}", vm->players[0].number);
 		total += vm->players[i].champion->code_len;
-	}
-	ft_printf("{blue}salut1 %d\n{}", total);
 	i = -1;
 	while (j == 0 && ++i  < vm->data.nbr_players)
-	{
-		if (vm->players[i].champion->code_len > (unsigned int)(CW_MEM_SIZE / vm->data.nbr_players))
+		if (vm->players[i].champion->code_len > delta)
 			j = 1;
-	}
 	if (total > CW_MEM_SIZE || (j == 1 && i < vm->data.nbr_players))
 	{
 		while (i != -1)
 			cw_champion_destroy(&vm->players[i--].champion);
-		free(vm->players);
 		exit(CW_VM_ERRO_NOT_ENOUGH_SPACE_IN_ARENA);
 	}
 }
 
 /*
-**
+** Place champion's code on the Arena according to start pointer
 */
 
-static void cw_vm_place_code(unsigned char *arena, t_cw_champion *champion, int ptr)
+static void		cw_vm_place_code(t_cw_vm *vm, t_cw_champion *champion, int ptr)
 {
-	unsigned int i;
+	unsigned	i;
 
-	i = 0;
-	while (i < champion->code_len)
-	{
-		arena[ptr + i] = champion->code[i];
-		i++;
-	} 
+	i = -1;
+	while (++i < champion->code_len)
+		vm->arena[ptr + i] = champion->code[i];
 }
 
 /*
@@ -88,14 +79,10 @@ static void		cw_vm_place_player(t_cw_vm *vm)
 ** Ininitialize arena and load player in arena
 */
 
-int		cw_vm_ini_arena(t_cw_vm *vm)
+int				cw_vm_ini_arena(t_cw_vm *vm)
 {
-	unsigned char arena[CW_MEM_SIZE + 1];
-	
 	cw_vm_verify_enough_space(vm);
-	ft_printf("{blue}salut\n{}");
-	ft_bzero(arena, CW_MEM_SIZE + 1);
-	cw_vm_place_player(arena, vm);
-	ft_printf("{green}SUCCESS{}\n");
+	cw_vm_place_player(vm);
+	cw_vm_arena_dump(vm->arena, CW_MEM_SIZE + 1);
 	return (CW_SUCCESS);
 }
