@@ -20,7 +20,7 @@ void	cw_vm_start_game(t_cw_battle *battle, t_cw_vm *vm)
 	ptr = battle->processus;
 	while (1)
 	{
-		ft_printf("{blue}Hey battle->processus = %d\n", battle->processus->id);
+		ft_printf("{blue}Hey battle->processus = %d\n{}", battle->processus->id);
 		if (vm->arena[battle->processus->position] < 17
 			&& vm->arena[battle->processus->position] > 0)
 			battle->processus->op_code = vm->arena[battle->processus->position];
