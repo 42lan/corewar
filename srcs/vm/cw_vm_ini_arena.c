@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 03:04:40 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/07 03:04:40 by jthierce         ###   ########.fr       */
+/*   Updated: 2020/06/07 11:14:19 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,21 +29,21 @@ static void	cw_vm_verify_enough_space(t_cw_vm *vm)
 	ft_printf("{blue}salut0.5  %d \n{}", vm->data.nbr_players);
 	while (++i < vm->data.nbr_players)
 	{
-		ft_printf("{pink}%d\n{}", vm->player[0].number);
-		total += vm->player[i].champion->code_len;
+		ft_printf("{pink}%d\n{}", vm->players[0].number);
+		total += vm->players[i].champion->code_len;
 	}
 	ft_printf("{blue}salut1 %d\n{}", total);
 	i = -1;
 	while (j == 0 && ++i  < vm->data.nbr_players)
 	{
-		if (vm->player[i].champion->code_len > (unsigned int)(CW_MEM_SIZE / vm->data.nbr_players))
+		if (vm->players[i].champion->code_len > (unsigned int)(CW_MEM_SIZE / vm->data.nbr_players))
 			j = 1;
 	}
 	if (total > CW_MEM_SIZE || (j == 1 && i < vm->data.nbr_players))
 	{
 		while (i != -1)
-			cw_champion_destroy(&vm->player[i--].champion);
-		free(vm->player);
+			cw_champion_destroy(&vm->players[i--].champion);
+		free(vm->players);
 		exit(CW_VM_ERRO_NOT_ENOUGH_SPACE_IN_ARENA);
 	}
 }
@@ -79,7 +79,7 @@ static void	cw_vm_place_player(unsigned char *arena, t_cw_vm *vm)
 	distance = CW_MEM_SIZE / vm->data.nbr_players;
 	while (++i < vm->data.nbr_players)
 	{
-		cw_vm_place_code(arena, vm->player[i].champion, ptr);
+		cw_vm_place_code(arena, vm->players[i].champion, ptr);
 		ptr = distance * i; 
 	}
 }
