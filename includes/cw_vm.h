@@ -39,5 +39,6 @@ int		cw_vm_read_player(t_cw_vm *vm);
 void	cw_vm_check_nbr_players(t_cw_vm *vm);
 int		cw_vm_ini_arena(t_cw_vm *vm);
 void	cw_vm_intro_players(t_cw_vm *vm);
+void	cw_vm_battle(t_cw_vm *vm);
 
 #endif

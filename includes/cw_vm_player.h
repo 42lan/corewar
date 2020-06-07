@@ -22,10 +22,7 @@
 ** Struct s_cw_player
 **
 ** All information about player
-** name		- player's name
-** comment	- player's comment
-** code_len	- player's executable code size
-** code		- player's executable code
+** champion - pointer to champion struct
 ** number	- player's unique ID number
 */
 

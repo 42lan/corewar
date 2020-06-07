@@ -6,7 +6,7 @@
 #    By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by bleplat           #+#    #+#              #
-#    Updated: 2020/06/07 14:38:04 by amalsago         ###   ########.fr        #
+#    Updated: 2020/06/07 15:32:05 by jthierce         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,6 +54,8 @@ SRC_FILES_CW		=	vm/cw_vm_main.c \
 						vm/cw_vm_ini_arena.c \
 						vm/cw_vm_arena_dump.c \
 						vm/cw_vm_intro_players.c \
+						vm/cw_vm_battle.c\
+						vm/cw_vm_ini_battle.c
 
 SRC_FILES = $(SRC_FILES_COMMON) $(SRC_FILES_ASM) $(SRC_FILES_CW)
 
