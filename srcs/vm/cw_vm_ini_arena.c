@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 03:04:40 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/07 11:14:19 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/07 13:53:18 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,22 +65,22 @@ static void cw_vm_place_code(unsigned char *arena, t_cw_champion *champion, int 
 }
 
 /*
-**
+** Choose place where to place champion's code
 */
 
-static void	cw_vm_place_player(unsigned char *arena, t_cw_vm *vm)
+static void		cw_vm_place_player(t_cw_vm *vm)
 {
-	int i;
-	int ptr;
-	int	distance;
+	int			i;
+	int 		ptr;
+	int			distance;
 
 	i = -1;
 	ptr = 0;
 	distance = CW_MEM_SIZE / vm->data.nbr_players;
 	while (++i < vm->data.nbr_players)
 	{
-		cw_vm_place_code(arena, vm->players[i].champion, ptr);
 		ptr = distance * i; 
+		cw_vm_place_code(vm, vm->players[i].champion, ptr);
 	}
 }
 
