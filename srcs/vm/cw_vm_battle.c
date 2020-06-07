@@ -20,5 +20,6 @@ void		cw_vm_battle(t_cw_vm *vm)
 
 	ft_printf("{blue}pinponpinpon{}\n");
 	cw_vm_ini_battle(&battle, vm);
+	ft_printf("{blue}pinponpinpon{}\n");
 	cw_vm_intro_players(vm);
 }
