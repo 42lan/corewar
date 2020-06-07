@@ -70,7 +70,8 @@ static void		cw_vm_place_player(t_cw_vm *vm)
 	distance = CW_MEM_SIZE / vm->data.nbr_players;
 	while (++i < vm->data.nbr_players)
 	{
-		ptr = distance * i; 
+		ptr = distance * i;
+		vm->players[i].initial_position = ptr;
 		cw_vm_place_code(vm, vm->players[i].champion, ptr);
 	}
 }

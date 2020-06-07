@@ -43,5 +43,6 @@ typedef struct	s_cw_battle{
 
 
 void	cw_vm_ini_battle(t_cw_battle *battle, t_cw_vm *vm);
+void	cw_vm_start_game(t_cw_battle *battle, t_cw_vm *vm);
 
 #endif

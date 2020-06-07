@@ -12,16 +12,16 @@
 
 #include "cw_vm_battle.h"
 
-int		cw_vm_ini_processus(t_cw_processus *processus, int id)
+int		cw_vm_ini_processus(t_cw_processus *processus, int id, int position)
 {
 	if (!(processus = (t_cw_processus *)malloc(sizeof(t_cw_processus))))
 		return (CW_ERROR_MALLOC_FAILED);
 	ft_printf("{white}LUKE JE SUIS TON PERE\n{}");
 	processus->id = id;
+	processus->position = position;
 	processus->op_code = -1;
 	processus->last_live = -1;
 	processus->wait_cycles = -1;
-	processus->position = -1;
 	processus->jump = -1;
 	processus->carry = false;
 	processus->next = NULL;
@@ -42,7 +42,8 @@ void	cw_vm_ini_battle(t_cw_battle *battle, t_cw_vm *vm)
 	battle->cycle_to_die = CW_CYCLE_TO_DIE;
 	while (--i != -1)
 	{
-		if (cw_vm_ini_processus(battle->processus, i) == CW_ERROR_MALLOC_FAILED)
+		if (cw_vm_ini_processus(battle->processus, i, vm->players[i].initial_position)
+			== CW_ERROR_MALLOC_FAILED)
 		{
 			battle->processus = ptr;
 			while (battle->processus != NULL)
