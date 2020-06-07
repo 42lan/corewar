@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/06 15:33:02 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/07 12:06:47 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/07 15:16:29 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ int				cw_vm_valid_player(t_cw_data *data, t_cw_player *players)
 		fd = cw_vm_open_file(data->filename[i], players, i);
 		cw_vm_create_champion(players, i);
 		cw_vm_verify_file_structure(fd, players, i);
-		cw_champion_dump(players[i].champion);
 		close(fd);
 	}
 	return (CW_SUCCESS);
