@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 01:59:09 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/07 04:09:35 by jthierce         ###   ########.fr       */
+/*   Updated: 2020/06/07 15:14:56 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int					cw_vm_read_champion_name(int fd, t_cw_player *player)
 
 	if (read(fd, name, CW_PROG_NAME_LENGTH) != CW_PROG_NAME_LENGTH)
 	{
-		ft_dprintf(2, "{RED}ERROR READ CHAMPION NAME\n{}");
+		ft_dprintf(2, "{red}ERROR READ CHAMPION NAME\n{}");
 		return (CW_VM_READ_ERROR);
 	}
 	name[ft_strlen(name)] = '\0';
@@ -48,7 +48,7 @@ int					cw_vm_read_champion_null(int fd, char *part)
 
 	if (read(fd, str, CW_CHAMPION_NULL) != CW_CHAMPION_NULL)
 	{
-		ft_dprintf(2, "{RED}ERROR READ CHAMPION NULL\n{}");
+		ft_dprintf(2, "{red}ERROR READ CHAMPION NULL\n{}");
 		return (CW_VM_READ_ERROR);
 	}
 	if (ft_memcmp(str, "\0\0\0\0", CW_CHAMPION_NULL) != 0)
@@ -71,13 +71,13 @@ int					cw_vm_read_exec_code_len(int fd, t_cw_player *player)
 
 	if (read(fd, code_len, CW_EXEC_CODE_LEN) != CW_EXEC_CODE_LEN)
 	{
-		ft_dprintf(2, "{RED}ERROR READ CHAMPION EXEC CODE LEN\n{}");
+		ft_dprintf(2, "{red}ERROR READ CHAMPION EXEC CODE LEN\n{}");
 		return (CW_VM_READ_ERROR);
 	}
 	code_len_int = ft_bigendian32_read(code_len);
 	if (code_len_int > CW_CHAMP_MAX_SIZE)
 	{
-		ft_dprintf(2, "{RED}ERROR CHAMPION EXEC CODE LEN IS TOO BIG\n{}");
+		ft_dprintf(2, "{red}ERROR CHAMPION EXEC CODE LEN IS TOO BIG\n{}");
 		return (CW_VM_ERROR_CODE_LEN_TOO_LONG);
 	}
 	player->champion->code_len = code_len_int;
@@ -95,7 +95,7 @@ int					cw_vm_read_champion_comment(int fd, t_cw_player *player)
 
 	if (read(fd, comment, CW_COMMENT_LENGTH) != CW_COMMENT_LENGTH)
 	{
-		ft_dprintf(2, "{RED}ERROR READ CHAMPION COMMENT\n{}");
+		ft_dprintf(2, "{red}ERROR READ CHAMPION COMMENT\n{}");
 		return (CW_VM_READ_ERROR);
 	}
 	comment[ft_strlen(comment)] = '\0';
@@ -123,7 +123,7 @@ int					cw_vm_read_champion_exec_code(int fd, t_cw_player *player)
 	}
 	if (read(fd, exec_code, player->champion->code_len + 1) != player->champion->code_len)
 	{
-		ft_dprintf(2, "{RED}ERROR READ CHAMPION EXEC CODE\n{}");
+		ft_dprintf(2, "{red}ERROR READ CHAMPION EXEC CODE\n{}");
 		return (CW_VM_READ_ERROR);
 	}
 	player->champion->code = exec_code;
