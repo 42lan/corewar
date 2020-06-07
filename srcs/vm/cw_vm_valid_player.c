@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/06 15:33:02 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/07 02:08:18 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/07 12:06:47 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ static int		cw_vm_verify_file_structure(int fd, t_cw_player *players, int i)
 		close(fd);
 		while (i != -1)
 			cw_champion_destroy(&players[i--].champion);
-		free(players);
 		exit(ret);
 	}
 	return (CW_SUCCESS);
@@ -55,7 +54,6 @@ static int		cw_vm_open_file(const char *filename, t_cw_player *players, int i)
 	{
 		while (i != -1)
 			cw_champion_destroy(&players[--i].champion);
-		free(players);
 		ft_dprintf(2, "{red}Cannot open file %s\n{}", filename);
 		exit(CW_VM_ERROR_OPEN_FAILED);
 	}
@@ -72,7 +70,6 @@ static void		cw_vm_create_champion(t_cw_player *players, int i)
 	{
 		while (i != -1)
 			cw_champion_destroy(&players[i--].champion);
-		free(players);
 		ft_dprintf(2, "{red}Creation of champion failed\n{}");
 		exit(CW_VM_ERROR_OPEN_FAILED);
 	}

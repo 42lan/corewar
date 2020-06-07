@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 15:01:47 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/06 15:46:07 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/07 11:05:50 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 typedef struct	s_cw_vm
 {
 	t_cw_data	data;
-	t_cw_player	player[CW_MAX_PLAYERS];
+	t_cw_player	players[CW_MAX_PLAYERS];
 	t_bool		dump;
 
 }				t_cw_vm;
@@ -34,7 +34,7 @@ int		cw_vm_get_data(char **argv);
 int		cw_vm_get_player(t_cw_vm *vm, char *filename);
 int		cw_vm_is_valid_extension(const char *argv, const char *extension);
 void	cw_vm_print_data(t_cw_data *data);
-int		cw_vm_read_player(t_cw_data *data, t_cw_player *players);
+int		cw_vm_read_player(t_cw_vm *vm);
 void	cw_vm_check_nbr_players(t_cw_vm *vm);
 int		cw_vm_ini_arena(t_cw_vm *vm);
 

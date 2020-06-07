@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/05 13:20:57 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/07 01:35:28 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/07 11:09:27 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,9 @@
 ** Return error code when the file is not validate
 */
 
-int			cw_vm_read_player(t_cw_data *data, t_cw_player *players)
+int			cw_vm_read_player(t_cw_vm *vm)
 {
-	ft_printf("{yellow}-------------ENTER IN READ PLAYER-------------\n{}");
-	if (!(players = malloc(sizeof(t_cw_champion) * data->nbr_players)))
-	{
-		ft_dprintf(2, "{red}MALLOC ERROR\n{}");
-		exit(CW_ERROR_MALLOC_FAILED);
-	}
-	cw_parsing_number_player(data);
-	cw_vm_valid_player(data, players);
+	cw_parsing_number_player(&vm->data);
+	cw_vm_valid_player(&vm->data, vm->players);
 	return (CW_SUCCESS);
 }
