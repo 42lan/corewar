@@ -35,7 +35,9 @@
 # define CW_VM_ERROR_OPEN_FAILED -7
 # define CW_VM_ERROR_NOT_VALID_PLAYER 8
 # define CW_VM_READ_ERROR 9
-# define CW_VN_ERROR_NAME_TOO_LONG 10
+# define CW_VM_ERROR_NAME_TOO_LONG 10
+# define CW_VM_ERROR_CODE_LEN_TOO_LONG 11
+# define CW_VM_ERRO_NOT_ENOUGH_SPACE_IN_ARENA 12
 
 /*
 ** corewar specific error codes:

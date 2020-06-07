@@ -36,5 +36,6 @@ int		cw_vm_is_valid_extension(const char *argv, const char *extension);
 void	cw_vm_print_data(t_cw_data *data);
 int		cw_vm_read_player(t_cw_data *data, t_cw_player *players);
 void	cw_vm_check_nbr_players(t_cw_vm *vm);
+int		cw_vm_ini_arena(t_cw_vm *vm);
 
 #endif

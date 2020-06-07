@@ -1,11 +1,14 @@
 #ifndef CW_CHAMPION_H
 # define CW_CHAMPION_H
 
+# include "cw_vm_arena.h"
+
 # define CW_EXEC_MAGIC			0xea83f3
 # define CW_PROG_NAME_LENGTH	128
 # define CW_CHAMPION_NULL		4
 # define CW_EXEC_CODE_LEN		4
 # define CW_COMMENT_LENGTH		2048
+# define CW_CHAMP_MAX_SIZE		(CW_MEM_SIZE / 6)
 
 /*
 ** t_cw_champion:
