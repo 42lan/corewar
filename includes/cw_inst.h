@@ -12,18 +12,26 @@
 ** args_count: How many args does this op have.
 ** args: Unresolved args, not the real values.
 ** args_types: Types of each argument in args.
+**
+** Note: The total size of the inst is (1 + has_coding_byte + args_count).
 */
 
 typedef struct s_cw_inst	t_cw_inst;
 struct						s_cw_inst
 {
 	t_cw_opcode			opcode;
+	bool				has_coding_byte;
 	unsigned int		args_count;	
 	int					args[3];		
 	t_cw_arg_type		args_types[3];
 };
 
-int							cw_inst_save(t_cw_inst *inst, const char *dst);
+int							cw_inst_write(t_cw_inst *inst, const char *dst);
+
+/*
+** Change "arena" and "arena_size" by just 1 pointer to the arena structure.
+** You can fill an "inst" by looking in the op list at index "opcode - 1".
+*/
 int							cw_inst_fill(t_cw_inst *dst_inst,
 										const char *arena,
 										unsigned int arena_size,
