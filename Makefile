@@ -6,7 +6,7 @@
 #    By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by bleplat           #+#    #+#              #
-#    Updated: 2020/06/08 15:50:35 by amalsago         ###   ########.fr        #
+#    Updated: 2020/06/08 17:25:50 by jthierce         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,7 @@ SRC_FILES_CW		=	vm/cw_vm_main.c \
 						vm/cw_vm_battle.c \
 						vm/cw_vm_ini_battle.c \
 						vm/cw_vm_start_game.c \
+						vm/cw_vm_read_execute.c
 
 SRC_FILES = $(SRC_FILES_COMMON) $(SRC_FILES_ASM) $(SRC_FILES_CW)
 
@@ -88,7 +89,7 @@ DEP = $(patsubst %, $(DEP_DIR)/%.d, $(SRC_FILES))
 ###   C O M P I L E R   ###
 ###########################
 
-CC = clang
+CC = gcc
 
 DEFINES = _DARWIN_USE_64_BIT_INODE
 CDEFINES = $(patsubst %, -D%, $(DEFINES))
@@ -141,7 +142,7 @@ clean:
 	@printf "\e[93m" || true
 	rm -f $(OBJ)
 	rm -f $(OBJ_DIR)/*.o
-	rmdir $(OBJ_DIR) || true
+	rm -rf $(OBJ_DIR) || true
 	make -C $(LIBFT_DIR) $@
 	@printf "\e[0m" || true
 
@@ -150,6 +151,8 @@ fclean: clean
 	@printf "\e[91m" || true
 	rm -f $(NAME)
 	rm -f $(LIBFTMO)
+	rm -f $(NAME_ASM)
+	rm -f $(NAME_CW)
 	make -C $(LIBFT_DIR) $@
 	@printf "\e[0m" || true
 
