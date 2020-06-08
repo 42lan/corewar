@@ -40,5 +40,5 @@ int			cw_inst_write(t_cw_inst *inst, char *dst)
 		i_dst += cw_inst_write_arg(inst->args[1], inst->types[1], &dst[i_dst]);
 	if (inst->args_count > 2)
 		i_dst += cw_inst_write_arg(inst->args[2], inst->types[2], &dst[i_dst]);
-	return (1 + inst->has_coding_byte + inst->args_count);
+	return (i_dst);
 }
