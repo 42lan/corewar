@@ -37,18 +37,22 @@ typedef int				t_cw_arg_type;
 ** has2: ?
 */
 
+typedef unsigned char	t_cw_opcode;
+
 typedef struct s_cw_op	t_cw_op;
 struct					s_cw_op
 {
 	char				*name;
 	unsigned int		arg_count;
 	t_cw_arg_type		arg_types[3];
-	char				code;
+	t_cw_opcode			opcode;
 	unsigned int		cycles;
 	char				*desc;
 	t_bool				has_coding_byte;
 	t_bool				has2;
 };
+
+# define CW_OP_COUNT 16
 
 const t_cw_op			*cw_op_list(void);
 
