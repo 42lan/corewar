@@ -1,6 +1,6 @@
 # Binaries
-./asm
-./corewar
+/asm
+/corewar
 
 # C
 *.obj
