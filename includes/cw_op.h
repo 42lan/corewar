@@ -90,5 +90,6 @@ t_cw_arg_type			cw_op_get_arg_type(t_cw_coding_code code);
 void					cw_op_get_arg_types(t_cw_arg_type *out3,
 											t_cw_coding_byte coding_byte);
 t_cw_coding_byte		cw_op_get_coding_byte(t_cw_arg_type type, int index);
+t_cw_coding_byte		cw_op_get_full_coding_byte(t_cw_arg_type *type3);
 
 #endif
