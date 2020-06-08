@@ -34,12 +34,15 @@ LIBFTMO     = $(LIBFT_DIR)/libftmo.a
 SRC_FILES_COMMON	=	common/ft_printerr.c \
 						common/cw_champion.c \
 						common/cw_op_list.c \
+						common/cw_op_get_arg_len.c \
 						common/cw_op_get_arg_type.c \
 						common/cw_op_get_arg_types.c \
 						common/cw_op_get_coding_code.c \
 						common/cw_op_get_coding_byte.c \
+						common/cw_op_get_full_coding_byte.c \
+						common/cw_inst_write.c \
 
-SRC_FILES_ASM		=#	asm/cw_asm_main.c \
+SRC_FILES_ASM		=	asm/cw_asm_main.c \
 
 SRC_FILES_CW		=	vm/cw_vm_main.c \
 						vm/cw_vm_parsing.c \
@@ -103,7 +106,7 @@ LDFLAGS += -L $(LIBFT_DIR) -lft
 ###########################
 
 .PHONY: all
-all: $(NAME_CW) #$(NAME_ASM)
+all: $(NAME_CW) $(NAME_ASM)
 
 $(NAME_ASM): $(LIBFT) $(OBJ_ASM)
 	@printf "\e[92m" || true

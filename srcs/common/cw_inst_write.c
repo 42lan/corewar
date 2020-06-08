@@ -1,3 +1,5 @@
+#include "libft.h"
+
 #include "cw_inst.h"
 
 /*
@@ -5,15 +7,15 @@
 ** Return how many bytes were written.
 */
 
-static int	cw_inst_write_arg(int arg, t_cw_arg_type type, const char *dst)
+static int	cw_inst_write_arg(int arg, t_cw_arg_type type, char *dst)
 {
-	int		arg_length;
+	int		arg_len;
 
 	arg_len = cw_op_get_arg_len(type);
-	if (arg_len == sizeof(uint16))
-		ft_bigendian16_write(dst, arg);
+	if (arg_len == sizeof(int16_t))
+		ft_bigendian16_write((unsigned char *)dst, arg);
 	else
-		ft_bigendian32_write(dst, arg);
+		ft_bigendian32_write((unsigned char *)dst, arg);
 	return (arg_len);
 }
 
@@ -27,11 +29,12 @@ int			cw_inst_write(t_cw_inst *inst, char *dst)
 {
 	int		i_dst;
 
+	i_dst = 0;
 	dst[i_dst] = inst->opcode;
 	i_dst += 1;
 	if (inst->has_coding_byte)
 	{
-		dst[i_dst] = cw_op_get_coding_byte
+		dst[i_dst] = cw_op_get_full_coding_byte(inst->types);
 		i_dst += 1;	
 	}
 	if (inst->args_count > 0)

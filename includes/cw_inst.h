@@ -18,7 +18,7 @@ typedef struct s_cw_inst	t_cw_inst;
 struct						s_cw_inst
 {
 	t_cw_opcode			opcode;
-	bool				has_coding_byte;
+	t_bool				has_coding_byte;
 	unsigned int		args_count;	
 	int					args[3];		
 	t_cw_arg_type		types[3];

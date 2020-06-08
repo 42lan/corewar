@@ -13,6 +13,7 @@
 #ifndef LIBFT_TYPES_H
 # define LIBFT_TYPES_H
 
+# include <stdint.h>
 # include <sys/stat.h>
 
 /*
