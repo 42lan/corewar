@@ -69,6 +69,7 @@ SRC_FILES = $(SRC_FILES_COMMON) $(SRC_FILES_ASM) $(SRC_FILES_CW)
 INCLUDES = includes
 SRC_DIR  = srcs
 OBJ_DIR  = .obj
+OBJ_SUBDIRS = $(OBJ_DIR)/common $(OBJ_DIR)/asm $(OBJ_DIR)/vm
 DEP_DIR  = $(OBJ_DIR)
 
 SRC_COMMON	= $(patsubst %, $(SRC_DIR)/%, $(SRC_FILES_COMMON))
@@ -121,9 +122,7 @@ $(NAME_CW): $(LIBFT) $(OBJ_CW)
 $(OBJ_DIR):
 	@printf "\e[94m" || true
 	mkdir -p $@
-	mkdir -p $@/common
-	mkdir -p $@/asm
-	mkdir -p $@/vm
+	mkdir -p $(OBJ_SUBDIRS)
 	@printf "\e[0m" || true
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/% | $(OBJ_DIR)
@@ -140,7 +139,7 @@ $(LIBFT):
 clean:
 	@printf "\e[93m" || true
 	rm -f $(OBJ)
-	rm -f $(OBJ_DIR)/*.o
+	rmdir $(OBJ_SUBDIRS) || true
 	rmdir $(OBJ_DIR) || true
 	make -C $(LIBFT_DIR) $@
 	@printf "\e[0m" || true
