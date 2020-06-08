@@ -6,9 +6,11 @@
 #    By: bleplat <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/07 09:05:04 by bleplat           #+#    #+#              #
-#    Updated: 2020/03/01 17:16:28 by bleplat          ###   ########.fr        #
+#    Updated: 2020/06/06 10:40:46 by amalsago         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+PROJECT_NAME	= libft
 
 ###########################
 ###   B I N A R I E S   ###
@@ -263,6 +265,8 @@ FNT_1 =		ft_welcome.c \
 			ft_readb.c \
 			ft_bigendian32.c \
 			ft_bigendian16.c \
+			ft_strcspn.c \
+			ft_strspn.c \
 
 FNT_2 =		ftmo_malloc.c \
 			ftmo_free.c \
@@ -283,7 +287,6 @@ FNT_2 =		ftmo_malloc.c \
 			ft_strstr.c \
 			ft_strnstr.c \
 			ft_memmove.c \
-
 
 FNT = $(FNT_1) $(FNT_2)
 
@@ -346,9 +349,26 @@ LDFLAGS = -L $(LIBFT_DIR) -lft
 
 
 ###########################
+###     E X T R A       ###
+###########################
+CR          = "\r"$(CLEAR)
+CLEAR       = "\\033[0K"
+EOC         = "\033[0;0m"
+BLACK		= '\033[0;30m'
+RED			= '\033[0;31m'
+GREEN		= '\033[0;32m'
+YELLOW		= '\033[0;33m'
+BLUE		= '\033[0;34m'
+PURPLE		= '\033[0;35m'
+CYAN		= '\033[0;36m'
+WHITE		= '\033[0;37m'
+
+
+###########################
 ### M A I N   R U L E S ###
 ###########################
 
+.SILENT:
 .PHONY: upgrade_and_all
 upgrade_and_all: upgrade all
 
@@ -359,46 +379,40 @@ all: $(NAME)
 $(NAME): $(ALL_NAMES)
 
 $(NAME_1): $(OBJ_C) $(OBJ_1)
-	@printf "\e[92m" || true
-	ar rc $(NAME_1) $(OBJ_1)
-	ranlib $(NAME_1)
-	@printf "\e[0m" || true
+	@ar rc $(NAME_1) $(OBJ_1)
+	@ranlib $(NAME_1)
+	@printf $(CR)$(GREEN)"✓ $@ is created\n"$(EOC)
 
 $(NAME_2): $(OBJ_C) $(OBJ_2)
-	@printf "\e[92m" || true
-	ar rc $(NAME_2) $(OBJ_2)
-	#$(CC) $(CFLAGS) -shared -o $@ $^
-	#$(CC) $(CFLAGS)  -o $@ $^
-	#chmod -x $@ || true
-	@printf "\e[0m" || true
-	make ftmo_help
+	@ar rc $(NAME_2) $(OBJ_2)
+	@#$(CC) $(CFLAGS) -shared -o $@ $^
+	@#$(CC) $(CFLAGS)  -o $@ $^
+	@#chmod -x $@ || true
+	@printf $(CR)$(GREEN)"✓ $@ is created\n"$(EOC)
+	@make -s ftmo_help
 
 $(OBJ_DIR):
-	@printf "\e[94m" || true
-	mkdir -p $@
-	@printf "\e[0m" || true
+	@mkdir -p $@
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/% | $(OBJ_DIR)
-	@printf "\e[96m" || true
-	$(CC) $(CFLAGS) -o $@ -I $(INCLUDES) -c $<
-	@printf "\e[0m" || true
+	@$(CC) $(CFLAGS) -o $@ -I $(INCLUDES) -c $<
+	@printf $(CR)$(WHITE)"[ $(PROJECT_NAME): %s ]"$(EOC) $@
 
 .PHONY: clean
 clean:
-	@printf "\e[93m" || true
-	rm -f $(OBJ)
-	rm -rf $(OBJ_DEMO)
-	rm -f $(OBJ_DIR)/*.o
-	rmdir $(OBJ_DIR)/demo || true
-	rmdir $(OBJ_DIR) || true
-	@printf "\e[0m" || true
+	@if [ -d $(OBJ_DIR) ]; then \
+		rm -f $(OBJ) \
+		&& rm -rf $(OBJ_DIR) \
+		&& printf $(CR)$(RED)"✗ Object files of $(PROJECT_NAME) are cleaned\n"$(EOC); \
+	fi
 
 .PHONY: fclean
 fclean: clean
-	@printf "\e[91m" || true
-	rm -f $(ALL_NAMES)
-	rm -f $(DEMO)
-	@printf "\e[0m" || true
+	@if [ -f $(NAME_1) ]; then \
+		rm -f $(ALL_NAMES) \
+		&& rm -f $(DEMO) \
+		&& printf $(CR)$(RED)"✗ Executable files of $(PROJECT_NAME) are cleaned\n"$(EOC); \
+	fi
 
 .PHONY: re
 re: fclean all
@@ -449,24 +463,24 @@ run: $(NAME)
 ###########################
 
 display_debug:
-	echo $(DEMO_DIR)
+	@echo $(DEMO_DIR)
 
 .PHONY: demos
 demos: $(DEMO)
 
 $(DEMO_DIR)/%.demo: $(OBJ_DIR)/$(DEMO_DIR)/%.o libft.a
 	@printf "\e[92m" || true
-	gcc $(CFLAGS) -o $@ $< $(LDFLAGS)
+	@gcc $(CFLAGS) -o $@ $< $(LDFLAGS)
 	@printf "\e[0m" || true
 
 $(OBJ_DIR)/$(DEMO_DIR): $(OBJ_DIR)
 	@printf "\e[94m" || true
-	mkdir -p $@
+	@mkdir -p $@
 	@printf "\e[0m" || true
 
 $(OBJ_DIR)/$(DEMO_DIR)%.o: $(DEMO_DIR)/%.c | $(OBJ_DIR)/$(DEMO_DIR)
 	@printf "\e[96m" || true
-	$(CC) $(CFLAGS) -o $@ -I $(INCLUDES) -c $<
+	@$(CC) $(CFLAGS) -o $@ -I $(INCLUDES) -c $<
 	@printf "\e[0m" || true
 
 .PHONY: ftmo_help

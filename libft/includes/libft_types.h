@@ -6,7 +6,7 @@
 /*   By: bleplat <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 21:57:30 by bleplat           #+#    #+#             */
-/*   Updated: 2019/04/09 18:32:25 by bleplat          ###   ########.fr       */
+/*   Updated: 2020/06/06 13:09:37 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,8 @@ typedef long double							t_llf;
 typedef int									t_bool;
 typedef struct stat							t_stat;
 typedef char								*t_lscolors;
+
+# define false	0
+# define true	1
 
 #endif
