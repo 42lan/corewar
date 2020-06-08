@@ -21,6 +21,8 @@ typedef int				t_cw_arg_type;
 # define CW_T_IND T_IND
 # define CW_T_LAB T_LAB
 
+uint32_t				cw_op_get_arg_len(t_cw_arg_type type);
+
 /*
 ** t_cw_op:
 **
