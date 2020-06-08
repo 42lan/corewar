@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 19:14:23 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/07 19:14:23 by jthierce         ###   ########.fr       */
+/*   Updated: 2020/06/08 17:52:10 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@ void	cw_vm_start_game(t_cw_battle *battle, t_cw_vm *vm)
 	t_cw_processus *ptr;
 
 	ptr = battle->processus;
+battle->processus->wait_cycles = 5;
 	while (1)
 	{
+		ft_printf("%d\n", battle->processus->wait_cycles);
 		if (battle->processus->wait_cycles != 0)
 		{
 			battle->processus->wait_cycles--;

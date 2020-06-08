@@ -1,6 +1,8 @@
 #ifndef CW_INST_H
 # define CW_INST_H
 
+# include "cw_vm.h"
+# include "cw_vm_battle.h"
 # include "cw_op.h"
 
 /*
@@ -24,19 +26,11 @@ struct						s_cw_inst
 	t_cw_arg_type		types[3];
 };
 
+void						cw_inst_init(t_cw_inst *inst);
+void						cw_inst_fill(t_cw_inst *inst, t_cw_vm *vm,
+								t_cw_battle *battle);
+void						cw_inst_get_args(t_cw_inst *inst, unsigned op);
+void						cw_inst_dump(t_cw_inst *inst);
 int							cw_inst_write(t_cw_inst *inst, char *dst);
-
-/*
-** Change "arena" and "arena_size" by just 1 pointer to the arena structure.
-** You can fill an "inst" by looking in the op list at index "opcode - 1".
-*/
-int							cw_inst_fill(t_cw_inst *dst_inst,
-										const char *arena,
-										unsigned int arena_size,
-										unsigned int pc);
-int							cw_inst_fill(t_cw_inst *dst_inst,
-										const char *arena,
-										unsigned int arena_size,
-										unsigned int pc);
 
 #endif

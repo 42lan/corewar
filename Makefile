@@ -6,7 +6,7 @@
 #    By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by bleplat           #+#    #+#              #
-#    Updated: 2020/06/08 17:32:25 by jthierce         ###   ########.fr        #
+#    Updated: 2020/06/08 21:27:27 by amalsago         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ SRC_FILES_COMMON	=	common/ft_printerr.c \
 						common/cw_op_get_coding_byte.c \
 						common/cw_op_get_full_coding_byte.c \
 						common/cw_inst_write.c \
+						common/cw_inst.c \
 
 SRC_FILES_ASM		=	asm/cw_asm_main.c \
 
