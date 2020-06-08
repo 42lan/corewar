@@ -88,7 +88,7 @@ DEP = $(patsubst %, $(DEP_DIR)/%.d, $(SRC_FILES))
 ###   C O M P I L E R   ###
 ###########################
 
-CC = gcc
+CC = clang
 
 DEFINES = _DARWIN_USE_64_BIT_INODE
 CDEFINES = $(patsubst %, -D%, $(DEFINES))
