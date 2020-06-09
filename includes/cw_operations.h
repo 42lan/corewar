@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cw_operations.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 13:04:30 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/09 13:46:21 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/09 20:53:05 by jthierce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ typedef void	(*t_op_p)(t_cw_inst *inst, t_cw_battle *battle, t_cw_vm *vm);
 
 /* void	cw_vm_op_live(t_cw_inst *inst, t_cw_battle *battle, t_cw_vm *vm); */
 void	cw_vm_op_ld(t_cw_inst *inst, t_cw_battle *battle, t_cw_vm *vm);
-/* void	cw_vm_op_ld(t_cw_inst *inst, t_cw_battle *battle, t_cw_vm *vm); */
-/* void	cw_vm_op_st(t_cw_inst *inst, t_cw_battle *battle, t_cw_vm *vm); */
+void	cw_vm_op_st(t_cw_inst *inst, t_cw_battle *battle, t_cw_vm *vm);
 /* void	cw_vm_op_add(t_cw_inst *inst, t_cw_battle *battle, t_cw_vm *vm); */
 /* void	cw_vm_op_sub(t_cw_inst *inst, t_cw_battle *battle, t_cw_vm *vm); */
 /* void	cw_vm_op_and(t_cw_inst *inst, t_cw_battle *battle, t_cw_vm *vm); */
@@ -38,7 +37,7 @@ void	cw_vm_op_ld(t_cw_inst *inst, t_cw_battle *battle, t_cw_vm *vm);
 
 
 static t_op_p	g_op_table[] = {
-	0, cw_vm_op_ld, 0
+	0, cw_vm_op_ld, cw_vm_op_st, 0
 	/* cw_vm_op_live, cw_vm_op_ld, cw_vm_op_st, cw_vm_op_add, cw_vm_op_sub, cw_vm_op_and, */
 	/* cw_vm_op_or, cw_vm_op_xor, cw_vm_op_zjmp, cw_vm_op_ldi, cw_vm_op_sti, cw_vm_op_fork, */
 	/* cw_vm_op_lld, cw_vm_op_lldi,cw_vm_op_lfork,	cw_vm_op_aff */
