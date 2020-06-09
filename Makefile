@@ -6,7 +6,7 @@
 #    By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by bleplat           #+#    #+#              #
-#    Updated: 2020/06/09 02:22:06 by jthierce         ###   ########.fr        #
+#    Updated: 2020/06/09 13:43:32 by amalsago         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,7 @@ SRC_FILES_CW		=	vm/cw_vm_main.c \
 						vm/cw_vm_ini_battle.c \
 						vm/cw_vm_start_game.c \
 						vm/cw_vm_read_execute.c \
-						vm/cw_vm_op_ld.c \
+						vm/ops/cw_vm_op_ld.c \
 
 SRC_FILES = $(SRC_FILES_COMMON) $(SRC_FILES_ASM) $(SRC_FILES_CW)
 
@@ -122,13 +122,8 @@ $(NAME_CW): $(LIBFT) $(OBJ_CW)
 	$(CC) $(CFLAGS) -o $@ $(OBJ_CW) $(LDFLAGS)
 	@printf "\e[0m" || true
 
-$(OBJ_DIR):
-	@printf "\e[94m" || true
-	mkdir -p $@
-	mkdir -p $(OBJ_SUBDIRS)
-	@printf "\e[0m" || true
-
 $(OBJ_DIR)/%.o: $(SRC_DIR)/% | $(OBJ_DIR)
+	mkdir -p $(dir $@)
 	@printf "\e[96m" || true
 	$(CC) $(CFLAGS) -o $@ -c $<
 	@printf "\e[0m" || true
