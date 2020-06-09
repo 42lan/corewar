@@ -22,7 +22,7 @@ t_cw_processus	*cw_vm_ini_processus(int id, int position)
 	processus->carry = false;
 	processus->op_code = -1;
 	processus->last_live = -1;
-	processus->wait_cycles = -1;
+	processus->wait_cycles = 0;
 	processus->position = position;
 	processus->jump = -1;
 	processus->id = id;

@@ -19,6 +19,23 @@
 # define CW_CYCLE_TO_DIE	1536
 # define CW_REG_NUMBER		16
 
+# define CW_DIR_SIZE_LIVE	4
+# define CW_DIR_SIZE_LD		4
+# define CW_DIR_SIZE_ST		4
+# define CW_DIR_SIZE_ADD	4
+# define CW_DIR_SIZE_SUB	4
+# define CW_DIR_SIZE_AND	4
+# define CW_DIR_SIZE_OR		4
+# define CW_DIR_SIZE_XOR	4
+# define CW_DIR_SIZE_ZJMP	2
+# define CW_DIR_SIZE_LDI	2
+# define CW_DIR_SIZE_STI	2
+# define CW_DIR_SIZE_FORK	2
+# define CW_DIR_SIZE_LLD	4
+# define CW_DIR_SIZE_LLDI	2
+# define CW_DIR_SIZE_LFORK	2
+# define CW_DIR_SIZE_AFF	4
+
 typedef struct				s_cw_processus
 {
 	t_bool					carry;
@@ -44,8 +61,11 @@ typedef struct				s_cw_battle
 	t_cw_processus			*processus;
 }							t_cw_battle;
 
+# include "cw_inst.h"
+
 void	cw_vm_ini_battle(t_cw_battle *battle, t_cw_vm *vm);
 void	cw_vm_start_game(t_cw_battle *battle, t_cw_vm *vm);
 void	cw_vm_read_execute(t_cw_battle *battle, t_cw_vm *vm);
+void	cw_vm_op_ld(t_cw_inst *inst, t_cw_battle *battle, t_cw_vm *vm);
 
 #endif

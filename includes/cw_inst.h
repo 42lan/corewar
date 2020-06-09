@@ -1,8 +1,8 @@
 #ifndef CW_INST_H
 # define CW_INST_H
 
-# include "cw_vm.h"
 # include "cw_vm_battle.h"
+# include "cw_vm.h"
 # include "cw_op.h"
 
 /*
@@ -27,8 +27,7 @@ struct						s_cw_inst
 };
 
 void						cw_inst_init(t_cw_inst *inst);
-void						cw_inst_fill(t_cw_inst *inst, t_cw_vm *vm,
-								t_cw_battle *battle);
+void						cw_inst_fill(t_cw_inst *inst, t_cw_vm *vm, t_cw_battle *battle);
 void						cw_inst_get_args(t_cw_inst *inst, unsigned op);
 void						cw_inst_dump(t_cw_inst *inst);
 int							cw_inst_write(t_cw_inst *inst, char *dst);

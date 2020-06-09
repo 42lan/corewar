@@ -18,12 +18,11 @@ void	cw_vm_start_game(t_cw_battle *battle, t_cw_vm *vm)
 	t_cw_processus *ptr;
 
 	ptr = battle->processus;
-battle->processus->wait_cycles = 5;
 	while (1)
 	{
-		ft_printf("%d\n", battle->processus->wait_cycles);
 		if (battle->processus->wait_cycles != 0)
 		{
+			ft_printf("{green}%d\n{}", battle->processus->wait_cycles);
 			battle->processus->wait_cycles--;
 			if (battle->processus->wait_cycles == 0)
 			{
@@ -36,6 +35,8 @@ battle->processus->wait_cycles = 5;
 			battle->processus->op_code = vm->arena[battle->processus->position];
 			battle->processus->wait_cycles = battle->cycle_op_code[battle->processus->op_code - 1];
 		}
+		else
+			battle->processus->position = (battle->processus->position + 1) % CW_MEM_SIZE;
 		if (battle->processus->next != NULL)
 			battle->processus = battle->processus->next;
 		else
