@@ -1,9 +1,9 @@
 #ifndef CW_INST_H
 # define CW_INST_H
 
-# include "cw_vm_battle.h"
 # include "cw_vm.h"
 # include "cw_op.h"
+# include "cw_vm_battle.h"
 
 /*
 ** t_cw_inst:

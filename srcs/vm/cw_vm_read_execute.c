@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 16:41:22 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/08 23:37:51 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/09 13:30:44 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "cw_vm_battle.h"
 #include "cw_inst.h"
 #include "cw_op.h"
+#include "cw_operations.h"
 
 void	cw_vm_read_execute(t_cw_battle *battle, t_cw_vm *vm)
 {
@@ -21,5 +22,5 @@ void	cw_vm_read_execute(t_cw_battle *battle, t_cw_vm *vm)
 
 	cw_inst_fill(&inst, vm, battle);
 	cw_inst_dump(&inst);
-	cw_vm_op_ld(&inst, battle, vm);
+	g_op_table[inst.opcode - 1](&inst, battle, vm);
 }

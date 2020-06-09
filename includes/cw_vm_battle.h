@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 15:14:35 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/08 19:27:15 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/09 13:21:59 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,8 @@ typedef struct				s_cw_battle
 	t_cw_processus			*processus;
 }							t_cw_battle;
 
-# include "cw_inst.h"
-
 void	cw_vm_ini_battle(t_cw_battle *battle, t_cw_vm *vm);
 void	cw_vm_start_game(t_cw_battle *battle, t_cw_vm *vm);
 void	cw_vm_read_execute(t_cw_battle *battle, t_cw_vm *vm);
-void	cw_vm_op_ld(t_cw_inst *inst, t_cw_battle *battle, t_cw_vm *vm);
 
 #endif
