@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 16:59:44 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/09 19:41:53 by jthierce         ###   ########.fr       */
+/*   Updated: 2020/06/10 17:10:47 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 void	cw_vm_op_live(t_cw_inst *inst, t_cw_battle *battle, t_cw_vm *vm)
 {
+	(void)inst;(void)battle;(void)vm;
 	int			i;
 	int			arg1;
 	unsigned	multiplier;
