@@ -70,19 +70,19 @@ void	cw_vm_op_or_body(t_cw_inst *inst, t_cw_battle *battle, t_cw_vm *vm)
 	int	arg[3];
 
 	i = -1;
-	pos = 1;
+	pos = 2;
 	reg_value = 0;
 	while (++i < 2)
 		if (inst->args[i] == T_REG)
 		{
-			if (cw_vm_is_reg(vm->arena[battle->processus->position + pos + i]) == false)
+			if (cw_vm_is_reg(vm->arena[battle->processus->position + pos]) == false)
 				ft_printf("ERROR\n");
-			arg[i] = battle->processus->registries[(vm->arena[battle->processus->position + pos + i]) - 1];
+			arg[i] = battle->processus->registries[(vm->arena[battle->processus->position + pos]) - 1];
 			pos++;
 		}
 		else if (inst->args[i] == T_DIR)
 		{
-			arg[i] = cw_vm_op_or_dir(battle, vm, pos + 1);
+			arg[i] = cw_vm_op_or_dir(battle, vm, pos);
 			pos += CW_DIR_SIZE_OR;
 		}
 		else if (inst->args[i] == T_IND)
