@@ -71,15 +71,15 @@ void	cw_vm_op_and_body(t_cw_inst *inst, t_cw_battle *battle, t_cw_vm *vm)
 	int tmp;
 
 	i = -1;
-	pos = 1;
+	pos = 2;
 	reg_value = 0;
 	while (++i < 2)
 	{
 		if (inst->args[i] == T_REG)
 		{
-			if ((vm->arena[battle->processus->position + pos + i]) < 1 || (vm->arena[battle->processus->position + pos + i]) > 16)
+			if ((vm->arena[battle->processus->position + pos]) < 1 || (vm->arena[battle->processus->position + pos]) > 16)
 				ft_printf("ERROR\n");
-			arg[i] = battle->processus->registries[(vm->arena[battle->processus->position + pos + i]) - 1];
+			arg[i] = battle->processus->registries[(vm->arena[battle->processus->position + pos]) - 1];
 			pos++;
 		}
 		else if (inst->args[i] == T_DIR)
