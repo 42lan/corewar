@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cw_vm_op_fork.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 17:13:59 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/10 22:08:06 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/10 23:04:52 by jthierce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,17 @@ void	cw_vm_op_fork(t_cw_inst *inst, t_cw_battle *battle, t_cw_vm *vm)
 	i = -1;
 	arg1 = 0;
 	multiplier = ft_pow(256, CW_DIR_SIZE_FORK - 1);
-	ft_printf("%d %d\n", inst->args_count, inst->types[0]);
-	if (inst->args_count != 1 || inst->types[0] != T_DIR)
-		ft_printf("ERROR\n");
+	(void)inst;
 	while (++i < CW_DIR_SIZE_FORK)
 	{
 		arg1 += multiplier * vm->arena[(battle->processus->position + 1 + i) % CW_MEM_SIZE];
 		multiplier /= 256;
 	}
-	idx_address = battle->processus->position + arg1 % CW_IDX_MOD;
-	if (!((new = ft_memdup(battle->processus, sizeof(t_cw_processus *)))))
+	idx_address = battle->processus->position + (arg1 % CW_IDX_MOD);
+	if (!(new = ft_memdup(battle->processus, sizeof(t_cw_processus)))) //a verifier le tableau de registre
 		exit(CW_ERROR_MALLOC_FAILED);
 	new->position = idx_address;
-	new->carry = false;
-	new->last_live = -1;
-	new->wait_cycles = 0;
-	battle->processus->position += 3 % CW_MEM_SIZE;
-	exit(0);
+	new->next = battle->head;
+	battle->head = new;
+	battle->processus->position = (battle->processus->position + 3) % CW_MEM_SIZE;
 }

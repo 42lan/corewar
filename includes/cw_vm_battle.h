@@ -59,6 +59,7 @@ typedef struct				s_cw_battle
 	int						cycle_op_code[16];
 	t_bool					byte_codage[16];
 	t_cw_processus			*processus;
+	t_cw_processus			*head;
 }							t_cw_battle;
 
 void	cw_vm_ini_battle(t_cw_battle *battle, t_cw_vm *vm);

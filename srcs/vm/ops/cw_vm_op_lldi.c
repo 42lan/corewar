@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 17:14:53 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/10 20:56:59 by jthierce         ###   ########.fr       */
+/*   Updated: 2020/06/10 22:49:43 by jthierce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int16_t	cw_vm_op_lldi_ind(t_cw_battle *battle, t_cw_vm *vm, int pos)
 	return (arg);
 }
 
-int		cw_vm_op_lldi_value_reg(t_cw_battle *battle, t_cw_vm *vm, int pos)
+int		cw_vm_op_lldi_value_reg(t_cw_vm *vm, int pos)
 {
 	int i;
 	int pow;
@@ -83,12 +83,9 @@ void	cw_vm_op_lldi_body(t_cw_inst *inst, t_cw_battle *battle, t_cw_vm *vm)
 	int i;
 	int	arg[3];
 	int	pos;
-	int reg_value;
-	int tmp;
 
 	i = -1;
 	pos = 2;
-	reg_value = 0;
 	while (++i < 2)
 	{
 		if (inst->args[i] == T_REG)
@@ -112,7 +109,7 @@ void	cw_vm_op_lldi_body(t_cw_inst *inst, t_cw_battle *battle, t_cw_vm *vm)
 	arg[0] = battle->processus->position + (arg[0] + arg[1]);
 	if (arg[0] < 0)
 		arg[0] += CW_MEM_SIZE;
-	battle->processus->registries[battle->processus->position + pos - 1] = cw_vm_op_lldi_value_reg(battle, vm, arg[0]);
+	battle->processus->registries[battle->processus->position + pos - 1] = cw_vm_op_lldi_value_reg(vm, arg[0]);
 }
 
 void	cw_vm_op_lldi(t_cw_inst *inst, t_cw_battle *battle, t_cw_vm *vm)

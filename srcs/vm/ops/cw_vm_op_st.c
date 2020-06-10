@@ -64,5 +64,4 @@ void	cw_vm_op_st(t_cw_inst *inst, t_cw_battle *battle, t_cw_vm *vm)
 	else if (inst->types[1] == T_IND)
 		cw_vm_op_st_ind_exec(battle, vm);
 	cw_vm_arena_dump(vm->arena, CW_MEM_SIZE);
-	exit(1);
 }

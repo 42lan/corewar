@@ -6,7 +6,7 @@
 #    By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by bleplat           #+#    #+#              #
-#    Updated: 2020/06/10 17:35:49 by amalsago         ###   ########.fr        #
+#    Updated: 2020/06/10 22:48:10 by jthierce         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -142,7 +142,7 @@ $(NAME_CW): $(LIBFT) $(OBJ_CW)
 	@printf "\e[0m" || true
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/% | $(OBJ_DIR)
-	mkdir -p $(dir $@)
+	mkdir -p $(dir $@) || true
 	@printf "\e[96m" || true
 	$(CC) $(CFLAGS) -o $@ -c $<
 	@printf "\e[0m" || true
