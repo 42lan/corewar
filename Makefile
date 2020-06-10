@@ -6,7 +6,7 @@
 #    By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by bleplat           #+#    #+#              #
-#    Updated: 2020/06/10 05:44:05 by jthierce         ###   ########.fr        #
+#    Updated: 2020/06/10 12:23:48 by amalsago         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,6 +60,7 @@ SRC_FILES_CW		=	vm/cw_vm_main.c \
 						vm/cw_vm_ini_battle.c \
 						vm/cw_vm_start_game.c \
 						vm/cw_vm_read_execute.c \
+						vm/cw_vm_is_reg.c \
 						vm/ops/cw_vm_op_ld.c \
 						vm/ops/cw_vm_op_st.c \
 						vm/ops/cw_vm_op_and.c \
