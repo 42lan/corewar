@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/06 15:33:02 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/07 15:16:29 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/10 14:01:09 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ static int		cw_vm_open_file(const char *filename, t_cw_player *players, int i)
 
 	if ((fd = open(filename, O_RDONLY)) == -1)
 	{
-		while (i != -1)
-			cw_champion_destroy(&players[--i].champion);
+		while (--i != -1)
+			cw_champion_destroy(&players[i].champion);
 		ft_dprintf(2, "{red}Cannot open file %s\n{}", filename);
 		exit(CW_VM_ERROR_OPEN_FAILED);
 	}
