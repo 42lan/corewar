@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 00:15:08 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/10 00:15:08 by jthierce         ###   ########.fr       */
+/*   Updated: 2020/06/10 17:32:49 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ void	cw_vm_op_and_body(t_cw_inst *inst, t_cw_battle *battle, t_cw_vm *vm)
 		reg_value = (reg_value << 1);
 	}
 	battle->processus->registries[battle->processus->position + pos - 1] = reg_value;
+	battle->processus->carry = (reg_value == 0) ? 1 : 0;
 	battle->processus->position = pos + 1;
 }
 
