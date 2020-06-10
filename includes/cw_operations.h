@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 13:04:30 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/09 20:53:05 by jthierce         ###   ########.fr       */
+/*   Updated: 2020/06/10 05:47:21 by jthierce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ typedef void	(*t_op_p)(t_cw_inst *inst, t_cw_battle *battle, t_cw_vm *vm);
 /* void	cw_vm_op_live(t_cw_inst *inst, t_cw_battle *battle, t_cw_vm *vm); */
 void	cw_vm_op_ld(t_cw_inst *inst, t_cw_battle *battle, t_cw_vm *vm);
 void	cw_vm_op_st(t_cw_inst *inst, t_cw_battle *battle, t_cw_vm *vm);
-/* void	cw_vm_op_add(t_cw_inst *inst, t_cw_battle *battle, t_cw_vm *vm); */
-/* void	cw_vm_op_sub(t_cw_inst *inst, t_cw_battle *battle, t_cw_vm *vm); */
-/* void	cw_vm_op_and(t_cw_inst *inst, t_cw_battle *battle, t_cw_vm *vm); */
+void	cw_vm_op_add(t_cw_inst *inst, t_cw_battle *battle, t_cw_vm *vm);
+void	cw_vm_op_sub(t_cw_inst *inst, t_cw_battle *battle, t_cw_vm *vm);
+void	cw_vm_op_and(t_cw_inst *inst, t_cw_battle *battle, t_cw_vm *vm);
 /* void	cw_vm_op_or(t_cw_inst *inst, t_cw_battle *battle, t_cw_vm *vm); */
 /* void	cw_vm_op_xor(t_cw_inst *inst, t_cw_battle *battle, t_cw_vm *vm); */
-/* void	cw_vm_op_zjmp(t_cw_inst *inst, t_cw_battle *battle, t_cw_vm *vm); */
+void	cw_vm_op_zjmp(t_cw_inst *inst, t_cw_battle *battle, t_cw_vm *vm);
 /* void	cw_vm_op_ldi(t_cw_inst *inst, t_cw_battle *battle, t_cw_vm *vm); */
 /* void	cw_vm_op_sti(t_cw_inst *inst, t_cw_battle *battle, t_cw_vm *vm); */
 /* void	cw_vm_op_fork(t_cw_inst *inst, t_cw_battle *battle, t_cw_vm *vm); */

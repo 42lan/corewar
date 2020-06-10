@@ -44,6 +44,7 @@ void	cw_vm_op_st_ind_exec(t_cw_battle *battle, t_cw_vm *vm)
 	vm->arena[(arg2 + 2) % CW_MEM_SIZE] = reg_value / 256;
 	reg_value = reg_value % 256;
 	vm->arena[(arg2 + 3) % CW_MEM_SIZE] = reg_value;
+	battle->processus->position += 5;
 }
 
 
@@ -54,8 +55,11 @@ void	cw_vm_op_st(t_cw_inst *inst, t_cw_battle *battle, t_cw_vm *vm)
 	if (inst->types[0] != T_REG || inst->types[1] == T_DIR)	
 		ft_printf("ERROR\n");
 	if (inst->types[1] == T_REG)
+	{
 		battle->processus->registries[vm->arena[(battle->processus->position + 3) % CW_MEM_SIZE] - 1] =
 		battle->processus->registries[vm->arena[(battle->processus->position + 2) % CW_MEM_SIZE] - 1];
+		battle->processus->position += 4;
+	}
 		// rajouter une protection si la valeur de l'index est superieur a 16 ou < 1
 	else if (inst->types[1] == T_IND)
 		cw_vm_op_st_ind_exec(battle, vm);
