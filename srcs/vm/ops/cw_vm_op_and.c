@@ -93,13 +93,7 @@ void	cw_vm_op_and_body(t_cw_inst *inst, t_cw_battle *battle, t_cw_vm *vm)
 			pos += 2;
 		}
 	}
-	i = -1;
-	while (++i < 8)
-	{
-		tmp = (arg[0] >> i) & 0x01;
-		reg_value += (arg[1] >> i) & tmp;
-		reg_value = (reg_value << 1);
-	}
+	reg_value = arg[0] & arg[1];
 	battle->processus->registries[battle->processus->position + pos - 1] = reg_value;
 	battle->processus->carry = (reg_value == 0) ? 1 : 0;
 	battle->processus->position = pos + 1;
