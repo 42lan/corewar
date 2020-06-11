@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cw_vm_op_ldi.c                                     :+:      :+:    :+:   */
+/*   cw_vm_lldi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/10 17:12:31 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/10 21:00:50 by jthierce         ###   ########.fr       */
+/*   Created: 2020/06/10 17:14:53 by amalsago          #+#    #+#             */
+/*   Updated: 2020/06/10 22:49:43 by jthierce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "cw_vm_battle.h"
 #include "cw_inst.h"
 
-int		cw_vm_op_ldi_dir(t_cw_battle *battle, t_cw_vm *vm, int pos)
+int		cw_vm_op_lldi_dir(t_cw_battle *battle, t_cw_vm *vm, int pos)
 {
 	int total;
 	int i;
@@ -22,16 +22,16 @@ int		cw_vm_op_ldi_dir(t_cw_battle *battle, t_cw_vm *vm, int pos)
 
 	i = -1;
 	total = 0;
-	pow = ft_pow(256, CW_DIR_SIZE_LDI - 1);
-	while (++i < CW_DIR_SIZE_LDI)
+	pow = ft_pow(256, CW_DIR_SIZE_LLDI - 1);
+	while (++i < CW_DIR_SIZE_LLDI)
 	{
-		total += pow * vm->arena[(battle->processus->position + pos + i) % CW_MEM_SIZE];
+		total += pow * vm->arena[(battle->procs->pos + pos + i) % CW_MEM_SIZE];
 		pow /= 256;
 	}
 	return (total);
 }
 
-int16_t	cw_vm_op_ldi_ind(t_cw_battle *battle, t_cw_vm *vm, int pos)
+int16_t	cw_vm_op_lldi_ind(t_cw_battle *battle, t_cw_vm *vm, int pos)
 {
 	int				i;
 	int16_t			arg;
@@ -45,10 +45,10 @@ int16_t	cw_vm_op_ldi_ind(t_cw_battle *battle, t_cw_vm *vm, int pos)
 	multiplier = 256;
 	while (++i < 2)
 	{
-		arg += multiplier * vm->arena[(battle->processus->position + pos + i) % CW_MEM_SIZE];
+		arg += multiplier * vm->arena[(battle->procs->pos + pos + i) % CW_MEM_SIZE];
 		multiplier /= 256;
 	}
-	idx_address = (battle->processus->position + (arg % CW_IDX_MOD)) % CW_MEM_SIZE;
+	idx_address = (battle->procs->pos + (arg % CW_IDX_MOD)) % CW_MEM_SIZE;
 	if (idx_address < 0)
 		idx_address += CW_MEM_SIZE;
 	i = -1;
@@ -62,7 +62,7 @@ int16_t	cw_vm_op_ldi_ind(t_cw_battle *battle, t_cw_vm *vm, int pos)
 	return (arg);
 }
 
-int		cw_vm_op_ldi_value_reg(t_cw_vm *vm, int pos)
+int		cw_vm_op_lldi_value_reg(t_cw_vm *vm, int pos)
 {
 	int i;
 	int pow;
@@ -78,7 +78,7 @@ int		cw_vm_op_ldi_value_reg(t_cw_vm *vm, int pos)
 	return (total);
 }
 
-void	cw_vm_op_ldi_body(t_cw_inst *inst, t_cw_battle *battle, t_cw_vm *vm)
+void	cw_vm_op_lldi_body(t_cw_inst *inst, t_cw_battle *battle, t_cw_vm *vm)
 {
 	int i;
 	int	arg[3];
@@ -90,33 +90,33 @@ void	cw_vm_op_ldi_body(t_cw_inst *inst, t_cw_battle *battle, t_cw_vm *vm)
 	{
 		if (inst->args[i] == T_REG)
 		{
-			if ((vm->arena[battle->processus->position + pos]) < 1 || (vm->arena[battle->processus->position + pos]) > 16)
+			if ((vm->arena[battle->procs->pos + pos]) < 1 || (vm->arena[battle->procs->pos + pos]) > 16)
 				ft_printf("ERROR\n");
-			arg[i] = battle->processus->registries[(vm->arena[battle->processus->position + pos]) - 1];
+			arg[i] = battle->procs->regs[(vm->arena[battle->procs->pos + pos]) - 1];
 			pos++;
 		}
 		else if (inst->args[i] == T_DIR)
 		{
-			arg[i] = cw_vm_op_ldi_dir(battle, vm, pos);
-			pos += CW_DIR_SIZE_LDI;
+			arg[i] = cw_vm_op_lldi_dir(battle, vm, pos);
+			pos += CW_DIR_SIZE_LLDI;
 		}
 		else if (inst->args[i] == T_IND)
 		{
-			arg[i] = cw_vm_op_ldi_ind(battle, vm, pos);
+			arg[i] = cw_vm_op_lldi_ind(battle, vm, pos);
 			pos += 2;
 		}
 	}
-	arg[0] = battle->processus->position + ((arg[0] + arg[1]) % CW_IDX_MOD);
+	arg[0] = battle->procs->pos + (arg[0] + arg[1]);
 	if (arg[0] < 0)
 		arg[0] += CW_MEM_SIZE;
-	battle->processus->registries[battle->processus->position + pos] = cw_vm_op_ldi_value_reg(vm, arg[0]);
+	battle->procs->regs[battle->procs->pos + pos - 1] = cw_vm_op_lldi_value_reg(vm, arg[0]);
 }
 
-void	cw_vm_op_ldi(t_cw_inst *inst, t_cw_battle *battle, t_cw_vm *vm)
+void	cw_vm_op_lldi(t_cw_inst *inst, t_cw_battle *battle, t_cw_vm *vm)
 {
 	if (inst->args_count != 3)
 		ft_printf("ERROR\n");
 	if (inst->types[2] != T_REG || inst->types[1] == T_IND)	
 		ft_printf("ERROR\n");
-	cw_vm_op_ldi_body(inst, battle, vm);
+	cw_vm_op_lldi_body(inst, battle, vm);
 }

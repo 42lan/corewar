@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cw_vm_op_aff.c                                     :+:      :+:    :+:   */
+/*   cw_vm_aff.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -22,9 +22,9 @@ void	cw_vm_op_aff(t_cw_inst *inst, t_cw_battle *battle, t_cw_vm *vm)
 
 	if (inst->args_count != 1 || inst->types[0] != T_REG)
 		ft_printf("ERROR\n");
-	index = vm->arena[battle->processus->position + 2] - 1;
-	arg1 = battle->processus->registries[index];
+	index = vm->arena[battle->procs->pos + 2] - 1;
+	arg1 = battle->procs->regs[index];
 	reg_value = arg1 % 256;
 	ft_printf("{bold}{red}%c{}\n", reg_value);
-	battle->processus->position += 3 % CW_MEM_SIZE;
+	battle->procs->pos += 3 % CW_MEM_SIZE;
 }

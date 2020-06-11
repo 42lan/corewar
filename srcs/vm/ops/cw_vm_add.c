@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cw_vm_op_add.c                                     :+:      :+:    :+:   */
+/*   cw_vm_add.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -20,10 +20,10 @@ void	cw_vm_op_add(t_cw_inst *inst, t_cw_battle *battle, t_cw_vm *vm)
 
 	if (inst->args_count != 3 || inst->types[0] != T_REG || inst->types[1] == T_REG || inst->types[2] != T_REG)
 		ft_printf("ERROR\n");
-	arg[0] = battle->processus->registries[vm->arena[(battle->processus->position + 2) % CW_MEM_SIZE] - 1];
-	arg[1] = battle->processus->registries[vm->arena[(battle->processus->position + 3) % CW_MEM_SIZE] - 1];
+	arg[0] = battle->procs->regs[vm->arena[(battle->procs->pos + 2) % CW_MEM_SIZE] - 1];
+	arg[1] = battle->procs->regs[vm->arena[(battle->procs->pos + 3) % CW_MEM_SIZE] - 1];
 	arg[2] = arg[0] + arg[1];
-	battle->processus->registries[vm->arena[(battle->processus->position + 4) % CW_MEM_SIZE] - 1] = arg[2];
-	battle->processus->carry = (arg[2] == 0) ? 1 : 0;
-	battle->processus->position = (battle->processus->position + 2) % CW_MEM_SIZE;
+	battle->procs->regs[vm->arena[(battle->procs->pos + 4) % CW_MEM_SIZE] - 1] = arg[2];
+	battle->procs->carry = (arg[2] == 0) ? 1 : 0;
+	battle->procs->pos = (battle->procs->pos + 2) % CW_MEM_SIZE;
 }

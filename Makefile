@@ -6,7 +6,7 @@
 #    By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by bleplat           #+#    #+#              #
-#    Updated: 2020/06/11 14:05:50 by amalsago         ###   ########.fr        #
+#    Updated: 2020/06/11 14:41:51 by amalsago         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,22 +64,22 @@ SRC_FILES_CW		=	vm/cw_vm_main.c \
 						vm/cw_vm_proc_dump.c \
 						$(SRC_FILES_CW_OP)
 
-SRC_FILES_CW_OP		=	vm/ops/cw_vm_op_live.c \
-						vm/ops/cw_vm_op_ld.c \
-						vm/ops/cw_vm_op_st.c \
-						vm/ops/cw_vm_op_add.c \
-						vm/ops/cw_vm_op_sub.c \
-						vm/ops/cw_vm_op_and.c \
-						vm/ops/cw_vm_op_or.c \
-						vm/ops/cw_vm_op_xor.c \
-						vm/ops/cw_vm_op_zjmp.c \
-						vm/ops/cw_vm_op_ldi.c \
-						vm/ops/cw_vm_op_sti.c \
-						vm/ops/cw_vm_op_fork.c \
-						vm/ops/cw_vm_op_lld.c \
-						vm/ops/cw_vm_op_lldi.c \
-						vm/ops/cw_vm_op_lfork.c \
-						vm/ops/cw_vm_op_aff.c \
+SRC_FILES_CW_OP		=	vm/ops/cw_vm_live.c \
+						vm/ops/cw_vm_ld.c \
+						vm/ops/cw_vm_st.c \
+						vm/ops/cw_vm_add.c \
+						vm/ops/cw_vm_sub.c \
+						vm/ops/cw_vm_and.c \
+						vm/ops/cw_vm_or.c \
+						vm/ops/cw_vm_xor.c \
+						vm/ops/cw_vm_zjmp.c \
+						vm/ops/cw_vm_ldi.c \
+						vm/ops/cw_vm_sti.c \
+						vm/ops/cw_vm_fork.c \
+						vm/ops/cw_vm_lld.c \
+						vm/ops/cw_vm_lldi.c \
+						vm/ops/cw_vm_lfork.c \
+						vm/ops/cw_vm_aff.c \
 
 SRC_FILES = $(SRC_FILES_COMMON) $(SRC_FILES_ASM) $(SRC_FILES_CW)
 
