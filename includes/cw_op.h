@@ -39,7 +39,7 @@ uint32_t		cw_op_get_arg_len(t_cw_arg_type type);
 ** has2: ?
 */
 
-typedef unsigned char	t_cw_opcode;
+typedef unsigned char	t_cw_opc;
 
 typedef struct s_cw_op	t_cw_op;
 struct					s_cw_op
@@ -47,7 +47,7 @@ struct					s_cw_op
 	char				*name;
 	unsigned int		arg_count;
 	t_cw_arg_type		arg_types[3];
-	t_cw_opcode			opcode;
+	t_cw_opc			opc;
 	unsigned int		cycles;
 	char				*desc;
 	t_bool				has_coding_byte;

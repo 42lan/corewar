@@ -30,7 +30,7 @@ int			cw_inst_write(t_cw_inst *inst, char *dst)
 	int		i_dst;
 
 	i_dst = 0;
-	dst[i_dst] = inst->opcode;
+	dst[i_dst] = inst->opc;
 	i_dst += 1;
 	if (inst->has_coding_byte)
 	{

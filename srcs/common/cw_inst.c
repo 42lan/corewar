@@ -25,11 +25,11 @@ void	cw_inst_fill(t_cw_inst *inst, t_cw_vm *vm, t_cw_battle *battle)
 
 	i = -1;
 	cw_inst_init(inst);
-	inst->opcode = vm->arena[battle->processus->position + 0];
-	inst->has_coding_byte = (battle->byte_codage[inst->opcode - 1]) ? true : false;
+	inst->opc = vm->arena[battle->procs->pos + 0];
+	inst->has_coding_byte = (battle->byte_codage[inst->opc - 1]) ? true : false;
 	if (inst->has_coding_byte == true)
 	{
-		cw_inst_get_args(inst, vm->arena[battle->processus->position + 1]);
+		cw_inst_get_args(inst, vm->arena[battle->procs->pos + 1]);
 		while (++i < inst->args_count)
 		{
 			if (inst->args[i] == 0x01)
@@ -59,9 +59,9 @@ void	cw_inst_dump(t_cw_inst *inst)
 	char		*op_name;
 
 	i = -1;
-	op_name = cw_op_list()[inst->opcode - 1].name;
-	ft_printf("opcode:           %d (%s)\n", inst->opcode, op_name);
-	ft_printf("has_coding_byte:  ", inst->opcode);
+	op_name = cw_op_list()[inst->opc - 1].name;
+	ft_printf("opc:           %d (%s)\n", inst->opc, op_name);
+	ft_printf("has_coding_byte:  ", inst->opc);
 	(inst->has_coding_byte == true) ? ft_printf("true") : ft_printf("false");
 	ft_printf("\nargs_count:       %d\n", inst->args_count);
 	(inst->args_count != 0) ? ft_printf("types:            ") : 0;

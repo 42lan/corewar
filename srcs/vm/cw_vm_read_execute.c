@@ -22,5 +22,5 @@ void	cw_vm_read_execute(t_cw_battle *battle, t_cw_vm *vm)
 
 	cw_inst_fill(&inst, vm, battle);
 	cw_inst_dump(&inst);
-	g_op_table[inst.opcode - 1](&inst, battle, vm);
+	g_op_table[inst.opc - 1](&inst, battle, vm);
 }

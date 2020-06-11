@@ -10,7 +10,7 @@
 **
 ** Instruction.
 ** Represent an instance of an op, with determined arguments.
-** opcode: The opcode corresponding to an op.
+** opc: The opc corresponding to an op.
 ** args_count: How many args does this op have.
 ** args: Unresolved args, not the real values.
 ** types: Types of each argument in args.
@@ -19,7 +19,7 @@
 typedef struct s_cw_inst	t_cw_inst;
 struct						s_cw_inst
 {
-	t_cw_opcode			opcode;
+	t_cw_opc			opc;
 	t_bool				has_coding_byte;
 	unsigned int		args_count;	
 	int					args[3];		

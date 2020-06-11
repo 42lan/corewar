@@ -71,7 +71,7 @@ static void		cw_vm_place_player(t_cw_vm *vm)
 	while (++i < vm->data.nbr_players)
 	{
 		ptr = distance * i;
-		vm->players[i].initial_position = ptr;
+		vm->players[i].init_pos = ptr;
 		cw_vm_place_code(vm, vm->players[i].champion, ptr);
 	}
 }

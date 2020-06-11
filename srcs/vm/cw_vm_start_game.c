@@ -15,31 +15,31 @@
 
 void	cw_vm_start_game(t_cw_battle *battle, t_cw_vm *vm)
 {
-	t_cw_processus *ptr;
+	t_cw_proc *ptr;
 
-	ptr = battle->processus;
+	ptr = battle->procs;
 	while (1)
 	{
-		if (battle->processus->wait_cycles != 0)
+		if (battle->procs->wait_cycles != 0)
 		{
-			ft_printf("{green}%d\n{}", battle->processus->wait_cycles);
-			battle->processus->wait_cycles--;
-			if (battle->processus->wait_cycles == 0)
+			ft_printf("{green}%d\n{}", battle->procs->wait_cycles);
+			battle->procs->wait_cycles--;
+			if (battle->procs->wait_cycles == 0)
 			{
 				cw_vm_read_execute(battle, vm);
 			}
 		}
-		else if (vm->arena[battle->processus->position] < 17
-				&& vm->arena[battle->processus->position] > 0)
+		else if (vm->arena[battle->procs->pos] < 17
+				&& vm->arena[battle->procs->pos] > 0)
 		{
-			battle->processus->op_code = vm->arena[battle->processus->position];
-			battle->processus->wait_cycles = battle->cycle_op_code[battle->processus->op_code - 1];
+			battle->procs->opc = vm->arena[battle->procs->pos];
+			battle->procs->wait_cycles = battle->cycle_opc[battle->procs->opc - 1];
 		}
 		else
-			battle->processus->position = (battle->processus->position + 1) % CW_MEM_SIZE;
-		if (battle->processus->next != NULL)
-			battle->processus = battle->processus->next;
+			battle->procs->pos = (battle->procs->pos + 1) % CW_MEM_SIZE;
+		if (battle->procs->next != NULL)
+			battle->procs = battle->procs->next;
 		else
-			battle->processus = ptr;
+			battle->procs = ptr;
 	}
 }
