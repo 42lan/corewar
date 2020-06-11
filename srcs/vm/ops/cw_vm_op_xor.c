@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 17:11:41 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/11 00:41:09 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/11 12:55:26 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,6 @@ void	cw_vm_op_xor_body(t_cw_inst *inst, t_cw_battle *battle, t_cw_vm *vm)
 			pos += 2;
 		}
 	reg_value = arg[0] ^ arg[1];
-	ft_printf("%d %d %d\n", arg[0], arg[1], reg_value);
-	exit(0);
 	battle->processus->registries[battle->processus->position + pos - 1] = reg_value;
 	battle->processus->carry = (reg_value == 0) ? 1 : 0;
 	battle->processus->position = pos + 1;

@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 15:23:59 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/08 23:52:42 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/11 13:09:12 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_cw_processus	*cw_vm_ini_processus(int id, int position)
 	processus->position = position;
 	processus->jump = -1;
 	processus->id = id;
-	ft_bzero(processus->registries, CW_REG_NUMBER);
+	ft_bzero(processus->registries, sizeof(int) * CW_REG_NUMBER);
 	processus->next = NULL;
 	return (processus);
 }

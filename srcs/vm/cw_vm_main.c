@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 18:04:40 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/07 16:54:05 by jthierce         ###   ########.fr       */
+/*   Updated: 2020/06/11 13:11:14 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void		cw_vm_init_struct_vm(t_cw_vm *vm)
 {
 	ft_bzero(vm, sizeof(vm));
 	ft_bzero(vm->arena, CW_MEM_SIZE + 1);
-	ft_memset(vm->data.assigned_nbr, -1, sizeof(vm->data.assigned_nbr));
+	ft_memset(vm->data.assigned_nbr, -1, sizeof(int) * CW_MAX_PLAYERS);
 }
 
 int			main(int argc, char **argv)

@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 21:27:06 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/09 01:17:50 by jthierce         ###   ########.fr       */
+/*   Updated: 2020/06/11 13:09:42 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 void	cw_inst_init(t_cw_inst *inst)
 {
-	ft_bzero(inst, sizeof(*inst));
+	ft_bzero(inst, sizeof(t_cw_inst));
 }
 
 void	cw_inst_fill(t_cw_inst *inst, t_cw_vm *vm, t_cw_battle *battle)
