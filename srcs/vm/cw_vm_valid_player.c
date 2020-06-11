@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/06 15:33:02 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/10 14:01:09 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/11 13:21:53 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ static int		cw_vm_verify_file_structure(int fd, t_cw_player *players, int i)
 ** cw_vm_open_file() opens given file and return its fd
 */
 
-static int		cw_vm_open_file(const char *filename, t_cw_player *players, int i)
+static int		cw_vm_open_file(const char *filename, t_cw_player *players,
+					int i)
 {
 	int			fd;
 

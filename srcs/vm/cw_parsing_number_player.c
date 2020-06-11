@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/05 18:38:37 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/06 13:10:16 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/11 13:15:37 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ static void	cw_sort_number_player(t_cw_data *data)
 
 	i = -1;
 	while (++i < data->nbr_players)
-		if (data->assigned_nbr[i] > 0 && data->assigned_nbr[i] <= data->nbr_players)
+		if (data->assigned_nbr[i] > 0
+			&& data->assigned_nbr[i] <= data->nbr_players)
 			cw_swap_number_player(data, i, data->assigned_nbr[i] - 1);
 	i = -1;
 	while (++i + 1 < data->nbr_players)

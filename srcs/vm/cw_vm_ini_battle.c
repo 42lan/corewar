@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 15:23:59 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/11 13:09:12 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/11 13:27:43 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,8 @@ void	cw_vm_ini_byte_codage(t_cw_battle *battle)
 	battle->byte_codage[15] = 1;
 }
 
-void	cw_vm_ini_battle(t_cw_battle *battle, t_cw_vm *vm)
+void	cw_vm_ini_battle_helper(t_cw_battle *battle, t_cw_vm *vm)
 {
-	int 			i;
-	t_cw_processus 	*ptr;
-
-	ptr = NULL;
-	i = vm->data.nbr_players - 1;
 	battle->last_alive = vm->data.nbr_players - 1;
 	battle->cycles_count = 0;
 	battle->cycle_to_die = CW_CYCLE_TO_DIE;
@@ -85,13 +80,21 @@ void	cw_vm_ini_battle(t_cw_battle *battle, t_cw_vm *vm)
 	battle->count_last_live = 0;
 	cw_vm_ini_cycle_op_code(battle);
 	cw_vm_ini_byte_codage(battle);
+}
+
+void	cw_vm_ini_battle(t_cw_battle *battle, t_cw_vm *vm)
+{
+	int 			i;
+	t_cw_processus 	*ptr;
+
+	i = vm->data.nbr_players - 1;
+	cw_vm_ini_battle_helper(battle, vm);
 	if ((battle->processus = cw_vm_ini_processus(i, vm->players[i].initial_position)) == NULL)
 		return ; // FAIRE UN TRUC DERREUR
 	ptr = battle->processus;
 	while (--i > -1)
 	{
-		if ((battle->processus->next = cw_vm_ini_processus(i, vm->players[i].initial_position)) 
-		== NULL)
+		if ((battle->processus->next = cw_vm_ini_processus(i, vm->players[i].initial_position)) == NULL)
 		{
 			return ;// FAIRE UN TRUC DERREUR
 		}

@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 01:59:09 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/07 15:14:56 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/11 13:23:46 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,14 +114,16 @@ int					cw_vm_read_champion_comment(int fd, t_cw_player *player)
 
 int					cw_vm_read_champion_exec_code(int fd, t_cw_player *player)
 {
+	unsigned int	code_len;
 	unsigned char	*exec_code;
 
-	if (!(exec_code = ft_memalloc(sizeof(exec_code) * (player->champion->code_len + 1))))
+	code_len = player->champion->code_len;
+	if (!(exec_code = ft_memalloc(sizeof(exec_code) * (code_len + 1))))
 	{
 		ft_dprintf(2, "{red}ERROR MALLOC FAILED\n{}");
 		return (CW_ERROR_MALLOC_FAILED);
 	}
-	if (read(fd, exec_code, player->champion->code_len + 1) != player->champion->code_len)
+	if (read(fd, exec_code, player->champion->code_len + 1) != code_len)
 	{
 		ft_dprintf(2, "{red}ERROR READ CHAMPION EXEC CODE\n{}");
 		return (CW_VM_READ_ERROR);
