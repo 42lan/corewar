@@ -17,7 +17,10 @@
 # include "cw_vm.h"
 
 # define CW_CYCLE_TO_DIE	1536
+# define CW_CYCLE_DELTA		50
 # define CW_REG_NUMBER		16
+# define CW_NBR_LIVE		21
+# define CW_MAX_CHECKS			10
 
 # define CW_DIR_SIZE_LIVE	4
 # define CW_DIR_SIZE_LD		4
@@ -56,7 +59,7 @@ typedef struct		s_cw_battle
 	int				cycles_count;
 	int				cycle_to_die;
 	int				check_performed;
-	int				count_last_live;
+	unsigned long	count_last_live;
 	int				cycle_opc[16];
 	t_bool			byte_codage[16];
 	t_cw_proc		*procs;

@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 16:59:44 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/11 17:42:21 by jthierce         ###   ########.fr       */
+/*   Updated: 2020/06/11 23:28:15 by jthierce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,11 @@ void	cw_vm_op_live(t_cw_inst *inst, t_cw_battle *battle, t_cw_vm *vm)
 		multiplier /= 256;
 	}
 	battle->procs->last_live = 1;
-	if (arg1 <= vm->players->number && arg1 > 0)
-		battle->last_alive = arg1;
+	if (arg1 < 0 && arg1 * -1 <= vm->players->number)
+	{
+		battle->last_alive = arg1 * - 1;
+		battle->count_last_live++;
+	}
 	battle->procs->pos = (battle->procs->pos + 1 + CW_DIR_SIZE_LIVE) % CW_MEM_SIZE;
-	ft_printf("Player %d is alive.\n", arg1);
+	//ft_printf("Player %d is alive.\n", arg1);
 }

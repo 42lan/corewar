@@ -50,7 +50,7 @@ void	cw_vm_start_game(t_cw_battle *battle, t_cw_vm *vm)
 	{
 		if (battle->procs->wait_cycles != 0)
 		{
-			ft_printf("{green}%d\n{}", battle->procs->wait_cycles);
+			//ft_printf("{green}%d\n{}", battle->procs->wait_cycles);
 			battle->procs->wait_cycles--;
 			if (battle->procs->wait_cycles == 0)
 			{
@@ -71,8 +71,19 @@ void	cw_vm_start_game(t_cw_battle *battle, t_cw_vm *vm)
 		{
 			battle->check_performed++;
 			battle->cycles_count++;
-			if (battle->cycles_count == CW_CYCLE_TO_DIE)
+			if (battle->cycles_count >= battle->cycle_to_die)
+			{
+				battle->check_performed++;
 				cw_vm_processus_dead(battle, battle->head);
+				if (battle->check_performed == CW_MAX_CHECKS || battle->count_last_live >= CW_NBR_LIVE)
+				{
+					battle->cycle_to_die -= CW_CYCLE_DELTA;
+					battle->check_performed = 0;
+				}
+				battle->count_last_live = 0;
+				battle->cycles_count = 0;
+			}
+			
 			battle->procs = battle->head;
 		}
 	}
