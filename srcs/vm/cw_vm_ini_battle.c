@@ -19,6 +19,7 @@ t_cw_proc	*cw_vm_ini_processus(int id, int pos)
 	if (!(processus = (t_cw_proc *)malloc(sizeof(t_cw_proc))))
 		return (NULL);
 	ft_printf("{yellow}je suis dans cw_vm_ini %p id = %d{}\n", *processus, id);
+	id++;
 	processus->carry = false;
 	processus->opc = -1;
 	processus->last_live = -1;
@@ -27,6 +28,7 @@ t_cw_proc	*cw_vm_ini_processus(int id, int pos)
 	processus->jump = -1;
 	processus->id = id;
 	ft_bzero(processus->regs, sizeof(int) * CW_REG_NUMBER);
+	processus->regs[0] = id * -1;
 	processus->next = NULL;
 	return (processus);
 }

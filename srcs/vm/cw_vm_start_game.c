@@ -13,7 +13,7 @@
 #include "cw_vm_battle.h"
 #include "cw_vm.h"
 
-void	cw_vm_processus_dead(t_cw_battle *battle, t_cw_proc *proc)
+void	cw_vm_processus_dead(t_cw_battle *battle, t_cw_proc *proc, t_cw_vm *vm)
 {
 	t_cw_proc *prev;
 
@@ -26,6 +26,8 @@ void	cw_vm_processus_dead(t_cw_battle *battle, t_cw_proc *proc)
 				if (proc->next == NULL)
 				{
 					ft_printf("{bold}{red}FIN DU MATCH\n{}");
+					ft_printf("{yellow}ET LE GRAND GAGNANT EST %d\n", battle->last_alive);
+					cw_vm_arena_dump(vm->arena, CW_MEM_SIZE);
 					exit (1);
 				}
 				battle->head = proc->next;
@@ -46,6 +48,7 @@ void	cw_vm_processus_dead(t_cw_battle *battle, t_cw_proc *proc)
 
 void	cw_vm_start_game(t_cw_battle *battle, t_cw_vm *vm)
 {
+	ft_printf("{blue}%d\n", battle->head->regs[0]);exit(1);
 	while (1)
 	{
 		if (battle->procs->wait_cycles != 0)
@@ -74,8 +77,8 @@ void	cw_vm_start_game(t_cw_battle *battle, t_cw_vm *vm)
 			if (battle->cycles_count >= battle->cycle_to_die)
 			{
 				battle->check_performed++;
-				cw_vm_processus_dead(battle, battle->head);
-				if (battle->check_performed == CW_MAX_CHECKS || battle->count_last_live >= CW_NBR_LIVE)
+				cw_vm_processus_dead(battle, battle->head, vm);
+				if (battle->check_performed >= CW_MAX_CHECKS || battle->count_last_live >= CW_NBR_LIVE)
 				{
 					battle->cycle_to_die -= CW_CYCLE_DELTA;
 					battle->check_performed = 0;
@@ -83,7 +86,6 @@ void	cw_vm_start_game(t_cw_battle *battle, t_cw_vm *vm)
 				battle->count_last_live = 0;
 				battle->cycles_count = 0;
 			}
-			
 			battle->procs = battle->head;
 		}
 	}
