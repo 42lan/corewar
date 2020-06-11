@@ -13,11 +13,39 @@
 #include "cw_vm_battle.h"
 #include "cw_vm.h"
 
+void	cw_vm_processus_dead(t_cw_battle *battle, t_cw_proc *proc)
+{
+	t_cw_proc *prev;
+
+	while (proc != NULL)
+	{
+		if (proc->last_live == -1)
+		{
+			if (proc == battle->head)
+			{
+				if (proc->next == NULL)
+				{
+					ft_printf("{bold}{red}FIN DU MATCH\n{}");
+					exit (1);
+				}
+				battle->head = proc->next;
+			}
+			else
+				prev->next = proc->next;
+			free(proc);
+			proc = NULL;
+		}
+		else
+		{
+			proc->last_live = -1;
+			prev = proc;
+			proc = proc->next;
+		}
+	}
+}
+
 void	cw_vm_start_game(t_cw_battle *battle, t_cw_vm *vm)
 {
-	t_cw_proc *ptr;
-
-	ptr = battle->procs;
 	while (1)
 	{
 		if (battle->procs->wait_cycles != 0)
@@ -40,6 +68,12 @@ void	cw_vm_start_game(t_cw_battle *battle, t_cw_vm *vm)
 		if (battle->procs->next != NULL)
 			battle->procs = battle->procs->next;
 		else
-			battle->procs = ptr;
+		{
+			battle->check_performed++;
+			battle->cycles_count++;
+			if (battle->cycles_count == CW_CYCLE_TO_DIE)
+				cw_vm_processus_dead(battle, battle->head);
+			battle->procs = battle->head;
+		}
 	}
 }

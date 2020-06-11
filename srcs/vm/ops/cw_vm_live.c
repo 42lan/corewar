@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 16:59:44 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/11 15:33:08 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/11 17:42:21 by jthierce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 
 void	cw_vm_op_live(t_cw_inst *inst, t_cw_battle *battle, t_cw_vm *vm)
 {
-	(void)inst;(void)battle;(void)vm;
 	int			i;
 	int			arg1;
 	unsigned	multiplier;
@@ -30,10 +29,9 @@ void	cw_vm_op_live(t_cw_inst *inst, t_cw_battle *battle, t_cw_vm *vm)
 		arg1 += multiplier * vm->arena[(battle->procs->pos + 1 + i) % CW_MEM_SIZE];
 		multiplier /= 256;
 	}
-	ft_printf(">>>>>%d\n", arg1);
-	if ((unsigned)arg1 <= vm->players->number)
-		ft_printf("---\n");
-
-	exit(0);
-	/* ft_printf("Player %d (%s) is alive.\n", ); */
+	battle->procs->last_live = 1;
+	if (arg1 <= vm->players->number && arg1 > 0)
+		battle->last_alive = arg1;
+	battle->procs->pos = (battle->procs->pos + 1 + CW_DIR_SIZE_LIVE) % CW_MEM_SIZE;
+	ft_printf("Player %d is alive.\n", arg1);
 }

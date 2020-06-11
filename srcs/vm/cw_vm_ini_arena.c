@@ -84,6 +84,5 @@ int				cw_vm_ini_arena(t_cw_vm *vm)
 {
 	cw_vm_verify_enough_space(vm);
 	cw_vm_place_player(vm);
-	cw_vm_arena_dump(vm->arena, CW_MEM_SIZE + 1); // REMOVE
 	return (CW_SUCCESS);
 }

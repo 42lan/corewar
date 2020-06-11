@@ -21,6 +21,6 @@ void	cw_vm_read_execute(t_cw_battle *battle, t_cw_vm *vm)
 	t_cw_inst	inst;
 
 	cw_inst_fill(&inst, vm, battle);
-	cw_inst_dump(&inst);
+	//cw_inst_dump(&inst);
 	g_op_table[inst.opc - 1](&inst, battle, vm);
 }

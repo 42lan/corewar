@@ -29,7 +29,7 @@
 typedef struct		s_cw_player
 {
 	t_cw_champion	*champion;
-	unsigned int	number;
+	int				number;
 	int				init_pos;
 }					t_cw_player;
 
