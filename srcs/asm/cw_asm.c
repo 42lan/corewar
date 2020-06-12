@@ -10,11 +10,12 @@
 
 int				cw_asm_from_fd(t_cw_champion *champ, int fd)
 {
+	(void)champ;
 	(void)fd;
-	ft_strcpy(champ->name, "champion name");
-	champ->code_len = 0;
-	ft_strcpy(champ->comment, "the champion comment");
-	champ->code = NULL;
+	//ft_strcpy(champ->name, "champion name");
+	//champ->code_len = 0;
+	//ft_strcpy(champ->comment, "the champion comment");
+	//champ->code = NULL;
 	return (0);
 }
 

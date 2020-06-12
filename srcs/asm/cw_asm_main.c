@@ -10,11 +10,15 @@ int			main2(t_cw_asm_options *opt)
 
 	if ((rst = cw_champion_create(&champ)) < 0)
 		return (rst);
-	if (rst > 0)
+	if (rst >= 0)
 	{
+		ft_printf("{lime}HERE %s\n", opt->in_file);
 		rst = cw_asm_from_file(champ, opt->in_file);
-		if (rst > 0)
+		if (rst >= 0)
+		{
+		ft_printf("{lime}HERE %s\n", opt->in_file);
 			rst = cw_champion_save_to_file(champ, opt->out_file);
+		}
 	}
 	cw_champion_destroy(&champ);
 	return (rst);
