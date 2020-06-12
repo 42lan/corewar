@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printerr.c                                      :+:      :+:    :+:   */
+/*   cw_champions_destoy.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/05 01:32:09 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/12 12:51:29 by amalsago         ###   ########.fr       */
+/*   Created: 2020/06/07 18:05:07 by amalsago          #+#    #+#             */
+/*   Updated: 2020/06/07 18:07:01 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "cw_errors.h"
-#include <stdlib.h>
-#include <unistd.h>
+#include "cw_vm_player.h"
 
-void	ft_printerr(const char *error, int code)
+void	cw_champions_destroy(t_cw_player *players, int i)
 {
-	ft_dprintf(STDERR_FILENO, "{red}ERROR");
-	if (error)
-		ft_dprintf(STDERR_FILENO, ": %s", error);
-	ft_dprintf(STDERR_FILENO, "{}\n");
-	(code == 0) ? exit(CW_ERROR) : exit(code);
+	while (--i != -1)
+		cw_champion_destroy(&players[i].champion);
 }

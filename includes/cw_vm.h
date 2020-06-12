@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 15:01:47 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/07 14:37:10 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/12 15:22:00 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ typedef struct	s_cw_vm
 
 }				t_cw_vm;
 
+t_bool	cw_vm_is_reg(int reg);
+t_bool	cw_vm_is_valid_op(int op);
 void	cw_vm_usage(void);
 int		cw_vm_parsing(int argc, char **argv, t_cw_vm *vm);
 int		cw_vm_get_data(char **argv);

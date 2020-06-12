@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 03:04:40 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/07 13:53:18 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/11 13:22:44 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static void		cw_vm_place_player(t_cw_vm *vm)
 	while (++i < vm->data.nbr_players)
 	{
 		ptr = distance * i;
-		vm->players[i].initial_position = ptr;
+		vm->players[i].init_pos = ptr;
 		cw_vm_place_code(vm, vm->players[i].champion, ptr);
 	}
 }
@@ -84,6 +84,5 @@ int				cw_vm_ini_arena(t_cw_vm *vm)
 {
 	cw_vm_verify_enough_space(vm);
 	cw_vm_place_player(vm);
-	//cw_vm_arena_dump(vm->arena, CW_MEM_SIZE + 1);
 	return (CW_SUCCESS);
 }

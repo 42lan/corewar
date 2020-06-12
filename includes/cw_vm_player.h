@@ -29,8 +29,8 @@
 typedef struct		s_cw_player
 {
 	t_cw_champion	*champion;
-	unsigned int	number;
-	int				initial_position;
+	int				number;
+	int				init_pos;
 }					t_cw_player;
 
 void	cw_parsing_number_player(t_cw_data *data);

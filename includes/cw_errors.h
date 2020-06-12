@@ -46,6 +46,15 @@
 # define CW_VM_ERROR_CODE_LEN_TOO_LONG 11
 # define CW_VM_ERRO_NOT_ENOUGH_SPACE_IN_ARENA 12
 
+# define CW_VM_FILE_EXPECTED 244
+# define CW_VM_FILE_EXTENSION 245
+# define CW_VM_DUMP_NUM 246
+# define CW_VM_CYCLE_LIMITS 247
+# define CW_VM_ID_LIMITS 248
+# define CW_VM_ID_EXPECTED 249
+# define CW_VM_MAX_PLAYERS 250
+# define CW_VM_NO_PLAYERS 251
+
 /*
 ** corewar specific error codes:
 */
