@@ -20,12 +20,14 @@ char							*cw_asm_default_out_file(const char *in_file)
 	if (ft_strends(in_file, ".s"))
 	{
 		out_file = ft_strnew(in_len + 2);
-		ft_strcpy(out_file + in_len - 2, ".cor");
+		ft_strcpy(out_file, in_file);
+		ft_strcpy(&out_file[in_len - 2], ".cor");
 	}
 	else
 	{
 		out_file = ft_strnew(in_len + 4);
-		ft_strcpy(out_file + in_len, ".cor");
+		ft_strcpy(out_file, in_file);
+		ft_strcpy(&out_file[in_len], ".cor");
 	}
 	return (out_file);
 }
