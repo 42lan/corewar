@@ -9,8 +9,8 @@ int			cw_asm_error(int code)
 	if (code == 0)
 		return (code);
 	if (code < 0)
-		ft_dprintf(2, "Error %d!", code);
+		ft_dprintf(2, "Error %d!\n", code);
 	if (code > 0)
-		ft_dprintf(2, "Error %d!", code);
+		ft_dprintf(2, "Error %d!\n", code);
 	return (code);
 }
