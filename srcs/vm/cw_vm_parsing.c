@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 14:06:54 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/12 14:58:11 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/12 15:51:31 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ int		cw_vm_set_player(t_cw_vm *vm, int assigned_nbr, char *filename)
 	if (filename == NULL || filename[0] == '\0')
 		ft_printerr("Player's filename expected", CW_VM_FILE_EXPECTED);
 	if (cw_vm_is_valid_extension(filename, ".cor") == CW_FAILURE)
-		ft_printerr("Player's filename has an incorrect extension", CW_VM_FILE_EXTENSION);
+		ft_printerr("Player's filename has an incorrect extension",
+			CW_VM_FILE_EXTENSION);
 	vm->data.filename[j] = ft_strdup(filename);
 	vm->data.assigned_nbr[j++] = (assigned_nbr > 0) ? assigned_nbr : --cnt;
 	vm->data.nbr_players += 1;
@@ -80,7 +81,8 @@ void	cw_vm_set_dump(t_cw_vm *vm, char **av, int *i)
 	tmp = ft_strtrim(*av);
 	if (ft_atoi32check(&vm->data.nbr_cycles, tmp) != 0
 		|| vm->data.nbr_cycles <= 0)
-		ft_printerr("Number of cycles should be between 1 and INT_MAX", CW_VM_CYCLE_LIMITS);
+		ft_printerr("Number of cycles should be between 1 and INT_MAX",
+			CW_VM_CYCLE_LIMITS);
 	ft_strdel(&tmp);
 	vm->dump = true;
 	*i += 2;
@@ -98,7 +100,8 @@ void	cw_vm_set_player_helper(t_cw_vm *vm, int ac, char **av, int *i)
 	if (*i + 1 < ac)
 	{
 		if (ft_atoi32check(&assigned_nbr, av[*i + 1]) != 0 || assigned_nbr <= 0)
-			ft_printerr("Player's assigned ID should be between 1 and INT_MAX", CW_VM_ID_LIMITS);
+			ft_printerr("Player's assigned ID should be between 1 and INT_MAX",
+				CW_VM_ID_LIMITS);
 		cw_vm_set_player(vm, assigned_nbr, av[*i + 2]);
 		*i += 2;
 	}

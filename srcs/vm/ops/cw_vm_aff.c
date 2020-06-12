@@ -11,10 +11,10 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "cw_vm_battle.h"
+#include "cw_vm_game.h"
 #include "cw_inst.h"
 
-void	cw_vm_op_aff(t_cw_inst *inst, t_cw_battle *battle, t_cw_vm *vm)
+void	cw_vm_op_aff(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
 {
 	int		arg1;
 	int		index;
@@ -22,9 +22,9 @@ void	cw_vm_op_aff(t_cw_inst *inst, t_cw_battle *battle, t_cw_vm *vm)
 
 	if (inst->args_count != 1 || inst->types[0] != T_REG)
 		ft_printf("ERROR\n");
-	index = vm->arena[battle->procs->pos + 2] - 1;
-	arg1 = battle->procs->regs[index];
+	index = vm->arena[game->procs->pos + 2] - 1;
+	arg1 = game->procs->regs[index];
 	reg_value = arg1 % 256;
 	ft_printf("{bold}{red}%c{}\n", reg_value);
-	battle->procs->pos += 3 % CW_MEM_SIZE;
+	game->procs->pos += 3 % CW_MEM_SIZE;
 }

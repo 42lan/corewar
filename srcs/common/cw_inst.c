@@ -19,17 +19,17 @@ void	cw_inst_init(t_cw_inst *inst)
 	ft_bzero(inst, sizeof(t_cw_inst));
 }
 
-void	cw_inst_fill(t_cw_inst *inst, t_cw_vm *vm, t_cw_battle *battle)
+void	cw_inst_fill(t_cw_inst *inst, t_cw_vm *vm, t_cw_game *game)
 {
 	unsigned	i;
 
 	i = -1;
 	cw_inst_init(inst);
-	inst->opc = vm->arena[battle->procs->pos + 0];
-	inst->has_coding_byte = (battle->byte_codage[inst->opc - 1]) ? true : false;
+	inst->opc = vm->arena[game->procs->pos + 0];
+	inst->has_coding_byte = (game->byte_codage[inst->opc - 1]) ? true : false;
 	if (inst->has_coding_byte == true)
 	{
-		cw_inst_get_args(inst, vm->arena[battle->procs->pos + 1]);
+		cw_inst_get_args(inst, vm->arena[game->procs->pos + 1]);
 		while (++i < inst->args_count)
 		{
 			if (inst->args[i] == 0x01)
