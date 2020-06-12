@@ -5,9 +5,19 @@
 
 int			main2(t_cw_asm_options *opt)
 {
-	(void)opt;
-	ft_printf("{bold}{purple}TODO{}\n");
-	return (CW_ERROR_BAD_DEVELOPPER);
+	int				rst;
+	t_cw_champion	*champ;
+
+	if ((rst = cw_champion_create(&champ)) < 0)
+		return (rst);
+	if (rst > 0)
+	{
+		rst = cw_asm_from_file(champ, opt->in_file);
+		if (rst > 0)
+			rst = cw_champion_save_to_file(champ, opt->out_file);
+	}
+	cw_champion_destroy(&champ);
+	return (rst);
 }
 
 int			main(int argc, char **argv)
