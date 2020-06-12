@@ -18,12 +18,19 @@
 # define CW_ERROR_DEFAULT -1
 # define CW_ERROR_MALLOC_FAILED -30
 # define CW_ERROR_NOT_IMPLEMENTED -31
+# define CW_ERROR_OPENING_OUTPUT_FILE -32
+# define CW_ERROR_WRITING_OUTPUT_FILE -33
+# define CW_ERROR_OPENING_INPUT_FILE -34
+# define CW_ERROR_READING_INPUT_FILE -35
 
 /*
 ** asm specific error codes:
 */
 
 # define CW_ERROR_ASM -60
+# define CW_ERROR_ASM_CREATING_OPTIONS -61
+# define CW_ERROR_ASM_MISSING_SOURCE_OPTION -62
+# define CW_ERROR_ASM_UNKNOWN_OPTION -63
 
 /*
 ** vm specific error codes:
