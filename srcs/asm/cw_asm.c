@@ -1,4 +1,5 @@
 #include <fcntl.h>
+#include <stdlib.h>
 
 #include "libft.h"
 
@@ -12,10 +13,10 @@ int				cw_asm_from_fd(t_cw_champion *champ, int fd)
 {
 	(void)champ;
 	(void)fd;
-	//ft_strcpy(champ->name, "champion name");
-	//champ->code_len = 0;
-	//ft_strcpy(champ->comment, "the champion comment");
-	//champ->code = NULL;
+	champ->name = ft_strdup("champion name");
+	champ->code_len = 0;
+	champ->comment = ft_strdup("champion name");
+	champ->code = malloc(1);
 	return (0);
 }
 
