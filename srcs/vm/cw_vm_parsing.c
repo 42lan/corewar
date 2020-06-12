@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 14:06:54 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/12 12:57:04 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/12 14:58:11 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,8 +144,5 @@ int		cw_vm_parsing(int ac, char **av, t_cw_vm *vm)
 void	cw_vm_check_nbr_players(t_cw_vm *vm)
 {
 	if (vm->data.nbr_players == 0)
-	{
 		ft_printerr("No players provided", CW_VM_NO_PLAYERS);
-		exit(0);
-	}
 }
