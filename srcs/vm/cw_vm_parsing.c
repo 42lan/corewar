@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 14:06:54 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/06 17:53:51 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/12 12:57:04 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ int		cw_vm_set_player(t_cw_vm *vm, int assigned_nbr, char *filename)
 	static int	cnt = 0;
 
 	if (filename == NULL || filename[0] == '\0')
-		ft_printerr("Player's filename expected");
+		ft_printerr("Player's filename expected", CW_VM_FILE_EXPECTED);
 	if (cw_vm_is_valid_extension(filename, ".cor") == CW_FAILURE)
-		ft_printerr("Player's filename has an incorrect extension");
+		ft_printerr("Player's filename has an incorrect extension", CW_VM_FILE_EXTENSION);
 	vm->data.filename[j] = ft_strdup(filename);
 	vm->data.assigned_nbr[j++] = (assigned_nbr > 0) ? assigned_nbr : --cnt;
 	vm->data.nbr_players += 1;
@@ -76,11 +76,11 @@ void	cw_vm_set_dump(t_cw_vm *vm, char **av, int *i)
 	char		*tmp;
 
 	if (*av == NULL || *av[0] == '\0' || !ft_isstrnum(*av))
-		ft_printerr("A positive number expected after -dump");
+		ft_printerr("A positive number expected after -dump", CW_VM_DUMP_NUM);
 	tmp = ft_strtrim(*av);
 	if (ft_atoi32check(&vm->data.nbr_cycles, tmp) != 0
 		|| vm->data.nbr_cycles <= 0)
-		ft_printerr("Number of cycles should be between 1 and INT_MAX");
+		ft_printerr("Number of cycles should be between 1 and INT_MAX", CW_VM_CYCLE_LIMITS);
 	ft_strdel(&tmp);
 	vm->dump = true;
 	*i += 2;
@@ -98,12 +98,12 @@ void	cw_vm_set_player_helper(t_cw_vm *vm, int ac, char **av, int *i)
 	if (*i + 1 < ac)
 	{
 		if (ft_atoi32check(&assigned_nbr, av[*i + 1]) != 0 || assigned_nbr <= 0)
-			ft_printerr("Player's assigned ID should be between 1 and INT_MAX");
+			ft_printerr("Player's assigned ID should be between 1 and INT_MAX", CW_VM_ID_LIMITS);
 		cw_vm_set_player(vm, assigned_nbr, av[*i + 2]);
 		*i += 2;
 	}
 	else
-		ft_printerr("Player's number expected after -n");
+		ft_printerr("Player's number expected after -n", CW_VM_ID_EXPECTED);
 }
 
 /*
@@ -122,7 +122,7 @@ int		cw_vm_parsing(int ac, char **av, t_cw_vm *vm)
 	{
 		tmp = ft_strtrim(av[i]);
 		if (vm->data.nbr_players >= CW_MAX_PLAYERS)
-			ft_printerr("Max number of players exceeded");
+			ft_printerr("Max number of players exceeded", CW_VM_MAX_PLAYERS);
 		if (cw_vm_is_valid_extension(tmp, ".cor") == CW_SUCCESS)
 			cw_vm_set_player(vm, 0, tmp);
 		else if (ft_strnequ(tmp, "-n\0", 3))
@@ -132,8 +132,7 @@ int		cw_vm_parsing(int ac, char **av, t_cw_vm *vm)
 		ft_strdel(&tmp);
 		i++;
 	}
-	//cw_vm_check_nbr_players(vm);
-	cw_vm_print_data(&vm->data);
+	cw_vm_check_nbr_players(vm);
 	return (CW_SUCCESS);
 }
 
@@ -144,8 +143,9 @@ int		cw_vm_parsing(int ac, char **av, t_cw_vm *vm)
 
 void	cw_vm_check_nbr_players(t_cw_vm *vm)
 {
-	// Should call free t_cw_vm before exit?
-
 	if (vm->data.nbr_players == 0)
-		ft_printerr("No players provided");
+	{
+		ft_printerr("No players provided", CW_VM_NO_PLAYERS);
+		exit(0);
+	}
 }
