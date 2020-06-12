@@ -48,7 +48,6 @@ void	cw_vm_processus_dead(t_cw_battle *battle, t_cw_proc *proc, t_cw_vm *vm)
 
 void	cw_vm_start_game(t_cw_battle *battle, t_cw_vm *vm)
 {
-	ft_printf("{blue}%d\n", battle->head->regs[0]);exit(1);
 	while (1)
 	{
 		if (battle->procs->wait_cycles != 0)
