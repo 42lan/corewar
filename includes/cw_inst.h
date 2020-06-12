@@ -3,7 +3,7 @@
 
 # include "cw_vm.h"
 # include "cw_op.h"
-# include "cw_vm_battle.h"
+# include "cw_vm_game.h"
 
 /*
 ** t_cw_inst:
@@ -17,19 +17,20 @@
 */
 
 typedef struct s_cw_inst	t_cw_inst;
-struct						s_cw_inst
+
+struct				s_cw_inst
 {
-	t_cw_opc			opc;
-	t_bool				has_coding_byte;
-	unsigned int		args_count;	
-	int					args[3];		
-	t_cw_arg_type		types[3];
+	t_cw_opc		opc;
+	t_bool			has_coding_byte;
+	unsigned int	args_count;	
+	int				args[3];		
+	t_cw_arg_type	types[3];
 };
 
-void						cw_inst_init(t_cw_inst *inst);
-void						cw_inst_fill(t_cw_inst *inst, t_cw_vm *vm, t_cw_battle *battle);
-void						cw_inst_get_args(t_cw_inst *inst, unsigned op);
-void						cw_inst_dump(t_cw_inst *inst);
-int							cw_inst_write(t_cw_inst *inst, char *dst);
+void				cw_inst_init(t_cw_inst *inst);
+void				cw_inst_fill(t_cw_inst *inst, t_cw_vm *vm, t_cw_game *game);
+void				cw_inst_get_args(t_cw_inst *inst, unsigned op);
+void				cw_inst_dump(t_cw_inst *inst);
+int					cw_inst_write(t_cw_inst *inst, char *dst);
 
 #endif

@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cw_vm_battle.h                                     :+:      :+:    :+:   */
+/*   cw_vm_game.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 15:14:35 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/12 15:23:54 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/12 16:00:45 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CW_VM_BATTLE_H
-# define CW_VM_BATTLE_H
+#ifndef CW_VM_GAME_H
+# define CW_VM_GAME_H
 
 # include "libft.h"
 # include "cw_vm.h"
@@ -55,7 +55,7 @@ typedef struct		s_cw_proc
 	t_cw_proc		*next;
 }					t_cw_proc;
 
-typedef struct		s_cw_battle
+typedef struct		s_cw_game
 {
 	int				last_alive;
 	int				cycles_count;
@@ -66,11 +66,11 @@ typedef struct		s_cw_battle
 	t_bool			byte_codage[16];
 	t_cw_proc		*procs;
 	t_cw_proc		*head;
-}					t_cw_battle;
+}					t_cw_game;
 
-void	cw_vm_ini_battle(t_cw_battle *battle, t_cw_vm *vm);
-void	cw_vm_start_game(t_cw_battle *battle, t_cw_vm *vm);
-void	cw_vm_read_execute(t_cw_battle *battle, t_cw_vm *vm);
+void	cw_vm_ini_game(t_cw_game *game, t_cw_vm *vm);
+void	cw_vm_start_game(t_cw_game *game, t_cw_vm *vm);
+void	cw_vm_read_execute(t_cw_game *game, t_cw_vm *vm);
 void	cw_vm_proc_dump(t_cw_proc *proc);
 
 #endif

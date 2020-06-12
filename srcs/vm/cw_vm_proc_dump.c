@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cw_vm_battle.h"
+#include "cw_vm_game.h"
 
 void		cw_vm_proc_dump(t_cw_proc *proc)
 {
