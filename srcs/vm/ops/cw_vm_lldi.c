@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 17:14:53 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/12 16:17:38 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/12 20:26:21 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,19 +88,19 @@ void				cw_vm_op_lldi_body(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
 	pos = 2;
 	while (++i < 2)
 	{
-		if (inst->args[i] == T_REG)
+		if (inst->types[i] == T_REG)
 		{
 			if (cw_vm_is_reg(vm->arena[game->procs->pos + pos]) == false)
 				ft_printf("ERROR\n");
 			arg[i] = game->procs->regs[(vm->arena[game->procs->pos + pos]) - 1];
 			pos++;
 		}
-		else if (inst->args[i] == T_DIR)
+		else if (inst->types[i] == T_DIR)
 		{
 			arg[i] = cw_vm_op_lldi_dir(game, vm, pos);
 			pos += CW_DIR_SIZE_LLDI;
 		}
-		else if (inst->args[i] == T_IND)
+		else if (inst->types[i] == T_IND)
 		{
 			arg[i] = cw_vm_op_lldi_ind(game, vm, pos);
 			pos += 2;
