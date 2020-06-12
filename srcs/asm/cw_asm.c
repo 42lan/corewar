@@ -1,5 +1,6 @@
 #include <fcntl.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 #include "libft.h"
 
@@ -27,13 +28,16 @@ int				cw_asm_from_fd(t_cw_champion *champ, int fd)
 
 int				cw_asm_from_file(t_cw_champion *champ, const char *in_file)
 {
+	int		rst;
 	int		fd;
 	
 	if (in_file == NULL)
 		return (cw_asm_from_fd(champ, 0));
 	if ((fd = open(in_file, O_RDONLY)) < 0)
 		return (CW_ERROR_OPENING_INPUT_FILE);
-	return (cw_asm_from_fd(champ, fd));
+	rst = cw_asm_from_fd(champ, fd);
+	close(fd);
+	return (rst);
 }
 
 

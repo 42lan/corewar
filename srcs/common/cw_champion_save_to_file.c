@@ -36,6 +36,7 @@ int		cw_champion_save_to_fd(t_cw_champion *champion, int fd)
 
 int		cw_champion_save_to_file(t_cw_champion *champion, const char *file)
 {
+	int		rst;
 	int		fd;
 
 	if (file == NULL)
@@ -43,5 +44,7 @@ int		cw_champion_save_to_file(t_cw_champion *champion, const char *file)
 	fd = open(file, O_WRONLY | O_CREAT);
 	if (fd < 0)
 		return (CW_ERROR_OPENING_OUTPUT_FILE);
-	return (cw_champion_save_to_fd(champion, fd));
+	rst = cw_champion_save_to_fd(champion, fd);
+	close(fd);
+	return (rst);
 }
