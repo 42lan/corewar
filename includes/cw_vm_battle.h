@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 15:14:35 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/11 14:22:24 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/12 15:23:54 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,28 +16,30 @@
 # include "libft.h"
 # include "cw_vm.h"
 
-# define CW_CYCLE_TO_DIE	1536
-# define CW_CYCLE_DELTA		50
-# define CW_REG_NUMBER		16
-# define CW_NBR_LIVE		21
+# define CW_VM_NOT_LAST_PROC	0
+# define CW_VM_LAST_PROC		1
+# define CW_CYCLE_TO_DIE		1536
+# define CW_CYCLE_DELTA			50
+# define CW_REG_NUMBER			16
+# define CW_NBR_LIVE			21
 # define CW_MAX_CHECKS			10
 
-# define CW_DIR_SIZE_LIVE	4
-# define CW_DIR_SIZE_LD		4
-# define CW_DIR_SIZE_ST		4
-# define CW_DIR_SIZE_ADD	4
-# define CW_DIR_SIZE_SUB	4
-# define CW_DIR_SIZE_AND	4
-# define CW_DIR_SIZE_OR		4
-# define CW_DIR_SIZE_XOR	4
-# define CW_DIR_SIZE_ZJMP	2
-# define CW_DIR_SIZE_LDI	2
-# define CW_DIR_SIZE_STI	2
-# define CW_DIR_SIZE_FORK	2
-# define CW_DIR_SIZE_LLD	4
-# define CW_DIR_SIZE_LLDI	2
-# define CW_DIR_SIZE_LFORK	2
-# define CW_DIR_SIZE_AFF	4
+# define CW_DIR_SIZE_LIVE		4
+# define CW_DIR_SIZE_LD			4
+# define CW_DIR_SIZE_ST			4
+# define CW_DIR_SIZE_ADD		4
+# define CW_DIR_SIZE_SUB		4
+# define CW_DIR_SIZE_AND		4
+# define CW_DIR_SIZE_OR			4
+# define CW_DIR_SIZE_XOR		4
+# define CW_DIR_SIZE_ZJMP		2
+# define CW_DIR_SIZE_LDI		2
+# define CW_DIR_SIZE_STI		2
+# define CW_DIR_SIZE_FORK		2
+# define CW_DIR_SIZE_LLD		4
+# define CW_DIR_SIZE_LLDI		2
+# define CW_DIR_SIZE_LFORK		2
+# define CW_DIR_SIZE_AFF		4
 
 typedef struct		s_cw_proc t_cw_proc;
 typedef struct		s_cw_proc
