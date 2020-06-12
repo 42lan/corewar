@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 01:22:20 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/12 16:13:41 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/12 22:07:00 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void				cw_vm_op_ld_dir_exec(t_cw_game *game, t_cw_vm *vm)
 	game->procs->regs[index - 1] = arg1;
 	game->procs->carry = (arg1 == 0) ? 1 : 0;
 	game->procs->pos = (game->procs->pos + 7) % CW_MEM_SIZE;//A REVOIR
-	ft_printf("{red}game->procs->pos = %d\n", game->procs->pos);
 }
 
 void				cw_vm_op_ld_ind_exec(t_cw_game *game, t_cw_vm *vm)

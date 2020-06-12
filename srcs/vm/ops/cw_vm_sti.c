@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 17:13:22 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/12 20:27:26 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/13 00:27:49 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void			cw_vm_op_sti_body(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
 	idx_address = game->procs->pos + (arg[1] + arg[2]) % CW_IDX_MOD;
 	pow = ft_pow(256, 3);
 	i = -1;
-	reg_value = game->procs->regs[game->procs->pos + 1];
+	reg_value = game->procs->regs[vm->arena[game->procs->pos +  1]];
 	while (++i < 4)
 	{
 		vm->arena[(idx_address + i) % CW_MEM_SIZE] = reg_value / pow;

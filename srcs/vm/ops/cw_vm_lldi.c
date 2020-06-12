@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 17:14:53 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/12 20:26:21 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/13 00:24:55 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void				cw_vm_op_lldi_body(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
 	arg[0] = game->procs->pos + (arg[0] + arg[1]);
 	if (arg[0] < 0)
 		arg[0] += CW_MEM_SIZE;
-	game->procs->regs[game->procs->pos + pos - 1] = cw_vm_op_lldi_value_reg(vm, arg[0]);
+	game->procs->regs[vm->arena[game->procs->pos + pos] - 1] = cw_vm_op_lldi_value_reg(vm, arg[0]);
 }
 
 void	cw_vm_op_lldi(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)

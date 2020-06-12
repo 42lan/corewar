@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 17:12:31 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/12 20:24:51 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/13 00:21:16 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void	cw_vm_op_ldi_body(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
 	arg[0] = game->procs->pos + ((arg[0] + arg[1]) % CW_IDX_MOD);
 	if (arg[0] < 0)
 		arg[0] += CW_MEM_SIZE;
-	game->procs->regs[game->procs->pos + pos] = cw_vm_op_ldi_value_reg(vm, arg[0]);
+	game->procs->regs[vm->arena[game->procs->pos + pos] - 1] = cw_vm_op_ldi_value_reg(vm, arg[0]);
 }
 
 void	cw_vm_op_ldi(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)

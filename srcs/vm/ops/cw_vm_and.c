@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 00:15:08 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/12 16:13:06 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/13 00:30:56 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,8 @@ void	cw_vm_op_and_body(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
 	reg_value = 0;
 	while (++i < 2)
 	{
-		ft_printf("{yellow}pos = %d\n inst->types[%d] = %d\n{}", pos, i, inst->types[i]);
 		if (inst->types[i] == T_REG)
 		{
-			ft_printf("{green}enter in t_REG\n{}");
 			if (cw_vm_is_reg(vm->arena[game->procs->pos + pos]) == false)
 				ft_printf("ERROR\n");
 			arg[i] = game->procs->regs[(vm->arena[game->procs->pos + pos]) - 1];
@@ -85,32 +83,26 @@ void	cw_vm_op_and_body(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
 		}
 		else if (inst->types[i] == T_DIR)
 		{
-			ft_printf("{green}enter in t_DIR\n{}");
 			arg[i] = cw_vm_op_and_dir(game, vm, pos);
 			pos += CW_DIR_SIZE_AND;
 		}
 		else if (inst->types[i] == T_IND)
 		{
-			ft_printf("{green}enter in t_IND\n{}");
 			arg[i] = cw_vm_op_and_ind(game, vm, pos);
 			pos += 2;
 		}
 	}
-	ft_printf("{yellow}pos = %d\n{}", pos);
 	reg_value = arg[0] & arg[1];
-	game->procs->regs[game->procs->pos + pos - 1] = reg_value;
+	game->procs->regs[vm->arena[game->procs->pos] - 1] = reg_value;
 	game->procs->carry = (reg_value == 0) ? 1 : 0;
 	game->procs->pos += (pos + 1);
-	ft_printf("{pink}|||||||||||||||||||||||case = %d\n", vm->arena[game->procs->pos]);
 }
 
 void	cw_vm_op_and(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
 {
-	ft_printf("debut de and\n");
 	if (inst->args_count != 3)
 		ft_printf("ERROR\n");
 	if (inst->types[2] != T_REG)	
 		ft_printf("ERROR\n");
 	cw_vm_op_and_body(inst, game, vm);
-	ft_printf("fin de and\n");
 }
