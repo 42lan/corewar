@@ -4,24 +4,17 @@
 #include "cw_asm_options.h"
 
 /*
-** Create an asm options structure from command line arguments.
+** Create an asm options structure.
 */
 
-t_cw_asm_options				*cw_asm_options_create(int argc, char **argv)
+t_cw_asm_options	*cw_asm_options_create(void)
 {
 	t_cw_asm_options	*opt;
 
 	if (!(opt = malloc(sizeof(t_cw_asm_options))))
 		return (NULL);
-	opt->error = 0;
 	opt->in_file = NULL;
 	opt->out_file = NULL;
-	if (argc >= 3)
-		opt->error = CW_ERROR_ASM_UNKNOWN_OPTION;
-	if (opt->error != 0)
-		return (opt);
-	opt->in_file = argv[1];
-	opt->out_file = cw_asm_default_out_file(argv[1]);
 	return (opt);
 }
 
@@ -29,9 +22,25 @@ t_cw_asm_options				*cw_asm_options_create(int argc, char **argv)
 ** Destroy an asm options structure.
 */
 
-void							cw_asm_options_destroy(t_cw_asm_options **opt)
+void				cw_asm_options_destroy(t_cw_asm_options **opt)
 {
 	free((void*)((*opt)->out_file));
 	free(*opt);
 	*opt = NULL;
+}
+
+/*
+** Fill an asm options structure from command line arguments.
+*/
+
+int					cw_asm_options_parse(t_cw_asm_options *opt,
+											int argc, char **argv)
+{
+	if (argc >= 3)
+		return (CW_ERROR_ASM_UNKNOWN_OPTION);
+	if (argc <= 1)
+		return (CW_SUCCESS);
+	opt->in_file = argv[1];
+	opt->out_file = cw_asm_default_out_file(argv[1]);
+	return (CW_SUCCESS);
 }

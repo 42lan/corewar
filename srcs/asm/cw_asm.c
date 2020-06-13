@@ -7,37 +7,53 @@
 #include "cw_asm.h"
 
 /*
-** Parse a champion from a file descriptor.
+** Create a default t_cw_asm.
 */
 
-int				cw_asm_from_fd(t_cw_champion *champ, int fd)
+t_cw_asm		*cw_asm_create(void)
 {
-	(void)champ;
-	(void)fd;
-	champ->name = ft_strdup("champion name");
-	champ->code_len = 0;
-	champ->comment = ft_strdup("champion name");
-	champ->code = malloc(1);
-	return (0);
+	t_cw_asm	*state;
+
+	if (!(state = ft_memalloc(sizeof(t_cw_asm))))
+		return (NULL);
+	state->has_error = 0;
+	state->code_len = 0;
+	if (!(state->options = cw_asm_options_create())
+		|| (cw_champion_create(&state->champion) != 0)
+		|| !(ft_array_new(sizeof(t_cw_linst), 8)))
+	{
+		cw_asm_destroy(&state);
+	}
+	return (state);
 }
 
 /*
-** Parse a champion from a file.
-** Use standard input if no file provided.
+** Destroy a t_cw_asm.
 */
 
-int				cw_asm_from_file(t_cw_champion *champ, const char *in_file)
+void			cw_asm_destroy(t_cw_asm **state)
 {
-	int		rst;
-	int		fd;
-	
-	if (in_file == NULL)
-		return (cw_asm_from_fd(champ, 0));
-	if ((fd = open(in_file, O_RDONLY)) < 0)
-		return (CW_ERROR_OPENING_INPUT_FILE);
-	rst = cw_asm_from_fd(champ, fd);
-	close(fd);
-	return (rst);
+	int			i_linst;
+
+	ft_printf("---- before opt destroy\n");
+	cw_asm_options_destroy(&((*state)->options));
+	ft_printf("---- before linst cleanup\n");
+	i_linst = 0;
+	while (i_linst < (*state)->linsts->item_count)
+	{
+		cw_linst_clean((t_cw_linst*)ft_array_at((*state)->linsts, i_linst));
+		i_linst++;
+	}
+	ft_array_del(&(*state)->linsts);
+	cw_champion_destroy(&((*state)->champion));
+	free(*state);
+	*state = NULL;
 }
+
+
+
+
+
+
 
 
