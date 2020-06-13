@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 17:12:31 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/13 00:21:16 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/13 21:09:23 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,9 +114,18 @@ void	cw_vm_op_ldi_body(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
 
 void	cw_vm_op_ldi(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
 {
-	if (inst->args_count != 3)
-		ft_printf("ERROR\n");
-	if (inst->types[2] != T_REG || inst->types[1] == T_IND)	
-		ft_printf("ERROR\n");
-	cw_vm_op_ldi_body(inst, game, vm);
+	if (inst->args_count == 3 && inst->types[1] != T_IND && inst->types[2] == T_REG)
+		cw_vm_op_ldi_body(inst, game, vm);
+	// opc + encoding byte + (T_REG | T_DIR | T_IND) + (T_REG | T_DIR) + T_REG
+	// 5 T_REG T_REG
+	// 6 T_REG T_DIR
+	// 6 T_DIR T_REG
+	// 7 T_DIR T_DIR
+	// 6 T_IND T_REG
+	// 7 T_IND T_DIR
+	game->procs->pos += (1 + 1) % CW_MEM_SIZE;
+	game->procs->pos += ((inst->types[0] == T_REG) ? 1 : CW_DIR_SIZE_LDI) % CW_MEM_SIZE;
+	game->procs->pos += ((inst->types[1] == T_REG) ? 1 : CW_DIR_SIZE_LDI) % CW_MEM_SIZE;
+	game->procs->pos += (1) % CW_MEM_SIZE;
+	/* ft_printf("0x%02x 0x%02x 0x%02x\n", vm->arena[game->procs->pos-1], vm->arena[game->procs->pos], vm->arena[game->procs->pos + 1]); */
 }

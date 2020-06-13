@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 01:22:20 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/12 22:07:00 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/13 20:17:03 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void				cw_vm_op_ld_dir_exec(t_cw_game *game, t_cw_vm *vm)
 		ft_printf("ERROR\n");
 	game->procs->regs[index - 1] = arg1;
 	game->procs->carry = (arg1 == 0) ? 1 : 0;
-	game->procs->pos = (game->procs->pos + 7) % CW_MEM_SIZE;//A REVOIR
 }
 
 void				cw_vm_op_ld_ind_exec(t_cw_game *game, t_cw_vm *vm)
@@ -67,17 +66,18 @@ void				cw_vm_op_ld_ind_exec(t_cw_game *game, t_cw_vm *vm)
 	}
 	game->procs->regs[index - 1] = arg1;
 	game->procs->carry = (arg1 == 0) ? 1 : 0;
-	game->procs->pos = (game->procs->pos + 5) % CW_MEM_SIZE;//A REVOIR
 }
 
 void	cw_vm_op_ld(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
 {
-	if (inst->args_count != 2)
-		ft_printf("ERROR\n");
-	if (inst->types[0] == T_REG || inst->types[1] != T_REG)	
-		ft_printf("ERROR\n");
-	if (inst->types[0] == T_DIR)
-		cw_vm_op_ld_dir_exec(game, vm);
-	else if (inst->types[0] == T_IND)
-		cw_vm_op_ld_ind_exec(game, vm);
+	if (inst->args_count == 2 && inst->types[0] != T_REG && inst->types[1] == T_REG)
+	{
+		if (inst->types[0] == T_DIR)
+			cw_vm_op_ld_dir_exec(game, vm);
+		else if (inst->types[0] == T_IND)
+			cw_vm_op_ld_ind_exec(game, vm);
+	}
+	// opc + encoding byte + (T_DIR | T_IND) + T_REG
+	// T_DIR 7, T_IND 5
+	game->procs->pos += (1 + 1 + ((inst->types[0] == T_DIR) ? CW_DIR_SIZE_LD : 2) + 1) % CW_MEM_SIZE;
 }

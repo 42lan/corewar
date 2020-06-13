@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 19:32:09 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/12 16:19:07 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/13 20:29:17 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 
 void		cw_vm_op_st_ind_exec(t_cw_game *game, t_cw_vm *vm)
 {
+	int		i;
+	int		mult;
 	int 	reg_value;
 	int 	reg_index;
-	int		i;
 	int16_t arg2;
-	int		mult;
 
 	i = -1;
 	arg2 = 0;
@@ -38,28 +38,26 @@ void		cw_vm_op_st_ind_exec(t_cw_game *game, t_cw_vm *vm)
 	if (arg2 < 0)
 		arg2 += CW_MEM_SIZE;
 	ft_bigendian32_write(vm->arena + (arg2) % CW_MEM_SIZE, reg_value);
-	game->procs->pos += 5;
 }
 
 
 void	cw_vm_op_st(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
 {
-	if (inst->args_count != 2)
-		ft_printf("ERROR\n");
-	if (inst->types[0] != T_REG || inst->types[1] == T_DIR)	
-		ft_printf("ERROR\n");
-	if (inst->types[1] == T_REG)
+	int		arg[2];
+
+	if (inst->args_count == 2 && inst->types[0] == T_REG && inst->types[1] != T_DIR)
 	{
-		if (vm->arena[(game->procs->pos + 3) % CW_MEM_SIZE] > 16
-			|| vm->arena[(game->procs->pos + 3) % CW_MEM_SIZE] < 1
-			|| vm->arena[(game->procs->pos + 2) % CW_MEM_SIZE] > 16
-			|| vm->arena[(game->procs->pos + 2) % CW_MEM_SIZE] < 1)
+		if (inst->types[1] == T_REG)
 		{
-			ft_printf("ERROR\n");
+			arg[0] = vm->arena[(game->procs->pos + 2) % CW_MEM_SIZE];
+			arg[1] = vm->arena[(game->procs->pos + 3) % CW_MEM_SIZE];
+			if (cw_vm_is_reg(arg[0]) == true && cw_vm_is_reg(arg[1]) == true)
+				game->procs->regs[arg[1] - 1] = game->procs->regs[arg[0] - 1];
 		}
-		game->procs->regs[vm->arena[(game->procs->pos + 3) % CW_MEM_SIZE] - 1] = game->procs->regs[vm->arena[(game->procs->pos + 2) % CW_MEM_SIZE] - 1];
-		game->procs->pos += 4;
+		else if (inst->types[1] == T_IND)
+			cw_vm_op_st_ind_exec(game, vm);
 	}
-	else if (inst->types[1] == T_IND)
-		cw_vm_op_st_ind_exec(game, vm);
+	// opc + encoding byte + T_REG + (T_REG | T_IND)
+	// 4 T_REG, 5 T_IND
+	game->procs->pos += (1 + 1 + 1 + ((inst->types[0] == T_REG) ? 1 : 2)) % CW_MEM_SIZE;
 }
