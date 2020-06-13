@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 19:32:09 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/13 20:29:17 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/13 23:07:02 by jthierce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,16 @@ void		cw_vm_op_st_ind_exec(t_cw_game *game, t_cw_vm *vm)
 
 	i = -1;
 	arg2 = 0;
-	mult = 256;
 	reg_index = vm->arena[(game->procs->pos + 2) % CW_MEM_SIZE];
-	if (reg_index < 1 || reg_index > 16)
-		ft_printf("ERROR\n");
-	reg_value = game->procs->regs[reg_index - 1];
-	while (++i < 2)
+	if (cw_vm_is_reg(reg_index) == true)
 	{
-		arg2 += mult * vm->arena[(game->procs->pos + 3 + i) % CW_MEM_SIZE];
-		mult /= 256;
+		reg_value = game->procs->regs[reg_index - 1];
+		arg2 = ft_bigendian16_read(vm->players + game->procs->pos + 3);
+		arg2 = (game->procs->pos + (arg2 % CW_IDX_MOD)) % CW_MEM_SIZE;
+		if (arg2 < 0)
+			arg2 += CW_MEM_SIZE;
+		ft_bigendian32_write(vm->arena + arg2, reg_value);
 	}
-	arg2 = game->procs->pos + (arg2 % CW_IDX_MOD);
-	if (arg2 < 0)
-		arg2 += CW_MEM_SIZE;
-	ft_bigendian32_write(vm->arena + (arg2) % CW_MEM_SIZE, reg_value);
 }
 
 
@@ -59,5 +55,5 @@ void	cw_vm_op_st(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
 	}
 	// opc + encoding byte + T_REG + (T_REG | T_IND)
 	// 4 T_REG, 5 T_IND
-	game->procs->pos += (1 + 1 + 1 + ((inst->types[0] == T_REG) ? 1 : 2)) % CW_MEM_SIZE;
+	game->procs->pos += (1 + 1 + 1 + ((inst->types[0] == T_REG) ? 1 : 2)) % CW_MEM_SIZE; //a revoir
 }
