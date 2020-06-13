@@ -16,3 +16,6 @@
 
 # Tag file
 tags
+
+# Swap files
+*.swp
