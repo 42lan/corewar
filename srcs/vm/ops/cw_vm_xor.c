@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 17:11:41 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/13 00:28:37 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/13 13:35:13 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,10 @@ void				cw_vm_op_xor_body(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
 			pos += 2;
 		}
 	reg_value = arg[0] ^ arg[1];
-	game->procs->regs[vm->arena[game->procs->pos + pos] - 1] = reg_value;
+	/* game->procs->regs[vm->arena[game->procs->pos + pos] - 1] = reg_value; */
+	game->procs->regs[vm->arena[game->procs->pos + pos + 1] - 1] = reg_value;
 	game->procs->carry = (reg_value == 0) ? 1 : 0;
-	game->procs->pos = pos + 1;
+	game->procs->pos += pos + 1;
 }
 
 void				cw_vm_op_xor(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)

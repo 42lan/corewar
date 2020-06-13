@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 17:13:22 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/13 00:27:49 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/13 12:54:53 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,8 @@ void			cw_vm_op_sti_body(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
 		reg_value %= pow;
 		pow /= 256;
 	}
-	game->procs->pos = pos;
+	/* game->procs->pos = pos; */
+	game->procs->pos += pos;
 }
 
 void			cw_vm_op_sti(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
