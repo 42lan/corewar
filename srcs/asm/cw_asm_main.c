@@ -13,7 +13,6 @@ int			main(int argc, char **argv)
 	rst = cw_asm_options_parse(state->options, argc, argv);
 	if (rst >= 0)
 		rst = cw_asm_run(state);
-	ft_printf("----\n");
 	cw_asm_destroy(&state);
 	return (cw_asm_error(rst));
 }
