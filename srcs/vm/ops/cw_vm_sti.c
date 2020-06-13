@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 17:13:22 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/12 16:20:13 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/13 21:10:55 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,19 +76,19 @@ void			cw_vm_op_sti_body(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
 	reg_value = 0;
 	while (++i < 3)
 	{
-		if (inst->args[i] == T_REG)
+		if (inst->types[i] == T_REG)
 		{
 			if (cw_vm_is_reg(vm->arena[game->procs->pos + pos]) == false)
 				ft_printf("ERROR\n");
 			arg[i] = game->procs->regs[(vm->arena[game->procs->pos + pos]) - 1];
 			pos++;
 		}
-		else if (inst->args[i] == T_DIR)
+		else if (inst->types[i] == T_DIR)
 		{
 			arg[i] = cw_vm_op_sti_dir(game, vm, pos);
 			pos += CW_DIR_SIZE_STI;
 		}
-		else if (inst->args[i] == T_IND)
+		else if (inst->types[i] == T_IND)
 		{
 			arg[i] = cw_vm_op_sti_ind(game, vm, pos);
 			pos += 2;
@@ -97,21 +97,30 @@ void			cw_vm_op_sti_body(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
 	idx_address = game->procs->pos + (arg[1] + arg[2]) % CW_IDX_MOD;
 	pow = ft_pow(256, 3);
 	i = -1;
-	reg_value = game->procs->regs[game->procs->pos + 1];
+	reg_value = game->procs->regs[vm->arena[game->procs->pos +  1]];
 	while (++i < 4)
 	{
 		vm->arena[(idx_address + i) % CW_MEM_SIZE] = reg_value / pow;
 		reg_value %= pow;
 		pow /= 256;
 	}
-	game->procs->pos = pos;
+	/* game->procs->pos += pos; */
 }
 
 void			cw_vm_op_sti(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
 {
-	if (inst->args_count != 3)
-		ft_printf("ERROR\n");
-	if (inst->types[0] != T_REG || inst->types[2] == T_IND)	
-		ft_printf("ERROR\n");
-	cw_vm_op_sti_body(inst, game, vm);
+	if (inst->args_count == 3 && inst->types[0] == T_REG && inst->types[2] != T_IND)
+		cw_vm_op_sti_body(inst, game, vm);
+	// opc + encoding byte + T_REG + (T_REG | T_DIR | T_IND) + (T_REG | T_DIR)
+	// 5 T_REG T_REG
+	// 6 T_REG T_DIR
+	// 5 T_DIR T_REG
+	// 7 T_DIR T_DIR
+	// 5 T_IND T_REG
+	// 7 T_IND T_DIR
+	game->procs->pos += (1 + 1) % CW_MEM_SIZE;
+	game->procs->pos += (1) % CW_MEM_SIZE;
+	game->procs->pos += ((inst->types[1] == T_REG) ? 1 : CW_DIR_SIZE_STI) % CW_MEM_SIZE;
+	game->procs->pos += ((inst->types[2] == T_REG) ? 1 : CW_DIR_SIZE_STI) % CW_MEM_SIZE;
+	/* ft_printf("0x%02x 0x%02x 0x%02x\n", vm->arena[game->procs->pos-1], vm->arena[game->procs->pos], vm->arena[game->procs->pos + 1]); */
 }

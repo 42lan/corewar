@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 17:14:37 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/12 16:15:56 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/13 21:03:20 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,15 +67,18 @@ void				cw_vm_op_lld_ind_exec(t_cw_game *game, t_cw_vm *vm)
 
 void				cw_vm_op_lld(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
 {
-	int				pos;
-
-	if (inst->args_count != 2
-		|| inst->types[0] == T_REG || inst->types[1] != T_REG)	
-		ft_printf("ERROR\n");
-	if (inst->types[0] == T_DIR)
-		cw_vm_op_lld_dir_exec(game, vm);
-	else if (inst->types[0] == T_IND)
-		cw_vm_op_lld_ind_exec(game, vm);
-	pos = (inst->types[0] == T_DIR) ? 7 : 5;
-	game->procs->pos += pos % CW_MEM_SIZE;
+	if (inst->args_count == 2 && inst->types[0] != T_REG && inst->types[1] == T_REG)
+	{
+		if (inst->types[0] == T_DIR)
+			cw_vm_op_lld_dir_exec(game, vm);
+		else if (inst->types[0] == T_IND)
+			cw_vm_op_lld_ind_exec(game, vm);
+	}
+	// opc + encoding byte + (T_DIR | T_IND) + T_REG
+	// 7 T_DIR T_REG
+	// 5 T_IND T_REG
+	game->procs->pos += (1 + 1) % CW_MEM_SIZE;
+	game->procs->pos += ((inst->types[0] == T_DIR) ? CW_DIR_SIZE_LLD : 2) % CW_MEM_SIZE;
+	game->procs->pos += (1) % CW_MEM_SIZE;
+	/* ft_printf("0x%02x 0x%02x 0x%02x\n", vm->arena[game->procs->pos-1], vm->arena[game->procs->pos], vm->arena[game->procs->pos + 1]); */
 }

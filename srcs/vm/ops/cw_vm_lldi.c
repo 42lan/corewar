@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 17:14:53 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/12 16:17:38 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/13 21:10:07 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,19 +88,19 @@ void				cw_vm_op_lldi_body(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
 	pos = 2;
 	while (++i < 2)
 	{
-		if (inst->args[i] == T_REG)
+		if (inst->types[i] == T_REG)
 		{
 			if (cw_vm_is_reg(vm->arena[game->procs->pos + pos]) == false)
 				ft_printf("ERROR\n");
 			arg[i] = game->procs->regs[(vm->arena[game->procs->pos + pos]) - 1];
 			pos++;
 		}
-		else if (inst->args[i] == T_DIR)
+		else if (inst->types[i] == T_DIR)
 		{
 			arg[i] = cw_vm_op_lldi_dir(game, vm, pos);
 			pos += CW_DIR_SIZE_LLDI;
 		}
-		else if (inst->args[i] == T_IND)
+		else if (inst->types[i] == T_IND)
 		{
 			arg[i] = cw_vm_op_lldi_ind(game, vm, pos);
 			pos += 2;
@@ -109,14 +109,21 @@ void				cw_vm_op_lldi_body(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
 	arg[0] = game->procs->pos + (arg[0] + arg[1]);
 	if (arg[0] < 0)
 		arg[0] += CW_MEM_SIZE;
-	game->procs->regs[game->procs->pos + pos - 1] = cw_vm_op_lldi_value_reg(vm, arg[0]);
+	game->procs->regs[vm->arena[game->procs->pos + pos] - 1] = cw_vm_op_lldi_value_reg(vm, arg[0]);
 }
 
 void	cw_vm_op_lldi(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
 {
-	if (inst->args_count != 3)
-		ft_printf("ERROR\n");
-	if (inst->types[2] != T_REG || inst->types[1] == T_IND)	
-		ft_printf("ERROR\n");
-	cw_vm_op_lldi_body(inst, game, vm);
+	if (inst->args_count == 3 && inst->types[1] != T_IND && inst->types[2] == T_REG)
+		cw_vm_op_lldi_body(inst, game, vm);
+	// opc + encoding byte + (T_REG | T_DIR | T_IND) + (T_REG | T_DIR) + T_REG
+	// 5 T_REG T_REG
+	// 6 T_REG T_DIR
+	// 6 T_DIR T_REG
+	// 7 T_DIR T_DIR
+	// 6 T_IND T_REG
+	// 7 T_IND T_DIR
+	game->procs->pos += (1 + 1 + ((inst->types[0] == T_REG) ? 1 : CW_DIR_SIZE_LLDI)) % CW_MEM_SIZE;
+	game->procs->pos += ((inst->types[1] == T_REG) ? 1 : CW_DIR_SIZE_LLDI) % CW_MEM_SIZE;
+	game->procs->pos += ((inst->types[2] == T_REG) ? 1 : 0) % CW_MEM_SIZE;
 }

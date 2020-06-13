@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cw_vm_is_reg.c                                     :+:      :+:    :+:   */
+/*   cw_vm_predicaters.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 12:20:47 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/12 15:11:34 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/13 22:30:08 by jthierce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "cw_vm_game.h"
 
 t_bool	cw_vm_is_valid_op(int op)
 {
@@ -21,7 +22,7 @@ t_bool	cw_vm_is_valid_op(int op)
 
 t_bool	cw_vm_is_reg(int reg)
 {
-	if (reg < 1 || reg > 16)
+	if (reg < 1 || reg > CW_REG_NUMBER)
 		return (false);
 	return (true);
 }

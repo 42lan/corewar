@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 12:41:56 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/07 15:12:59 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/12 21:14:56 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	cw_vm_arena_dump(unsigned char *arena, unsigned int size)
 	pc = arena;
 	while (++i < size)
 	{
-		if ((i % 32) == 0)
+		if ((i % 64) == 0)
 		{
 			(i != 0) ? ft_putchar('\n') : 0;
 			ft_printf("{bold}0x%06x:{}", i);
@@ -29,7 +29,7 @@ void	cw_vm_arena_dump(unsigned char *arena, unsigned int size)
 		(i % 1 == 0) ? ft_putchar(' ') : 0;
 		ft_printf("%02x", pc[i]);
 	}
-	while ((i % 32) != 0)
+	while ((i % 64) != 0)
 	{
 		(i % 1 == 0) ? ft_putchar(' ') : 0;
 		ft_printf("00", i++);
