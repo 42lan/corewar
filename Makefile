@@ -45,10 +45,18 @@ SRC_FILES_COMMON	=	common/ft_printerr.c \
 						common/cw_inst.c \
 
 SRC_FILES_ASM		=	asm/cw_asm_main.c \
-				asm/cw_asm_error.c \
-				asm/cw_asm_options.c \
-				asm/cw_asm_default_out_file.c \
-				asm/cw_asm.c \
+						asm/cw_asm_error.c \
+						asm/cw_asm_options.c \
+						asm/cw_asm_default_out_file.c \
+						asm/cw_linst.c \
+						asm/cw_literal.c \
+						asm/cw_label.c \
+						asm/cw_asm.c \
+						asm/cw_asm_run.c \
+						asm/cw_asm_input.c \
+						asm/cw_asm_translate.c \
+						asm/cw_asm_assemble.c \
+						asm/cw_asm_output.c \
 
 SRC_FILES_CW		=	vm/cw_vm_main.c \
 						vm/cw_vm_parsing.c \
@@ -145,6 +153,11 @@ $(NAME_ASM): $(LIBFT) $(OBJ_ASM)
 $(NAME_CW): $(LIBFT) $(OBJ_CW)
 	@printf "\e[92m" || true
 	$(CC) $(CFLAGS) -o $@ $(OBJ_CW) $(LDFLAGS)
+	@printf "\e[0m" || true
+
+$(OBJ_DIR):
+	@printf "\e[96m" || true
+	@mkdir -p $@
 	@printf "\e[0m" || true
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/% | $(OBJ_DIR)
