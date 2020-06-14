@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 19:14:23 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/15 00:29:13 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/15 01:44:31 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ static int		cw_vm_processus_dead(t_cw_game *game, t_cw_proc *proc,
 
 static int		cw_vm_perform_check(t_cw_game *game, t_cw_vm *vm)
 {
-	game->cycles_total++;
+	vm->dump--;
 	game->cycles_count++;
-	if (vm->dump != 0 && vm->dump == game->cycles_total)
+	if (vm->dump == 0)
 	{
 		cw_vm_arena_dump(vm->arena, CW_MEM_SIZE);
 		return (CW_VM_DUMP);

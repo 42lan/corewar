@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 18:04:40 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/15 00:40:48 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/15 01:38:42 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ int			main(int argc, char **argv)
 	if (argc < 2)
 		cw_vm_usage();
 	cw_vm_init_struct_vm(&vm);
-	cw_vm_parsing(argc - 1 , argv + 1, &vm);
-	if ((ret_value = cw_vm_read_player(&vm)) == CW_SUCCESS)
-		cw_vm_game(&vm);
+	if ((ret_value = cw_vm_parsing(argc - 1 , argv + 1, &vm)) == CW_SUCCESS)
+		if ((ret_value = cw_vm_read_player(&vm)) == CW_SUCCESS)
+			cw_vm_game(&vm);
 	free_memory(&vm);
 	return (ret_value);
 }

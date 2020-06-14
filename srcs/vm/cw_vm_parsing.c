@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 14:06:54 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/15 00:33:31 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/15 01:50:12 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 /*
 ** cw_vm_print_data() prints data structure on standard output
 */
-void	cw_vm_print_data(t_cw_data *data)
+void		cw_vm_print_data(t_cw_data *data)
 {
 	int		i;
 
@@ -38,7 +38,7 @@ void	cw_vm_print_data(t_cw_data *data)
 ** cw_vm_is_valid_extension() checks whether `av` ends in `extension`
 */
 
-int		cw_vm_is_valid_extension(const char *av, const char *extension)
+int			cw_vm_is_valid_extension(const char *av, const char *extension)
 {
 	if (av == NULL || !*av || extension == NULL || !*extension)
 		return (CW_FAILURE);
@@ -52,16 +52,21 @@ int		cw_vm_is_valid_extension(const char *av, const char *extension)
 ** cw_vm_set_player() retrieves player's filename which must have .cor extension
 */
 
-int		cw_vm_set_player(t_cw_vm *vm, int assigned_nbr, char *filename)
+int				cw_vm_set_player(t_cw_vm *vm, int assigned_nbr, char *filename)
 {
 	static int	j = 0;
 	static int	cnt = 0;
 
 	if (filename == NULL || filename[0] == '\0')
-		ft_printerr("Player's filename expected", CW_VM_FILE_EXPECTED);
+	{
+		ft_dprintf(2, "{red}Player's filename expected\n{}");
+		return (CW_VM_FILE_EXPECTED);
+	}
 	if (cw_vm_is_valid_extension(filename, ".cor") == CW_FAILURE)
-		ft_printerr("Player's filename has an incorrect extension",
-			CW_VM_FILE_EXTENSION);
+	{
+		ft_dprintf(2, "{red}Player's filename has an incorrect extension\n{}");
+		return (CW_VM_FILE_EXTENSION);
+	}
 	vm->data.filename[j] = ft_strdup(filename);
 	vm->data.assigned_nbr[j++] = (assigned_nbr > 0) ? assigned_nbr : --cnt;
 	vm->data.nbr_players += 1;
@@ -72,21 +77,24 @@ int		cw_vm_set_player(t_cw_vm *vm, int assigned_nbr, char *filename)
 ** cw_vm_set_dump() set dump value in t_cw_data and true boolean to t_cw_vm
 */
 
-void	cw_vm_set_dump(t_cw_vm *vm, char **av, int *i)
+int				cw_vm_set_dump(t_cw_vm *vm, char **av, int *i)
 {
-	int			dump;
 	char		*tmp;
 
 	if (*av == NULL || *av[0] == '\0' || !ft_isstrnum(*av))
-		ft_printerr("A positive number expected after -dump", CW_VM_DUMP_NUM);
+	{
+		ft_dprintf(2, "{red}A positive number expected after -dump\n{}");
+		return (CW_VM_DUMP_NUM);
+	}
 	tmp = ft_strtrim(*av);
-	if (ft_atoi32check(&dump, tmp) != 0 || dump <= 0)
-		ft_printerr("Number of cycles should be between 1 and INT_MAX",
-			CW_VM_CYCLE_LIMITS);
-	vm->dump = dump;
-	vm->data.nbr_cycles = vm->dump;
+	if (ft_atoi32check(&vm->dump, tmp) != 0 || vm->dump <= 0)
+	{
+		ft_dprintf(2, "{red}Number of cycles should be between 1 and INT_MAX\n{}");
+		return (CW_VM_CYCLE_LIMITS);
+	}
 	ft_strdel(&tmp);
 	*i += 2;
+	return (CW_SUCCESS);
 }
 
 /*
@@ -94,49 +102,67 @@ void	cw_vm_set_dump(t_cw_vm *vm, char **av, int *i)
 ** retrives assigned_nbr from av and pass it to cw_vm_set_player()
 */
 
-void	cw_vm_set_player_helper(t_cw_vm *vm, int ac, char **av, int *i)
+int				cw_vm_set_player_helper(t_cw_vm *vm, int ac, char **av, int *i)
 {
-	int		assigned_nbr;
+	int			assigned_nbr;
 
 	if (*i + 1 < ac)
 	{
 		if (ft_atoi32check(&assigned_nbr, av[*i + 1]) != 0 || assigned_nbr <= 0)
-			ft_printerr("Player's assigned ID should be between 1 and INT_MAX",
-				CW_VM_ID_LIMITS);
+		{
+			ft_dprintf(2, "{red}Player's ID should be between 1 and INT_MAX\n{}");
+			return (CW_VM_ID_LIMITS);
+		}
 		cw_vm_set_player(vm, assigned_nbr, av[*i + 2]);
 		*i += 2;
 	}
 	else
-		ft_printerr("Player's number expected after -n", CW_VM_ID_EXPECTED);
+	{
+		ft_dprintf(2, "{red}Player's number expected after -n\n{}");
+		return (CW_VM_ID_EXPECTED);
+	}
+	return (CW_SUCCESS);
 }
 
 /*
 ** cw_vm_parsing() parse received arguments to fill t_cw_data structure
 */
 
-int		cw_vm_parsing(int ac, char **av, t_cw_vm *vm)
+int				cw_vm_parsing(int ac, char **av, t_cw_vm *vm)
 {
 	int			i;
 	char		*tmp;
+	int			ret_value;
 
 	i = 0;
 	if (ft_strnequ(av[i], "-dump\0", 6))
-		cw_vm_set_dump(vm, av + 1, &i);
+		if ((ret_value = cw_vm_set_dump(vm, av + 1, &i)) != CW_SUCCESS)
+			return (ret_value);
 	while (i < ac)
 	{
 		tmp = ft_strtrim(av[i]);
 		if (vm->data.nbr_players >= CW_MAX_PLAYERS)
-			ft_printerr("Max number of players exceeded", CW_VM_MAX_PLAYERS);
+		{
+			ft_dprintf(2, "{red}Max number of players exceeded\n{}");
+			return (CW_VM_MAX_PLAYERS);
+		}
 		if (cw_vm_is_valid_extension(tmp, ".cor") == CW_SUCCESS)
-			cw_vm_set_player(vm, 0, tmp);
+		{
+			if ((ret_value = cw_vm_set_player(vm, 0, tmp)) != CW_SUCCESS)
+				return (ret_value);
+		}
 		else if (ft_strnequ(tmp, "-n\0", 3))
-			cw_vm_set_player_helper(vm, ac, av, &i);
+		{
+			if ((ret_value = cw_vm_set_player_helper(vm, ac, av, &i)) != CW_SUCCESS)
+				return (ret_value);
+		}
 		else
 			cw_vm_usage();
 		ft_strdel(&tmp);
 		i++;
 	}
-	cw_vm_check_nbr_players(vm);
+	if (cw_vm_check_nbr_players(vm) != CW_SUCCESS)
+		return (CW_VM_NO_PLAYERS);
 	return (CW_SUCCESS);
 }
 
@@ -145,8 +171,12 @@ int		cw_vm_parsing(int ac, char **av, t_cw_vm *vm)
 ** otherwise it teminate program
 */
 
-void	cw_vm_check_nbr_players(t_cw_vm *vm)
+int		cw_vm_check_nbr_players(t_cw_vm *vm)
 {
 	if (vm->data.nbr_players == 0)
-		ft_printerr("No players provided", CW_VM_NO_PLAYERS);
+	{
+		ft_dprintf(2, "{red}No players provided\n{}");
+		return (CW_VM_NO_PLAYERS);
+	}
+	return (CW_SUCCESS);
 }
