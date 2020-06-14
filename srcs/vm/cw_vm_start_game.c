@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 19:14:23 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/14 19:22:49 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/15 00:29:13 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,13 @@ static int		cw_vm_processus_dead(t_cw_game *game, t_cw_proc *proc,
 
 static int		cw_vm_perform_check(t_cw_game *game, t_cw_vm *vm)
 {
+	game->cycles_total++;
 	game->cycles_count++;
+	if (vm->dump != 0 && vm->dump == game->cycles_total)
+	{
+		cw_vm_arena_dump(vm->arena, CW_MEM_SIZE);
+		return (CW_VM_DUMP);
+	}
 	if (game->cycles_count >= game->cycle_to_die)
 	{
 		game->check_performed++;
@@ -97,7 +103,7 @@ void	cw_vm_start_game(t_cw_game *game, t_cw_vm *vm)
 		if (game->procs->next != NULL)
 			game->procs = game->procs->next;
 		else
-			if (cw_vm_perform_check(game, vm) == CW_VM_LAST_PROC)
+			if (cw_vm_perform_check(game, vm) != CW_VM_NOT_LAST_PROC)
 				break ;
 	}
 }

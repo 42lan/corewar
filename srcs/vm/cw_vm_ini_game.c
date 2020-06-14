@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 15:23:59 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/12 16:06:21 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/15 00:17:56 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void	cw_vm_ini_byte_codage(t_cw_game *game)
 void	cw_vm_ini_game_helper(t_cw_game *game, t_cw_vm *vm)
 {
 	game->last_alive = vm->data.nbr_players - 1;
+	game->cycles_total = 0;
 	game->cycles_count = 0;
 	game->cycle_to_die = CW_CYCLE_TO_DIE;
 	game->check_performed = 0;

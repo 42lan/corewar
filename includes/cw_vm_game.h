@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 15:14:35 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/12 16:00:45 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/15 00:30:37 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define CW_REG_NUMBER			16
 # define CW_NBR_LIVE			21
 # define CW_MAX_CHECKS			10
+# define CW_VM_DUMP				42
 
 # define CW_DIR_SIZE_LIVE		4
 # define CW_DIR_SIZE_LD			4
@@ -58,6 +59,7 @@ typedef struct		s_cw_proc
 typedef struct		s_cw_game
 {
 	int				last_alive;
+	unsigned long	cycles_total;
 	int				cycles_count;
 	int				cycle_to_die;
 	int				check_performed;

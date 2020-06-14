@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 14:06:54 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/12 15:51:31 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/15 00:33:31 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,17 +74,18 @@ int		cw_vm_set_player(t_cw_vm *vm, int assigned_nbr, char *filename)
 
 void	cw_vm_set_dump(t_cw_vm *vm, char **av, int *i)
 {
+	int			dump;
 	char		*tmp;
 
 	if (*av == NULL || *av[0] == '\0' || !ft_isstrnum(*av))
 		ft_printerr("A positive number expected after -dump", CW_VM_DUMP_NUM);
 	tmp = ft_strtrim(*av);
-	if (ft_atoi32check(&vm->data.nbr_cycles, tmp) != 0
-		|| vm->data.nbr_cycles <= 0)
+	if (ft_atoi32check(&dump, tmp) != 0 || dump <= 0)
 		ft_printerr("Number of cycles should be between 1 and INT_MAX",
 			CW_VM_CYCLE_LIMITS);
+	vm->dump = dump;
+	vm->data.nbr_cycles = vm->dump;
 	ft_strdel(&tmp);
-	vm->dump = true;
 	*i += 2;
 }
 
