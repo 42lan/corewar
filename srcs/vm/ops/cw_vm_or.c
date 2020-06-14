@@ -22,7 +22,7 @@ int					cw_vm_op_or_dir(t_cw_game *game, t_cw_vm *vm, int pos)
 	return (total);
 }
 
-int16_t	cw_vm_op_or_ind(t_cw_game *game, t_cw_vm *vm, int pos)
+int		cw_vm_op_or_ind(t_cw_game *game, t_cw_vm *vm, int pos)
 {
 	int16_t			arg;
 	int				total;
@@ -78,16 +78,5 @@ void	cw_vm_op_or(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
 {
 	if (inst->args_count >= 3 && inst->types[2] == T_REG)
 		cw_vm_op_or_body(inst, game, vm);
-	// opc + encoding byte + (T_REG | T_DIR | T_IND) + (T_REG | T_DIR | T_IND) + T_REG
-	//  5 T_REG T_REG
-	//  8 T_REG T_DIR
-	//  6 T_REG T_IND
-	//  8 T_DIR T_REG
-	// 11 T_DIR T_DIR
-	//  9 T_DIR T_IND
-	//  6 T_IND T_REG
-	//  9 T_IND T_DIR
-	//  7 T_IND T_IND
 	game->procs->pos = (game->procs->pos + 2 + cw_vm_add_pos(inst, 3, CW_DIR_SIZE_OR)) % CW_MEM_SIZE;
-	/* ft_printf("0x%02x 0x%02x 0x%02x\n", vm->arena[game->procs->pos-1], vm->arena[game->procs->pos], vm->arena[game->procs->pos + 1]); */
 }

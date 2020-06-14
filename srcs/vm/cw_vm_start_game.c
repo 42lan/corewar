@@ -20,7 +20,7 @@ static int		cw_vm_last_proc(t_cw_game *game, t_cw_vm *vm)
 
 	id = game->last_alive;
 	name = vm->players[id].champion->name;
-	ft_printf("{bold}{orange}The player %d(%s) has won.{}\n", id, name);
+	ft_printf("{bold}{orange}The player %d(%s) has won.{}\n", id + 1, name);
 	(vm->dump == true) ? cw_vm_arena_dump(vm->arena, CW_MEM_SIZE) : 0;
 	return (CW_VM_LAST_PROC);
 
@@ -57,7 +57,6 @@ static int		cw_vm_processus_dead(t_cw_game *game, t_cw_proc *proc,
 
 static int		cw_vm_perform_check(t_cw_game *game, t_cw_vm *vm)
 {
-	game->check_performed++;
 	game->cycles_count++;
 	if (game->cycles_count >= game->cycle_to_die)
 	{
