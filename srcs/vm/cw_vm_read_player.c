@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/05 13:20:57 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/07 11:09:27 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/14 23:29:40 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 int			cw_vm_read_player(t_cw_vm *vm)
 {
 	cw_parsing_number_player(&vm->data);
-	cw_vm_valid_player(&vm->data, vm->players);
+	if (cw_vm_valid_player(&vm->data, vm->players) != CW_SUCCESS)
+		return (CW_ERROR);
 	return (CW_SUCCESS);
 }
