@@ -63,7 +63,7 @@ static int		cw_vm_create_champion(t_cw_player *players, int i)
 	if (cw_champion_create(&players[i].champion) != CW_SUCCESS)
 	{
 		ft_dprintf(2, "{red}Creation of champion failed\n{}");
-		return (CW_VM_ERROR_OPEN_FAILED);
+		return (CW_ERROR_MALLOC_FAILED);
 	}
 	return (CW_SUCCESS);
 }
@@ -77,16 +77,17 @@ int				cw_vm_valid_player(t_cw_data *data, t_cw_player *players)
 {
 	int			i;
 	int			fd;
+	int			ret_value;
 
 	i = -1;
 	while (++i < data->nbr_players)
 	{
 		if ((fd = cw_vm_open_file(data->filename[i])) <= 0)
-			return (CW_ERROR);
+			return (CW_VM_ERROR_OPEN_FAILED);
 		if (cw_vm_create_champion(players, i) != CW_SUCCESS)
-			return (CW_ERROR);
-		if (cw_vm_verify_file_structure(fd, &players[i]) != CW_SUCCESS)
-			return (CW_ERROR);
+			return (CW_ERROR_MALLOC_FAILED);
+		if ((ret_value = cw_vm_verify_file_structure(fd, &players[i])) != CW_SUCCESS)
+			return (ret_value);
 		close(fd);
 	}
 	return (CW_SUCCESS);
