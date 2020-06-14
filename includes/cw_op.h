@@ -51,7 +51,7 @@ struct					s_cw_op
 	unsigned int		cycles;
 	char				*desc;
 	t_bool				has_coding_byte;
-	t_bool				has2;
+	t_bool				requieres_label;
 };
 
 # define CW_OP_COUNT 16
