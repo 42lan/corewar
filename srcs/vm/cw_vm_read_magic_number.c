@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 01:55:51 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/07 02:02:42 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/14 20:36:40 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ int		cw_vm_read_magic_number(int fd)
 
 	if (read(fd, magic_number, 4) != 4)
 	{
-		ft_dprintf(2, "{RED}ERROR READ MAGIC NUMBER\n{}");
+		ft_dprintf(2, "{red}ERROR READ MAGIC NUMBER\n{}");
 		return (CW_VM_READ_ERROR);
 	}
 	magic_number_int = ft_bigendian32_read(magic_number);
 	if (magic_number_int != CW_EXEC_MAGIC)
 	{
-		ft_dprintf(2, "{RED}NOT VALID MAGIC NUMBER\n{}");
-		return(CW_VM_ERROR_NOT_VALID_PLAYER);
+		ft_dprintf(2, "{red}NOT VALID MAGIC NUMBER\n{}");
+		return (CW_VM_ERROR_NOT_VALID_PLAYER);
 	}
 	return (CW_SUCCESS);
 }
