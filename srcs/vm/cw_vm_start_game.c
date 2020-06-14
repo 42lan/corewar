@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 19:14:23 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/12 15:53:30 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/14 12:35:24 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int		cw_vm_last_proc(t_cw_game *game, t_cw_vm *vm)
 	char		*name;
 
 	id = game->last_alive;
-	name = vm->players[game->last_alive].champion->name;
+	name = vm->players[id].champion->name;
 	ft_printf("{bold}{orange}The player %d(%s) has won.{}\n", id, name);
 	(vm->dump == true) ? cw_vm_arena_dump(vm->arena, CW_MEM_SIZE) : 0;
 	return (CW_VM_LAST_PROC);
