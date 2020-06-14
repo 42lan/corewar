@@ -3,5 +3,5 @@
 
 	ld	%-2, r16
 	ld	%-1, r15
-	add	r16, r15, r3
+	sub	r16, r15, r3
 	st	r3, 10
