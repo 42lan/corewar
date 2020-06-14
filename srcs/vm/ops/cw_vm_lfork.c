@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 17:15:10 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/14 16:18:35 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/14 18:56:25 by jthierce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,11 @@ void			cw_vm_op_lfork(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
 
 	(void)inst;
 	arg1 = ft_bigendian16_read(vm->arena + ((game->procs->pos + 1) % CW_MEM_SIZE));
-	idx_address = game->procs->pos + arg1;
+	idx_address = (game->procs->pos + arg1) % CW_MEM_SIZE;
+	if (idx_address < 0)
+		idx_address += CW_MEM_SIZE;
 	if (!(new = ft_memdup(game->procs, sizeof(t_cw_proc)))) //a verifier le tableau de registre
-		exit(CW_ERROR_MALLOC_FAILED);
+		exit(CW_ERROR_MALLOC_FAILED); //A revoir pour les leaks
 	// COPIER LE TABLEAU DES REGS[]
 	new->pos = idx_address;
 	new->next = game->head;
