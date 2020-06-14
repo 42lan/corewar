@@ -3,7 +3,6 @@
 
 # include "cw_vm.h"
 # include "cw_op.h"
-# include "cw_vm_game.h"
 
 /*
 ** t_cw_inst:
@@ -26,6 +25,8 @@ struct				s_cw_inst
 	int				args[3];		
 	t_cw_arg_type	types[3];
 };
+
+# include "cw_vm_game.h"
 
 void				cw_inst_init(t_cw_inst *inst);
 void				cw_inst_fill(t_cw_inst *inst, t_cw_vm *vm, t_cw_game *game);

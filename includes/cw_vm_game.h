@@ -68,9 +68,12 @@ typedef struct		s_cw_game
 	t_cw_proc		*head;
 }					t_cw_game;
 
+# include "cw_inst.h"
+
 void	cw_vm_ini_game(t_cw_game *game, t_cw_vm *vm);
 void	cw_vm_start_game(t_cw_game *game, t_cw_vm *vm);
 void	cw_vm_read_execute(t_cw_game *game, t_cw_vm *vm);
 void	cw_vm_proc_dump(t_cw_proc *proc);
+int		cw_vm_add_pos(t_cw_inst *inst, int nbr_arg, int label_size);
 
 #endif

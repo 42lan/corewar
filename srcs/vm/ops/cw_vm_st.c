@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 19:32:09 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/13 23:07:02 by jthierce         ###   ########.fr       */
+/*   Updated: 2020/06/14 03:32:33 by jthierce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,16 @@
 
 void		cw_vm_op_st_ind_exec(t_cw_game *game, t_cw_vm *vm)
 {
-	int		i;
-	int		mult;
 	int 	reg_value;
 	int 	reg_index;
 	int16_t arg2;
 
-	i = -1;
 	arg2 = 0;
 	reg_index = vm->arena[(game->procs->pos + 2) % CW_MEM_SIZE];
 	if (cw_vm_is_reg(reg_index) == true)
 	{
 		reg_value = game->procs->regs[reg_index - 1];
-		arg2 = ft_bigendian16_read(vm->players + game->procs->pos + 3);
+		arg2 = ft_bigendian16_read(vm->arena + ((game->procs->pos + 3) % CW_MEM_SIZE));
 		arg2 = (game->procs->pos + (arg2 % CW_IDX_MOD)) % CW_MEM_SIZE;
 		if (arg2 < 0)
 			arg2 += CW_MEM_SIZE;
@@ -41,7 +38,7 @@ void	cw_vm_op_st(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
 {
 	int		arg[2];
 
-	if (inst->args_count == 2 && inst->types[0] == T_REG && inst->types[1] != T_DIR)
+	if (inst->args_count >= 2 && inst->types[0] == T_REG && inst->types[1] != T_DIR)
 	{
 		if (inst->types[1] == T_REG)
 		{
@@ -55,5 +52,6 @@ void	cw_vm_op_st(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
 	}
 	// opc + encoding byte + T_REG + (T_REG | T_IND)
 	// 4 T_REG, 5 T_IND
-	game->procs->pos += (1 + 1 + 1 + ((inst->types[0] == T_REG) ? 1 : 2)) % CW_MEM_SIZE; //a revoir
+	// game->procs->pos = (game->procs->pos + (1 + 1 + 1 + ((inst->types[0] == T_REG) ? 1 : 2))) % CW_MEM_SIZE; //a revoir
+	game->procs->pos = (game->procs->pos + 2 + cw_vm_add_pos(inst, 2, CW_DIR_SIZE_ST)) % CW_MEM_SIZE;
 }

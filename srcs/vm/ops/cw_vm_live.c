@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 16:59:44 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/13 22:18:25 by jthierce         ###   ########.fr       */
+/*   Updated: 2020/06/14 03:31:28 by jthierce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void			cw_vm_op_live(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
 	long	arg1;
 
 	arg1 = 0;
-	arg1 = ft_bigendian32_read(vm->arena + game->procs->pos + 1);
+	arg1 = ft_bigendian32_read(vm->arena + ((game->procs->pos + 1) % CW_MEM_SIZE));
 	game->procs->last_live = 1;
 	(void)inst;
 	if (arg1 < 0 && (arg1 * -1) <= vm->data.nbr_players)

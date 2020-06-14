@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 21:27:06 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/11 13:09:42 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/14 02:42:29 by jthierce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,13 @@ void	cw_inst_fill(t_cw_inst *inst, t_cw_vm *vm, t_cw_game *game)
 
 void	cw_inst_get_args(t_cw_inst *inst, unsigned opc)
 {
+	inst->args_count = 0;
 	inst->args[0] = (opc >> 6) & 0x03;
 	inst->args[1] = (opc >> 4) & 0x03;
 	inst->args[2] = (opc >> 2) & 0x03;
-	(inst->args[0]) ? inst->args_count = 1 : 0;
-	(inst->args[1]) ? inst->args_count = 2 : 0;
-	(inst->args[2]) ? inst->args_count = 3 : 0;
-	//rajouter une erreur si argument dans 2 mais pas dans 1 et regarder les dernier bits si ils sont different de 0
+	(inst->args[0]) ? inst->args_count += 1 : 0;
+	(inst->args[1]) ? inst->args_count += 1 : 0;
+	(inst->args[2]) ? inst->args_count += 1 : 0;
 }
 
 void	cw_inst_dump(t_cw_inst *inst)

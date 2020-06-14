@@ -6,7 +6,7 @@
 #    By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by bleplat           #+#    #+#              #
-#    Updated: 2020/06/12 15:59:11 by amalsago         ###   ########.fr        #
+#    Updated: 2020/06/14 02:16:13 by jthierce         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -93,6 +93,7 @@ SRC_FILES_CW_OP		=	vm/ops/cw_vm_live.c \
 						vm/ops/cw_vm_lldi.c \
 						vm/ops/cw_vm_lfork.c \
 						vm/ops/cw_vm_aff.c \
+						vm/ops/cw_vm_add_pos.c \
 
 SRC_FILES = $(SRC_FILES_COMMON) $(SRC_FILES_ASM) $(SRC_FILES_CW)
 

@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cw_vm.h"
 #include "cw_vm_game.h"
+#include "cw_vm.h"
 #include "cw_champion.h"
 
 void		cw_vm_game(t_cw_vm *vm)
