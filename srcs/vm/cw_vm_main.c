@@ -42,9 +42,8 @@ int			main(int argc, char **argv)
 		cw_vm_usage();
 	cw_vm_init_struct_vm(&vm);
 	cw_vm_parsing(argc - 1 , argv + 1, &vm);
-	cw_vm_read_player(&vm);
-	cw_vm_ini_arena(&vm);
-	cw_vm_game(&vm);
+	if (cw_vm_read_player(&vm) == CW_SUCCESS)
+		cw_vm_game(&vm);
 	free_memory(&vm);
 	return (CW_SUCCESS);
 }
