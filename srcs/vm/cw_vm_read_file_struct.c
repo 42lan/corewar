@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 01:59:09 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/11 13:23:46 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/14 23:31:41 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ int					cw_vm_read_champion_exec_code(int fd, t_cw_player *player)
 	}
 	if (read(fd, exec_code, player->champion->code_len + 1) != code_len)
 	{
+		ft_memdel((void **)&exec_code);
 		ft_dprintf(2, "{red}ERROR READ CHAMPION EXEC CODE\n{}");
 		return (CW_VM_READ_ERROR);
 	}
