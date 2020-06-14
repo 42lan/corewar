@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 18:04:40 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/14 19:17:06 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/14 22:34:02 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void		free_memory(t_cw_vm *vm)
 	while (++i < vm->data.nbr_players)
 	{
 		ft_strdel(&vm->data.filename[i]);
-		cw_champion_destroy(&vm->players->champion);
+		cw_champion_destroy(&vm->players[i].champion);
 	}
 }
 
@@ -45,6 +45,6 @@ int			main(int argc, char **argv)
 	cw_vm_read_player(&vm);
 	cw_vm_ini_arena(&vm);
 	cw_vm_game(&vm);
-	//free_memory(&vm);
+	free_memory(&vm);
 	return (CW_SUCCESS);
 }
