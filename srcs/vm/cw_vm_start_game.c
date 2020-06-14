@@ -6,14 +6,14 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 19:14:23 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/14 12:35:24 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/14 19:22:49 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cw_vm_game.h"
 #include "cw_vm.h"
 
-static int		cw_vm_last_proc(t_cw_game *game, t_cw_vm *vm)
+static int		cw_vm_last_proc(t_cw_game *game, t_cw_vm *vm, t_cw_proc *proc)
 {
 	int			id;
 	char		*name;
@@ -22,6 +22,7 @@ static int		cw_vm_last_proc(t_cw_game *game, t_cw_vm *vm)
 	name = vm->players[id].champion->name;
 	ft_printf("{bold}{orange}The player %d(%s) has won.{}\n", id + 1, name);
 	(vm->dump == true) ? cw_vm_arena_dump(vm->arena, CW_MEM_SIZE) : 0;
+	ft_memdel((void **)&proc);
 	return (CW_VM_LAST_PROC);
 
 }
@@ -38,7 +39,7 @@ static int		cw_vm_processus_dead(t_cw_game *game, t_cw_proc *proc,
 			if (proc == game->head)
 			{
 				if (proc->next == NULL)
-					return (cw_vm_last_proc(game, vm));
+					return (cw_vm_last_proc(game, vm, proc));
 				game->head = proc->next;
 			}
 			else
