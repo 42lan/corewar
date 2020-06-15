@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/06 15:33:02 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/11 13:21:53 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/15 05:20:45 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,24 +20,20 @@
 ** of `.cor` file
 */
 
-static int		cw_vm_verify_file_structure(int fd, t_cw_player *players, int i)
+static int		cw_vm_verify_file_structure(int fd, t_cw_player *player)
 {
 	int			ret;
-	t_cw_player	*player;
 
-	player = &players[i];
 	if (((ret = cw_vm_read_magic_number(fd)) != CW_SUCCESS)
 		|| ((ret = cw_vm_read_champion_name(fd, player)) != CW_SUCCESS)
 		|| ((ret = cw_vm_read_champion_null(fd, "NAME")) != CW_SUCCESS)
 		|| ((ret = cw_vm_read_exec_code_len(fd, player)) != CW_SUCCESS)
 		|| ((ret = cw_vm_read_champion_comment(fd, player)) != CW_SUCCESS)
 		|| ((ret = cw_vm_read_champion_null(fd, "COMMENT")) != CW_SUCCESS)
-		|| ((ret = cw_vm_read_champion_exec_code(fd, player) != CW_SUCCESS)))
+		|| ((ret = cw_vm_read_champion_exec_code(fd, player)) != CW_SUCCESS))
 	{
 		close(fd);
-		while (i != -1)
-			cw_champion_destroy(&players[i--].champion);
-		exit(ret);
+		return (ret);
 	}
 	return (CW_SUCCESS);
 }
@@ -46,17 +42,14 @@ static int		cw_vm_verify_file_structure(int fd, t_cw_player *players, int i)
 ** cw_vm_open_file() opens given file and return its fd
 */
 
-static int		cw_vm_open_file(const char *filename, t_cw_player *players,
-					int i)
+static int		cw_vm_open_file(const char *filename)
 {
 	int			fd;
 
 	if ((fd = open(filename, O_RDONLY)) == -1)
 	{
-		while (--i != -1)
-			cw_champion_destroy(&players[i].champion);
 		ft_dprintf(2, "{red}Cannot open file %s\n{}", filename);
-		exit(CW_VM_ERROR_OPEN_FAILED);
+		return (CW_VM_ERROR_OPEN_FAILED);
 	}
 	return (fd);
 }
@@ -65,15 +58,14 @@ static int		cw_vm_open_file(const char *filename, t_cw_player *players,
 ** cw_vm_create_champion() creates champion
 */
 
-static void		cw_vm_create_champion(t_cw_player *players, int i)
+static int		cw_vm_create_champion(t_cw_player *players, int i)
 {
 	if (cw_champion_create(&players[i].champion) != CW_SUCCESS)
 	{
-		while (i != -1)
-			cw_champion_destroy(&players[i--].champion);
 		ft_dprintf(2, "{red}Creation of champion failed\n{}");
-		exit(CW_VM_ERROR_OPEN_FAILED);
+		return (CW_ERROR_MALLOC_FAILED);
 	}
+	return (CW_SUCCESS);
 }
 
 /*
@@ -85,13 +77,18 @@ int				cw_vm_valid_player(t_cw_data *data, t_cw_player *players)
 {
 	int			i;
 	int			fd;
+	int			ret_value;
 
 	i = -1;
 	while (++i < data->nbr_players)
 	{
-		fd = cw_vm_open_file(data->filename[i], players, i);
-		cw_vm_create_champion(players, i);
-		cw_vm_verify_file_structure(fd, players, i);
+		if ((fd = cw_vm_open_file(data->filename[i])) <= 0)
+			return (CW_VM_ERROR_OPEN_FAILED);
+		if (cw_vm_create_champion(players, i) != CW_SUCCESS)
+			return (CW_ERROR_MALLOC_FAILED);
+		ret_value = cw_vm_verify_file_structure(fd, &players[i]);
+		if (ret_value != CW_SUCCESS)
+			return (ret_value);
 		close(fd);
 	}
 	return (CW_SUCCESS);

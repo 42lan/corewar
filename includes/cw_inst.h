@@ -31,15 +31,14 @@ struct						s_cw_inst
 t_cw_inst					*cw_inst_create(void);
 void						cw_inst_destroy(t_cw_inst **inst);
 
-void						cw_inst_init(t_cw_inst *inst);
-void						cw_inst_fill(t_cw_inst *inst,
-											t_cw_vm *vm,
-											t_cw_game *game);
-void						cw_inst_get_args(t_cw_inst *inst, unsigned op);
-void						cw_inst_dump(t_cw_inst *inst);
-
 int							cw_inst_arg_size(t_cw_opc opc, t_cw_arg_type t);
 int							cw_inst_size(t_cw_inst *inst);
 int							cw_inst_write(t_cw_inst *inst, unsigned char *dst);
+
+//void						cw_inst_get_args(t_cw_inst *inst, unsigned op);
+void						cw_inst_init(t_cw_inst *inst);
+void						cw_inst_fill(t_cw_inst *inst, t_cw_vm *vm,
+											t_cw_game *game);
+void						cw_inst_dump(t_cw_inst *inst);
 
 #endif

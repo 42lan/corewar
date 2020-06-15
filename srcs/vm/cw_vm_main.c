@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 18:04:40 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/13 22:17:58 by jthierce         ###   ########.fr       */
+/*   Updated: 2020/06/15 04:08:55 by jthierce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@
 void		cw_vm_init_struct_vm(t_cw_vm *vm)
 {
 	ft_bzero(vm, sizeof(vm));
-	ft_bzero(vm->arena, CW_MEM_SIZE + 1);
+	vm->dump = -1;
+	ft_bzero(vm->arena, sizeof(unsigned char) * (CW_MEM_SIZE + 1));
+	ft_bzero(vm->players, sizeof(t_cw_player) * CW_MAX_PLAYERS);
 	ft_memset(vm->data.assigned_nbr, -1, sizeof(int) * CW_MAX_PLAYERS);
 }
 
@@ -28,21 +30,21 @@ void		free_memory(t_cw_vm *vm)
 	while (++i < vm->data.nbr_players)
 	{
 		ft_strdel(&vm->data.filename[i]);
-		cw_champion_destroy(&vm->players->champion);
+		cw_champion_destroy(&vm->players[i].champion);
 	}
 }
 
 int			main(int argc, char **argv)
 {
 	t_cw_vm		vm;
+	int			ret_value;
 
 	if (argc < 2)
 		cw_vm_usage();
-	cw_vm_init_struct_vm(&vm);
-	cw_vm_parsing(argc - 1 , argv + 1, &vm);
-	cw_vm_read_player(&vm);
-	cw_vm_ini_arena(&vm);
-	cw_vm_game(&vm);
-	//free_memory(&vm);
-	return (CW_SUCCESS);
+	cw_vm_init_struct_vm(&vm); //safe
+	if ((ret_value = cw_vm_parsing(argc - 1 , argv + 1, &vm)) == CW_SUCCESS) //safe
+		if ((ret_value = cw_vm_read_player(&vm)) == CW_SUCCESS) //safe
+			ret_value = cw_vm_game(&vm); //1 error
+	free_memory(&vm); // a revoir
+	return (ret_value);
 }

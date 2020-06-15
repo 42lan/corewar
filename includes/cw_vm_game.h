@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 15:14:35 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/12 16:00:45 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/15 05:25:19 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,14 @@
 # include "libft.h"
 # include "cw_vm.h"
 
-# define CW_VM_NOT_LAST_PROC	0
-# define CW_VM_LAST_PROC		1
+# define CW_NOT_LAST_PROC		0
+# define CW_LAST_PROC			1
 # define CW_CYCLE_TO_DIE		1536
 # define CW_CYCLE_DELTA			50
 # define CW_REG_NUMBER			16
 # define CW_NBR_LIVE			21
 # define CW_MAX_CHECKS			10
+# define CW_VM_DUMP				471
 
 # define CW_DIR_SIZE_LIVE		4
 # define CW_DIR_SIZE_LD			4
@@ -70,8 +71,8 @@ typedef struct		s_cw_game
 
 # include "cw_inst.h"
 
-void	cw_vm_ini_game(t_cw_game *game, t_cw_vm *vm);
-void	cw_vm_start_game(t_cw_game *game, t_cw_vm *vm);
+int		cw_vm_ini_game(t_cw_game *game, t_cw_vm *vm);
+int		cw_vm_start_game(t_cw_game *game, t_cw_vm *vm);
 void	cw_vm_read_execute(t_cw_game *game, t_cw_vm *vm);
 void	cw_vm_proc_dump(t_cw_proc *proc);
 int		cw_vm_add_pos(t_cw_inst *inst, int nbr_arg, int label_size);

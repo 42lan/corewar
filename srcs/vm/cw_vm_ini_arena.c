@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 03:04:40 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/11 13:22:44 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/15 15:28:41 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ** Verify if the space in arena is enough to place all player
 */
 
-static void		cw_vm_verify_enough_space(t_cw_vm *vm)
+static int		cw_vm_verify_enough_space(t_cw_vm *vm)
 {
 	int			i;
 	int			j;
@@ -36,10 +36,10 @@ static void		cw_vm_verify_enough_space(t_cw_vm *vm)
 			j = 1;
 	if (total > CW_MEM_SIZE || (j == 1 && i < vm->data.nbr_players))
 	{
-		while (i != -1)
-			cw_champion_destroy(&vm->players[i--].champion);
-		exit(CW_VM_ERRO_NOT_ENOUGH_SPACE_IN_ARENA);
+		ft_dprintf(2, "{red}Not enough space in arena\n{}");
+		return (CW_VM_ERRO_NOT_ENOUGH_SPACE_IN_ARENA);
 	}
+	return (CW_SUCCESS);
 }
 
 /*
@@ -66,7 +66,6 @@ static void		cw_vm_place_player(t_cw_vm *vm)
 	int			distance;
 
 	i = -1;
-	ptr = 0;
 	distance = CW_MEM_SIZE / vm->data.nbr_players;
 	while (++i < vm->data.nbr_players)
 	{
@@ -82,7 +81,10 @@ static void		cw_vm_place_player(t_cw_vm *vm)
 
 int				cw_vm_ini_arena(t_cw_vm *vm)
 {
-	cw_vm_verify_enough_space(vm);
+	int			ret_value;
+
+	if ((ret_value = cw_vm_verify_enough_space(vm)) != CW_SUCCESS)
+		return (ret_value);
 	cw_vm_place_player(vm);
 	return (CW_SUCCESS);
 }

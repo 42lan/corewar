@@ -18,7 +18,6 @@
 /*
 ** Data struct create with parsing
 **
-** nbr_cycles	- dump the memory in nbr_cycles
 ** nbr_players	- number of players
 ** filename		- name of the filename
 ** assigned_nbr	- assigned ID number of players (default value is -1)
@@ -26,7 +25,6 @@
 
 typedef struct		s_cw_data
 {
-	int				nbr_cycles;
 	int				nbr_players;
 	char			*filename[CW_MAX_PLAYERS];
 	int				assigned_nbr[CW_MAX_PLAYERS];

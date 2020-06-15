@@ -37,7 +37,7 @@ int					cw_asm_options_parse(t_cw_asm_options *opt,
 											int argc, char **argv)
 {
 	if (argc >= 3)
-		return (CW_ERROR_ASM_UNKNOWN_OPTION);
+		return (CW_ASM_ERROR_UNKNOWN_OPTION);
 	if (argc <= 1)
 		return (CW_SUCCESS);
 	opt->in_file = argv[1];
