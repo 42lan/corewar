@@ -23,7 +23,8 @@ int			cw_vm_read_player(t_cw_vm *vm)
 {
 	int ret_value;
 
-	cw_parsing_number_player(&vm->data);
+	if ((ret_value = cw_parsing_number_player(&vm->data)) != CW_SUCCESS)
+		return (ret_value);
 	if ((ret_value = cw_vm_valid_player(&vm->data, vm->players)) != CW_SUCCESS)
 		return (ret_value);
 	return (CW_SUCCESS);

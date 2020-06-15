@@ -24,7 +24,6 @@ void		cw_vm_print_data(t_cw_data *data)
 	int		i;
 
 	i = -1;
-	ft_printf("Number of cycles    = %d\n", data->nbr_cycles);
 	ft_printf("Number of players   = %d\n", data->nbr_players);
 	while (++i < data->nbr_players && data->filename[i])
 	{
@@ -67,7 +66,11 @@ int				cw_vm_set_player(t_cw_vm *vm, int assigned_nbr, char *filename)
 		ft_dprintf(2, "{red}Player's filename has an incorrect extension\n{}");
 		return (CW_VM_FILE_EXTENSION);
 	}
-	vm->data.filename[j] = ft_strdup(filename);
+	if ((vm->data.filename[j] = ft_strdup(filename)) == NULL)
+	{
+		ft_printf("{red}Error malloc failed\n{}");
+		return (CW_ERROR_MALLOC_FAILED);
+	}
 	vm->data.assigned_nbr[j++] = (assigned_nbr > 0) ? assigned_nbr : --cnt;
 	vm->data.nbr_players += 1;
 	return (CW_SUCCESS);
@@ -86,7 +89,11 @@ int				cw_vm_set_dump(t_cw_vm *vm, char **av, int *i)
 		ft_dprintf(2, "{red}A positive number expected after -dump\n{}");
 		return (CW_VM_DUMP_NUM);
 	}
-	tmp = ft_strtrim(*av);
+	if ((tmp = ft_strtrim(*av)) == NULL)
+	{
+		ft_printf("{red}Error malloc failed\n{}");
+		return (CW_ERROR_MALLOC_FAILED);
+	}
 	if (ft_atoi32check(&vm->dump, tmp) != 0 || vm->dump <= 0)
 	{
 		ft_dprintf(2, "{red}Number of cycles should be between 1 and INT_MAX\n{}");
@@ -105,6 +112,7 @@ int				cw_vm_set_dump(t_cw_vm *vm, char **av, int *i)
 int				cw_vm_set_player_helper(t_cw_vm *vm, int ac, char **av, int *i)
 {
 	int			assigned_nbr;
+	int			ret_value;
 
 	if (*i + 1 < ac)
 	{
@@ -113,7 +121,8 @@ int				cw_vm_set_player_helper(t_cw_vm *vm, int ac, char **av, int *i)
 			ft_dprintf(2, "{red}Player's ID should be between 1 and INT_MAX\n{}");
 			return (CW_VM_ID_LIMITS);
 		}
-		cw_vm_set_player(vm, assigned_nbr, av[*i + 2]);
+		if ((ret_value = cw_vm_set_player(vm, assigned_nbr, av[*i + 2])) != CW_SUCCESS)
+			return (ret_value);
 		*i += 2;
 	}
 	else
@@ -140,8 +149,12 @@ int				cw_vm_parsing(int ac, char **av, t_cw_vm *vm)
 			return (ret_value);
 	while (i < ac)
 	{
-		tmp = ft_strtrim(av[i]);
-		if (vm->data.nbr_players >= CW_MAX_PLAYERS)
+		if ((tmp = ft_strtrim(av[i])) == NULL)
+		{
+			ft_printf("{red}Error malloc failed\n{}");
+			return (CW_ERROR_MALLOC_FAILED);
+		}
+		if (vm->data.nbr_players >= CW_MAX_PLAYERS) //A revoir peut etre
 		{
 			ft_dprintf(2, "{red}Max number of players exceeded\n{}");
 			return (CW_VM_MAX_PLAYERS);

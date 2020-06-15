@@ -48,15 +48,44 @@ static void	cw_sort_number_player(t_cw_data *data)
 	}
 }
 
+int			cw_check_duplicate_number(t_cw_data *data)
+{
+	int i;
+	int j;
+
+	i = -1;
+	while (++i < data->nbr_players)
+	{
+		if (data->assigned_nbr[i] > data->nbr_players)
+		{
+			ft_printf("{red}Assigned number shoud be less than number players\n{}");
+			return (CW_VM_ERROR_ASSIGNED_NUMBER);
+		}
+		j = i;
+		while (++j < data->nbr_players)
+		{
+			if (data->assigned_nbr[i] == data->assigned_nbr[j])
+			{
+				ft_printf("{red}Error duplicated number with -n\n{}");
+				return (CW_VM_ERROR_DUPLICATED_ASSIGNED_NUMBER);
+			}
+		}
+	}
+	return (CW_SUCCESS);
+}
+
 /*
 ** Sort player in order in stucture data depending on option
 */
 
-void		cw_parsing_number_player(t_cw_data *data)
+int			cw_parsing_number_player(t_cw_data *data)
 {
 	int i;
+	int ret_value;
 
 	i = -1;
+	if ((ret_value = cw_check_duplicate_number(data)) != CW_SUCCESS)
+		return (ret_value);
 	while (++i + 1 < data->nbr_players)
 	{
 		if (data->assigned_nbr[i] > data->assigned_nbr[i + 1])
@@ -66,4 +95,5 @@ void		cw_parsing_number_player(t_cw_data *data)
 		}
 	}
 	cw_sort_number_player(data);
+	return (CW_SUCCESS);
 }

@@ -63,6 +63,8 @@
 # define CW_VM_ID_EXPECTED 249
 # define CW_VM_MAX_PLAYERS 250
 # define CW_VM_NO_PLAYERS 251
+# define CW_VM_ERROR_ASSIGNED_NUMBER 252
+# define CW_VM_ERROR_DUPLICATED_ASSIGNED_NUMBER 253
 
 /*
 ** corewar specific error codes:

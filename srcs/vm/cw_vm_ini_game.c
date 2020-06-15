@@ -18,7 +18,6 @@ t_cw_proc	*cw_vm_ini_proc(int id, int pos)
 
 	if (!(processus = (t_cw_proc *)malloc(sizeof(t_cw_proc))))
 		return (NULL);
-	ft_printf("{yellow}je suis dans cw_vm_ini %p id = %d{}\n", *processus, id);
 	id++;
 	processus->carry = false;
 	processus->opc = -1;
@@ -76,7 +75,6 @@ void	cw_vm_ini_byte_codage(t_cw_game *game)
 void	cw_vm_ini_game_helper(t_cw_game *game, t_cw_vm *vm)
 {
 	game->last_alive = vm->data.nbr_players - 1;
-	game->cycles_total = 0;
 	game->cycles_count = 0;
 	game->cycle_to_die = CW_CYCLE_TO_DIE;
 	game->check_performed = 0;
@@ -85,26 +83,29 @@ void	cw_vm_ini_game_helper(t_cw_game *game, t_cw_vm *vm)
 	cw_vm_ini_byte_codage(game);
 }
 
-void	cw_vm_ini_game(t_cw_game *game, t_cw_vm *vm)
+int		cw_vm_ini_game(t_cw_game *game, t_cw_vm *vm)
 {
-	int 			i;
+	int 		i;
 	t_cw_proc 	*ptr;
 
 	i = vm->data.nbr_players - 1;
 	cw_vm_ini_game_helper(game, vm);
 	if (!(game->procs = cw_vm_ini_proc(i, vm->players[i].init_pos)))
 	{
-		return ; // FAIRE UN TRUC DERREUR
+		ft_dprintf(2, "{red}Error malloc failed{}\n");
+		return (CW_ERROR_MALLOC_FAILED);
 	}
 	ptr = game->procs;
 	while (--i > -1)
 	{
 		if (!(game->procs->next = cw_vm_ini_proc(i, vm->players[i].init_pos)))
 		{
-			return ;// FAIRE UN TRUC DERREUR
+			ft_dprintf(2, "{red}Error malloc failed{}\n");
+			return (CW_ERROR_MALLOC_FAILED);
 		}
 		game->procs = game->procs->next;
 	}
 	game->procs = ptr;
 	game->head = ptr;
+	return (CW_SUCCESS);
 }

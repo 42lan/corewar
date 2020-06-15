@@ -23,7 +23,7 @@
 # define CW_REG_NUMBER			16
 # define CW_NBR_LIVE			21
 # define CW_MAX_CHECKS			10
-# define CW_VM_DUMP				42
+# define CW_VM_DUMP				471
 
 # define CW_DIR_SIZE_LIVE		4
 # define CW_DIR_SIZE_LD			4
@@ -59,7 +59,6 @@ typedef struct		s_cw_proc
 typedef struct		s_cw_game
 {
 	int				last_alive;
-	unsigned long	cycles_total;
 	int				cycles_count;
 	int				cycle_to_die;
 	int				check_performed;
@@ -72,8 +71,8 @@ typedef struct		s_cw_game
 
 # include "cw_inst.h"
 
-void	cw_vm_ini_game(t_cw_game *game, t_cw_vm *vm);
-void	cw_vm_start_game(t_cw_game *game, t_cw_vm *vm);
+int		cw_vm_ini_game(t_cw_game *game, t_cw_vm *vm);
+int		cw_vm_start_game(t_cw_game *game, t_cw_vm *vm);
 void	cw_vm_read_execute(t_cw_game *game, t_cw_vm *vm);
 void	cw_vm_proc_dump(t_cw_proc *proc);
 int		cw_vm_add_pos(t_cw_inst *inst, int nbr_arg, int label_size);

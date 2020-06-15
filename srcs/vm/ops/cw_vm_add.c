@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 00:04:37 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/14 02:33:13 by jthierce         ###   ########.fr       */
+/*   Updated: 2020/06/15 03:56:04 by jthierce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,5 @@ void	cw_vm_op_add(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
 			game->procs->carry = (arg[2] == 0) ? 1 : 0;
 		}
 	}
-	// opc + encoding byte + T_REG + T_REG + T_REG
-	// 5
-	// game->procs->pos += (1 + 1 + 1 + 1 + 1) % CW_MEM_SIZE;
 	game->procs->pos = (game->procs->pos + 2 + cw_vm_add_pos(inst, 3, CW_DIR_SIZE_ADD)) % CW_MEM_SIZE;
 }

@@ -35,7 +35,10 @@ static int		cw_vm_verify_enough_space(t_cw_vm *vm)
 		if (vm->players[i].champion->code_len > delta)
 			j = 1;
 	if (total > CW_MEM_SIZE || (j == 1 && i < vm->data.nbr_players))
+	{
+		ft_dprintf(2, "{red}Not enough space in arena\n{}");
 		return (CW_VM_ERRO_NOT_ENOUGH_SPACE_IN_ARENA);
+	}
 	return (CW_SUCCESS);
 }
 
