@@ -6,7 +6,7 @@
 #    By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by bleplat           #+#    #+#              #
-#    Updated: 2020/06/15 05:02:56 by amalsago         ###   ########.fr        #
+#    Updated: 2020/06/15 17:20:48 by amalsago         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -115,7 +115,7 @@ SRC_FILES = $(SRC_FILES_COMMON) $(SRC_FILES_ASM) $(SRC_FILES_CW)
 INCLUDES = includes
 SRC_DIR  = srcs
 OBJ_DIR  = .obj
-OBJ_SUBDIRS = $(OBJ_DIR)/common $(OBJ_DIR)/asm $(OBJ_DIR)/vm
+OBJ_SUBDIRS = $(OBJ_DIR)/common $(OBJ_DIR)/asm $(OBJ_DIR)/vm/ops $(OBJ_DIR)/vm
 DEP_DIR  = $(OBJ_DIR)
 
 SRC_COMMON	= $(patsubst %, $(SRC_DIR)/%, $(SRC_FILES_COMMON))
