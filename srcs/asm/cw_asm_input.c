@@ -6,12 +6,23 @@
 
 int				cw_asm_input_fd(t_cw_asm *state, int fd)
 {
-	int		rst;
-
-	rst = CW_SUCCESS;
-	(void)state;
-	(void)fd;
-	ft_printf("{cyan}TODO: cw_asm_input_fd\n");
+	int			rst;
+	char		*line;
+	t_cw_linst	*linst;
+		
+	rst = CW_ASM_ERROR_MALFORMED_FILE;
+	while ((rst = ft_readtonl(fd, &line, 4096)))
+	{
+		if (ft_strpopnls(line) != 1
+			|| !(linst = ft_array_newitem(state->linsts)))
+		{
+			ft_strdel(&line);
+			return (CW_ASM_ERROR_MALFORMED_FILE);
+		}
+		linst->raw = line;
+		line = NULL;
+		linst = NULL;
+	}
 	return (rst);
 }
 

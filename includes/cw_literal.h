@@ -34,5 +34,7 @@ void				cw_literal_destroy(t_cw_literal **literal);
 
 int					cw_literal_get_type(const char *instr);
 int					cw_literal_size(t_cw_literal *literal);
+void				cw_literal_write(t_cw_literal *literal,
+										unsigned char *out);
 
 #endif

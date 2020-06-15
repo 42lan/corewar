@@ -8,7 +8,7 @@
 ** Create a literal.
 */
 
-t_cw_literal		*cw_literal_create(int type, char *value)
+t_cw_literal	*cw_literal_create(int type, char *value)
 {
 	t_cw_literal	*literal;
 
@@ -27,7 +27,7 @@ t_cw_literal		*cw_literal_create(int type, char *value)
 ** Destroy a literal.
 */
 
-void				cw_literal_destroy(t_cw_literal **literal)
+void			cw_literal_destroy(t_cw_literal **literal)
 {
 	free((*literal)->value);
 	free(*literal);
@@ -38,7 +38,7 @@ void				cw_literal_destroy(t_cw_literal **literal)
 ** Get the type of a literal.
 */
 
-int					cw_literal_get_type(const char *instr)
+int				cw_literal_get_type(const char *instr)
 {
 	if (ft_strcmp(instr, CW_LITERAL_NAME) == 0)
 		return (CW_LITERAL_TYPE_NAME);
@@ -59,7 +59,7 @@ int					cw_literal_get_type(const char *instr)
 ** Get a literal size in code.
 */
 
-int					cw_literal_size(t_cw_literal *literal)
+int				cw_literal_size(t_cw_literal *literal)
 {
 	if (literal->type == CW_LITERAL_TYPE_INT8)
 		return (1);
@@ -71,3 +71,19 @@ int					cw_literal_size(t_cw_literal *literal)
 		return (ft_atoi(literal->value));
 	return (0);
 }
+
+/*
+** Write a literal to its binary representation.
+*/
+
+void			cw_literal_write(t_cw_literal *literal, unsigned char *out)
+{
+	if (literal->type == CW_LITERAL_TYPE_INT8)
+		out[0] = ft_atoi(literal->value);
+	if (literal->type == CW_LITERAL_TYPE_INT16)
+		ft_bigendian16_write((unsigned char*)out, ft_atoi(literal->value));
+	if (literal->type == CW_LITERAL_TYPE_INT32)
+		ft_bigendian32_write((unsigned char*)out, ft_atoi(literal->value));
+	if (literal->type == CW_LITERAL_TYPE_PADDING)
+		ft_bzero(out, ft_atoi(literal->value));
+}				

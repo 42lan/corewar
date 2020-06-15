@@ -11,10 +11,13 @@
 
 int				cw_asm_translate(t_cw_asm *state)
 {
-	int rst;
+	int		rst;
 
-	(void)state;
-	rst = CW_SUCCESS;
-	ft_printf("{blue}TODO: cw_asm_translate\n");
+	if ((rst = cw_asm_translate_labels(state)) < 0)
+		return (rst);
+	if ((rst = cw_asm_translate_insts(state)) < 0)
+		return (rst);
+	if ((rst = cw_asm_translate_insts_labels(state)) < 0)
+		return (rst);
 	return (rst);
 }

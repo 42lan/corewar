@@ -25,7 +25,7 @@ void						cw_linst_default(t_cw_linst *linst)
 void						cw_linst_clean(t_cw_linst *linst)
 {
 	if (linst->type == CW_LINST_TYPE_RAW)
-		free(&(linst->raw));
+		free(linst->raw);
 	if (linst->type == CW_LINST_TYPE_LITERAL)
 		cw_literal_destroy(&(linst->literal));
 	if (linst->type == CW_LINST_TYPE_LABEL)
@@ -34,3 +34,30 @@ void						cw_linst_clean(t_cw_linst *linst)
 		free(linst->inst);
 	cw_linst_default(linst);
 }
+
+/*
+** Get the size needed to write this linst as binary code.
+*/
+
+int				cw_linst_size(t_cw_linst *linst)
+{
+	if (linst->type == CW_LINST_TYPE_INST)
+		return (cw_inst_size(linst->inst));
+	if (linst->type == CW_LINST_TYPE_LITERAL)
+		return (cw_literal_size(linst->literal));
+	return (0);
+}
+
+/*
+** Write this linst to a char array.
+** The linst's offset is not accounted.
+*/
+
+void			cw_linst_write(t_cw_linst *linst, unsigned char *out)
+{
+	if (linst->type == CW_LINST_TYPE_INST)
+		cw_inst_write(linst->inst, out);
+	if (linst->type == CW_LINST_TYPE_LITERAL)
+		cw_literal_write(linst->literal, out);
+}
+

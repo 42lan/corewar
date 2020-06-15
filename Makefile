@@ -34,15 +34,15 @@ LIBFTMO     = $(LIBFT_DIR)/libftmo.a
 SRC_FILES_COMMON	=	common/ft_printerr.c \
 						common/cw_champion.c \
 						common/cw_op_list.c \
-						common/cw_op_get_arg_len.c \
 						common/cw_op_get_arg_type.c \
 						common/cw_op_get_arg_types.c \
 						common/cw_op_get_coding_code.c \
 						common/cw_op_get_coding_byte.c \
 						common/cw_op_get_full_coding_byte.c \
-						common/cw_inst_write.c \
 						common/cw_champion_save_to_file.c \
 						common/cw_inst.c \
+						common/cw_inst_write.c \
+						common/cw_inst_size.c \
 
 SRC_FILES_ASM		=	asm/cw_asm_main.c \
 						asm/cw_asm_error.c \
@@ -52,9 +52,13 @@ SRC_FILES_ASM		=	asm/cw_asm_main.c \
 						asm/cw_literal.c \
 						asm/cw_label.c \
 						asm/cw_asm.c \
+						asm/cw_asm_get_label.c \
 						asm/cw_asm_run.c \
 						asm/cw_asm_input.c \
 						asm/cw_asm_translate.c \
+						asm/cw_asm_translate_labels.c \
+						asm/cw_asm_translate_insts.c \
+						asm/cw_asm_translate_insts_labels.c \
 						asm/cw_asm_assemble.c \
 						asm/cw_asm_output.c \
 
@@ -236,7 +240,7 @@ $(LIBFTMO):
 .PHONY: geterror
 geterror:
 	@echo $?
-	grep _ERROR_ includes/cw_errors.h
+	grep -E "_ERROR_|_WARNING_" includes/cw_errors.h
 
 .PHONY: help
 help:

@@ -21,8 +21,6 @@ typedef int				t_cw_arg_type;
 # define CW_T_IND T_IND
 # define CW_T_LAB T_LAB
 
-uint32_t		cw_op_get_arg_len(t_cw_arg_type type);
-
 /*
 ** t_cw_op:
 **
@@ -36,7 +34,7 @@ uint32_t		cw_op_get_arg_len(t_cw_arg_type type);
 ** desc: Longer human-readable name for this op.
 ** has_coding_byte: Does this op have a byte used to tell about
 ** the arguments's encoding.
-** has2: ?
+** requieres_label: Direct arguments are encoded on 2 bytes instead of 4.
 */
 
 typedef unsigned char	t_cw_opc;
@@ -55,6 +53,8 @@ struct					s_cw_op
 };
 
 # define CW_OP_COUNT 16
+# define CW_OP_MIN 1
+# define CW_OP_MAX 17
 
 const t_cw_op			*cw_op_list(void);
 

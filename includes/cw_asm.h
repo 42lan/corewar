@@ -48,7 +48,17 @@ int				cw_asm_run(t_cw_asm *state);
 
 int				cw_asm_input(t_cw_asm *state);
 int				cw_asm_translate(t_cw_asm *state);
+int				cw_asm_translate_labels(t_cw_asm *state);
+int				cw_asm_translate_insts(t_cw_asm *state);
+int				cw_asm_translate_insts_labels(t_cw_asm *state);
 int				cw_asm_assemble(t_cw_asm *state);
 int				cw_asm_output(t_cw_asm *state);
+
+/*
+** Getters:
+*/
+
+int				cw_asm_get_label_index(t_cw_asm *state, char *name);
+int				cw_asm_get_label_offset(t_cw_asm *state, int index);
 
 #endif

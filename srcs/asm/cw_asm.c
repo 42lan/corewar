@@ -34,14 +34,14 @@ t_cw_asm		*cw_asm_create(void)
 void			cw_asm_destroy(t_cw_asm **state)
 {
 	int			i_linst;
-
+	t_cw_linst	*inst;
 	cw_asm_options_destroy(&((*state)->options));
 	i_linst = 0;
 	if ((*state)->linsts != NULL)
 		while (i_linst < (*state)->linsts->item_count)
 		{
-			cw_linst_clean((t_cw_linst*)ft_array_at((*state)->linsts,
-													i_linst));
+			inst = (t_cw_linst*)ft_array_at((*state)->linsts, i_linst);
+			cw_linst_clean(inst);
 			i_linst++;
 		}
 	ft_array_del(&(*state)->linsts);

@@ -14,8 +14,8 @@
 
 # define CW_LINST_TYPE_RAW 0
 # define CW_LINST_TYPE_LITERAL 1
-# define CW_LINST_TYPE_LABEL 0
-# define CW_LINST_TYPE_INST 0
+# define CW_LINST_TYPE_LABEL 2
+# define CW_LINST_TYPE_INST 3
 
 typedef struct s_cw_linst	t_cw_linst;
 struct						s_cw_linst
@@ -33,5 +33,13 @@ struct						s_cw_linst
 
 void						cw_linst_default(t_cw_linst *linst);
 void						cw_linst_clean(t_cw_linst *linst);
+
+/*
+** Helpers:
+*/
+
+int							cw_linst_size(t_cw_linst *linst);
+void						cw_linst_write(t_cw_linst *linst,
+											unsigned char *out);
 
 #endif

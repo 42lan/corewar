@@ -10,9 +10,36 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
+
 #include "libft.h"
 #include "cw_inst.h"
 #include "cw_op.h"
+
+/*
+** Create a t_cw_inst with all field initialized to 0.
+*/
+
+t_cw_inst			*cw_inst_create(void)
+{
+	t_cw_inst		*inst;
+	
+	if (!(inst = malloc(sizeof(t_cw_inst))))
+		return (NULL);
+	ft_bzero(inst, sizeof(t_cw_inst));
+	return (inst);
+}
+
+/*
+** Destroy a t_cw_inst and set it to NULL.
+*/
+
+void				cw_inst_destroy(t_cw_inst **inst)
+{
+	free(*inst);
+	*inst = NULL;
+}
+
 
 void	cw_inst_init(t_cw_inst *inst)
 {
