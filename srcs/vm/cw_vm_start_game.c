@@ -80,7 +80,7 @@ static int	cw_vm_perform_check(t_cw_game *game, t_cw_vm *vm)
 
 int			cw_vm_start_game(t_cw_game *game, t_cw_vm *vm)
 {
-	int			ret_value;
+	int			ret;
 
 	while (1)
 	{
@@ -101,9 +101,9 @@ int			cw_vm_start_game(t_cw_game *game, t_cw_vm *vm)
 			game->procs = game->procs->next;
 		else
 		{
-			if ((ret_value = cw_vm_perform_check(game, vm)) != CW_NOT_LAST_PROC)
+			if ((ret = cw_vm_perform_check(game, vm)) != CW_NOT_LAST_PROC)
 				break ;
 		}
 	}
-	return (ret_value);
+	return (ret);
 }

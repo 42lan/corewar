@@ -22,13 +22,13 @@
 int			cw_vm_parsing(int ac, char **av, t_cw_vm *vm)
 {
 	int		i;
-	int		ret_value;
+	int		ret;
 	char	*tmp;
 
 	i = 0;
 	if (ft_strnequ(av[i], "-dump\0", 6))
-		if ((ret_value = cw_vm_set_dump(vm, av + 1, &i)) != CW_SUCCESS)
-			return (ret_value);
+		if ((ret = cw_vm_set_dump(vm, av + 1, &i)) != CW_SUCCESS)
+			return (ret);
 	while (i < ac)
 	{
 		if ((tmp = ft_strtrim(av[i])) == NULL)
@@ -43,13 +43,13 @@ int			cw_vm_parsing(int ac, char **av, t_cw_vm *vm)
 		}
 		if (cw_vm_is_valid_extension(tmp, ".cor") == CW_SUCCESS)
 		{
-			if ((ret_value = cw_vm_set_player(vm, 0, tmp)) != CW_SUCCESS)
-				return (ret_value);
+			if ((ret = cw_vm_set_player(vm, 0, tmp)) != CW_SUCCESS)
+				return (ret);
 		}
 		else if (ft_strnequ(tmp, "-n\0", 3))
 		{
-			if ((ret_value = cw_vm_set_player_helper(vm, ac, av, &i)) != CW_SUCCESS)
-				return (ret_value);
+			if ((ret = cw_vm_set_player_helper(vm, ac, av, &i)) != CW_SUCCESS)
+				return (ret);
 		}
 		else
 			cw_vm_usage();

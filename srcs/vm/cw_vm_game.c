@@ -16,15 +16,15 @@
 
 int				cw_vm_game(t_cw_vm *vm)
 {
-	int			ret_value;
+	int			ret;
 	t_cw_game	game;
 
-	if ((ret_value = cw_vm_ini_arena(vm)) != CW_SUCCESS)
-		return (ret_value);
-	if ((ret_value = cw_vm_ini_game(&game, vm)) != CW_SUCCESS)
-		return (ret_value);
+	if ((ret = cw_vm_ini_arena(vm)) != CW_SUCCESS)
+		return (ret);
+	if ((ret = cw_vm_ini_game(&game, vm)) != CW_SUCCESS)
+		return (ret);
 	cw_vm_intro_players(vm);
-	if ((ret_value = cw_vm_start_game(&game, vm)) != CW_LAST_PROC)
-		return (ret_value);
+	if ((ret = cw_vm_start_game(&game, vm)) != CW_LAST_PROC)
+		return (ret);
 	return (CW_SUCCESS);
 }

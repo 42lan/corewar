@@ -81,10 +81,10 @@ static void		cw_vm_place_player(t_cw_vm *vm)
 
 int				cw_vm_ini_arena(t_cw_vm *vm)
 {
-	int			ret_value;
+	int			ret;
 
-	if ((ret_value = cw_vm_verify_enough_space(vm)) != CW_SUCCESS)
-		return (ret_value);
+	if ((ret = cw_vm_verify_enough_space(vm)) != CW_SUCCESS)
+		return (ret);
 	cw_vm_place_player(vm);
 	return (CW_SUCCESS);
 }
