@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 03:04:40 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/15 02:10:04 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/15 15:28:41 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ static void		cw_vm_place_player(t_cw_vm *vm)
 	int			distance;
 
 	i = -1;
-	ptr = 0;
 	distance = CW_MEM_SIZE / vm->data.nbr_players;
 	while (++i < vm->data.nbr_players)
 	{

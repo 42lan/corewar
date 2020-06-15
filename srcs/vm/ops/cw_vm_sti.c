@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 17:13:22 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/15 13:36:40 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/15 15:33:58 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ static void		cw_vm_op_sti_body(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
 
 	i = 0;
 	pos = 3;
-	reg_value = 0;
 	while (++i < 3)
 		if (inst->types[i] == T_REG)
 		{

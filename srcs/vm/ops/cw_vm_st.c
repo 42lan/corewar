@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 19:32:09 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/15 05:56:41 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/15 15:31:35 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ static void		cw_vm_op_st_ind_exec(t_cw_game *game, t_cw_vm *vm)
 	int 		reg_index;
 	int16_t 	arg2;
 
-	arg2 = 0;
 	reg_index = vm->arena[(game->procs->pos + 2) % CW_MEM_SIZE];
 	if (cw_vm_is_reg(reg_index) == true)
 	{
