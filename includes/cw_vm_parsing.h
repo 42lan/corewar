@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 18:48:57 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/06 11:52:25 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/15 19:51:39 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,5 @@ typedef struct		s_cw_data
 	char			*filename[CW_MAX_PLAYERS];
 	int				assigned_nbr[CW_MAX_PLAYERS];
 }					t_cw_data;
-
 
 #endif

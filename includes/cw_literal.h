@@ -25,7 +25,7 @@
 typedef struct s_cw_literal	t_cw_literal;
 struct						s_cw_literal
 {
-	int 			type;
+	int				type;
 	char			*value;
 };
 

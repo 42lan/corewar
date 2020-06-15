@@ -37,7 +37,7 @@ int								cw_champion_load_from_file(t_cw_champion *ch,
 															const char *file);
 int								cw_champion_save_to_file(t_cw_champion *ch,
 															const char *file);
-int								cw_champion_save_to_fd(t_cw_champion *ch, 
+int								cw_champion_save_to_fd(t_cw_champion *ch,
 															int fd);
 
 #endif
