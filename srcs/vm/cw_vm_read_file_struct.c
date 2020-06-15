@@ -26,7 +26,7 @@ int					cw_vm_read_champion_name(int fd, t_cw_player *player)
 	if (read(fd, name, CW_PROG_NAME_LENGTH) != CW_PROG_NAME_LENGTH)
 	{
 		ft_dprintf(2, "{red}ERROR READ CHAMPION NAME\n{}");
-		return (CW_VM_READ_ERROR);
+		return (CW_VM_ERROR_READ);
 	}
 	name[ft_strlen(name)] = '\0';
 	if (!(player->champion->name = ft_strdup(name)))
@@ -49,7 +49,7 @@ int					cw_vm_read_champion_null(int fd, char *part)
 	if (read(fd, str, CW_CHAMPION_NULL) != CW_CHAMPION_NULL)
 	{
 		ft_dprintf(2, "{red}ERROR READ CHAMPION NULL\n{}");
-		return (CW_VM_READ_ERROR);
+		return (CW_VM_ERROR_READ);
 	}
 	if (ft_memcmp(str, "\0\0\0\0", CW_CHAMPION_NULL) != 0)
 	{
@@ -72,7 +72,7 @@ int					cw_vm_read_exec_code_len(int fd, t_cw_player *player)
 	if (read(fd, code_len, CW_EXEC_CODE_LEN) != CW_EXEC_CODE_LEN)
 	{
 		ft_dprintf(2, "{red}ERROR READ CHAMPION EXEC CODE LEN\n{}");
-		return (CW_VM_READ_ERROR);
+		return (CW_VM_ERROR_READ);
 	}
 	code_len_int = ft_bigendian32_read(code_len);
 	if (code_len_int > CW_CHAMP_MAX_SIZE)
@@ -96,7 +96,7 @@ int					cw_vm_read_champion_comment(int fd, t_cw_player *player)
 	if (read(fd, comment, CW_COMMENT_LENGTH) != CW_COMMENT_LENGTH)
 	{
 		ft_dprintf(2, "{red}ERROR READ CHAMPION COMMENT\n{}");
-		return (CW_VM_READ_ERROR);
+		return (CW_VM_ERROR_READ);
 	}
 	comment[ft_strlen(comment)] = '\0';
 	if (!(player->champion->comment = ft_strdup(comment)))
@@ -127,7 +127,7 @@ int					cw_vm_read_champion_exec_code(int fd, t_cw_player *player)
 	{
 		ft_memdel((void **)&exec_code);
 		ft_dprintf(2, "{red}ERROR READ CHAMPION EXEC CODE\n{}");
-		return (CW_VM_READ_ERROR);
+		return (CW_VM_ERROR_READ);
 	}
 	player->champion->code = exec_code;
 	return (CW_SUCCESS);

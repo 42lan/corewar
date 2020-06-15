@@ -26,12 +26,12 @@ int				cw_vm_set_player(t_cw_vm *vm, int assigned_nbr, char *filename)
 	if (filename == NULL || filename[0] == '\0')
 	{
 		ft_dprintf(2, "{red}Player's filename expected\n{}");
-		return (CW_VM_FILE_EXPECTED);
+		return (CW_VM_ERROR_FILE_EXPECTED);
 	}
 	if (cw_vm_is_valid_extension(filename, ".cor") == CW_FAILURE)
 	{
 		ft_dprintf(2, "{red}Player's filename has an incorrect extension\n{}");
-		return (CW_VM_FILE_EXTENSION);
+		return (CW_VM_ERROR_FILE_EXTENSION);
 	}
 	if ((vm->data.filename[j] = ft_strdup(filename)) == NULL)
 	{
@@ -58,7 +58,7 @@ int				cw_vm_set_player_helper(t_cw_vm *vm, int ac, char **av, int *i)
 		if (ft_atoi32check(&assigned_nbr, av[*i + 1]) != 0 || assigned_nbr <= 0)
 		{
 			ft_dprintf(2, "{red}Player's ID must be between 1 and INT_MAX\n{}");
-			return (CW_VM_ID_LIMITS);
+			return (CW_VM_ERROR_ID_LIMITS);
 		}
 		ret_value = cw_vm_set_player(vm, assigned_nbr, av[*i + 2]);
 		if (ret_value != CW_SUCCESS)
@@ -68,7 +68,7 @@ int				cw_vm_set_player_helper(t_cw_vm *vm, int ac, char **av, int *i)
 	else
 	{
 		ft_dprintf(2, "{red}Player's number expected after -n\n{}");
-		return (CW_VM_ID_EXPECTED);
+		return (CW_VM_ERROR_ID_EXPECTED);
 	}
 	return (CW_SUCCESS);
 }

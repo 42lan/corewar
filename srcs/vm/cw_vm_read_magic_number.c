@@ -27,7 +27,7 @@ int		cw_vm_read_magic_number(int fd)
 	if (read(fd, magic_number, 4) != 4)
 	{
 		ft_dprintf(2, "{red}ERROR READ MAGIC NUMBER\n{}");
-		return (CW_VM_READ_ERROR);
+		return (CW_VM_ERROR_READ);
 	}
 	magic_number_int = ft_bigendian32_read(magic_number);
 	if (magic_number_int != CW_EXEC_MAGIC)

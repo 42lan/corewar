@@ -39,7 +39,7 @@ int			cw_vm_parsing(int ac, char **av, t_cw_vm *vm)
 		if (vm->data.nbr_players >= CW_MAX_PLAYERS) //A revoir peut etre
 		{
 			ft_dprintf(2, "{red}Max number of players exceeded\n{}");
-			return (CW_VM_MAX_PLAYERS);
+			return (CW_VM_ERROR_MAX_PLAYERS);
 		}
 		if (cw_vm_is_valid_extension(tmp, ".cor") == CW_SUCCESS)
 		{
@@ -57,6 +57,6 @@ int			cw_vm_parsing(int ac, char **av, t_cw_vm *vm)
 		i++;
 	}
 	if (cw_vm_check_nbr_players(vm) != CW_SUCCESS)
-		return (CW_VM_NO_PLAYERS);
+		return (CW_VM_ERROR_NO_PLAYERS);
 	return (CW_SUCCESS);
 }

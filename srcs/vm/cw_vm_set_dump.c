@@ -25,7 +25,7 @@ int			cw_vm_set_dump(t_cw_vm *vm, char **av, int *i)
 	if (*av == NULL || *av[0] == '\0' || !ft_isstrnum(*av))
 	{
 		ft_dprintf(2, "{red}A positive number expected after -dump\n{}");
-		return (CW_VM_DUMP_NUM);
+		return (CW_VM_ERROR_DUMP_NUM);
 	}
 	if ((tmp = ft_strtrim(*av)) == NULL)
 	{
@@ -35,7 +35,7 @@ int			cw_vm_set_dump(t_cw_vm *vm, char **av, int *i)
 	if (ft_atoi32check(&vm->dump, tmp) != 0 || vm->dump <= 0)
 	{
 		ft_dprintf(2, "{red}Number of cycle must be between 1 and INT_MAX\n{}");
-		return (CW_VM_CYCLE_LIMITS);
+		return (CW_VM_ERROR_CYCLE_LIMITS);
 	}
 	ft_strdel(&tmp);
 	*i += 2;

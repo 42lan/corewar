@@ -24,7 +24,7 @@ int		cw_vm_check_nbr_players(t_cw_vm *vm)
 	if (vm->data.nbr_players == 0)
 	{
 		ft_dprintf(2, "{red}No players provided\n{}");
-		return (CW_VM_NO_PLAYERS);
+		return (CW_VM_ERROR_NO_PLAYERS);
 	}
 	return (CW_SUCCESS);
 }
