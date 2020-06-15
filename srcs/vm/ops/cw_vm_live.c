@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 16:59:44 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/15 05:51:39 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/15 17:42:07 by jthierce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void			cw_vm_op_live(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
 	{
 		game->last_alive = (arg1 * - 1) - 1;
 		game->count_last_live++;
+		if (game->count_last_live == INT32_MAX)
+			game->count_last_live = CW_NBR_LIVE + 1;
 	}
 	game->procs->pos = (game->procs->pos + (1 + CW_DIR_SIZE_LIVE)) % CW_MEM_SIZE;
 }
