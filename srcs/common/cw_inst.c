@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 21:27:06 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/14 22:32:33 by jthierce         ###   ########.fr       */
+/*   Updated: 2020/06/15 05:46:09 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,11 @@
 #include "cw_inst.h"
 #include "cw_op.h"
 
-void			cw_inst_init(t_cw_inst *inst)
-{
-	ft_bzero(inst, sizeof(t_cw_inst));
-}
+/*
+** cw_inst_get_args() set up binary values of arguments and count their amount
+*/
 
-void			cw_inst_fill(t_cw_inst *inst, t_cw_vm *vm, t_cw_game *game)
-{
-	unsigned	i;
-
-	i = -1;
-	cw_inst_init(inst);
-	inst->opc = game->procs->opc;
-	inst->has_coding_byte = (game->byte_codage[inst->opc - 1]) ? true : false;
-	if (inst->has_coding_byte == true)
-	{
-		cw_inst_get_args(inst, vm->arena[game->procs->pos + 1]);
-		while (++i < inst->args_count)
-		{
-			if (inst->args[i] == 0x01)
-				inst->types[i] = T_REG;
-			else if (inst->args[i] == 0x02)
-				inst->types[i] = T_DIR;
-			else if (inst->args[i] == 0x03)
-				inst->types[i] = T_IND;
-		}
-	}
-}
-
-void			cw_inst_get_args(t_cw_inst *inst, unsigned opc)
+static void		cw_inst_get_args(t_cw_inst *inst, unsigned opc)
 {
 	inst->args_count = 0;
 	inst->args[0] = (opc >> 6) & 0x03;
@@ -61,6 +37,10 @@ void			cw_inst_get_args(t_cw_inst *inst, unsigned opc)
 	else
 		return ;
 }
+
+/*
+** cw_inst_dump() prints t_cw_inst structure
+*/
 
 void			cw_inst_dump(t_cw_inst *inst)
 {
@@ -83,5 +63,31 @@ void			cw_inst_dump(t_cw_inst *inst)
 		else if (inst->types[i] == T_IND)
 			ft_printf("T_IND");
 		(i + 1 < inst->args_count) ? ft_putchar(' ') : ft_putchar('\n');
+	}
+}
+
+/*
+** cw_inst_fill() fills up t_cw_inst structure according to encoding byte,
+** ang get argument's binary values and their type (T_REG | T_DIR | T_IND)
+*/
+
+void			cw_inst_fill(t_cw_inst *inst, t_cw_vm *vm, t_cw_game *game)
+{
+	unsigned	i;
+
+	i = -1;
+	ft_bzero(inst, sizeof(t_cw_inst));
+	inst->opc = game->procs->opc;
+	inst->has_coding_byte = (game->byte_codage[inst->opc - 1]) ? true : false;
+	if (inst->has_coding_byte == true)
+	{
+		cw_inst_get_args(inst, vm->arena[game->procs->pos + 1]);
+		while (++i < inst->args_count)
+			if (inst->args[i] == 0x01)
+				inst->types[i] = T_REG;
+			else if (inst->args[i] == 0x02)
+				inst->types[i] = T_DIR;
+			else if (inst->args[i] == 0x03)
+				inst->types[i] = T_IND;
 	}
 }

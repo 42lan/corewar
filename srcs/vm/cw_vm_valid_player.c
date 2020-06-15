@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/06 15:33:02 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/14 23:33:19 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/15 05:20:45 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int		cw_vm_verify_file_structure(int fd, t_cw_player *player)
 ** cw_vm_open_file() opens given file and return its fd
 */
 
-static int		cw_vm_open_file(const char *filename)//, t_cw_player *players, int i)
+static int		cw_vm_open_file(const char *filename)
 {
 	int			fd;
 
@@ -86,7 +86,8 @@ int				cw_vm_valid_player(t_cw_data *data, t_cw_player *players)
 			return (CW_VM_ERROR_OPEN_FAILED);
 		if (cw_vm_create_champion(players, i) != CW_SUCCESS)
 			return (CW_ERROR_MALLOC_FAILED);
-		if ((ret_value = cw_vm_verify_file_structure(fd, &players[i])) != CW_SUCCESS)
+		ret_value = cw_vm_verify_file_structure(fd, &players[i]);
+		if (ret_value != CW_SUCCESS)
 			return (ret_value);
 		close(fd);
 	}

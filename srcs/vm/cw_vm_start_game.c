@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 19:14:23 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/15 01:44:31 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/15 05:27:49 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ static int		cw_vm_last_proc(t_cw_game *game, t_cw_vm *vm, t_cw_proc *proc)
 	ft_printf("{bold}{orange}The player %d(%s) has won.{}\n", id + 1, name);
 	(vm->dump == true) ? cw_vm_arena_dump(vm->arena, CW_MEM_SIZE) : 0; // a revoir
 	ft_memdel((void **)&proc);
-	return (CW_VM_LAST_PROC);
-
+	return (CW_LAST_PROC);
 }
 
 static int		cw_vm_processus_dead(t_cw_game *game, t_cw_proc *proc,
@@ -33,7 +32,6 @@ static int		cw_vm_processus_dead(t_cw_game *game, t_cw_proc *proc,
 	t_cw_proc	*prev;
 
 	while (proc != NULL)
-	{
 		if (proc->last_live == -1)
 		{
 			if (proc == game->head)
@@ -52,8 +50,7 @@ static int		cw_vm_processus_dead(t_cw_game *game, t_cw_proc *proc,
 			prev = proc;
 			proc = proc->next;
 		}
-	}
-	return (CW_VM_NOT_LAST_PROC);
+	return (CW_NOT_LAST_PROC);
 }
 
 static int		cw_vm_perform_check(t_cw_game *game, t_cw_vm *vm)
@@ -68,8 +65,8 @@ static int		cw_vm_perform_check(t_cw_game *game, t_cw_vm *vm)
 	if (game->cycles_count >= game->cycle_to_die)
 	{
 		game->check_performed++;
-		if (cw_vm_processus_dead(game, game->head, vm) == CW_VM_LAST_PROC)
-			return (CW_VM_LAST_PROC);
+		if (cw_vm_processus_dead(game, game->head, vm) == CW_LAST_PROC)
+			return (CW_LAST_PROC);
 		if (game->check_performed >= CW_MAX_CHECKS
 			|| game->count_last_live >= CW_NBR_LIVE)
 		{
@@ -80,7 +77,7 @@ static int		cw_vm_perform_check(t_cw_game *game, t_cw_vm *vm)
 		game->cycles_count = 0;
 	}
 	game->procs = game->head;
-	return (CW_VM_NOT_LAST_PROC);
+	return (CW_NOT_LAST_PROC);
 }
 
 int		cw_vm_start_game(t_cw_game *game, t_cw_vm *vm)
@@ -105,7 +102,7 @@ int		cw_vm_start_game(t_cw_game *game, t_cw_vm *vm)
 		if (game->procs->next != NULL)
 			game->procs = game->procs->next;
 		else
-			if ((ret_value = cw_vm_perform_check(game, vm)) != CW_VM_NOT_LAST_PROC)
+			if ((ret_value = cw_vm_perform_check(game, vm)) != CW_NOT_LAST_PROC)
 				break ;
 	}
 	return (ret_value);

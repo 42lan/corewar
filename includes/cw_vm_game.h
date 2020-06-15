@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 15:14:35 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/15 00:30:37 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/15 05:25:19 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include "libft.h"
 # include "cw_vm.h"
 
-# define CW_VM_NOT_LAST_PROC	0
-# define CW_VM_LAST_PROC		1
+# define CW_NOT_LAST_PROC		0
+# define CW_LAST_PROC			1
 # define CW_CYCLE_TO_DIE		1536
 # define CW_CYCLE_DELTA			50
 # define CW_REG_NUMBER			16

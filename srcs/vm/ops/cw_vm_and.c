@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 00:15:08 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/13 21:08:42 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/15 06:12:14 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,23 @@
 #include "cw_vm_game.h"
 #include "cw_inst.h"
 
-int		cw_vm_op_and_dir(t_cw_game *game, t_cw_vm *vm, int pos)
+static int		cw_vm_op_and_dir(t_cw_game *game, t_cw_vm *vm, int pos)
 {
-	int total;
+	int			total;
 
-	total = ft_bigendian32_read(vm->arena + ((game->procs->pos + pos) % CW_MEM_SIZE));
+	total = ft_bigendian32_read(vm->arena
+			+ ((game->procs->pos + pos) % CW_MEM_SIZE));
 	return (total);
 }
 
-int		cw_vm_op_and_ind(t_cw_game *game, t_cw_vm *vm, int pos)
+static int		cw_vm_op_and_ind(t_cw_game *game, t_cw_vm *vm, int pos)
 {
-	int16_t			arg;
-	int				total;
-	int				idx_address;
+	int			total;
+	int			idx_address;
+	int16_t		arg;
 
-	arg = ft_bigendian16_read(vm->arena + ((game->procs->pos + pos) % CW_MEM_SIZE));
+	arg = ft_bigendian16_read(vm->arena
+			+ ((game->procs->pos + pos) % CW_MEM_SIZE));
 	idx_address = (game->procs->pos + (arg % CW_IDX_MOD)) % CW_MEM_SIZE;
 	if (idx_address < 0)
 		idx_address += CW_MEM_SIZE;
@@ -36,21 +38,20 @@ int		cw_vm_op_and_ind(t_cw_game *game, t_cw_vm *vm, int pos)
 	return (total);
 }
 
-void	cw_vm_op_and_body(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
+static void		cw_vm_op_and_body(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
 {
-	int i;
-	int	arg[3];
-	int	pos;
-	int reg_value;
+	int			i;
+	int			pos;
+	int			arg[3];
+	int 		reg_value;
 
 	i = -1;
 	pos = 2;
-	reg_value = 0;
 	while (++i < 2)
 	{
 		if (inst->types[i] == T_REG)
 		{
-			if (cw_vm_is_reg(vm->arena[(game->procs->pos + pos) % CW_MEM_SIZE]) == false)
+			if (cw_vm_is_reg(vm->arena[(game->procs->pos + pos)	% CW_MEM_SIZE]) == false)
 				return ;
 			arg[i] = game->procs->regs[(vm->arena[(game->procs->pos + pos) % CW_MEM_SIZE]) - 1];
 			pos++;
@@ -74,9 +75,15 @@ void	cw_vm_op_and_body(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
 	}
 }
 
+/*
+** This instruction applyes the bitwise AND operation to the 2 first and stores
+** the result in the third
+*/
+
 void	cw_vm_op_and(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
 {
 	if (inst->args_count >= 3 && inst->types[2] == T_REG)
 		cw_vm_op_and_body(inst, game, vm);
-	game->procs->pos = (game->procs->pos + 2 + cw_vm_add_pos(inst, 3, CW_DIR_SIZE_AND)) % CW_MEM_SIZE;
+	game->procs->pos = (game->procs->pos + 2
+			+ cw_vm_add_pos(inst, 3, CW_DIR_SIZE_AND)) % CW_MEM_SIZE;
 }

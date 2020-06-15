@@ -30,7 +30,6 @@ struct				s_cw_inst
 
 void				cw_inst_init(t_cw_inst *inst);
 void				cw_inst_fill(t_cw_inst *inst, t_cw_vm *vm, t_cw_game *game);
-void				cw_inst_get_args(t_cw_inst *inst, unsigned op);
 void				cw_inst_dump(t_cw_inst *inst);
 int					cw_inst_write(t_cw_inst *inst, char *dst);
 

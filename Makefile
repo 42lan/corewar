@@ -6,7 +6,7 @@
 #    By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by bleplat           #+#    #+#              #
-#    Updated: 2020/06/14 02:16:13 by jthierce         ###   ########.fr        #
+#    Updated: 2020/06/15 05:02:56 by amalsago         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,6 +75,11 @@ SRC_FILES_CW		=	vm/cw_vm_main.c \
 						vm/cw_vm_read_execute.c \
 						vm/cw_vm_predicaters.c \
 						vm/cw_vm_proc_dump.c \
+						vm/cw_vm_check_nbr_players.c \
+						vm/cw_vm_debug.c \
+						vm/cw_vm_is_valid_extension.c \
+						vm/cw_vm_set_dump.c \
+						vm/cw_vm_set_player.c \
 						$(SRC_FILES_CW_OP)
 
 SRC_FILES_CW_OP		=	vm/ops/cw_vm_live.c \
