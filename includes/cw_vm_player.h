@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 14:38:41 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/07 02:06:16 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/15 18:09:41 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include "cw_champion.h"
-# include "cw_common.h"
 
 /*
 ** Struct s_cw_player
