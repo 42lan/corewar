@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 18:04:40 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/15 04:08:55 by jthierce         ###   ########.fr       */
+/*   Updated: 2020/06/15 14:29:23 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ void		free_memory(t_cw_vm *vm)
 	while (++i < vm->data.nbr_players)
 	{
 		ft_strdel(&vm->data.filename[i]);
-		cw_champion_destroy(&vm->players[i].champion);
+		if (vm->players[i].champion != NULL)
+			cw_champion_destroy(&vm->players[i].champion);
 	}
 }
 
