@@ -6,7 +6,7 @@
 #    By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by bleplat           #+#    #+#              #
-#    Updated: 2020/06/15 17:20:48 by amalsago         ###   ########.fr        #
+#    Updated: 2020/06/15 18:10:04 by amalsago         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,8 +31,7 @@ LIBFTMO     = $(LIBFT_DIR)/libftmo.a
 ###    S O U R C E S    ###
 ###########################
 
-SRC_FILES_COMMON	=	common/ft_printerr.c \
-						common/cw_champion.c \
+SRC_FILES_COMMON	=	common/cw_champion.c \
 						common/cw_op_list.c \
 						common/cw_op_get_arg_type.c \
 						common/cw_op_get_arg_types.c \
