@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bleplat <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 10:59:30 by bleplat           #+#    #+#             */
-/*   Updated: 2020/06/15 18:48:57 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/15 18:53:21 by jthierce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,6 +187,7 @@ int				ft_isstrnum(const char *str);
 int				ft_strbegins(const char *s1, const char *s2);
 int				ft_strends(const char *s1, const char *s2);
 char			*ft_strndup(const char *s1, size_t n);
+char			*ft_strcdup(const char *s1, char c);
 char			*ft_strtolower(const char *str);
 char			*ft_strtoupper(const char *str);
 void			ft_strcatchar(char *str, char c);
