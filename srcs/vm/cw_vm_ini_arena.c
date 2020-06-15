@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 03:04:40 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/15 15:28:41 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/15 20:25:04 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int		cw_vm_verify_enough_space(t_cw_vm *vm)
 	while (++i < vm->data.nbr_players)
 		total += vm->players[i].champion->code_len;
 	i = -1;
-	while (j == 0 && ++i  < vm->data.nbr_players)
+	while (j == 0 && ++i < vm->data.nbr_players)
 		if (vm->players[i].champion->code_len > delta)
 			j = 1;
 	if (total > CW_MEM_SIZE || (j == 1 && i < vm->data.nbr_players))
@@ -62,7 +62,7 @@ static void		cw_vm_place_code(t_cw_vm *vm, t_cw_champion *champion, int ptr)
 static void		cw_vm_place_player(t_cw_vm *vm)
 {
 	int			i;
-	int 		ptr;
+	int			ptr;
 	int			distance;
 
 	i = -1;

@@ -6,15 +6,15 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 15:23:59 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/15 00:17:56 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/15 20:31:31 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cw_vm_game.h"
 
-t_cw_proc	*cw_vm_ini_proc(int id, int pos)
+static t_cw_proc	*cw_vm_ini_proc(int id, int pos)
 {
-	t_cw_proc *processus;
+	t_cw_proc	*processus;
 
 	if (!(processus = (t_cw_proc *)malloc(sizeof(t_cw_proc))))
 		return (NULL);
@@ -32,7 +32,7 @@ t_cw_proc	*cw_vm_ini_proc(int id, int pos)
 	return (processus);
 }
 
-void	cw_vm_ini_cycle_opc(t_cw_game *game)
+static void			cw_vm_ini_cycle_opc(t_cw_game *game)
 {
 	game->cycle_opc[0] = 10;
 	game->cycle_opc[1] = 5;
@@ -52,7 +52,7 @@ void	cw_vm_ini_cycle_opc(t_cw_game *game)
 	game->cycle_opc[15] = 2;
 }
 
-void	cw_vm_ini_byte_codage(t_cw_game *game)
+static void			cw_vm_ini_byte_codage(t_cw_game *game)
 {
 	game->byte_codage[0] = 0;
 	game->byte_codage[1] = 1;
@@ -72,7 +72,7 @@ void	cw_vm_ini_byte_codage(t_cw_game *game)
 	game->byte_codage[15] = 1;
 }
 
-void	cw_vm_ini_game_helper(t_cw_game *game, t_cw_vm *vm)
+static void			cw_vm_ini_game_helper(t_cw_game *game, t_cw_vm *vm)
 {
 	game->last_alive = vm->data.nbr_players - 1;
 	game->cycles_count = 0;
@@ -83,10 +83,10 @@ void	cw_vm_ini_game_helper(t_cw_game *game, t_cw_vm *vm)
 	cw_vm_ini_byte_codage(game);
 }
 
-int		cw_vm_ini_game(t_cw_game *game, t_cw_vm *vm)
+int					cw_vm_ini_game(t_cw_game *game, t_cw_vm *vm)
 {
-	int 		i;
-	t_cw_proc 	*ptr;
+	int			i;
+	t_cw_proc	*ptr;
 
 	i = vm->data.nbr_players - 1;
 	cw_vm_ini_game_helper(game, vm);

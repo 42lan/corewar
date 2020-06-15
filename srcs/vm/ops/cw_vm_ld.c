@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 01:22:20 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/15 05:55:09 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/15 20:51:42 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "cw_vm_game.h"
 #include "cw_inst.h"
 
-static void			cw_vm_op_ld_dir_exec(t_cw_game *game, t_cw_vm *vm)
+static void		cw_vm_op_ld_dir_exec(t_cw_game *game, t_cw_vm *vm)
 {
 	int			index;
 	int32_t		arg1;
@@ -54,7 +54,7 @@ static void		cw_vm_op_ld_ind_exec(t_cw_game *game, t_cw_vm *vm)
 ** This instruction loads the value of the first parameter in the register
 */
 
-void		cw_vm_op_ld(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
+void			cw_vm_op_ld(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
 {
 	if (inst->args_count >= 2 && inst->types[0] != T_REG
 		&& inst->types[1] == T_REG)
@@ -64,6 +64,6 @@ void		cw_vm_op_ld(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
 		else if (inst->types[0] == T_IND)
 			cw_vm_op_ld_ind_exec(game, vm);
 	}
-	game->procs->pos = (game->procs->pos + 2 
+	game->procs->pos = (game->procs->pos + 2
 		+ cw_vm_add_pos(inst, 2, CW_DIR_SIZE_LD)) % CW_MEM_SIZE;
 }

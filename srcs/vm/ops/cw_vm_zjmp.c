@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 05:31:10 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/15 06:16:30 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/15 21:08:49 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 void		cw_vm_op_zjmp(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
 {
-	int 	value;
+	int		value;
 
 	(void)inst;
 	if (game->procs->carry == 1)

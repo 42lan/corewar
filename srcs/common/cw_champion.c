@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/06 21:39:55 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/07 01:37:15 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/15 21:13:20 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ static void			hex_dump(unsigned char *code, unsigned int code_len)
 		{
 			(i != 0) ? ft_printf(" %s\n", buff) : 0;
 			(i != 0) ? ft_printf("         ") : 0;
-			/* ft_printf("{yellow}0x%06x:{}", i); */
 		}
 		(i % 2 == 0) ? ft_printf(" ") : 0;
 		ft_printf("%02x", pc[i]);

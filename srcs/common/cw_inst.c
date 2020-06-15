@@ -20,10 +20,10 @@
 ** Create a t_cw_inst with all field initialized to 0.
 */
 
-t_cw_inst			*cw_inst_create(void)
+t_cw_inst		*cw_inst_create(void)
 {
-	t_cw_inst		*inst;
-	
+	t_cw_inst	*inst;
+
 	if (!(inst = malloc(sizeof(t_cw_inst))))
 		return (NULL);
 	ft_bzero(inst, sizeof(t_cw_inst));
@@ -34,7 +34,7 @@ t_cw_inst			*cw_inst_create(void)
 ** Destroy a t_cw_inst and set it to NULL.
 */
 
-void				cw_inst_destroy(t_cw_inst **inst)
+void			cw_inst_destroy(t_cw_inst **inst)
 {
 	free(*inst);
 	*inst = NULL;

@@ -6,14 +6,13 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/06 15:33:02 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/15 05:20:45 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/15 20:39:43 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "cw_vm.h"
 #include "cw_vm_player.h"
-
 
 /*
 ** cw_vm_verify_file_structure() calls other functions to verify the validity

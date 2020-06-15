@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 19:32:09 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/15 15:31:35 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/15 21:02:13 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 static void		cw_vm_op_st_ind_exec(t_cw_game *game, t_cw_vm *vm)
 {
 	int			reg_value;
-	int 		reg_index;
-	int16_t 	arg2;
+	int			reg_index;
+	int16_t		arg2;
 
 	reg_index = vm->arena[(game->procs->pos + 2) % CW_MEM_SIZE];
 	if (cw_vm_is_reg(reg_index) == TRUE)
@@ -37,9 +37,9 @@ static void		cw_vm_op_st_ind_exec(t_cw_game *game, t_cw_vm *vm)
 ** This instruction stores the value of the first argument in the second
 */
 
-void	cw_vm_op_st(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
+void			cw_vm_op_st(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
 {
-	int		arg[2];
+	int			arg[2];
 
 	if (inst->args_count >= 2 && inst->types[0] == T_REG
 			&& inst->types[1] != T_DIR)

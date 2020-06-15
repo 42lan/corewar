@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 17:14:53 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/15 13:48:34 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/15 21:11:00 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ static void		cw_vm_op_lldi_body(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
 ** Same as ldi but without IND_MOD
 */
 
-void	cw_vm_op_lldi(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
+void			cw_vm_op_lldi(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
 {
 	if (inst->args_count >= 3
 		&& inst->types[1] != T_IND && inst->types[2] == T_REG)

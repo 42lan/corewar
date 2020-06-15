@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/14 02:02:18 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/14 02:16:25 by jthierce         ###   ########.fr       */
+/*   Updated: 2020/06/15 20:47:05 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int			cw_vm_add_pos(t_cw_inst *inst, int nbr_arg, int label_size)
 
 	i = -1;
 	pos = 0;
-	while(++i < nbr_arg)
+	while (++i < nbr_arg)
 	{
 		if (inst->types[i] == T_REG)
 			pos += 1;
