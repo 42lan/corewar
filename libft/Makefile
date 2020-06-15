@@ -41,7 +41,6 @@ FNT_1 =		ft_welcome.c \
 			ft_intsrot.c \
 			ft_hrbytes.c \
 			ft_listxattr.c \
-			ft_filecolor.c \
 			ft_lscolors.c \
 			ft_linkfolow.c \
 			ft_strpopslashes.c \
@@ -429,7 +428,7 @@ optimized: CFLAGS += -o3
 optimized: all
 
 .PHONY: debug
-debug: LDFLAGS += -L. -lftmo -rdynamic
+debug: LDFLAGS += -L. -lftmo -rdynamic -ldl
 debug: all
 
 .PHONY: delete_libs_gits
