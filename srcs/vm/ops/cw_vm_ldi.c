@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 17:12:31 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/15 06:19:32 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/15 12:09:32 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,8 @@ static void		cw_vm_op_ldi_body(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
 }
 
 /*
-** 
+** This operation saves a value into the registry that was passed
+** as third argument
 */
 
 void		cw_vm_op_ldi(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
