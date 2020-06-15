@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/05 18:38:37 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/15 05:19:02 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/15 20:22:34 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 #include "cw_vm.h"
 #include "cw_vm_player.h"
 
-static void			cw_swap_number_player(t_cw_data *data, int i1, int i2)
+static void		cw_swap_number_player(t_cw_data *data, int i1, int i2)
 {
-	char			*tmp_str;
-	int				tmp_nb;
+	char		*tmp_str;
+	int			tmp_nb;
 
 	tmp_nb = data->assigned_nbr[i1];
 	data->assigned_nbr[i1] = data->assigned_nbr[i2];
@@ -49,14 +49,15 @@ static void		cw_sort_number_player(t_cw_data *data)
 static int		cw_check_duplicate_number(t_cw_data *data)
 {
 	int			i;
-	int 		j;
+	int			j;
 
 	i = -1;
 	while (++i < data->nbr_players)
 	{
 		if (data->assigned_nbr[i] > data->nbr_players)
 		{
-			ft_printf("{red}Assigned number shoud be less than number players\n{}");
+			ft_printf("{red}Assigned number shoud be less than" \
+					"number players\n{}");
 			return (CW_VM_ERROR_ASSIGNED_NUMBER);
 		}
 		j = i;
@@ -77,7 +78,7 @@ static int		cw_check_duplicate_number(t_cw_data *data)
 int				cw_parsing_number_player(t_cw_data *data)
 {
 	int			i;
-	int 		ret_value;
+	int			ret_value;
 
 	i = -1;
 	if ((ret_value = cw_check_duplicate_number(data)) != CW_SUCCESS)

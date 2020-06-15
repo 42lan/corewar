@@ -23,7 +23,7 @@ static int	cw_inst_write_arg(t_cw_inst *inst, int i_arg, unsigned char *dst)
 
 /*
 ** Encode an t_inst to a byte array.
-** 
+**
 ** Returns how many bytes were written.
 */
 
@@ -37,7 +37,7 @@ int			cw_inst_write(t_cw_inst *inst, unsigned char *dst)
 	if (inst->has_coding_byte)
 	{
 		dst[i_dst] = cw_op_get_full_coding_byte(inst->types);
-		i_dst += 1;	
+		i_dst += 1;
 	}
 	if (inst->args_count > 0)
 		i_dst += cw_inst_write_arg(inst, 0, &dst[i_dst]);

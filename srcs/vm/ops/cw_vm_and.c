@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 00:15:08 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/15 06:12:14 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/15 21:11:32 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void		cw_vm_op_and_body(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
 	int			i;
 	int			pos;
 	int			arg[3];
-	int 		reg_value;
+	int			reg_value;
 
 	i = -1;
 	pos = 2;
@@ -51,7 +51,7 @@ static void		cw_vm_op_and_body(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
 	{
 		if (inst->types[i] == T_REG)
 		{
-			if (cw_vm_is_reg(vm->arena[(game->procs->pos + pos)	% CW_MEM_SIZE]) == FALSE)
+			if (cw_vm_is_reg(vm->arena[(game->procs->pos + pos) % CW_MEM_SIZE]) == FALSE)
 				return ;
 			arg[i] = game->procs->regs[(vm->arena[(game->procs->pos + pos) % CW_MEM_SIZE]) - 1];
 			pos++;
@@ -67,10 +67,10 @@ static void		cw_vm_op_and_body(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
 			pos += 2;
 		}
 	}
-	if (cw_vm_is_reg(vm->arena[(game->procs->pos + pos) %CW_MEM_SIZE]) == TRUE)
+	if (cw_vm_is_reg(vm->arena[(game->procs->pos + pos) % CW_MEM_SIZE]) == TRUE)
 	{
 		reg_value = arg[0] & arg[1];
-		game->procs->regs[vm->arena[(game->procs->pos + pos) %CW_MEM_SIZE] - 1] = reg_value;
+		game->procs->regs[vm->arena[(game->procs->pos + pos) % CW_MEM_SIZE] - 1] = reg_value;
 		game->procs->carry = (reg_value == 0) ? 1 : 0;
 	}
 }
@@ -80,7 +80,7 @@ static void		cw_vm_op_and_body(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
 ** the result in the third
 */
 
-void	cw_vm_op_and(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
+void			cw_vm_op_and(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
 {
 	if (inst->args_count >= 3 && inst->types[2] == T_REG)
 		cw_vm_op_and_body(inst, game, vm);

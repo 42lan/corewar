@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 17:11:41 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/15 06:14:53 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/15 21:08:25 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ static int		cw_vm_op_xor_ind(t_cw_game *game, t_cw_vm *vm, int pos)
 
 static void		cw_vm_op_xor_body(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
 {
-	int 		i;
+	int			i;
 	int			pos;
-	int 		reg_value;
+	int			reg_value;
 	int			arg[3];
 
 	i = -1;
@@ -68,7 +68,7 @@ static void		cw_vm_op_xor_body(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
 	if (cw_vm_is_reg(vm->arena[(game->procs->pos + pos) % CW_MEM_SIZE]) == TRUE)
 	{
 		reg_value = arg[0] ^ arg[1];
-		game->procs->regs[vm->arena[(game->procs->pos + pos) %CW_MEM_SIZE] - 1] = reg_value;
+		game->procs->regs[vm->arena[(game->procs->pos + pos) % CW_MEM_SIZE] - 1] = reg_value;
 		game->procs->carry = (reg_value == 0) ? 1 : 0;
 	}
 }
@@ -78,7 +78,7 @@ static void		cw_vm_op_xor_body(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
 ** the result in the third
 */
 
-void				cw_vm_op_xor(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
+void			cw_vm_op_xor(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
 {
 	if (inst->args_count >= 3 && inst->types[2] == T_REG)
 		cw_vm_op_xor_body(inst, game, vm);

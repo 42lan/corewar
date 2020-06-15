@@ -7,7 +7,7 @@
 
 const t_cw_op		*cw_op_list(void)
 {
-	static t_cw_op    op_list[17] =
+	static t_cw_op	op_list[17] =
 	{
 		{"live", 1, {T_DIR}, 1, 10, "alive", 0, 0},
 		{"ld", 2, {T_DIR | T_IND, T_REG}, 2, 5, "load", 1, 0},
@@ -33,7 +33,5 @@ const t_cw_op		*cw_op_list(void)
 		{"aff", 1, {T_REG}, 16, 2, "aff", 1, 0},
 		{0, 0, {0}, 0, 0, 0, 0, 0}
 	};
-
 	return ((const t_cw_op*)&op_list);
 }
-

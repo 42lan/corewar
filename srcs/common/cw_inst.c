@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 21:27:06 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/15 05:46:09 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/15 21:15:58 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@
 ** Create a t_cw_inst with all field initialized to 0.
 */
 
-t_cw_inst			*cw_inst_create(void)
+t_cw_inst		*cw_inst_create(void)
 {
-	t_cw_inst		*inst;
-	
+	t_cw_inst	*inst;
+
 	if (!(inst = malloc(sizeof(t_cw_inst))))
 		return (NULL);
 	ft_bzero(inst, sizeof(t_cw_inst));
@@ -34,21 +34,15 @@ t_cw_inst			*cw_inst_create(void)
 ** Destroy a t_cw_inst and set it to NULL.
 */
 
-void				cw_inst_destroy(t_cw_inst **inst)
+void			cw_inst_destroy(t_cw_inst **inst)
 {
 	free(*inst);
 	*inst = NULL;
 }
 
-void	cw_inst_init(t_cw_inst *inst)
-{
-	ft_bzero(inst, sizeof(t_cw_inst));
-}
-
 /*
 ** cw_inst_get_args() set up binary values of arguments and count their amount
 */
-
 
 static void		cw_inst_get_args(t_cw_inst *inst, unsigned opc)
 {

@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 17:13:22 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/15 15:33:58 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/15 21:05:16 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,23 @@
 #include "cw_vm_game.h"
 #include "cw_inst.h"
 
-static int			cw_vm_op_sti_dir(t_cw_game *game, t_cw_vm *vm, int pos)
+static int		cw_vm_op_sti_dir(t_cw_game *game, t_cw_vm *vm, int pos)
 {
-	int total;
+	int			total;
 
 	total = ft_bigendian16_read(vm->arena
 			+ ((game->procs->pos + pos) % CW_MEM_SIZE));
 	return (total);
 }
 
-int				cw_vm_op_sti_ind(t_cw_game *game, t_cw_vm *vm, int pos)
+static int		cw_vm_op_sti_ind(t_cw_game *game, t_cw_vm *vm, int pos)
 {
 	int16_t		arg;
 	int			total;
 	int			idx_address;
 
-	arg = ft_bigendian16_read(vm->arena + ((game->procs->pos + pos) % CW_MEM_SIZE));
+	arg = ft_bigendian16_read(vm->arena
+			+ ((game->procs->pos + pos) % CW_MEM_SIZE));
 	idx_address = (game->procs->pos + (arg % CW_IDX_MOD)) % CW_MEM_SIZE;
 	if (idx_address < 0)
 		idx_address += CW_MEM_SIZE;
@@ -39,10 +40,10 @@ int				cw_vm_op_sti_ind(t_cw_game *game, t_cw_vm *vm, int pos)
 
 static void		cw_vm_op_sti_body(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
 {
-	int 		i;
+	int			i;
 	int			pos;
-	int 		idx_address;
-	int 		reg_value;
+	int			idx_address;
+	int			reg_value;
 	int			arg[3];
 
 	i = 0;
@@ -69,14 +70,13 @@ static void		cw_vm_op_sti_body(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
 					% CW_IDX_MOD) % CW_MEM_SIZE;
 	if (idx_address < 0)
 		idx_address += CW_MEM_SIZE;
-	arg[0] = vm->arena[game->procs->pos +  2];
+	arg[0] = vm->arena[game->procs->pos + 2];
 	if (cw_vm_is_reg(arg[0]))
 	{
 		reg_value = game->procs->regs[arg[0] - 1];
 		ft_bigendian32_write(vm->arena + idx_address, reg_value);
 	}
 }
-
 
 /*
 ** This operation writes the value from the registry that was passed

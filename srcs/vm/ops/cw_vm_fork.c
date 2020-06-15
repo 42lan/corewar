@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 17:13:59 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/15 16:47:34 by jthierce         ###   ########.fr       */
+/*   Updated: 2020/06/15 20:49:22 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,12 @@ void			cw_vm_op_fork(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
 	idx_address = (game->procs->pos + (arg1 % CW_IDX_MOD)) % CW_MEM_SIZE;
 	if (idx_address < 0)
 		idx_address += CW_MEM_SIZE;
-	if (!(new = ft_memdup(game->procs, sizeof(t_cw_proc)))) //a verifier le tableau de registre
+	if (!(new = ft_memdup(game->procs, sizeof(t_cw_proc))))
 	{
 		ft_printf("{red}New processus can't be created for player %d\n{}",
 		game->procs->id);
 		return ;
 	}
-	// COPIER LE TABLEAU DE REGS[]
 	new->pos = idx_address;
 	new->next = game->head;
 	game->head = new;

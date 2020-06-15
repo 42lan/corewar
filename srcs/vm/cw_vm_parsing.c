@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 14:06:54 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/15 05:12:36 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/15 20:41:00 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int			cw_vm_parsing(int ac, char **av, t_cw_vm *vm)
 			ft_printf("{red}Error malloc failed\n{}");
 			return (CW_ERROR_MALLOC_FAILED);
 		}
-		if (vm->data.nbr_players >= CW_MAX_PLAYERS) //A revoir peut etre
+		if (vm->data.nbr_players >= CW_MAX_PLAYERS)
 		{
 			ft_dprintf(2, "{red}Max number of players exceeded\n{}");
 			return (CW_VM_ERROR_MAX_PLAYERS);

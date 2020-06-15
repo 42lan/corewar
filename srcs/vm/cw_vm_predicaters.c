@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 12:20:47 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/13 22:30:08 by jthierce         ###   ########.fr       */
+/*   Updated: 2020/06/15 20:35:19 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 t_bool	cw_vm_is_valid_op(int op)
 {
-	if (op < 17	&& op > 0)
+	if (op < 17 && op > 0)
 		return (TRUE);
 	return (FALSE);
 }
