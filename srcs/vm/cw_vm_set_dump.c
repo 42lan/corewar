@@ -15,7 +15,7 @@
 #include "cw_errors.h"
 
 /*
-** cw_vm_set_dump() set dump value in t_cw_data and true boolean to t_cw_vm
+** cw_vm_set_dump() set dump value in t_cw_data and TRUE boolean to t_cw_vm
 */
 
 int			cw_vm_set_dump(t_cw_vm *vm, char **av, int *i)

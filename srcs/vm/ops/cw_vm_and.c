@@ -51,7 +51,7 @@ static void		cw_vm_op_and_body(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
 	{
 		if (inst->types[i] == T_REG)
 		{
-			if (cw_vm_is_reg(vm->arena[(game->procs->pos + pos)	% CW_MEM_SIZE]) == false)
+			if (cw_vm_is_reg(vm->arena[(game->procs->pos + pos)	% CW_MEM_SIZE]) == FALSE)
 				return ;
 			arg[i] = game->procs->regs[(vm->arena[(game->procs->pos + pos) % CW_MEM_SIZE]) - 1];
 			pos++;
@@ -67,7 +67,7 @@ static void		cw_vm_op_and_body(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
 			pos += 2;
 		}
 	}
-	if (cw_vm_is_reg(vm->arena[(game->procs->pos + pos) %CW_MEM_SIZE]) == true)
+	if (cw_vm_is_reg(vm->arena[(game->procs->pos + pos) %CW_MEM_SIZE]) == TRUE)
 	{
 		reg_value = arg[0] & arg[1];
 		game->procs->regs[vm->arena[(game->procs->pos + pos) %CW_MEM_SIZE] - 1] = reg_value;

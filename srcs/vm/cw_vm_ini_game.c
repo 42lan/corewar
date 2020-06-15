@@ -19,7 +19,7 @@ t_cw_proc	*cw_vm_ini_proc(int id, int pos)
 	if (!(processus = (t_cw_proc *)malloc(sizeof(t_cw_proc))))
 		return (NULL);
 	id++;
-	processus->carry = false;
+	processus->carry = FALSE;
 	processus->opc = -1;
 	processus->last_live = -1;
 	processus->wait_cycles = 0;

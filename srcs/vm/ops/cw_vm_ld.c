@@ -22,7 +22,7 @@ static void			cw_vm_op_ld_dir_exec(t_cw_game *game, t_cw_vm *vm)
 	arg1 = ft_bigendian32_read(vm->arena
 			+ ((game->procs->pos + 2) % CW_MEM_SIZE));
 	index = vm->arena[(game->procs->pos + 6) % CW_MEM_SIZE];
-	if (cw_vm_is_reg(index) == true)
+	if (cw_vm_is_reg(index) == TRUE)
 	{
 		game->procs->regs[index - 1] = arg1;
 		game->procs->carry = (arg1 == 0) ? 1 : 0;
@@ -42,7 +42,7 @@ static void		cw_vm_op_ld_ind_exec(t_cw_game *game, t_cw_vm *vm)
 	if (idx_address < 0)
 		idx_address += CW_MEM_SIZE;
 	index = vm->arena[(game->procs->pos + 4) % CW_MEM_SIZE];
-	if (cw_vm_is_reg(index) == true)
+	if (cw_vm_is_reg(index) == TRUE)
 	{
 		value = ft_bigendian32_read(vm->arena + idx_address);
 		game->procs->regs[index - 1] = value;

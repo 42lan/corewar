@@ -21,7 +21,7 @@ static void		cw_vm_op_st_ind_exec(t_cw_game *game, t_cw_vm *vm)
 	int16_t 	arg2;
 
 	reg_index = vm->arena[(game->procs->pos + 2) % CW_MEM_SIZE];
-	if (cw_vm_is_reg(reg_index) == true)
+	if (cw_vm_is_reg(reg_index) == TRUE)
 	{
 		reg_value = game->procs->regs[reg_index - 1];
 		arg2 = ft_bigendian16_read(vm->arena
@@ -48,7 +48,7 @@ void	cw_vm_op_st(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
 		{
 			arg[0] = vm->arena[(game->procs->pos + 2) % CW_MEM_SIZE];
 			arg[1] = vm->arena[(game->procs->pos + 3) % CW_MEM_SIZE];
-			if (cw_vm_is_reg(arg[0]) == true && cw_vm_is_reg(arg[1]) == true)
+			if (cw_vm_is_reg(arg[0]) == TRUE && cw_vm_is_reg(arg[1]) == TRUE)
 				game->procs->regs[arg[1] - 1] = game->procs->regs[arg[0] - 1];
 		}
 		else if (inst->types[1] == T_IND)

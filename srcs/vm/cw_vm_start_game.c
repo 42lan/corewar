@@ -21,7 +21,7 @@ static int		cw_vm_last_proc(t_cw_game *game, t_cw_vm *vm, t_cw_proc *proc)
 	id = game->last_alive;
 	name = vm->players[id].champion->name;
 	ft_printf("{bold}{orange}The player %d(%s) has won.{}\n", id + 1, name);
-	(vm->dump == true) ? cw_vm_arena_dump(vm->arena, CW_MEM_SIZE) : 0; // a revoir
+	(vm->dump == TRUE) ? cw_vm_arena_dump(vm->arena, CW_MEM_SIZE) : 0; // a revoir
 	ft_memdel((void **)&proc);
 	return (CW_LAST_PROC);
 }
@@ -92,7 +92,7 @@ int		cw_vm_start_game(t_cw_game *game, t_cw_vm *vm)
 			if (game->procs->wait_cycles == 0)
 				cw_vm_read_execute(game, vm); // error 1
 		}
-		else if (cw_vm_is_valid_op(vm->arena[game->procs->pos]) == true)
+		else if (cw_vm_is_valid_op(vm->arena[game->procs->pos]) == TRUE)
 		{
 			game->procs->opc = vm->arena[game->procs->pos];
 			game->procs->wait_cycles = game->cycle_opc[game->procs->opc - 1];

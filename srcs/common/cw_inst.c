@@ -83,7 +83,7 @@ void			cw_inst_dump(t_cw_inst *inst)
 	op_name = cw_op_list()[inst->opc - 1].name;
 	ft_printf("opc:           %d (%s)\n", inst->opc, op_name);
 	ft_printf("has_coding_byte:  ", inst->opc);
-	(inst->has_coding_byte == true) ? ft_printf("true") : ft_printf("false");
+	(inst->has_coding_byte == TRUE) ? ft_printf("TRUE") : ft_printf("FALSE");
 	ft_printf("\nargs_count:       %d\n", inst->args_count);
 	(inst->args_count != 0) ? ft_printf("types:            ") : 0;
 	while (++i < inst->args_count)
@@ -110,8 +110,8 @@ void			cw_inst_fill(t_cw_inst *inst, t_cw_vm *vm, t_cw_game *game)
 	i = -1;
 	ft_bzero(inst, sizeof(t_cw_inst));
 	inst->opc = game->procs->opc;
-	inst->has_coding_byte = (game->byte_codage[inst->opc - 1]) ? true : false;
-	if (inst->has_coding_byte == true)
+	inst->has_coding_byte = (game->byte_codage[inst->opc - 1]) ? TRUE : FALSE;
+	if (inst->has_coding_byte == TRUE)
 	{
 		cw_inst_get_args(inst, vm->arena[game->procs->pos + 1]);
 		while (++i < inst->args_count)

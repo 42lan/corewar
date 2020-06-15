@@ -16,13 +16,13 @@
 t_bool	cw_vm_is_valid_op(int op)
 {
 	if (op < 17	&& op > 0)
-		return (true);
-	return (false);
+		return (TRUE);
+	return (FALSE);
 }
 
 t_bool	cw_vm_is_reg(int reg)
 {
 	if (reg < 1 || reg > CW_REG_NUMBER)
-		return (false);
-	return (true);
+		return (FALSE);
+	return (TRUE);
 }
