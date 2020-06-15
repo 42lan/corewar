@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bleplat <marvin@42.fr>                     +#+  +:+       +#+         #
+#    By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/07 09:05:04 by bleplat           #+#    #+#              #
-#    Updated: 2020/06/15 18:49:06 by amalsago         ###   ########.fr        #
+#    Updated: 2020/06/15 18:53:44 by jthierce         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -139,6 +139,7 @@ FNT_1 =		ft_welcome.c \
 			ft_strncmp.c \
 			ft_strncpy.c \
 			ft_strndup.c \
+			ft_strcdup.c \
 			ft_strnequ.c \
 			ft_strnew.c \
 			ft_strnstr.c \
