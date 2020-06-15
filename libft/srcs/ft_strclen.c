@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 11:55:55 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/15 18:50:26 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/15 19:29:28 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int		ft_isseparator(char c, char separator)
 {
-    return (c == separator);
+	return (c == separator);
 }
 
 /*
