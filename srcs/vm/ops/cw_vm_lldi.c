@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 17:14:53 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/16 02:50:39 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/16 02:58:19 by jthierce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ static void		cw_vm_op_lldi_body(t_cw_vm *vm)
 		if (cw_vm_is_reg(arg_val[2]))
 			vm->game.procs->regs[arg_val[2] - 1]
 				= ft_bigendian32_read(vm->arena + pos);
+		vm->game.procs->carry =
+			(vm->game.procs->regs[arg_val[2] - 1] == 0) ? 1 : 0;
 	}
 }
 
