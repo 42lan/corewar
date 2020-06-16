@@ -6,13 +6,12 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 17:14:37 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/16 02:44:51 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/16 04:44:02 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "cw_vm.h"
-#include "cw_vm_game.h"
 #include "cw_inst.h"
 
 static void		cw_vm_op_lld_dir_exec(t_cw_vm *vm)

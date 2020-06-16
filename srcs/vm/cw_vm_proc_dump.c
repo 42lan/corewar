@@ -6,11 +6,11 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/11 12:02:45 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/11 12:48:15 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/16 04:42:10 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cw_vm_game.h"
+#include "cw_vm.h"
 
 void		cw_vm_proc_dump(t_cw_proc *proc)
 {

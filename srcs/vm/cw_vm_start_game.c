@@ -6,11 +6,10 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 19:14:23 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/16 02:34:43 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/16 04:42:27 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cw_vm_game.h"
 #include "cw_vm.h"
 
 static int	cw_vm_last_proc(t_cw_game *game, t_cw_vm *vm, t_cw_proc *proc)

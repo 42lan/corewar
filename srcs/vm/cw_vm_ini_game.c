@@ -6,11 +6,11 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 15:23:59 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/15 23:03:09 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/16 04:41:18 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cw_vm_game.h"
+#include "cw_vm.h"
 
 static t_cw_proc	*cw_vm_ini_proc(int id, int pos)
 {

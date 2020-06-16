@@ -6,12 +6,12 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 12:20:47 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/15 20:35:19 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/16 04:41:57 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "cw_vm_game.h"
+#include "cw_vm.h"
 
 t_bool	cw_vm_is_valid_op(int op)
 {

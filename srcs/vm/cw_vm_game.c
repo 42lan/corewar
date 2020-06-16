@@ -6,11 +6,10 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 15:13:14 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/15 23:11:50 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/16 04:40:55 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cw_vm_game.h"
 #include "cw_vm.h"
 #include "cw_champion.h"
 

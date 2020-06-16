@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 13:04:30 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/16 02:43:01 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/16 04:40:44 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "cw_vm.h"
 # include "cw_inst.h"
-# include "cw_vm_game.h"
 
 typedef void	(*t_op_p)(t_cw_vm *vm);
 
