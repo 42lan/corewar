@@ -6,11 +6,12 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 16:59:44 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/15 21:10:43 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/16 02:43:08 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "cw_vm.h"
 #include "cw_vm_game.h"
 #include "cw_inst.h"
 
@@ -18,21 +19,22 @@
 ** This instruction indicates that the player is alive
 */
 
-void		cw_vm_op_live(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
+void		cw_vm_op_live(t_cw_vm *vm)
 {
-	long	arg1;
+	long	arg_val;
+	int		arg_pos;
+	int		new_pos;
 
-	(void)inst;
-	arg1 = ft_bigendian32_read(vm->arena
-			+ ((game->procs->pos + 1) % CW_MEM_SIZE));
-	game->procs->last_live = 1;
-	if (arg1 < 0 && (arg1 * -1) <= vm->data.nbr_players)
+	arg_pos = (vm->game.procs->pos + 1) % CW_MEM_SIZE;
+	arg_val = ft_bigendian32_read(vm->arena + arg_pos);
+	vm->game.procs->last_live = 1;
+	if (arg_val < 0 && (arg_val * -1) <= vm->data.nbr_players)
 	{
-		game->last_alive = (arg1 * -1) - 1;
-		game->count_last_live++;
-		if (game->count_last_live == INT32_MAX)
-			game->count_last_live = CW_NBR_LIVE + 1;
+		vm->game.last_alive = (arg_val * -1) - 1;
+		vm->game.count_last_live++;
+		if (vm->game.count_last_live == INT32_MAX)
+			vm->game.count_last_live = CW_NBR_LIVE + 1;
 	}
-	game->procs->pos = (game->procs->pos
-			+ (1 + CW_DIR_SIZE_LIVE)) % CW_MEM_SIZE;
+	new_pos = (vm->game.procs->pos + (1 + CW_DIR_SIZE_LIVE)) % CW_MEM_SIZE;
+	vm->game.procs->pos = new_pos;
 }

@@ -6,13 +6,14 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 21:27:06 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/15 21:15:58 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/16 02:33:45 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
 #include "libft.h"
+#include "cw_vm.h"
 #include "cw_inst.h"
 #include "cw_op.h"
 
@@ -97,23 +98,26 @@ void			cw_inst_dump(t_cw_inst *inst)
 ** ang get argument's binary values and their type (T_REG | T_DIR | T_IND)
 */
 
-void			cw_inst_fill(t_cw_inst *inst, t_cw_vm *vm, t_cw_game *game)
+void			cw_inst_fill(t_cw_vm *vm)
 {
 	unsigned	i;
 
 	i = -1;
-	ft_bzero(inst, sizeof(t_cw_inst));
-	inst->opc = game->procs->opc;
-	inst->has_coding_byte = (game->byte_codage[inst->opc - 1]) ? TRUE : FALSE;
-	if (inst->has_coding_byte == TRUE)
+	ft_bzero(&vm->inst, sizeof(t_cw_inst));
+	vm->inst.opc = vm->game.procs->opc;
+	if (vm->game.byte_codage[vm->inst.opc - 1])
+		vm->inst.has_coding_byte = TRUE;
+	else
+		vm->inst.has_coding_byte = FALSE;
+	if (vm->inst.has_coding_byte == TRUE)
 	{
-		cw_inst_get_args(inst, vm->arena[game->procs->pos + 1]);
-		while (++i < inst->args_count)
-			if (inst->args[i] == 0x01)
-				inst->types[i] = T_REG;
-			else if (inst->args[i] == 0x02)
-				inst->types[i] = T_DIR;
-			else if (inst->args[i] == 0x03)
-				inst->types[i] = T_IND;
+		cw_inst_get_args(&vm->inst, vm->arena[vm->game.procs->pos + 1]);
+		while (++i < vm->inst.args_count)
+			if (vm->inst.args[i] == 0x01)
+				vm->inst.types[i] = T_REG;
+			else if (vm->inst.args[i] == 0x02)
+				vm->inst.types[i] = T_DIR;
+			else if (vm->inst.args[i] == 0x03)
+				vm->inst.types[i] = T_IND;
 	}
 }
