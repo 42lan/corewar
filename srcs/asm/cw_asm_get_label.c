@@ -15,8 +15,8 @@ int			cw_asm_get_label_index(t_cw_asm *state, char *name)
 	i_linst = 0;
 	while (i_linst < state->linsts->item_count)
 	{
-		if (linsts[i_linst].type == CW_LINST_TYPE_LABEL)
-			if (ft_strcmp((char*)linsts[i_linst].label, name) == 0)
+		if (linsts[i_linst].label)
+			if (ft_strcmp(linsts[i_linst].label, name) == 0)
 				return (i_linst);
 		i_linst++;
 	}

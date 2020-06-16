@@ -9,7 +9,6 @@
 
 void						cw_linst_default(t_cw_linst *linst)
 {
-	linst->type = CW_LINST_TYPE_RAW;
 	linst->raw = NULL;
 	linst->literal = NULL;
 	linst->label = NULL;
@@ -24,14 +23,10 @@ void						cw_linst_default(t_cw_linst *linst)
 
 void						cw_linst_clean(t_cw_linst *linst)
 {
-	if (linst->type == CW_LINST_TYPE_RAW)
-		free(linst->raw);
-	if (linst->type == CW_LINST_TYPE_LITERAL)
-		cw_literal_destroy(&(linst->literal));
-	if (linst->type == CW_LINST_TYPE_LABEL)
-		cw_label_destroy(&(linst->label));
-	if (linst->type == CW_LINST_TYPE_INST)
-		free(linst->inst);
+	ft_strdel(&(linst->raw));
+	ft_strdel(&(linst->label));
+	cw_literal_destroy(&(linst->literal));
+	cw_inst_destroy(&(linst->inst));
 	cw_linst_default(linst);
 }
 
@@ -41,9 +36,9 @@ void						cw_linst_clean(t_cw_linst *linst)
 
 int				cw_linst_size(t_cw_linst *linst)
 {
-	if (linst->type == CW_LINST_TYPE_INST)
+	if (linst->inst)
 		return (cw_inst_size(linst->inst));
-	if (linst->type == CW_LINST_TYPE_LITERAL)
+	if (linst->literal)
 		return (cw_literal_size(linst->literal));
 	return (0);
 }
@@ -55,9 +50,9 @@ int				cw_linst_size(t_cw_linst *linst)
 
 void			cw_linst_write(t_cw_linst *linst, unsigned char *out)
 {
-	if (linst->type == CW_LINST_TYPE_INST)
+	if (linst->inst)
 		cw_inst_write(linst->inst, out);
-	if (linst->type == CW_LINST_TYPE_LITERAL)
+	if (linst->literal)
 		cw_literal_write(linst->literal, out);
 }
 

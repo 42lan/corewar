@@ -49,7 +49,6 @@ SRC_FILES_ASM		=	asm/cw_asm_main.c \
 						asm/cw_asm_default_out_file.c \
 						asm/cw_linst.c \
 						asm/cw_literal.c \
-						asm/cw_label.c \
 						asm/cw_asm.c \
 						asm/cw_asm_get_label.c \
 						asm/cw_asm_run.c \
@@ -60,6 +59,13 @@ SRC_FILES_ASM		=	asm/cw_asm_main.c \
 						asm/cw_asm_translate_insts_labels.c \
 						asm/cw_asm_assemble.c \
 						asm/cw_asm_output.c \
+						asm/cw_asm_nothing_at_end.c \
+						asm/cw_asm_skip_label_index.c \
+						asm/cw_asm_skip_spaces_index.c \
+						asm/cw_asm_spaces_index.c \
+						asm/cw_asm_dismember_string.c \
+						asm/cw_asm_translate_literal.c \
+						asm/cw_asm_translate_inst.c \
 
 SRC_FILES_CW		=	vm/cw_vm_main.c \
 						vm/cw_vm_parsing.c \
