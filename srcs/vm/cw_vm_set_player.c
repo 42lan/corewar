@@ -51,7 +51,7 @@ int				cw_vm_set_player(t_cw_vm *vm, int assigned_nbr, char *filename)
 int				cw_vm_set_player_helper(t_cw_vm *vm, int ac, char **av, int *i)
 {
 	int			assigned_nbr;
-	int			ret_value;
+	int			ret;
 
 	if (*i + 1 < ac)
 	{
@@ -60,9 +60,9 @@ int				cw_vm_set_player_helper(t_cw_vm *vm, int ac, char **av, int *i)
 			ft_dprintf(2, "{red}Player's ID must be between 1 and INT_MAX\n{}");
 			return (CW_VM_ERROR_ID_LIMITS);
 		}
-		ret_value = cw_vm_set_player(vm, assigned_nbr, av[*i + 2]);
-		if (ret_value != CW_SUCCESS)
-			return (ret_value);
+		ret = cw_vm_set_player(vm, assigned_nbr, av[*i + 2]);
+		if (ret != CW_SUCCESS)
+			return (ret);
 		*i += 2;
 	}
 	else

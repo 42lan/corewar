@@ -6,75 +6,85 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 17:13:22 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/15 21:05:16 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/16 04:46:24 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "cw_vm_game.h"
+#include "cw_vm.h"
 #include "cw_inst.h"
 
-static int		cw_vm_op_sti_dir(t_cw_game *game, t_cw_vm *vm, int pos)
+static int		cw_vm_op_sti_dir(t_cw_vm *vm, int *pos)
 {
-	int			total;
+	int			arg_pos;
+	int			arg_val;
 
-	total = ft_bigendian16_read(vm->arena
-			+ ((game->procs->pos + pos) % CW_MEM_SIZE));
-	return (total);
+	arg_pos = (vm->game.procs->pos + *pos) % CW_MEM_SIZE;
+	arg_val = ft_bigendian16_read(vm->arena + arg_pos);
+	*pos += CW_DIR_SIZE_STI;
+	return (arg_val);
 }
 
-static int		cw_vm_op_sti_ind(t_cw_game *game, t_cw_vm *vm, int pos)
+static int		cw_vm_op_sti_ind(t_cw_vm *vm, int *pos)
 {
-	int16_t		arg;
-	int			total;
+	int16_t		arg_val;
+	int			arg_pos;
+	int			ind_val;
 	int			idx_address;
 
-	arg = ft_bigendian16_read(vm->arena
-			+ ((game->procs->pos + pos) % CW_MEM_SIZE));
-	idx_address = (game->procs->pos + (arg % CW_IDX_MOD)) % CW_MEM_SIZE;
+	arg_pos = (vm->game.procs->pos + *pos) % CW_MEM_SIZE;
+	arg_val = ft_bigendian16_read(vm->arena + arg_pos);
+	idx_address = (vm->game.procs->pos + (arg_val % CW_IDX_MOD)) % CW_MEM_SIZE;
 	if (idx_address < 0)
 		idx_address += CW_MEM_SIZE;
-	total = ft_bigendian32_read(vm->arena + idx_address);
-	return (total);
+	ind_val = ft_bigendian32_read(vm->arena + idx_address);
+	*pos += 2;
+	return (ind_val);
 }
 
-static void		cw_vm_op_sti_body(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
+static int		cw_vm_op_sti_helper(t_cw_vm *vm, int *arg_val, int *pos)
 {
 	int			i;
+	int			index;
+
+	i = 0;
+	while (++i < 3)
+		if (vm->inst.types[i] == T_REG)
+		{
+			if (cw_vm_is_reg(vm->arena[
+					(vm->game.procs->pos + *pos) % CW_MEM_SIZE]) == FALSE)
+				return (CW_FAILURE);
+			index = vm->arena[(vm->game.procs->pos + *pos) % CW_MEM_SIZE];
+			arg_val[i] = vm->game.procs->regs[index - 1];
+			(*pos)++;
+		}
+		else if (vm->inst.types[i] == T_DIR)
+			arg_val[i] = cw_vm_op_sti_dir(vm, pos);
+		else if (vm->inst.types[i] == T_IND)
+			arg_val[i] = cw_vm_op_sti_ind(vm, pos);
+	return (CW_SUCCESS);
+}
+
+static void		cw_vm_op_sti_body(t_cw_vm *vm)
+{
 	int			pos;
 	int			idx_address;
 	int			reg_value;
-	int			arg[3];
+	int			arg_val[3];
 
-	i = 0;
 	pos = 3;
-	while (++i < 3)
-		if (inst->types[i] == T_REG)
-		{
-			if (cw_vm_is_reg(vm->arena[(game->procs->pos + pos) % CW_MEM_SIZE]) == FALSE)
-				return ;
-			arg[i] = game->procs->regs[(vm->arena[(game->procs->pos + pos) % CW_MEM_SIZE]) - 1];
-			pos++;
-		}
-		else if (inst->types[i] == T_DIR)
-		{
-			arg[i] = cw_vm_op_sti_dir(game, vm, pos);
-			pos += CW_DIR_SIZE_STI;
-		}
-		else if (inst->types[i] == T_IND)
-		{
-			arg[i] = cw_vm_op_sti_ind(game, vm, pos);
-			pos += 2;
-		}
-	idx_address = (game->procs->pos + (arg[1] + arg[2])
-					% CW_IDX_MOD) % CW_MEM_SIZE;
-	if (idx_address < 0)
-		idx_address += CW_MEM_SIZE;
-	arg[0] = vm->arena[game->procs->pos + 2];
-	if (cw_vm_is_reg(arg[0]))
+	if (cw_vm_op_sti_helper(vm, arg_val, &pos) == CW_SUCCESS)
 	{
-		reg_value = game->procs->regs[arg[0] - 1];
-		ft_bigendian32_write(vm->arena + idx_address, reg_value);
+		idx_address = (vm->game.procs->pos
+				+ (arg_val[1] + arg_val[2]) % CW_IDX_MOD) % CW_MEM_SIZE;
+		if (idx_address < 0)
+			idx_address += CW_MEM_SIZE;
+		arg_val[0] = vm->arena[vm->game.procs->pos + 2];
+		if (cw_vm_is_reg(arg_val[0]))
+		{
+			reg_value = vm->game.procs->regs[arg_val[0] - 1];
+			ft_bigendian32_write(vm->arena + idx_address, reg_value);
+		}
 	}
 }
 
@@ -83,11 +93,11 @@ static void		cw_vm_op_sti_body(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
 ** as first argument
 */
 
-void			cw_vm_op_sti(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
+void			cw_vm_op_sti(t_cw_vm *vm)
 {
-	if (inst->args_count >= 3
-		&& inst->types[0] == T_REG && inst->types[2] != T_IND)
-		cw_vm_op_sti_body(inst, game, vm);
-	game->procs->pos = (game->procs->pos + 2
-		+ cw_vm_add_pos(inst, 3, CW_DIR_SIZE_STI)) % CW_MEM_SIZE;
+	if (vm->inst.args_count >= 3
+		&& vm->inst.types[0] == T_REG && vm->inst.types[2] != T_IND)
+		cw_vm_op_sti_body(vm);
+	vm->game.procs->pos = (vm->game.procs->pos + 2
+		+ cw_vm_add_pos(&vm->inst, 3, CW_DIR_SIZE_STI)) % CW_MEM_SIZE;
 }

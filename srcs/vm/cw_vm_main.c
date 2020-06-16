@@ -38,14 +38,14 @@ void		free_memory(t_cw_vm *vm)
 int			main(int argc, char **argv)
 {
 	t_cw_vm		vm;
-	int			ret_value;
+	int			ret;
 
 	if (argc < 2)
 		cw_vm_usage();
 	cw_vm_init_struct_vm(&vm);
-	if ((ret_value = cw_vm_parsing(argc - 1, argv + 1, &vm)) == CW_SUCCESS)
-		if ((ret_value = cw_vm_read_player(&vm)) == CW_SUCCESS)
-			ret_value = cw_vm_game(&vm);
+	if ((ret = cw_vm_parsing(argc - 1, argv + 1, &vm)) == CW_SUCCESS)
+		if ((ret = cw_vm_read_player(&vm)) == CW_SUCCESS)
+			ret = cw_vm_game(&vm);
 	free_memory(&vm);
-	return (ret_value);
+	return (ret);
 }

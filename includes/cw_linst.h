@@ -1,6 +1,9 @@
 #ifndef CW_LINST_H
 # define CW_LINST_H
 
+# include <fcntl.h>
+# include <unistd.h>
+# include <stdlib.h>
 # include "cw_literal.h"
 # include "cw_inst.h"
 

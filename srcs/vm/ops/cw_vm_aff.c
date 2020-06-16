@@ -6,27 +6,27 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 17:15:23 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/15 20:47:26 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/16 04:43:02 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "cw_vm_game.h"
+#include "cw_vm.h"
 #include "cw_inst.h"
 
-void	cw_vm_op_aff(t_cw_inst *inst, t_cw_game *game, t_cw_vm *vm)
+void		cw_vm_op_aff(t_cw_vm *vm)
 {
-	int		arg1;
+	int		arg_val;
 	int		index;
 	char	reg_value;
 
-	if (inst->args_count >= 1 && inst->types[0] == T_REG)
+	if (vm->inst.args_count >= 1 && vm->inst.types[0] == T_REG)
 	{
-		index = vm->arena[game->procs->pos + 2] - 1;
-		arg1 = game->procs->regs[index];
-		reg_value = arg1 % 256;
+		index = vm->arena[vm->game.procs->pos + 2];
+		arg_val = vm->game.procs->regs[index - 1];
+		reg_value = arg_val % 256;
 		ft_printf("%c\n", reg_value);
 	}
-	game->procs->pos = (game->procs->pos + 2
-		+ cw_vm_add_pos(inst, 1, CW_DIR_SIZE_AFF)) % CW_MEM_SIZE;
+	vm->game.procs->pos = (vm->game.procs->pos + 2
+		+ cw_vm_add_pos(&vm->inst, 1, CW_DIR_SIZE_AFF)) % CW_MEM_SIZE;
 }

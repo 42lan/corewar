@@ -6,11 +6,11 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 15:23:59 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/15 20:31:31 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/16 16:52:28 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cw_vm_game.h"
+#include "cw_vm.h"
 
 static t_cw_proc	*cw_vm_ini_proc(int id, int pos)
 {
@@ -72,40 +72,41 @@ static void			cw_vm_ini_byte_codage(t_cw_game *game)
 	game->byte_codage[15] = 1;
 }
 
-static void			cw_vm_ini_game_helper(t_cw_game *game, t_cw_vm *vm)
+static void			cw_vm_ini_game_helper(t_cw_vm *vm)
 {
-	game->last_alive = vm->data.nbr_players - 1;
-	game->cycles_count = 0;
-	game->cycle_to_die = CW_CYCLE_TO_DIE;
-	game->check_performed = 0;
-	game->count_last_live = 0;
-	cw_vm_ini_cycle_opc(game);
-	cw_vm_ini_byte_codage(game);
+	vm->game.last_alive = vm->data.nbr_players - 1;
+	vm->game.cycles_count = 0;
+	vm->game.cycle_to_die = CW_CYCLE_TO_DIE;
+	vm->game.check_performed = 0;
+	vm->game.count_last_live = 0;
+	cw_vm_ini_cycle_opc(&vm->game);
+	cw_vm_ini_byte_codage(&vm->game);
 }
 
-int					cw_vm_ini_game(t_cw_game *game, t_cw_vm *vm)
+int					cw_vm_ini_game(t_cw_vm *vm)
 {
 	int			i;
 	t_cw_proc	*ptr;
 
 	i = vm->data.nbr_players - 1;
-	cw_vm_ini_game_helper(game, vm);
-	if (!(game->procs = cw_vm_ini_proc(i, vm->players[i].init_pos)))
+	cw_vm_ini_game_helper(vm);
+	if (!(vm->game.procs = cw_vm_ini_proc(i, vm->players[i].init_pos)))
 	{
 		ft_dprintf(2, "{red}Error malloc failed{}\n");
 		return (CW_ERROR_MALLOC_FAILED);
 	}
-	ptr = game->procs;
+	ptr = vm->game.procs;
 	while (--i > -1)
 	{
-		if (!(game->procs->next = cw_vm_ini_proc(i, vm->players[i].init_pos)))
+		vm->game.procs->next = cw_vm_ini_proc(i, vm->players[i].init_pos);
+		if (vm->game.procs->next == NULL)
 		{
 			ft_dprintf(2, "{red}Error malloc failed{}\n");
 			return (CW_ERROR_MALLOC_FAILED);
 		}
-		game->procs = game->procs->next;
+		vm->game.procs = vm->game.procs->next;
 	}
-	game->procs = ptr;
-	game->head = ptr;
+	vm->game.procs = ptr;
+	vm->game.head = ptr;
 	return (CW_SUCCESS);
 }

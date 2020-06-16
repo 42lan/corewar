@@ -76,7 +76,7 @@ int				cw_vm_valid_player(t_cw_data *data, t_cw_player *players)
 {
 	int			i;
 	int			fd;
-	int			ret_value;
+	int			ret;
 
 	i = -1;
 	while (++i < data->nbr_players)
@@ -85,9 +85,9 @@ int				cw_vm_valid_player(t_cw_data *data, t_cw_player *players)
 			return (CW_VM_ERROR_OPEN_FAILED);
 		if (cw_vm_create_champion(players, i) != CW_SUCCESS)
 			return (CW_ERROR_MALLOC_FAILED);
-		ret_value = cw_vm_verify_file_structure(fd, &players[i]);
-		if (ret_value != CW_SUCCESS)
-			return (ret_value);
+		ret = cw_vm_verify_file_structure(fd, &players[i]);
+		if (ret != CW_SUCCESS)
+			return (ret);
 		close(fd);
 	}
 	return (CW_SUCCESS);

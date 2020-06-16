@@ -6,13 +6,12 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/14 02:02:18 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/15 20:47:05 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/16 04:42:55 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cw_op.h"
 #include "cw_inst.h"
-#include "cw_vm_game.h"
 
 /*
 ** cw_vm_add_pos() computes and return how many bytes should be skipped

@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/15 04:59:42 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/15 05:13:24 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/16 04:33:28 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 ** cw_vm_set_dump() set dump value in t_cw_data and TRUE boolean to t_cw_vm
 */
 
-int			cw_vm_set_dump(t_cw_vm *vm, char **av, int *i)
+int			cw_vm_set_dump(t_cw_vm *vm, char **av)
 {
 	char	*tmp;
 
@@ -38,6 +38,5 @@ int			cw_vm_set_dump(t_cw_vm *vm, char **av, int *i)
 		return (CW_VM_ERROR_CYCLE_LIMITS);
 	}
 	ft_strdel(&tmp);
-	*i += 2;
 	return (CW_SUCCESS);
 }

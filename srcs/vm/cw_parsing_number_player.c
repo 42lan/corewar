@@ -78,11 +78,11 @@ static int		cw_check_duplicate_number(t_cw_data *data)
 int				cw_parsing_number_player(t_cw_data *data)
 {
 	int			i;
-	int			ret_value;
+	int			ret;
 
 	i = -1;
-	if ((ret_value = cw_check_duplicate_number(data)) != CW_SUCCESS)
-		return (ret_value);
+	if ((ret = cw_check_duplicate_number(data)) != CW_SUCCESS)
+		return (ret);
 	while (++i + 1 < data->nbr_players)
 		if (data->assigned_nbr[i] > data->assigned_nbr[i + 1])
 		{
