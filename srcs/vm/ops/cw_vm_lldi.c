@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 17:14:53 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/16 16:46:13 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/17 01:48:20 by jthierce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int		cw_vm_op_lldi_dir(t_cw_vm *vm, int *pos)
 	int			arg_val;
 
 	arg_pos = (vm->game.procs->pos + *pos) % CW_MEM_SIZE;
-	arg_val = ft_bigendian16_read(vm->arena + arg_pos);
+	arg_val = cw_vm_bigendian16_read(vm->arena, arg_pos);
 	*pos += CW_DIR_SIZE_LLDI;
 	return (arg_val);
 }
@@ -33,11 +33,11 @@ static int16_t	cw_vm_op_lldi_ind(t_cw_vm *vm, int *pos)
 	int			idx_address;
 
 	arg_pos = (vm->game.procs->pos + *pos) % CW_MEM_SIZE;
-	arg_val = ft_bigendian16_read(vm->arena + arg_pos);
+	arg_val = cw_vm_bigendian16_read(vm->arena, arg_pos);
 	idx_address = (vm->game.procs->pos + (arg_val % CW_IDX_MOD)) % CW_MEM_SIZE;
 	if (idx_address < 0)
 		idx_address += CW_MEM_SIZE;
-	ind_value = ft_bigendian32_read(vm->arena + idx_address);
+	ind_value = cw_vm_bigendian32_read(vm->arena, idx_address);
 	*pos += 2;
 	return (ind_value);
 }
@@ -80,7 +80,7 @@ static void		cw_vm_op_lldi_body(t_cw_vm *vm)
 		arg_val[2] = vm->arena[(vm->game.procs->pos + pos) % CW_MEM_SIZE];
 		if (cw_vm_is_reg(arg_val[2]))
 			vm->game.procs->regs[
-				arg_val[2] - 1] = ft_bigendian32_read(vm->arena + pos);
+				arg_val[2] - 1] = cw_vm_bigendian32_read(vm->arena, pos);
 		vm->game.procs->carry =
 			(vm->game.procs->regs[arg_val[2] - 1] == 0) ? 1 : 0;
 	}

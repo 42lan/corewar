@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 16:59:44 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/16 04:43:38 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/17 01:47:18 by jthierce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void		cw_vm_op_live(t_cw_vm *vm)
 	int		new_pos;
 
 	arg_pos = (vm->game.procs->pos + 1) % CW_MEM_SIZE;
-	arg_val = ft_bigendian32_read(vm->arena + arg_pos);
+	arg_val = cw_vm_bigendian32_read(vm->arena, arg_pos);
 	vm->game.procs->last_live = 1;
 	if (arg_val < 0 && (arg_val * -1) <= vm->data.nbr_players)
 	{

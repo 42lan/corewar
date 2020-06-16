@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 00:15:08 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/16 04:43:10 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/17 01:45:22 by jthierce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int		cw_vm_op_and_dir(t_cw_vm *vm, int *pos)
 	int			arg_pos;
 
 	arg_pos = (vm->game.procs->pos + *pos) % CW_MEM_SIZE;
-	arg_val = ft_bigendian32_read(vm->arena + arg_pos);
+	arg_val = cw_vm_bigendian32_read(vm->arena, arg_pos);
 	*pos += CW_DIR_SIZE_AND;
 	return (arg_val);
 }
@@ -32,11 +32,11 @@ static int		cw_vm_op_and_ind(t_cw_vm *vm, int *pos)
 	int16_t		arg_pos;
 
 	arg_pos = (vm->game.procs->pos + *pos) % CW_MEM_SIZE;
-	arg_val = ft_bigendian16_read(vm->arena + arg_pos);
+	arg_val = cw_vm_bigendian16_read(vm->arena, arg_pos);
 	idx_address = (vm->game.procs->pos + (arg_val % CW_IDX_MOD)) % CW_MEM_SIZE;
 	if (idx_address < 0)
 		idx_address += CW_MEM_SIZE;
-	arg_val = ft_bigendian32_read(vm->arena + idx_address);
+	arg_val = cw_vm_bigendian32_read(vm->arena, idx_address);
 	*pos += 2;
 	return (arg_val);
 }
