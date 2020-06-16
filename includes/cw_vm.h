@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 15:01:47 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/16 02:34:29 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/16 04:37:51 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # include "cw_errors.h"
 # include "cw_vm_parsing.h"
 # include "cw_vm_player.h"
-# include "cw_vm_game.h"
 
 typedef struct		s_cw_proc t_cw_proc;
 
