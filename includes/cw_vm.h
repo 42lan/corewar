@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 15:01:47 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/16 23:21:45 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/17 01:31:50 by jthierce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 
 # include <stdlib.h>
+# include <stdint.h>
 # include "cw_vm_macros.h"
 # include "cw_errors.h"
 # include "cw_vm_parsing.h"
@@ -84,6 +85,15 @@ int					cw_vm_add_pos(t_cw_inst *inst, int nbr_arg, int label_size);
 void				cw_inst_fill(t_cw_vm *vm);
 int					cw_vm_ini_arena(t_cw_vm *vm);
 void				cw_vm_intro_players(t_cw_vm *vm);
+
+/*
+** B I G E N D I A N   R W
+*/
+
+int32_t				cw_vm_bigendian32_read(unsigned char *data32, int index);
+void				cw_vm_bigendian32_write(unsigned char *data32, int index, int32_t int32);
+int16_t				cw_vm_bigendian16_read(unsigned char *data16, int index);
+void				cw_vm_bigendian16_write(unsigned char *data16, int index, int16_t int16);
 
 /*
 ** P R O C E S S E S   ( C U R S O R S )

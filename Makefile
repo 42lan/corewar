@@ -6,7 +6,7 @@
 #    By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by bleplat           #+#    #+#              #
-#    Updated: 2020/06/16 22:28:01 by amalsago         ###   ########.fr        #
+#    Updated: 2020/06/17 01:32:22 by jthierce         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,6 +88,7 @@ SRC_FILES_CW		=	vm/cw_vm_main.c \
 						vm/cw_vm_set_dump.c \
 						vm/cw_vm_set_player.c \
 						vm/cw_vm_proc.c \
+						vm/cw_vm_rw_bigendian.c \
 						$(SRC_FILES_CW_OP)
 
 SRC_FILES_CW_OP		=	vm/ops/cw_vm_live.c \
