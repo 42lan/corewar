@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 15:01:47 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/16 04:37:51 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/16 04:39:25 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void				cw_vm_print_data(t_cw_data *data);
 int					cw_vm_set_player(t_cw_vm *vm, int assigned_nbr, char *filename);
 int					cw_vm_set_player_helper(t_cw_vm *vm, int ac, char **av, int *i);
 int					cw_vm_check_nbr_players(t_cw_vm *vm);
-int					cw_vm_set_dump(t_cw_vm *vm, char **av, int *i);
+int					cw_vm_set_dump(t_cw_vm *vm, char **av);
 
 int					cw_vm_ini_game(t_cw_vm *vm);
 int					cw_vm_start_game(t_cw_vm *vm, t_cw_game *game);
