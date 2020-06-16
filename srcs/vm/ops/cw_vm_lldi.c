@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 17:14:53 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/16 04:44:08 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/16 16:46:13 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int16_t	cw_vm_op_lldi_ind(t_cw_vm *vm, int *pos)
 	int			ind_value;
 	int			idx_address;
 
-	arg_pos =(vm->game.procs->pos + *pos) % CW_MEM_SIZE;
+	arg_pos = (vm->game.procs->pos + *pos) % CW_MEM_SIZE;
 	arg_val = ft_bigendian16_read(vm->arena + arg_pos);
 	idx_address = (vm->game.procs->pos + (arg_val % CW_IDX_MOD)) % CW_MEM_SIZE;
 	if (idx_address < 0)
@@ -79,8 +79,8 @@ static void		cw_vm_op_lldi_body(t_cw_vm *vm)
 			arg_val[0] += CW_MEM_SIZE;
 		arg_val[2] = vm->arena[(vm->game.procs->pos + pos) % CW_MEM_SIZE];
 		if (cw_vm_is_reg(arg_val[2]))
-			vm->game.procs->regs[arg_val[2] - 1]
-				= ft_bigendian32_read(vm->arena + pos);
+			vm->game.procs->regs[
+				arg_val[2] - 1] = ft_bigendian32_read(vm->arena + pos);
 		vm->game.procs->carry =
 			(vm->game.procs->regs[arg_val[2] - 1] == 0) ? 1 : 0;
 	}

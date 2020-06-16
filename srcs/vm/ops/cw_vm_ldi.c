@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 17:12:31 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/16 02:44:29 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/16 16:51:30 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,8 @@ static void		cw_vm_op_ldi_body(t_cw_vm *vm)
 			arg_val[0] += CW_MEM_SIZE;
 		arg_val[2] = vm->arena[(vm->game.procs->pos + pos) % CW_MEM_SIZE];
 		if (cw_vm_is_reg(arg_val[2]))
-			vm->game.procs->regs[arg_val[2] - 1]
-				= ft_bigendian32_read(vm->arena + pos);
+			vm->game.procs->regs[
+				arg_val[2] - 1] = ft_bigendian32_read(vm->arena + pos);
 	}
 }
 

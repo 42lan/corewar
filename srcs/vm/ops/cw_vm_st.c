@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 19:32:09 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/16 04:46:18 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/16 16:45:00 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ void			cw_vm_op_st(t_cw_vm *vm)
 			arg_val[0] = vm->arena[(vm->game.procs->pos + 2) % CW_MEM_SIZE];
 			arg_val[1] = vm->arena[(vm->game.procs->pos + 3) % CW_MEM_SIZE];
 			if (cw_vm_is_reg(arg_val[0]) == TRUE && cw_vm_is_reg(arg_val[1]))
-				vm->game.procs->regs[arg_val[1] - 1]
-					= vm->game.procs->regs[arg_val[0] - 1];
+				vm->game.procs->regs[
+					arg_val[1] - 1] = vm->game.procs->regs[arg_val[0] - 1];
 		}
 		else if (vm->inst.types[1] == T_IND)
 			cw_vm_op_st_ind_exec(vm);

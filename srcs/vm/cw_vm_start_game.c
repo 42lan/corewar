@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 19:14:23 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/16 05:53:54 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/16 16:41:02 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static int	cw_vm_perform_check(t_cw_vm *vm, t_cw_game *game)
 	return (CW_NOT_LAST_PROC);
 }
 
-int				cw_vm_start_game(t_cw_vm *vm, t_cw_game *game)
+int			cw_vm_start_game(t_cw_vm *vm, t_cw_game *game)
 {
 	int			ret;
 

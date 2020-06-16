@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 15:23:59 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/16 04:41:18 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/16 16:52:28 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,8 @@ int					cw_vm_ini_game(t_cw_vm *vm)
 	ptr = vm->game.procs;
 	while (--i > -1)
 	{
-		if ((vm->game.procs->next
-					= cw_vm_ini_proc(i, vm->players[i].init_pos)) == NULL)
+		vm->game.procs->next = cw_vm_ini_proc(i, vm->players[i].init_pos);
+		if (vm->game.procs->next == NULL)
 		{
 			ft_dprintf(2, "{red}Error malloc failed{}\n");
 			return (CW_ERROR_MALLOC_FAILED);
