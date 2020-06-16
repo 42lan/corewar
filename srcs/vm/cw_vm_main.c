@@ -6,14 +6,14 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 18:04:40 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/16 21:44:01 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/16 22:23:34 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "cw_vm.h"
 
-void		cw_vm_init_struct_vm(t_cw_vm *vm)
+static void		cw_vm_init_struct_vm(t_cw_vm *vm)
 {
 	ft_bzero(vm, sizeof(vm));
 	vm->dump = -1;
@@ -22,9 +22,9 @@ void		cw_vm_init_struct_vm(t_cw_vm *vm)
 	ft_memset(vm->data.assigned_nbr, -1, sizeof(int) * CW_MAX_PLAYERS);
 }
 
-void		free_memory(t_cw_vm *vm)
+static void		free_memory(t_cw_vm *vm)
 {
-	int		i;
+	int			i;
 
 	i = -1;
 	while (++i < vm->data.nbr_players)
@@ -35,7 +35,7 @@ void		free_memory(t_cw_vm *vm)
 	}
 }
 
-int			main(int argc, char **argv)
+int				main(int argc, char **argv)
 {
 	t_cw_vm		vm;
 	int			ret;

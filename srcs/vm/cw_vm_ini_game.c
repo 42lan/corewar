@@ -6,31 +6,11 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 15:23:59 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/16 16:52:28 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/16 22:23:06 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cw_vm.h"
-
-static t_cw_proc	*cw_vm_ini_proc(int id, int pos)
-{
-	t_cw_proc	*processus;
-
-	if (!(processus = (t_cw_proc *)malloc(sizeof(t_cw_proc))))
-		return (NULL);
-	id++;
-	processus->carry = FALSE;
-	processus->opc = -1;
-	processus->last_live = -1;
-	processus->wait_cycles = 0;
-	processus->pos = pos;
-	processus->jump = -1;
-	processus->id = id;
-	ft_bzero(processus->regs, sizeof(int) * CW_REG_NUMBER);
-	processus->regs[0] = id * -1;
-	processus->next = NULL;
-	return (processus);
-}
 
 static void			cw_vm_ini_cycle_opc(t_cw_game *game)
 {
@@ -90,7 +70,7 @@ int					cw_vm_ini_game(t_cw_vm *vm)
 
 	i = vm->data.nbr_players - 1;
 	cw_vm_ini_game_helper(vm);
-	if (!(vm->game.procs = cw_vm_ini_proc(i, vm->players[i].init_pos)))
+	if (!(vm->game.procs = cw_vm_proc_create(i, vm->players[i].init_pos)))
 	{
 		ft_dprintf(2, "{red}Error malloc failed{}\n");
 		return (CW_ERROR_MALLOC_FAILED);
@@ -98,7 +78,7 @@ int					cw_vm_ini_game(t_cw_vm *vm)
 	ptr = vm->game.procs;
 	while (--i > -1)
 	{
-		vm->game.procs->next = cw_vm_ini_proc(i, vm->players[i].init_pos);
+		vm->game.procs->next = cw_vm_proc_create(i, vm->players[i].init_pos);
 		if (vm->game.procs->next == NULL)
 		{
 			ft_dprintf(2, "{red}Error malloc failed{}\n");

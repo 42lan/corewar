@@ -15,6 +15,21 @@
 #include "cw_vm_parsing.h"
 #include "cw_errors.h"
 
+/*
+** cw_vm_check_nbr_players() checks if there is at least one player provided,
+** otherwise it teminate program
+*/
+
+int		cw_vm_check_nbr_players(t_cw_vm *vm)
+{
+	if (vm->data.nbr_players == 0)
+	{
+		ft_dprintf(2, "{red}No players provided\n{}");
+		return (CW_VM_ERROR_NO_PLAYERS);
+	}
+	return (CW_SUCCESS);
+}
+
 static int	cw_vm_get_next_arg(char **av, int i, char **tmp)
 {
 	if ((*tmp = ft_strtrim(av[i])) == NULL)

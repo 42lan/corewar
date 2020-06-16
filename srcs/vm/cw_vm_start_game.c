@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 19:14:23 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/16 16:41:02 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/16 22:11:09 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,7 @@ static int	cw_vm_perform_check(t_cw_vm *vm, t_cw_game *game)
 	if (vm->dump == 0)
 	{
 		cw_vm_arena_dump(vm->arena, CW_MEM_SIZE);
-		ft_memdel((void **)&game->head->next);
-		ft_memdel((void **)&game->head);
+		cw_vm_procs_destroy(game->head);
 		return (CW_VM_DUMP);
 	}
 	if (game->cycles_count >= game->cycle_to_die)
