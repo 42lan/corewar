@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/16 22:07:59 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/16 22:11:18 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/16 23:22:18 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,21 @@ void		cw_vm_procs_destroy(t_cw_proc *head)
 		ft_memdel((void **)&curr);
 	}
 	ft_memdel((void **)&head);
+}
+
+int			cw_vm_proc_count(t_cw_proc *head)
+{
+	int			count;
+	t_cw_proc	*curr;
+
+	count = 0;
+	curr = head;
+	while (curr != NULL)
+	{
+		count++;
+		curr = curr->next;
+	}
+	return (count);
 }
 
 void		cw_vm_proc_dump(t_cw_proc *proc)

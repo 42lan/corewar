@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 15:01:47 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/16 22:27:54 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/16 23:21:45 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ void				cw_vm_intro_players(t_cw_vm *vm);
 
 t_cw_proc			*cw_vm_proc_create(int id, int pos);
 void				cw_vm_procs_destroy(t_cw_proc *head);
+int					cw_vm_proc_count(t_cw_proc *head);
 void				cw_vm_proc_dump(t_cw_proc *proc);
 
 /*
