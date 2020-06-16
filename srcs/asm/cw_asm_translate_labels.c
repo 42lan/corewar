@@ -1,15 +1,45 @@
 #include "cw_asm.h"
 
 /*
+** Consider the linst is a label and translate it without checking.
+*/
+
+int			cw_asm_translate_label2(t_cw_asm *state, t_cw_linst *linst,
+									int i_label)
+{
+	char		*label;
+
+	if (!(label = ft_strcdup(&linst->raw[i_label], CW_LABEL_CHAR)))
+		return (CW_ERROR_MALLOC_FAILED);
+	if (cw_asm_get_label_index(state, label) >= 0)
+	{
+		free(label);
+		return (CW_ASM_ERROR_DUPLICATE_LABEL);
+	}
+	linst->label = label;
+	return (CW_SUCCESS);
+}
+
+/*
 ** Try to translate a single linst to a label if ever it is one.
+**
+** We consider a label have been inputed if the last char is ':'.
 */
 
 int			cw_asm_translate_label(t_cw_asm *state, t_cw_linst *linst)
 {
-	ft_printf("{red}TODO: cw_asm_translate_label\n");
-	(void)state;
-	(void)linst;
-	return (CW_SUCCESS);
+	int		i_label;
+	int		i_end;
+
+	i_label = 0;
+	while (linst->raw[i_label] && ft_isblank(linst->raw[i_label]))
+		i_label++;
+	i_end = i_label;
+	while (linst->raw[i_end] && !ft_strchr(CW_LABEL_CHARS, linst->raw[i_end]))
+		i_label++;
+	if (linst->raw[i_end] != CW_LABEL_CHAR)
+		return (CW_SUCCESS);
+	return (cw_asm_translate_label2(state, linst, i_label));
 }
 
 /*
@@ -21,16 +51,18 @@ int			cw_asm_translate_label(t_cw_asm *state, t_cw_linst *linst)
 
 int			cw_asm_translate_labels(t_cw_asm *state)
 {
+	int			rst;
 	t_cw_linst	*linsts;
 	int			i_linst;
 	
+	rst = CW_SUCCESS;
 	linsts = (t_cw_linst*)state->linsts->items;
 	i_linst = 0;
 	while (i_linst < state->linsts->item_count)
 	{
-		if (linsts[i_linst].type == CW_LINST_TYPE_RAW)
-			cw_asm_translate_label(state, &linsts[i_linst]);
+		if ((rst = cw_asm_translate_label(state, &linsts[i_linst])) < 0)
+			return (rst);
 		i_linst++;
 	}
-	return (CW_SUCCESS);
+	return (rst);
 }

@@ -9,6 +9,12 @@
 # include "cw_linst.h"
 # include "cw_asm_options.h"
 
+#define CW_COMMENT_CHAR '#'
+#define CW_LABEL_CHAR ':'
+#define CW_DIRECT_CHAR '%'
+#define CW_SEPARATOR_CHAR ','
+#define CW_LABEL_CHARS "abcdefghijklmnopqrstuvwxyz_0123456789"
+
 /*
 ** t_cw_asm:
 **
@@ -55,10 +61,21 @@ int				cw_asm_assemble(t_cw_asm *state);
 int				cw_asm_output(t_cw_asm *state);
 
 /*
-** Getters:
+** Helpers:
 */
 
 int				cw_asm_get_label_index(t_cw_asm *state, char *name);
 int				cw_asm_get_label_offset(t_cw_asm *state, int index);
+int				cw_asm_nothing_at_end(t_cw_asm *state, t_cw_linst *linst,
+									 int index);
+int				cw_asm_dismember_string(t_cw_asm *state, t_cw_linst *linst,
+									 int index);
+
+int				cw_asm_skip_label_index(t_cw_linst *linst);
+int				cw_asm_skip_spaces_index(t_cw_linst *linst, int index);
+int				cw_asm_spaces_index(t_cw_linst *linst, int index);
+
+int				cw_asm_translate_literal(t_cw_asm *state, t_cw_linst *linst);
+int				cw_asm_translate_inst(t_cw_asm *state, t_cw_linst *linst);
 
 #endif

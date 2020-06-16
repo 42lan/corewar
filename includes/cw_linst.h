@@ -5,7 +5,6 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include "cw_literal.h"
-# include "cw_label.h"
 # include "cw_inst.h"
 
 /*
@@ -13,24 +12,21 @@
 **
 ** Store an instruction read from a file.
 ** This correspond to a line, and can be of several kind.
+**
+** raw: raw string containing the corresponding line.
+** label: optional label of the line. Exclusive with literal.
+** literal: Instructions starting by ".". Exclusive with label and inst.
+** inst: Op instructions. Exclusive with literal.
+** offset: offset in the binary code.
 */
-
-# define CW_LINST_TYPE_RAW 0
-# define CW_LINST_TYPE_LITERAL 1
-# define CW_LINST_TYPE_LABEL 2
-# define CW_LINST_TYPE_INST 3
 
 typedef struct s_cw_linst	t_cw_linst;
 struct						s_cw_linst
 {
-	int					type;
-	union
-	{
-		char			*raw;
-		t_cw_literal	*literal;
-		t_cw_label		*label;
-		t_cw_inst		*inst;
-	};
+	char				*raw;
+	char				*label;
+	t_cw_literal		*literal;
+	t_cw_inst			*inst;
 	uint32_t			offset;
 };
 
