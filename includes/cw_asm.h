@@ -74,6 +74,7 @@ int				cw_asm_dismember_string(t_cw_asm *state, t_cw_linst *linst,
 int				cw_asm_skip_label_index(t_cw_linst *linst);
 int				cw_asm_skip_spaces_index(t_cw_linst *linst, int index);
 int				cw_asm_spaces_index(t_cw_linst *linst, int index);
+int				cw_asm_skip_alnums_index(t_cw_linst *linst, int index);
 
 int				cw_asm_translate_literal(t_cw_asm *state, t_cw_linst *linst);
 int				cw_asm_translate_inst(t_cw_asm *state, t_cw_linst *linst);

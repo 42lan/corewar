@@ -57,6 +57,8 @@ struct					s_cw_op
 # define CW_OP_MAX 17
 
 const t_cw_op			*cw_op_list(void);
+const t_cw_op			*cw_op_get(t_cw_opc opc);
+const t_cw_op			*cw_op_get_by_name(const char *name);
 
 /*
 ** t_cw_coding_code:
