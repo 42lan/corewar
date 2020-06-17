@@ -96,6 +96,7 @@ int			cw_asm_translate_inst(t_cw_asm *state, t_cw_linst *linst)
 	char			bck;
 	const t_cw_op	*op;
 
+ft_printf("{purple} ---\n");
 	i_op = cw_asm_skip_label_index(linst);
 	i_op = cw_asm_skip_spaces_index(linst, i_op);
 	i_end = cw_asm_skip_alnums_index(linst, i_op);
@@ -103,6 +104,7 @@ int			cw_asm_translate_inst(t_cw_asm *state, t_cw_linst *linst)
 	linst->raw[i_end] = '\0';
 	op = cw_op_get_from_name(&linst->raw[i_op]);
 	linst->raw[i_end] = bck;
+ft_printf("{purple} unknown op %s\n", linst->raw);
 	if (!op)
 		return (CW_ASM_ERROR_UNKNOWN_OP);
 	i_end = cw_asm_skip_spaces_index(linst, i_end);
