@@ -10,7 +10,7 @@ static int		assemble(t_cw_asm *state, t_cw_linst *linst)
 			if (!state->champion->name)
 				state->champion->name = ft_strdup(linst->literal->value);
 		if (linst->literal->type == CW_LITERAL_TYPE_COMMENT)
-			if (!state->champion->name)
+			if (!state->champion->comment)
 				state->champion->comment = ft_strdup(linst->literal->value);
 	}
 	cw_linst_write(linst, state->champion->code + linst->offset);

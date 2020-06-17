@@ -23,7 +23,7 @@ static int	translate_literal2(t_cw_asm *state, t_cw_linst *linst,
 		return (translate_iliteral(state, linst, type, i_quote));
 	if ((rst = cw_asm_dismember_string(state, linst, i_quote)) < 0)
 		return (rst);
-	linst->literal = cw_literal_create(type, &linst->raw[i_quote + 1]);
+	if (!(linst->literal = cw_literal_create(type, &linst->raw[i_quote + 1])))
 		return (CW_ERROR_MALLOC_FAILED);
 	linst->raw[i_quote] = '\"';
 	linst->raw[ft_strlen(linst->raw)] = '\"';
@@ -43,7 +43,7 @@ int			cw_asm_translate_literal(t_cw_asm *state, t_cw_linst *linst)
 	int		i_space;
 
 	i_lit = cw_asm_skip_spaces_index(linst, 0);
-	if (i_lit != '.')
+	if (linst->raw[i_lit] != '.')
 		return (CW_SUCCESS);
 	i_space = i_lit;
 	while (linst->raw[i_space] && !ft_isblank(linst->raw[i_space]))

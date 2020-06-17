@@ -34,7 +34,7 @@ int			cw_asm_translate_label(t_cw_asm *state, t_cw_linst *linst)
 	i_label = cw_asm_skip_spaces_index(linst, 0);
 	i_end = i_label;
 	while (linst->raw[i_end] && !ft_strchr(CW_LABEL_CHARS, linst->raw[i_end]))
-		i_label++;
+		i_end++;
 	if (linst->raw[i_end] != CW_LABEL_CHAR)
 		return (CW_SUCCESS);
 	return (cw_asm_translate_label2(state, linst, i_label));
