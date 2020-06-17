@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 17:15:23 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/16 04:43:02 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/17 04:30:11 by jthierce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void		cw_vm_op_aff(t_cw_vm *vm)
 
 	if (vm->inst.args_count >= 1 && vm->inst.types[0] == T_REG)
 	{
-		index = vm->arena[vm->game.procs->pos + 2];
+		index = vm->arena[(vm->game.procs->pos + 2) % CW_MEM_SIZE];
 		arg_val = vm->game.procs->regs[index - 1];
 		reg_value = arg_val % 256;
 		ft_printf("%c\n", reg_value);

@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 17:13:22 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/17 01:50:25 by jthierce         ###   ########.fr       */
+/*   Updated: 2020/06/17 04:34:38 by jthierce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static void		cw_vm_op_sti_body(t_cw_vm *vm)
 				+ (arg_val[1] + arg_val[2]) % CW_IDX_MOD) % CW_MEM_SIZE;
 		if (idx_address < 0)
 			idx_address += CW_MEM_SIZE;
-		arg_val[0] = vm->arena[vm->game.procs->pos + 2];
+		arg_val[0] = vm->arena[(vm->game.procs->pos + 2) % CW_MEM_SIZE];
 		if (cw_vm_is_reg(arg_val[0]))
 		{
 			reg_value = vm->game.procs->regs[arg_val[0] - 1];

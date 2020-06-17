@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 21:27:06 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/16 02:33:45 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/17 04:30:18 by jthierce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ void			cw_inst_fill(t_cw_vm *vm)
 		vm->inst.has_coding_byte = FALSE;
 	if (vm->inst.has_coding_byte == TRUE)
 	{
-		cw_inst_get_args(&vm->inst, vm->arena[vm->game.procs->pos + 1]);
+		cw_inst_get_args(&vm->inst, vm->arena[(vm->game.procs->pos + 1) % CW_MEM_SIZE]);
 		while (++i < vm->inst.args_count)
 			if (vm->inst.args[i] == 0x01)
 				vm->inst.types[i] = T_REG;
