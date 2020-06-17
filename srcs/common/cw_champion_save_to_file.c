@@ -34,7 +34,7 @@ static int write_comment(t_cw_champion *champion, int fd)
 	if (len > CW_PROG_NAME_LENGTH)
 		return (write(fd, champion->comment, CW_COMMENT_LENGTH));
 	rst |= write(fd, champion->comment, len);
-	while (len < CW_PROG_NAME_LENGTH)
+	while (len < CW_COMMENT_LENGTH)
 	{
 		rst |= write(fd, "\0", 1);
 		len++;
