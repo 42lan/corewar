@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 19:14:23 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/17 11:21:47 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/17 19:48:11 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,26 +82,26 @@ static int	cw_vm_perform_check(t_cw_vm *vm, t_cw_game *game)
 	return (CW_NOT_LAST_PROC);
 }
 
-int			cw_vm_start_game(t_cw_vm *vm, t_cw_game *game)
+int			cw_vm_start_game(t_cw_vm *vm, t_cw_game *game, t_cw_proc **procs)
 {
 	int			ret;
 
 	while (1)
 	{
-		if (game->procs->wait_cycles != 0)
+		if ((*procs)->wait_cycles != 0)
 		{
-			game->procs->wait_cycles--;
-			(game->procs->wait_cycles == 0) ? cw_vm_read_execute(vm) : 0;
+			(*procs)->wait_cycles--;
+			((*procs)->wait_cycles == 0) ? cw_vm_read_execute(vm) : 0;
 		}
-		else if (cw_vm_is_valid_op(vm->arena[game->procs->pos]) == TRUE)
+		else if (cw_vm_is_valid_op(vm->arena[(*procs)->pos]) == TRUE)
 		{
-			game->procs->opc = vm->arena[game->procs->pos];
-			game->procs->wait_cycles = game->cycle_opc[game->procs->opc - 1] - 1;
+			(*procs)->opc = vm->arena[(*procs)->pos];
+			(*procs)->wait_cycles = game->cycle_opc[(*procs)->opc - 1] - 1;
 		}
 		else
-			game->procs->pos = (game->procs->pos + 1) % CW_MEM_SIZE;
-		if (game->procs->next != NULL)
-			game->procs = game->procs->next;
+			(*procs)->pos = ((*procs)->pos + 1) % CW_MEM_SIZE;
+		if ((*procs)->next != NULL)
+			(*procs) = (*procs)->next;
 		else
 		{
 			if ((ret = cw_vm_perform_check(vm, game)) != CW_NOT_LAST_PROC)
