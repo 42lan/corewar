@@ -6,7 +6,7 @@
 /*   By: bleplat <bleplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 19:25:45 by bleplat           #+#    #+#             */
-/*   Updated: 2020/06/17 20:05:49 by bleplat          ###   ########.fr       */
+/*   Updated: 2020/06/17 20:40:42 by bleplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,12 @@ void			cw_asmr_msg(int error, t_cw_linst *linst)
 	char	*msg1;
 	char	*msg2;
 
-	(void)linst;
-	(void)error;
 	if ((msg1 = get1(error)) != NULL)
 		ft_dprintf(2, "%s\n", msg1);
 	if ((msg2 = get2(error)) != NULL)
 		ft_dprintf(2, "%s\n", msg2);
-	details(linst, error);
+	if (linst)
+		details(linst, error);
 	if (!msg1 && !msg2)
 		ft_dprintf(2, "%d\n", error);
 }
