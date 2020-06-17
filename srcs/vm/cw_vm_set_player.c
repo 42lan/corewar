@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cw_vm_set_player.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/15 04:57:43 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/17 15:12:14 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/17 18:34:02 by jthierce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 int				cw_vm_set_player(t_cw_vm *vm, int assigned_nbr, char *filename)
 {
 	static int	j = 0;
-	/* static int	cnt = 0; */
+	static int	cnt = INT16_MIN;
 
 	if (filename == NULL || filename[0] == '\0')
 	{
@@ -38,10 +38,7 @@ int				cw_vm_set_player(t_cw_vm *vm, int assigned_nbr, char *filename)
 		ft_printf("{red}Error malloc failed\n{}");
 		return (CW_ERROR_MALLOC_FAILED);
 	}
-	/* vm->data.assigned_nbr[j++] = (assigned_nbr > 0) ? assigned_nbr : --cnt; */
-	(void)assigned_nbr;
-	vm->data.assigned_nbr[j] = j + 1;
-	j++;
+	vm->data.assigned_nbr[j++] = (assigned_nbr > 0) ? assigned_nbr : ++cnt;
 	vm->data.nbr_players += 1;
 	return (CW_SUCCESS);
 }
