@@ -19,9 +19,11 @@ int		cw_champion_save_to_fd(t_cw_champion *champion, int fd)
 	ft_bigendian32_write((unsigned char *)tmp, CW_EXEC_MAGIC);
 	rst |= write(fd, tmp, 4);
 	rst |= write(fd, champion->name, CW_PROG_NAME_LENGTH);
+	rst |= write(fd, "\0\0\0\0", 4);
 	ft_bigendian32_write((unsigned char *)tmp, champion->code_len);
 	rst |= write(fd, tmp, 4);
 	rst |= write(fd, champion->comment, CW_COMMENT_LENGTH);
+	rst |= write(fd, "\0\0\0\0", 4);
 	rst |= write(fd, champion->code, champion->code_len);
 	if (rst < 0)
 		return (CW_ERROR_WRITING_OUTPUT_FILE);
