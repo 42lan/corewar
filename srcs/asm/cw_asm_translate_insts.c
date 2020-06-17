@@ -4,10 +4,10 @@ static int	translate(t_cw_asm *state, t_cw_linst *linst)
 {
 	int		rst;
 
-	if (!(rst = cw_asm_translate_literal(state, linst)))
+	if ((rst = cw_asm_translate_literal(state, linst)) < 0)
 		return (rst);
 	if (linst->literal == NULL)
-		if (!(rst = cw_asm_translate_inst(state, linst)))
+		if ((rst = cw_asm_translate_inst(state, linst)) < 0)
 			return (rst);
 	return (rst);
 }

@@ -12,7 +12,7 @@
 
 #include "cw_op.h"
 
-const t_cw_op	op_list[CW_OP_COUNT + 1] = {
+const t_cw_op	g_op_list[CW_OP_COUNT + 1] = {
 		{"live", 1, {T_DIR}, 1, 10, "alive", 0, 0},
 		{"ld", 2, {T_DIR | T_IND, T_REG}, 2, 5, "load", 1, 0},
 		{"st", 2, {T_REG, T_IND | T_REG}, 3, 5, "store", 1, 0},

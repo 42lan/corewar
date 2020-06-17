@@ -31,6 +31,7 @@ const t_cw_op			*cw_op_get_from_name(const char *name)
 	i_op = 0;
 	while (ops[i_op].name != NULL)
 	{
+ft_printf("{grey} >< %s\n", ops[i_op].name);//
 		if (ft_strcmp(ops[i_op].name, name) == 0)
 			return (&ops[i_op]);
 		i_op++;
