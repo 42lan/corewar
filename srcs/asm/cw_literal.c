@@ -12,7 +12,7 @@ t_cw_literal	*cw_literal_create(int type, char *value)
 {
 	t_cw_literal	*literal;
 
-	if (!(literal = malloc(sizeof(literal))))
+	if (!(literal = malloc(sizeof(t_cw_literal))))
 		return (NULL);
 	literal->type = type;
 	if (!(literal->value = ft_strdup(value)))

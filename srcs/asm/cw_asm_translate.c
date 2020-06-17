@@ -13,10 +13,13 @@ int				cw_asm_translate(t_cw_asm *state)
 {
 	int		rst;
 
+ft_printf("{blue} translate_labels:\n");
 	if ((rst = cw_asm_translate_labels(state)) < 0)
 		return (rst);
+ft_printf("{blue} translate_insts:\n");
 	if ((rst = cw_asm_translate_insts(state)) < 0)
 		return (rst);
+ft_printf("{blue} translate_insts_labels:\n");
 	if ((rst = cw_asm_translate_insts_labels(state)) < 0)
 		return (rst);
 	return (rst);

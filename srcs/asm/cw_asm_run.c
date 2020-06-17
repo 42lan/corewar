@@ -21,5 +21,6 @@ ft_printf("{bold}{blue}assemble:\n");
 ft_printf("{bold}{blue}output:\n");
 	if ((rst = cw_asm_output(state)) < 0)
 		return (rst);
+ft_printf("{bold}{blue}done.\n");
 	return (rst);
 }
