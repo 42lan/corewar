@@ -33,6 +33,7 @@ LIBFTMO     = $(LIBFT_DIR)/libftmo.a
 
 SRC_FILES_COMMON	=	common/cw_champion.c \
 						common/cw_op_list.c \
+						common/cw_op_get.c \
 						common/cw_op_get_arg_type.c \
 						common/cw_op_get_arg_types.c \
 						common/cw_op_get_coding_code.c \
@@ -63,6 +64,9 @@ SRC_FILES_ASM		=	asm/cw_asm_main.c \
 						asm/cw_asm_skip_label_index.c \
 						asm/cw_asm_skip_spaces_index.c \
 						asm/cw_asm_spaces_index.c \
+						asm/cw_asm_skip_alnums_index.c \
+						asm/cw_asm_argend_index.c \
+						asm/cw_asm_nextarg_index.c \
 						asm/cw_asm_dismember_string.c \
 						asm/cw_asm_translate_literal.c \
 						asm/cw_asm_translate_inst.c \

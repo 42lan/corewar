@@ -31,9 +31,7 @@ int			cw_asm_translate_label(t_cw_asm *state, t_cw_linst *linst)
 	int		i_label;
 	int		i_end;
 
-	i_label = 0;
-	while (linst->raw[i_label] && ft_isblank(linst->raw[i_label]))
-		i_label++;
+	i_label = cw_asm_skip_spaces_index(linst, 0);
 	i_end = i_label;
 	while (linst->raw[i_end] && !ft_strchr(CW_LABEL_CHARS, linst->raw[i_end]))
 		i_label++;
@@ -55,7 +53,6 @@ int			cw_asm_translate_labels(t_cw_asm *state)
 	t_cw_linst	*linsts;
 	int			i_linst;
 	
-	rst = CW_SUCCESS;
 	linsts = (t_cw_linst*)state->linsts->items;
 	i_linst = 0;
 	while (i_linst < state->linsts->item_count)
@@ -64,5 +61,5 @@ int			cw_asm_translate_labels(t_cw_asm *state)
 			return (rst);
 		i_linst++;
 	}
-	return (rst);
+	return (CW_SUCCESS);
 }
