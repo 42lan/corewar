@@ -24,10 +24,14 @@ void						cw_linst_default(t_cw_linst *linst)
 
 void						cw_linst_clean(t_cw_linst *linst)
 {
-	ft_strdel(&(linst->raw));
-	ft_strdel(&(linst->label));
-	cw_literal_destroy(&(linst->literal));
-	cw_inst_destroy(&(linst->inst));
+	if (linst->raw)
+		ft_strdel(&(linst->raw));
+	if (linst->label)
+		ft_strdel(&(linst->label));
+	if (linst->literal)
+		cw_literal_destroy(&(linst->literal));
+	if (linst->inst)
+		cw_inst_destroy(&(linst->inst));
 	cw_linst_default(linst);
 }
 
