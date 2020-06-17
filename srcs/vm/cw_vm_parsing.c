@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 14:06:54 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/17 18:28:21 by jthierce         ###   ########.fr       */
+/*   Updated: 2020/06/17 19:19:22 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 ** otherwise it teminate program
 */
 
-int		cw_vm_check_nbr_players(t_cw_vm *vm)
+static int	cw_vm_check_nbr_players(t_cw_vm *vm)
 {
 	if (vm->data.nbr_players == 0)
 	{

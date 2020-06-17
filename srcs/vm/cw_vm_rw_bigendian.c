@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 01:22:08 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/17 01:22:08 by jthierce         ###   ########.fr       */
+/*   Updated: 2020/06/17 19:21:02 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ int32_t		cw_vm_bigendian32_read(unsigned char *data32, int index)
 ** Write an int32 to a byte array encoded in big endian.
 */
 
-void		cw_vm_bigendian32_write(unsigned char *data32, int index, int32_t int32)
+void		cw_vm_bigendian32_write(unsigned char *data32, int index,
+				int32_t int32)
 {
 	data32[(index + 3) % CW_MEM_SIZE] = (int32 >> 0) & 0xFF;
 	data32[(index + 2) % CW_MEM_SIZE] = (int32 >> 8) & 0xFF;
@@ -59,7 +60,8 @@ int16_t		cw_vm_bigendian16_read(unsigned char *data16, int index)
 ** Write an int16 to a byte array encoded in big endian.
 */
 
-void	cw_vm_bigendian16_write(unsigned char *data16, int index, int16_t int16)
+void		cw_vm_bigendian16_write(unsigned char *data16, int index,
+				int16_t int16)
 {
 	data16[(index + 1) % CW_MEM_SIZE] = (int16 >> 0) & 0xFF;
 	data16[(index + 0) % CW_MEM_SIZE] = (int16 >> 8) & 0xFF;

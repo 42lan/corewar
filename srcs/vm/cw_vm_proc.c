@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/16 22:07:59 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/16 23:22:18 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/17 19:21:46 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_cw_proc		*cw_vm_proc_create(int id, int pos)
 	return (processus);
 }
 
-void		cw_vm_procs_destroy(t_cw_proc *head)
+void			cw_vm_procs_destroy(t_cw_proc *head)
 {
 	t_cw_proc	*curr;
 
@@ -45,7 +45,7 @@ void		cw_vm_procs_destroy(t_cw_proc *head)
 	ft_memdel((void **)&head);
 }
 
-int			cw_vm_proc_count(t_cw_proc *head)
+int				cw_vm_proc_count(t_cw_proc *head)
 {
 	int			count;
 	t_cw_proc	*curr;
@@ -60,9 +60,9 @@ int			cw_vm_proc_count(t_cw_proc *head)
 	return (count);
 }
 
-void		cw_vm_proc_dump(t_cw_proc *proc)
+void			cw_vm_proc_dump(t_cw_proc *proc)
 {
-	int		i;
+	int			i;
 
 	if (proc == NULL)
 		return ;

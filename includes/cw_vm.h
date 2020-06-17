@@ -6,15 +6,14 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 15:01:47 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/17 19:56:30 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/17 21:15:27 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "cw_inst.h"
 #ifndef CW_VM_H
 # define CW_VM_H
 
-
+# include "cw_inst.h"
 # include <stdlib.h>
 # include <stdint.h>
 # include "cw_vm_macros.h"
@@ -68,9 +67,12 @@ int					cw_vm_usage(void);
 
 int					cw_vm_parsing(int argc, char **argv, t_cw_vm *vm);
 int					cw_vm_set_dump(t_cw_vm *vm, char **av);
-int					cw_vm_is_valid_extension(const char *argv, const char *extension);
-int					cw_vm_set_player(t_cw_vm *vm, int assigned_nbr, char *filename);
-int					cw_vm_set_player_helper(t_cw_vm *vm, int ac, char **av, int *i);
+int					cw_vm_is_valid_extension(const char *argv,
+						const char *extension);
+int					cw_vm_set_player(t_cw_vm *vm, int assigned_nbr,
+						char *filename);
+int					cw_vm_set_player_helper(t_cw_vm *vm, int ac, char **av,
+						int *i);
 int					cw_vm_read_player(t_cw_vm *vm);
 
 /*
@@ -79,7 +81,8 @@ int					cw_vm_read_player(t_cw_vm *vm);
 
 int					cw_vm_game(t_cw_vm *vm);
 int					cw_vm_ini_game(t_cw_vm *vm);
-int					cw_vm_start_game(t_cw_vm *vm, t_cw_game *game, t_cw_proc **procs);
+int					cw_vm_start_game(t_cw_vm *vm, t_cw_game *game,
+						t_cw_proc **procs);
 void				cw_vm_read_execute(t_cw_vm *vm);
 int					cw_vm_add_pos(t_cw_inst *inst, int nbr_arg, int label_size);
 void				cw_inst_fill(t_cw_vm *vm);
@@ -91,9 +94,11 @@ void				cw_vm_intro_players(t_cw_vm *vm);
 */
 
 int32_t				cw_vm_bigendian32_read(unsigned char *data32, int index);
-void				cw_vm_bigendian32_write(unsigned char *data32, int index, int32_t int32);
+void				cw_vm_bigendian32_write(unsigned char *data32, int index,
+						int32_t int32);
 int16_t				cw_vm_bigendian16_read(unsigned char *data16, int index);
-void				cw_vm_bigendian16_write(unsigned char *data16, int index, int16_t int16);
+void				cw_vm_bigendian16_write(unsigned char *data16, int index,
+						int16_t int16);
 
 /*
 ** P R O C E S S E S   ( C U R S O R S )

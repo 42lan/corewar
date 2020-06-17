@@ -6,7 +6,7 @@
 /*   By: bleplat <bleplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 18:19:58 by bleplat           #+#    #+#             */
-/*   Updated: 2020/06/17 18:20:02 by bleplat          ###   ########.fr       */
+/*   Updated: 2020/06/17 20:06:22 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define CW_CHAMPION_NULL		4
 # define CW_EXEC_CODE_LEN		4
 # define CW_COMMENT_LENGTH		2048
-# define CW_CHAMP_MAX_SIZE		(CW_MEM_SIZE / 6)
+# define CW_CHAMP_MAX_SIZE		682
 
 /*
 ** t_cw_champion:

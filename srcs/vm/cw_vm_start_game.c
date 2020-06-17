@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 19:14:23 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/17 19:48:11 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/17 21:10:27 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ static int	cw_vm_last_proc(t_cw_game *game, t_cw_vm *vm, t_cw_proc *proc)
 	return (CW_LAST_PROC);
 }
 
-static int	cw_vm_processus_dead(t_cw_game *game, t_cw_proc *proc, t_cw_vm *vm)
+static int	proc_dead(t_cw_game *game, t_cw_proc *proc, t_cw_proc *tmp,
+				t_cw_vm *vm)
 {
 	t_cw_proc	*prev;
-	t_cw_proc	*tmp;
 
 	while (proc != NULL)
 	{
@@ -67,7 +67,7 @@ static int	cw_vm_perform_check(t_cw_vm *vm, t_cw_game *game)
 	if (game->cycles_count >= game->cycle_to_die)
 	{
 		game->check_performed++;
-		if (cw_vm_processus_dead(game, game->head, vm) == CW_LAST_PROC)
+		if (proc_dead(game, game->head, game->head->next, vm) == CW_LAST_PROC)
 			return (CW_LAST_PROC);
 		if (game->check_performed >= CW_MAX_CHECKS
 			|| game->count_last_live >= CW_NBR_LIVE)
