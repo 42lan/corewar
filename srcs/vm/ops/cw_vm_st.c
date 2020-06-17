@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 19:32:09 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/16 16:45:00 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/17 01:49:38 by jthierce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ static void		cw_vm_op_st_ind_exec(t_cw_vm *vm)
 	{
 		reg_value = vm->game.procs->regs[reg_index - 1];
 		arg_pos = (vm->game.procs->pos + 3) % CW_MEM_SIZE;
-		arg_val = ft_bigendian16_read(vm->arena + arg_pos);
+		arg_val = cw_vm_bigendian16_read(vm->arena, arg_pos);
 		arg_val = (vm->game.procs->pos
 				+ (arg_val % CW_IDX_MOD)) % CW_MEM_SIZE;
 		if (arg_val < 0)
 			arg_val += CW_MEM_SIZE;
-		ft_bigendian32_write(vm->arena + arg_val, reg_value);
+		cw_vm_bigendian32_write(vm->arena, arg_val, reg_value);
 	}
 }
 

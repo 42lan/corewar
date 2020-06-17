@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 17:13:22 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/16 04:46:24 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/17 01:50:25 by jthierce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int		cw_vm_op_sti_dir(t_cw_vm *vm, int *pos)
 	int			arg_val;
 
 	arg_pos = (vm->game.procs->pos + *pos) % CW_MEM_SIZE;
-	arg_val = ft_bigendian16_read(vm->arena + arg_pos);
+	arg_val = cw_vm_bigendian16_read(vm->arena, arg_pos);
 	*pos += CW_DIR_SIZE_STI;
 	return (arg_val);
 }
@@ -33,11 +33,11 @@ static int		cw_vm_op_sti_ind(t_cw_vm *vm, int *pos)
 	int			idx_address;
 
 	arg_pos = (vm->game.procs->pos + *pos) % CW_MEM_SIZE;
-	arg_val = ft_bigendian16_read(vm->arena + arg_pos);
+	arg_val = cw_vm_bigendian16_read(vm->arena, arg_pos);
 	idx_address = (vm->game.procs->pos + (arg_val % CW_IDX_MOD)) % CW_MEM_SIZE;
 	if (idx_address < 0)
 		idx_address += CW_MEM_SIZE;
-	ind_val = ft_bigendian32_read(vm->arena + idx_address);
+	ind_val = cw_vm_bigendian32_read(vm->arena, idx_address);
 	*pos += 2;
 	return (ind_val);
 }
@@ -83,7 +83,7 @@ static void		cw_vm_op_sti_body(t_cw_vm *vm)
 		if (cw_vm_is_reg(arg_val[0]))
 		{
 			reg_value = vm->game.procs->regs[arg_val[0] - 1];
-			ft_bigendian32_write(vm->arena + idx_address, reg_value);
+			cw_vm_bigendian32_write(vm->arena, idx_address, reg_value);
 		}
 	}
 }

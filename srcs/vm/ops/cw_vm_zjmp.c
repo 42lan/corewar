@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 05:31:10 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/16 02:42:45 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/17 01:50:59 by jthierce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void		cw_vm_op_zjmp(t_cw_vm *vm)
 	if (vm->game.procs->carry == 1)
 	{
 		arg_pos = (vm->game.procs->pos + 1) % CW_MEM_SIZE;
-		arg_val = ft_bigendian16_read(vm->arena + arg_pos);
+		arg_val = cw_vm_bigendian16_read(vm->arena, arg_pos);
 		new_pos = (vm->game.procs->pos + (arg_val % CW_IDX_MOD)) % CW_MEM_SIZE;
 		vm->game.procs->pos = new_pos;
 		if (vm->game.procs->pos < 0)

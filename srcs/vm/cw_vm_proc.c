@@ -1,16 +1,64 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cw_vm_proc_dump.c                                  :+:      :+:    :+:   */
+/*   cw_vm_proc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/11 12:02:45 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/16 04:42:10 by amalsago         ###   ########.fr       */
+/*   Created: 2020/06/16 22:07:59 by amalsago          #+#    #+#             */
+/*   Updated: 2020/06/16 23:22:18 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cw_vm.h"
+
+t_cw_proc		*cw_vm_proc_create(int id, int pos)
+{
+	t_cw_proc	*processus;
+
+	if (!(processus = (t_cw_proc *)malloc(sizeof(t_cw_proc))))
+		return (NULL);
+	id++;
+	processus->carry = FALSE;
+	processus->opc = -1;
+	processus->last_live = -1;
+	processus->wait_cycles = 0;
+	processus->pos = pos;
+	processus->jump = -1;
+	processus->id = id;
+	ft_bzero(processus->regs, sizeof(int) * CW_REG_NUMBER);
+	processus->regs[0] = id * -1;
+	processus->next = NULL;
+	return (processus);
+}
+
+void		cw_vm_procs_destroy(t_cw_proc *head)
+{
+	t_cw_proc	*curr;
+
+	while (head->next)
+	{
+		curr = head;
+		head = head->next;
+		ft_memdel((void **)&curr);
+	}
+	ft_memdel((void **)&head);
+}
+
+int			cw_vm_proc_count(t_cw_proc *head)
+{
+	int			count;
+	t_cw_proc	*curr;
+
+	count = 0;
+	curr = head;
+	while (curr != NULL)
+	{
+		count++;
+		curr = curr->next;
+	}
+	return (count);
+}
 
 void		cw_vm_proc_dump(t_cw_proc *proc)
 {

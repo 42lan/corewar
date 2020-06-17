@@ -6,7 +6,7 @@
 #    By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by bleplat           #+#    #+#              #
-#    Updated: 2020/06/15 18:10:04 by amalsago         ###   ########.fr        #
+#    Updated: 2020/06/17 01:32:22 by jthierce         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,12 +87,12 @@ SRC_FILES_CW		=	vm/cw_vm_main.c \
 						vm/cw_vm_start_game.c \
 						vm/cw_vm_read_execute.c \
 						vm/cw_vm_predicaters.c \
-						vm/cw_vm_proc_dump.c \
-						vm/cw_vm_check_nbr_players.c \
 						vm/cw_vm_debug.c \
 						vm/cw_vm_is_valid_extension.c \
 						vm/cw_vm_set_dump.c \
 						vm/cw_vm_set_player.c \
+						vm/cw_vm_proc.c \
+						vm/cw_vm_rw_bigendian.c \
 						$(SRC_FILES_CW_OP)
 
 SRC_FILES_CW_OP		=	vm/ops/cw_vm_live.c \
@@ -144,7 +144,7 @@ DEP = $(patsubst %, $(DEP_DIR)/%.d, $(SRC_FILES))
 ###   C O M P I L E R   ###
 ###########################
 
-CC = gcc
+CC = gcc -g3
 
 DEFINES = _DARWIN_USE_64_BIT_INODE
 CDEFINES = $(patsubst %, -D%, $(DEFINES))

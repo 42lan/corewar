@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 19:14:23 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/16 16:41:02 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/17 00:42:27 by jthierce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,14 @@ static int	cw_vm_last_proc(t_cw_game *game, t_cw_vm *vm, t_cw_proc *proc)
 static int	cw_vm_processus_dead(t_cw_game *game, t_cw_proc *proc, t_cw_vm *vm)
 {
 	t_cw_proc	*prev;
+	t_cw_proc	*tmp;
 
 	while (proc != NULL)
+	{
+		tmp = proc->next;
 		if (proc->last_live == -1)
 		{
+			ft_printf("{red}del procs\n{}");
 			if (proc == game->head)
 			{
 				if (proc->next == NULL)
@@ -45,8 +49,9 @@ static int	cw_vm_processus_dead(t_cw_game *game, t_cw_proc *proc, t_cw_vm *vm)
 		{
 			proc->last_live = -1;
 			prev = proc;
-			proc = proc->next;
 		}
+		proc = tmp;
+	}
 	return (CW_NOT_LAST_PROC);
 }
 
@@ -57,8 +62,7 @@ static int	cw_vm_perform_check(t_cw_vm *vm, t_cw_game *game)
 	if (vm->dump == 0)
 	{
 		cw_vm_arena_dump(vm->arena, CW_MEM_SIZE);
-		ft_memdel((void **)&game->head->next);
-		ft_memdel((void **)&game->head);
+		cw_vm_procs_destroy(game->head);
 		return (CW_VM_DUMP);
 	}
 	if (game->cycles_count >= game->cycle_to_die)
@@ -93,7 +97,7 @@ int			cw_vm_start_game(t_cw_vm *vm, t_cw_game *game)
 		else if (cw_vm_is_valid_op(vm->arena[game->procs->pos]) == TRUE)
 		{
 			game->procs->opc = vm->arena[game->procs->pos];
-			game->procs->wait_cycles = game->cycle_opc[game->procs->opc - 1];
+			game->procs->wait_cycles = game->cycle_opc[game->procs->opc - 1] - 1;
 		}
 		else
 			game->procs->pos = (game->procs->pos + 1) % CW_MEM_SIZE;

@@ -1,14 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cw_op_list.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/06/16 18:12:20 by amalsago          #+#    #+#             */
+/*   Updated: 2020/06/16 18:39:57 by amalsago         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cw_op.h"
 
-/*
-** Get the list of ops.
-** Return a pointer that do not need to be freed.
-*/
-
-const t_cw_op		*cw_op_list(void)
-{
-	static t_cw_op	op_list[17] =
-	{
+const t_cw_op	op_list[CW_OP_COUNT + 1] = {
 		{"live", 1, {T_DIR}, 1, 10, "alive", 0, 0},
 		{"ld", 2, {T_DIR | T_IND, T_REG}, 2, 5, "load", 1, 0},
 		{"st", 2, {T_REG, T_IND | T_REG}, 3, 5, "store", 1, 0},
@@ -33,5 +37,13 @@ const t_cw_op		*cw_op_list(void)
 		{"aff", 1, {T_REG}, 16, 2, "aff", 1, 0},
 		{0, 0, {0}, 0, 0, 0, 0, 0}
 	};
-	return ((const t_cw_op*)op_list);
+
+/*
+** Get the list of ops.
+** Return a pointer that do not need to be freed.
+*/
+
+const t_cw_op		*cw_op_list(void)
+{
+	return (g_op_list);
 }

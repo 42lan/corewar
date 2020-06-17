@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 14:06:54 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/16 04:34:32 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/16 22:27:45 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,21 @@
 #include "cw_vm.h"
 #include "cw_vm_parsing.h"
 #include "cw_errors.h"
+
+/*
+** cw_vm_check_nbr_players() checks if there is at least one player provided,
+** otherwise it teminate program
+*/
+
+int		cw_vm_check_nbr_players(t_cw_vm *vm)
+{
+	if (vm->data.nbr_players == 0)
+	{
+		ft_dprintf(2, "{red}No players provided\n{}");
+		return (CW_VM_ERROR_NO_PLAYERS);
+	}
+	return (CW_SUCCESS);
+}
 
 static int	cw_vm_get_next_arg(char **av, int i, char **tmp)
 {
@@ -35,7 +50,7 @@ static int	cw_vm_check_max_players(t_cw_vm *vm)
 	return (CW_SUCCESS);
 }
 
-int			cw_vm_parsing_helper(int ac, char **av, t_cw_vm *vm, char **tmp)
+static int	cw_vm_parsing_helper(int ac, char **av, t_cw_vm *vm, char **tmp)
 {
 	int		i;
 	int		ret;
@@ -58,7 +73,7 @@ int			cw_vm_parsing_helper(int ac, char **av, t_cw_vm *vm, char **tmp)
 				break ;
 		}
 		else
-			cw_vm_usage();
+			return (cw_vm_usage());
 		ft_strdel(tmp);
 	}
 	return (ret);

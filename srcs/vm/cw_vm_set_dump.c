@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/15 04:59:42 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/16 04:33:28 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/16 22:26:58 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int			cw_vm_set_dump(t_cw_vm *vm, char **av)
 	}
 	if (ft_atoi32check(&vm->dump, tmp) != 0 || vm->dump <= 0)
 	{
+		ft_strdel(&tmp);
 		ft_dprintf(2, "{red}Number of cycle must be between 1 and INT_MAX\n{}");
 		return (CW_VM_ERROR_CYCLE_LIMITS);
 	}
