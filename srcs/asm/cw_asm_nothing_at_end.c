@@ -10,7 +10,11 @@ int				cw_asm_nothing_at_end(t_cw_asm *state, t_cw_linst *linst,
 	(void)state;
 	while (1)
 	{
-		if (linst->raw[index] == '\0' || linst->raw[index] == '#')
+		if (linst->raw[index] == '\0')
+			return (CW_SUCCESS);
+		if (linst->raw[index] == CW_COMMENT_CHAR)
+			return (CW_SUCCESS);
+		if (linst->raw[index] == CW_COMMENT_CHAR2)
 			return (CW_SUCCESS);
 		if (!ft_isblank(linst->raw[index]))
 			return (CW_ASM_ERROR_UNEXPECTED);

@@ -56,7 +56,9 @@ struct					s_cw_op
 # define CW_OP_MIN 1
 # define CW_OP_MAX 17
 
+const t_cw_op			g_op_list[CW_OP_COUNT + 1];
 const t_cw_op			*cw_op_list(void);
+
 const t_cw_op			*cw_op_get(t_cw_opc opc);
 const t_cw_op			*cw_op_get_from_name(const char *name);
 

@@ -10,6 +10,7 @@
 # include "cw_asm_options.h"
 
 #define CW_COMMENT_CHAR '#'
+#define CW_COMMENT_CHAR2 ';'
 #define CW_LABEL_CHAR ':'
 #define CW_DIRECT_CHAR '%'
 #define CW_SEP_CHAR ','
