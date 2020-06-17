@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 19:14:23 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/17 00:42:27 by jthierce         ###   ########.fr       */
+/*   Updated: 2020/06/17 05:15:44 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ static int	cw_vm_processus_dead(t_cw_game *game, t_cw_proc *proc, t_cw_vm *vm)
 		tmp = proc->next;
 		if (proc->last_live == -1)
 		{
-			ft_printf("{red}del procs\n{}");
 			if (proc == game->head)
 			{
 				if (proc->next == NULL)
@@ -109,5 +108,5 @@ int			cw_vm_start_game(t_cw_vm *vm, t_cw_game *game)
 				break ;
 		}
 	}
-	return (ret);
+	return ((ret == CW_VM_DUMP) || (ret == CW_LAST_PROC) ? CW_SUCCESS : ret);
 }
