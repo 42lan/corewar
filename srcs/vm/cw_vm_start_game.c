@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 19:14:23 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/17 05:15:44 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/17 11:21:47 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	cw_vm_last_proc(t_cw_game *game, t_cw_vm *vm, t_cw_proc *proc)
 
 	id = game->last_alive;
 	name = vm->players[id].champion->name;
-	ft_printf("{bold}{orange}The player %d(%s) has won.{}\n", id + 1, name);
+	ft_printf("Contestant %d, \"%s\", has won !\n", id + 1, name);
 	ft_memdel((void **)&proc);
 	return (CW_LAST_PROC);
 }

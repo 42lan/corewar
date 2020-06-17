@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 14:24:09 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/15 20:32:16 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/17 11:19:51 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	cw_vm_intro_players(t_cw_vm *vm)
 	while (++i < vm->data.nbr_players)
 	{
 		champion = vm->players[i].champion;
-		ft_printf("* Player %d, weighing %d bytes, \"%s\" (\"%s\")\n",
+		ft_printf("* Player %d, weighing %d bytes, \"%s\" (\"%s\") !\n",
 			i + 1, champion->code_len, champion->name, champion->comment);
 	}
 }
