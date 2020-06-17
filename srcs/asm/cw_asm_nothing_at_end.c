@@ -6,7 +6,7 @@
 /*   By: bleplat <bleplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 18:22:06 by bleplat           #+#    #+#             */
-/*   Updated: 2020/06/17 18:46:28 by bleplat          ###   ########.fr       */
+/*   Updated: 2020/06/17 20:08:02 by bleplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int				cw_asm_nothing_at_end(t_cw_asm *state, t_cw_linst *linst,
 		if (linst->raw[index] == CW_COMMENT_CHAR2)
 			return (CW_SUCCESS);
 		if (!ft_isblank(linst->raw[index]))
-			return (CW_ASM_ERROR_UNEXPECTED);
+			return (cw_asmr(CW_ASMR_UNEXPECTED, index, linst));
 		index++;
 	}
-	return (CW_ASM_ERROR_UNEXPECTED);
+	return (cw_asmr(CW_ASMR_UNEXPECTED, index, linst));
 }

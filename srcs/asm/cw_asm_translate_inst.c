@@ -6,7 +6,7 @@
 /*   By: bleplat <bleplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 18:22:54 by bleplat           #+#    #+#             */
-/*   Updated: 2020/06/17 18:42:41 by bleplat          ###   ########.fr       */
+/*   Updated: 2020/06/17 20:20:16 by bleplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ static int	translate_arg2(t_cw_asm *state, t_cw_inst *inst, char *str)
 		inst->types[inst->args_count] |= CW_T_LAB;
 		inst->args[inst->args_count] = cw_asm_get_label_index(state, &str[1]);
 		if (inst->args[inst->args_count] == -1)
-			return (CW_ASM_ERROR_MISSING_LABEL);
+			return (CW_ASMR_LABEL_MISSING);
 	}
 	else
 	{
 ft_printf(" atoying '%s'\n", str);//
 		if (ft_atoi32check(&inst->args[inst->args_count], str) < 0)
-			return (CW_ASM_ERROR_INVALID_INT);
+			return (CW_ASMR_INT_INVALID);
 	}
 	return (CW_SUCCESS);
 }
@@ -52,7 +52,7 @@ ft_printf(" translating argument '%s'\n", str);//
 		str += 1;
 ft_printf(" atoying '%s'\n", str);//
 		if (ft_atoi32check(&inst->args[inst->args_count], str) < 0)
-			return (CW_ASM_ERROR_INVALID_INT);
+			return (CW_ASMR_INT_INVALID);
 	}
 	else
 	{
@@ -84,10 +84,12 @@ static int	translate_inst3(t_cw_asm *state, t_cw_linst *linst, int i_arg)
 	if (cw_asm_nothing_at_end(state, linst, i_end) == CW_SUCCESS)
 		return (CW_SUCCESS);
 	if (linst->inst->args_count >= 3)
-		return (CW_ASM_ERROR_ARG_COUNT);
+		return (cw_asmr(CW_ASMR_ARG_COUNT, i_arg, linst));
 	if ((i_arg = cw_asm_nextarg_index(linst, i_end)) < 0)
-		return (CW_ASM_ERROR_SYNTAX);
-	return (translate_inst3(state, linst, i_arg));
+		return (cw_asmr(CW_ASMR_SYNTAX, i_arg, linst));
+	rst = translate_inst3(state, linst, i_arg);
+	cw_asmr(rst, i_arg, linst);
+	return (rst);
 }
 
 /*
@@ -107,12 +109,12 @@ static int	translate_inst2(t_cw_asm *state, t_cw_linst *linst,
 	if ((rst = translate_inst3(state, linst, i_args)) < 0)
 		return (rst);
 	if (linst->inst->args_count != op->arg_count)
-		return (CW_ASM_ERROR_ARG_COUNT);
+		return (cw_asmr(CW_ASMR_ARG_COUNT, i_args, linst));
 	i_arg = 0;
 	while (i_arg < linst->inst->args_count)
 	{
 		if (!(linst->inst->types[i_arg] & op->arg_types[i_arg]))
-			return (CW_ASM_ERROR_ARG_TYPE);
+			return (cw_asmr(CW_ASMR_ARG_TYPE, i_arg, linst));
 		i_arg++;
 	}
 	return (CW_SUCCESS);
@@ -139,7 +141,7 @@ int			cw_asm_translate_inst(t_cw_asm *state, t_cw_linst *linst)
 	op = cw_op_get_from_name(&linst->raw[i_op]);
 	linst->raw[i_end] = bck;
 	if (!op)
-		return (CW_ASM_ERROR_UNKNOWN_OP);
+		return (cw_asmr(CW_ASMR_OP_UNKNOWN, i_op, linst));
 	i_end = cw_asm_skip_spaces_index(linst, i_end);
 	return (translate_inst2(state, linst, op, i_end));
 }

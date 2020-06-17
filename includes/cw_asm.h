@@ -6,7 +6,7 @@
 /*   By: bleplat <bleplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 18:17:34 by bleplat           #+#    #+#             */
-/*   Updated: 2020/06/17 19:04:38 by bleplat          ###   ########.fr       */
+/*   Updated: 2020/06/17 20:04:41 by bleplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,9 @@ void					cw_asm_destroy(t_cw_asm **state);
 */
 
 int						cw_asm_error(int code);
-int						cw_asmr(t_cw_asm *state, t_cw_linst *linst,
-								int error, int index);
+int						cw_asm_error_msg(int code);
+int						cw_asmr(int error, int index, t_cw_linst *linst);
+void					cw_asmr_msg(int error, t_cw_linst *linst);
 
 /*
 ** Main asm algorithm:

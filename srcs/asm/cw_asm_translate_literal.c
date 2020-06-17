@@ -6,7 +6,7 @@
 /*   By: bleplat <bleplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 18:23:11 by bleplat           #+#    #+#             */
-/*   Updated: 2020/06/17 18:23:13 by bleplat          ###   ########.fr       */
+/*   Updated: 2020/06/17 20:12:18 by bleplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	translate_iliteral(t_cw_asm *state, t_cw_linst *linst,
 
 	(void)state;
 	if ((rst = ft_atoi32check(&rst, &linst->raw[i_int])) < 0)
-		return (CW_ASM_ERROR_INVALID_INT);
+		return (cw_asmr(CW_ASMR_INT_INVALID, i_int, linst));
 	if (!(linst->literal = cw_literal_create(type, &linst->raw[i_int])))
 		return (CW_ERROR_MALLOC_FAILED);
 	ft_printf("{cyan} just literalized %d %s\n", linst->literal->type, linst->literal->value);//
@@ -68,6 +68,6 @@ int			cw_asm_translate_literal(t_cw_asm *state, t_cw_linst *linst)
 	type = cw_literal_get_type(&linst->raw[i_lit]);
 	linst->raw[i_end] = bck;
 	if (type == CW_LITERAL_TYPE_NONE)
-		return (CW_ASM_ERROR_UNKNOWN_LITERAL);
+		return (cw_asmr(CW_ASMR_LITERAL_UNKNOWN, i_lit, linst));
 	return (translate_literal2(state, linst, type, i_end));
 }

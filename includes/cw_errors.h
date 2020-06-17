@@ -6,7 +6,7 @@
 /*   By: bleplat <bleplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 18:20:08 by bleplat           #+#    #+#             */
-/*   Updated: 2020/06/17 18:20:11 by bleplat          ###   ########.fr       */
+/*   Updated: 2020/06/17 19:45:42 by bleplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,27 +37,36 @@
 
 /*
 ** Asm specific error codes:
-** Positive values are non-critical.
 */
 
 # define CW_ASM_ERROR -60
 # define CW_ASM_ERROR_UNKNOWN_OPTION -61
 # define CW_ASM_ERROR_MALFORMED_FILE -69
 
-# define CW_ASM_WARNING_NAME_TRUNCATED 70
-# define CW_ASM_WARNING_NAME_MISSING 71
-# define CW_ASM_WARNING_COMMENT_TRUNCATED 72
-# define CW_ASM_WARNING_CODE_TOO_LONG 73
-# define CW_ASM_ERROR_SYNTAX -80
-# define CW_ASM_ERROR_UNEXPECTED -81
-# define CW_ASM_ERROR_DUPLICATE_LABEL -82
-# define CW_ASM_ERROR_MISSING_LABEL -83
-# define CW_ASM_ERROR_ARG_COUNT -84
-# define CW_ASM_ERROR_ARG_TYPE -85
-# define CW_ASM_ERROR_UNKNOWN_LITERAL -86
-# define CW_ASM_ERROR_UNKNOWN_OP -87
-# define CW_ASM_ERROR_INVALID_STRING -88
-# define CW_ASM_ERROR_INVALID_INT -89
+/*
+** Asmr (Asm errors) only refers to issues in the
+** syntax on the provided file.
+** Positive values are non-critical.
+*/
+
+# define CW_ASMR_NAME_TRUNCATED 70
+# define CW_ASMR_NAME_MISSING 71
+# define CW_ASMR_COMMENT_TRUNCATED 72
+# define CW_ASMR_COMMENT_MISSING 73
+# define CW_ASMR_CODE_TOO_LONG 74
+
+# define CW_ASMR_SYNTAX -80
+# define CW_ASMR_UNEXPECTED -81
+# define CW_ASMR_STRING_INVALID -82
+# define CW_ASMR_INT_INVALID -83
+
+# define CW_ASMR_LABEL_DUPLICATE -86
+# define CW_ASMR_LABEL_MISSING -87
+# define CW_ASMR_LITERAL_UNKNOWN -88
+
+# define CW_ASMR_OP_UNKNOWN -90
+# define CW_ASMR_ARG_COUNT -91
+# define CW_ASMR_ARG_TYPE -92
 
 /*
 ** vm specific error codes:

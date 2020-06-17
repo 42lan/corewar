@@ -6,7 +6,7 @@
 #    By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by bleplat           #+#    #+#              #
-#    Updated: 2020/06/17 01:32:22 by jthierce         ###   ########.fr        #
+#    Updated: 2020/06/17 19:25:34 by bleplat          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,6 +70,8 @@ SRC_FILES_ASM		=	asm/cw_asm_main.c \
 						asm/cw_asm_dismember_string.c \
 						asm/cw_asm_translate_literal.c \
 						asm/cw_asm_translate_inst.c \
+						asm/cw_asmr.c \
+						asm/cw_asmr_msg.c \
 
 SRC_FILES_CW		=	vm/cw_vm_main.c \
 						vm/cw_vm_parsing.c \

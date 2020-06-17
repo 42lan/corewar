@@ -6,7 +6,7 @@
 /*   By: bleplat <bleplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 18:23:06 by bleplat           #+#    #+#             */
-/*   Updated: 2020/06/17 18:44:10 by bleplat          ###   ########.fr       */
+/*   Updated: 2020/06/17 20:06:06 by bleplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ ft_printf("{cyan} just labelized '%s'\n", label);
 	if (cw_asm_get_label_index(state, label) >= 0)
 	{
 		free(label);
-		return (CW_ASM_ERROR_DUPLICATE_LABEL);
+		return (cw_asmr(CW_ASMR_LABEL_DUPLICATE, i_label, linst));
 	}
 	linst->label = label;
 	return (CW_SUCCESS);
