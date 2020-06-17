@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 01:59:09 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/14 23:31:41 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/17 22:12:22 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,11 @@ int					cw_vm_read_champion_name(int fd, t_cw_player *player)
 	{
 		ft_dprintf(2, "{red}ERROR READ CHAMPION NAME\n{}");
 		return (CW_VM_ERROR_READ);
+	}
+	if (name[0] == '\0')
+	{
+		ft_printf("{red}ERROR: Champion's name is empty\n{}");
+		return (CW_FAILURE);
 	}
 	name[ft_strlen(name)] = '\0';
 	if (!(player->champion->name = ft_strdup(name)))
@@ -97,6 +102,11 @@ int					cw_vm_read_champion_comment(int fd, t_cw_player *player)
 	{
 		ft_dprintf(2, "{red}ERROR READ CHAMPION COMMENT\n{}");
 		return (CW_VM_ERROR_READ);
+	}
+	if (comment[0] == '\0')
+	{
+		ft_printf("{red}ERROR: Champion's comment is empty\n{}");
+		return (CW_FAILURE);
 	}
 	comment[ft_strlen(comment)] = '\0';
 	if (!(player->champion->comment = ft_strdup(comment)))
