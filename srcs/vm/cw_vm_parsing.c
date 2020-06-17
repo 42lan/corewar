@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 14:06:54 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/16 22:27:45 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/17 15:11:09 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static int	cw_vm_parsing_helper(int ac, char **av, t_cw_vm *vm, char **tmp)
 			break ;
 		if (cw_vm_is_valid_extension(*tmp, ".cor") == CW_SUCCESS)
 		{
-			if ((ret = cw_vm_set_player(vm, 0, *tmp)) != CW_SUCCESS)
+			if ((ret = cw_vm_set_player(vm, i, *tmp)) != CW_SUCCESS)
 				break ;
 		}
 		else if (ft_strnequ(*tmp, "-n\0", 3))
