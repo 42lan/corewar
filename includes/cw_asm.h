@@ -12,7 +12,7 @@
 #define CW_COMMENT_CHAR '#'
 #define CW_LABEL_CHAR ':'
 #define CW_DIRECT_CHAR '%'
-#define CW_SEPARATOR_CHAR ','
+#define CW_SEP_CHAR ','
 #define CW_LABEL_CHARS "abcdefghijklmnopqrstuvwxyz_0123456789"
 
 /*
@@ -45,6 +45,8 @@ void			cw_asm_destroy(t_cw_asm **state);
 */
 
 int				cw_asm_error(int code);
+int				cw_asmr(t_cw_asm *state, t_cw_linst *linst,
+						int error, int index);
 
 /*
 ** Main asm algorithm:
@@ -75,6 +77,8 @@ int				cw_asm_skip_label_index(t_cw_linst *linst);
 int				cw_asm_skip_spaces_index(t_cw_linst *linst, int index);
 int				cw_asm_spaces_index(t_cw_linst *linst, int index);
 int				cw_asm_skip_alnums_index(t_cw_linst *linst, int index);
+int				cw_asm_argend_index(t_cw_linst *linst, int index);
+int				cw_asm_nextarg_index(t_cw_linst *linst, int index);
 
 int				cw_asm_translate_literal(t_cw_asm *state, t_cw_linst *linst);
 int				cw_asm_translate_inst(t_cw_asm *state, t_cw_linst *linst);

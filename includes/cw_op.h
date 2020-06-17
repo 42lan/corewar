@@ -58,7 +58,7 @@ struct					s_cw_op
 
 const t_cw_op			*cw_op_list(void);
 const t_cw_op			*cw_op_get(t_cw_opc opc);
-const t_cw_op			*cw_op_get_by_name(const char *name);
+const t_cw_op			*cw_op_get_from_name(const char *name);
 
 /*
 ** t_cw_coding_code:

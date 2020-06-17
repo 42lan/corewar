@@ -33,5 +33,5 @@ const t_cw_op		*cw_op_list(void)
 		{"aff", 1, {T_REG}, 16, 2, "aff", 1, 0},
 		{0, 0, {0}, 0, 0, 0, 0, 0}
 	};
-	return ((const t_cw_op*)&op_list);
+	return ((const t_cw_op*)op_list);
 }
