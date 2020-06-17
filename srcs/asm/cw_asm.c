@@ -6,7 +6,7 @@
 /*   By: bleplat <bleplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 18:21:30 by bleplat           #+#    #+#             */
-/*   Updated: 2020/06/17 18:21:33 by bleplat          ###   ########.fr       */
+/*   Updated: 2020/06/17 18:49:54 by bleplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void			cw_asm_destroy(t_cw_asm **state)
 {
 	int			i_linst;
 	t_cw_linst	*inst;
+
 	cw_asm_options_destroy(&((*state)->options));
 	i_linst = 0;
 	if ((*state)->linsts != NULL)
@@ -61,11 +62,3 @@ void			cw_asm_destroy(t_cw_asm **state)
 	free(*state);
 	*state = NULL;
 }
-
-
-
-
-
-
-
-

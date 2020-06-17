@@ -6,7 +6,7 @@
 /*   By: bleplat <bleplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 18:22:06 by bleplat           #+#    #+#             */
-/*   Updated: 2020/06/17 18:22:07 by bleplat          ###   ########.fr       */
+/*   Updated: 2020/06/17 18:46:28 by bleplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 */
 
 int				cw_asm_nothing_at_end(t_cw_asm *state, t_cw_linst *linst,
-									 int index)
+										int index)
 {
 	(void)state;
 	while (1)

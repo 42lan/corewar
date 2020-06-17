@@ -6,13 +6,13 @@
 /*   By: bleplat <bleplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 18:22:54 by bleplat           #+#    #+#             */
-/*   Updated: 2020/06/17 18:22:56 by bleplat          ###   ########.fr       */
+/*   Updated: 2020/06/17 18:42:41 by bleplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cw_asm.h"
 
-static int  translate_arg2(t_cw_asm *state, t_cw_inst *inst, char *str)
+static int	translate_arg2(t_cw_asm *state, t_cw_inst *inst, char *str)
 {
 	if (str[0] == '%')
 	{
@@ -34,6 +34,11 @@ ft_printf(" atoying '%s'\n", str);//
 	}
 	return (CW_SUCCESS);
 }
+
+/*
+** This part only translate an arg to an inst, assuming it's the one
+** being read.
+*/
 
 static int	translate_arg(t_cw_asm *state, t_cw_inst *inst, char *str)
 {
@@ -58,13 +63,16 @@ ft_printf(" atoying '%s'\n", str);//
 	return (CW_SUCCESS);
 }
 
+/*
+** This part translate args of an inst recursively.
+*/
+
 static int	translate_inst3(t_cw_asm *state, t_cw_linst *linst, int i_arg)
 {
 	int		rst;
 	int		i_end;
 	char	bck;
 
-ft_printf(" finding arg from... '%s'\n", &linst->raw[i_arg]);//
 	i_end = cw_asm_argend_index(linst, i_arg);
 	bck = linst->raw[i_end];
 	linst->raw[i_end] = '\0';
@@ -81,6 +89,11 @@ ft_printf(" finding arg from... '%s'\n", &linst->raw[i_arg]);//
 		return (CW_ASM_ERROR_SYNTAX);
 	return (translate_inst3(state, linst, i_arg));
 }
+
+/*
+** This part translate an op assuming it is the one given and
+** args starts at i_args.
+*/
 
 static int	translate_inst2(t_cw_asm *state, t_cw_linst *linst,
 							const t_cw_op *op, int i_args)
@@ -124,9 +137,7 @@ int			cw_asm_translate_inst(t_cw_asm *state, t_cw_linst *linst)
 	bck = linst->raw[i_end];
 	linst->raw[i_end] = '\0';
 	op = cw_op_get_from_name(&linst->raw[i_op]);
-ft_printf("{purple} op '%s' ", &linst->raw[i_op]);
 	linst->raw[i_end] = bck;
-ft_printf("{purple} on line '%s' %p\n", linst->raw, op);
 	if (!op)
 		return (CW_ASM_ERROR_UNKNOWN_OP);
 	i_end = cw_asm_skip_spaces_index(linst, i_end);

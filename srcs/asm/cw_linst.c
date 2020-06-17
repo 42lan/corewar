@@ -6,12 +6,12 @@
 /*   By: bleplat <bleplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 18:23:16 by bleplat           #+#    #+#             */
-/*   Updated: 2020/06/17 18:23:18 by bleplat          ###   ########.fr       */
+/*   Updated: 2020/06/17 18:47:29 by bleplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "cw_linst.h"					
+#include "cw_linst.h"
 
 /*
 ** Set the internal state of a linst to default.
@@ -20,7 +20,7 @@
 ** Note: this function may not be used as t_array set all fields to 0.
 */
 
-void						cw_linst_default(t_cw_linst *linst)
+void			cw_linst_default(t_cw_linst *linst)
 {
 	linst->raw = NULL;
 	linst->literal = NULL;
@@ -34,7 +34,7 @@ void						cw_linst_default(t_cw_linst *linst)
 ** also reseting it to default.
 */
 
-void						cw_linst_clean(t_cw_linst *linst)
+void			cw_linst_clean(t_cw_linst *linst)
 {
 	if (linst->raw)
 		ft_strdel(&(linst->raw));
@@ -72,4 +72,3 @@ void			cw_linst_write(t_cw_linst *linst, unsigned char *out)
 	if (linst->literal)
 		cw_literal_write(linst->literal, out);
 }
-

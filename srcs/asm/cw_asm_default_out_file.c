@@ -6,7 +6,7 @@
 /*   By: bleplat <bleplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 18:21:35 by bleplat           #+#    #+#             */
-/*   Updated: 2020/06/17 18:21:37 by bleplat          ###   ########.fr       */
+/*   Updated: 2020/06/17 18:37:50 by bleplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@
 ** If no file name is given, a default is provided.
 */
 
-char							*cw_asm_default_out_file(const char *in_file)
+char					*cw_asm_default_out_file(const char *in_file)
 {
 	int		in_len;
-	char	*out_file;	
+	char	*out_file;
 
 	if (in_file == NULL)
 		return (ft_strdup("out.cor"));

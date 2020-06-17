@@ -6,7 +6,7 @@
 /*   By: bleplat <bleplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 18:23:21 by bleplat           #+#    #+#             */
-/*   Updated: 2020/06/17 18:23:22 by bleplat          ###   ########.fr       */
+/*   Updated: 2020/06/17 18:49:20 by bleplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,4 +98,4 @@ void			cw_literal_write(t_cw_literal *literal, unsigned char *out)
 		ft_bigendian32_write((unsigned char*)out, ft_atoi(literal->value));
 	if (literal->type == CW_LITERAL_TYPE_PADDING)
 		ft_bzero(out, ft_atoi(literal->value));
-}				
+}

@@ -6,7 +6,7 @@
 /*   By: bleplat <bleplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 18:23:06 by bleplat           #+#    #+#             */
-/*   Updated: 2020/06/17 18:23:07 by bleplat          ###   ########.fr       */
+/*   Updated: 2020/06/17 18:44:10 by bleplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int			cw_asm_translate_labels(t_cw_asm *state)
 	int			rst;
 	t_cw_linst	*linsts;
 	int			i_linst;
-	
+
 	linsts = (t_cw_linst*)state->linsts->items;
 	i_linst = 0;
 	while (i_linst < state->linsts->item_count)

@@ -6,7 +6,7 @@
 /*   By: bleplat <bleplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 18:22:58 by bleplat           #+#    #+#             */
-/*   Updated: 2020/06/17 18:23:00 by bleplat          ###   ########.fr       */
+/*   Updated: 2020/06/17 18:38:54 by bleplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int			cw_asm_translate_insts(t_cw_asm *state)
 	int			rst;
 	t_cw_linst	*insts;
 	int			i_linst;
-	
+
 	rst = CW_SUCCESS;
 	insts = (t_cw_linst*)state->linsts->items;
 	i_linst = 0;
@@ -43,7 +43,7 @@ int			cw_asm_translate_insts(t_cw_asm *state)
 	{
 		insts[i_linst].offset = state->code_len;
 		if ((rst = translate(state, &insts[i_linst])) < 0)
-			return (rst);	
+			return (rst);
 		state->code_len += cw_linst_size(&insts[i_linst]);
 		i_linst++;
 	}
