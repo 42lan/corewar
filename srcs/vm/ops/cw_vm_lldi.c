@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 17:14:53 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/17 01:48:20 by jthierce         ###   ########.fr       */
+/*   Updated: 2020/06/17 03:53:52 by jthierce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static void		cw_vm_op_lldi_body(t_cw_vm *vm)
 		arg_val[2] = vm->arena[(vm->game.procs->pos + pos) % CW_MEM_SIZE];
 		if (cw_vm_is_reg(arg_val[2]))
 			vm->game.procs->regs[
-				arg_val[2] - 1] = cw_vm_bigendian32_read(vm->arena, pos);
+				arg_val[2] - 1] = cw_vm_bigendian32_read(vm->arena, arg_val[0]);
 		vm->game.procs->carry =
 			(vm->game.procs->regs[arg_val[2] - 1] == 0) ? 1 : 0;
 	}
