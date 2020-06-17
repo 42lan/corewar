@@ -6,7 +6,7 @@
 /*   By: bleplat <bleplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 18:24:06 by bleplat           #+#    #+#             */
-/*   Updated: 2020/06/17 18:24:08 by bleplat          ###   ########.fr       */
+/*   Updated: 2020/06/17 18:52:55 by bleplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,9 @@ const t_cw_op			*cw_op_get_from_name(const char *name)
 	i_op = 0;
 	while (ops[i_op].name != NULL)
 	{
-ft_printf("{grey} >< %s\n", ops[i_op].name);//
 		if (ft_strcmp(ops[i_op].name, name) == 0)
 			return (&ops[i_op]);
 		i_op++;
 	}
-	return (NULL);	
+	return (NULL);
 }

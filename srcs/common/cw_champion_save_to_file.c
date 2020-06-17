@@ -6,7 +6,7 @@
 /*   By: bleplat <bleplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 18:23:35 by bleplat           #+#    #+#             */
-/*   Updated: 2020/06/17 18:23:37 by bleplat          ###   ########.fr       */
+/*   Updated: 2020/06/17 18:51:22 by bleplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include "cw_errors.h"
 #include "cw_champion.h"
 
-static int write_name(t_cw_champion *champion, int fd)
+static int	write_name(t_cw_champion *champion, int fd)
 {
 	int		rst;
 	int		len;
@@ -36,7 +36,7 @@ static int write_name(t_cw_champion *champion, int fd)
 	return (rst);
 }
 
-static int write_comment(t_cw_champion *champion, int fd)
+static int	write_comment(t_cw_champion *champion, int fd)
 {
 	int		rst;
 	int		len;

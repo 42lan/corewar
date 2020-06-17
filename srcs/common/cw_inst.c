@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 21:27:06 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/17 04:30:18 by jthierce         ###   ########.fr       */
+/*   Updated: 2020/06/17 18:52:04 by bleplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ void			cw_inst_destroy(t_cw_inst **inst)
 }
 
 /*
-** cw_inst_get_args() set up binary values of arguments and count their amount
+** cw_inst_get_args() set up binary values of arguments and
+** count their amount
 */
 
 static void		cw_inst_get_args(t_cw_inst *inst, unsigned opc)
