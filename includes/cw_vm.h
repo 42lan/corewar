@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 15:01:47 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/17 01:31:50 by jthierce         ###   ########.fr       */
+/*   Updated: 2020/06/17 19:56:30 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int					cw_vm_read_player(t_cw_vm *vm);
 
 int					cw_vm_game(t_cw_vm *vm);
 int					cw_vm_ini_game(t_cw_vm *vm);
-int					cw_vm_start_game(t_cw_vm *vm, t_cw_game *game);
+int					cw_vm_start_game(t_cw_vm *vm, t_cw_game *game, t_cw_proc **procs);
 void				cw_vm_read_execute(t_cw_vm *vm);
 int					cw_vm_add_pos(t_cw_inst *inst, int nbr_arg, int label_size);
 void				cw_inst_fill(t_cw_vm *vm);
