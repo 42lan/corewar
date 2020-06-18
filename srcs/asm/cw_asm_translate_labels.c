@@ -6,7 +6,7 @@
 /*   By: bleplat <bleplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 18:23:06 by bleplat           #+#    #+#             */
-/*   Updated: 2020/06/17 20:06:06 by bleplat          ###   ########.fr       */
+/*   Updated: 2020/06/18 05:43:46 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int			cw_asm_translate_label2(t_cw_asm *state, t_cw_linst *linst,
 
 	if (!(label = ft_strcdup(&linst->raw[i_label], CW_LABEL_CHAR)))
 		return (CW_ERROR_MALLOC_FAILED);
-ft_printf("{cyan} just labelized '%s'\n", label);
 	if (cw_asm_get_label_index(state, label) >= 0)
 	{
 		free(label);
@@ -48,10 +47,8 @@ int			cw_asm_translate_label(t_cw_asm *state, t_cw_linst *linst)
 	i_end = i_label;
 	while (linst->raw[i_end] && ft_strchr(CW_LABEL_CHARS, linst->raw[i_end]))
 		i_end++;
-ft_printf("{lime}??? %d %d %c\n", i_label, i_end, linst->raw[i_end]);
 	if (linst->raw[i_end] != CW_LABEL_CHAR)
 		return (CW_SUCCESS);
-ft_printf("{lime}!!!\n");
 	return (cw_asm_translate_label2(state, linst, i_label));
 }
 

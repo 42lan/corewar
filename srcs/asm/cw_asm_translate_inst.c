@@ -6,7 +6,7 @@
 /*   By: bleplat <bleplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 18:22:54 by bleplat           #+#    #+#             */
-/*   Updated: 2020/06/17 20:20:16 by bleplat          ###   ########.fr       */
+/*   Updated: 2020/06/18 05:42:55 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ static int	translate_arg2(t_cw_asm *state, t_cw_inst *inst, char *str)
 	}
 	else
 	{
-ft_printf(" atoying '%s'\n", str);//
 		if (ft_atoi00check(&inst->args[inst->args_count], str) < 0)
 			return (CW_ASMR_INT_INVALID);
 	}
@@ -44,13 +43,11 @@ static int	translate_arg(t_cw_asm *state, t_cw_inst *inst, char *str)
 {
 	int		rst;
 
-ft_printf(" translating argument '%s'\n", str);//
 	inst->types[inst->args_count] = CW_T_IND;
 	if (str[0] == 'r')
 	{
 		inst->types[inst->args_count] = CW_T_REG;
 		str += 1;
-ft_printf(" atoyinG '%s'\n", str);//
 		if (ft_atoi00check(&inst->args[inst->args_count], str) < 0)
 			return (CW_ASMR_INT_INVALID);
 	}
@@ -78,11 +75,8 @@ static int	translate_inst3(t_cw_asm *state, t_cw_linst *linst, int i_arg)
 	linst->raw[i_end] = '\0';
 	rst = translate_arg(state, linst->inst, &linst->raw[i_arg]);
 	linst->raw[i_end] = bck;
-	ft_printf("{dim green} --\n");
 	if (rst < 0)
 		return (cw_asmr(rst, i_arg, linst));
-	ft_printf("{dim green} --+\n");
-	// Next arg
 	if (cw_asm_nothing_at_end(linst, i_end) == CW_SUCCESS)
 		return (CW_SUCCESS);
 	if (linst->inst->args_count >= 3)
@@ -90,7 +84,6 @@ static int	translate_inst3(t_cw_asm *state, t_cw_linst *linst, int i_arg)
 	if ((i_arg = cw_asm_nextarg_index(linst, i_end)) < 0)
 		return (cw_asmr(CW_ASMR_SYNTAX, i_arg, linst));
 	rst = translate_inst3(state, linst, i_arg);
-	//cw_asmr(rst, i_arg, linst);
 	return (rst);
 }
 
@@ -110,7 +103,6 @@ static int	translate_inst2(t_cw_asm *state, t_cw_linst *linst,
 	linst->inst->has_coding_byte = op->has_coding_byte;
 	if ((rst = translate_inst3(state, linst, i_args)) < 0)
 		return (rst);
-	ft_printf("{dim green} --+++++\n");
 	if (linst->inst->args_count != op->arg_count)
 		return (cw_asmr(CW_ASMR_ARG_COUNT, i_args, linst));
 	i_arg = 0;
