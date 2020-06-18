@@ -6,12 +6,25 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 18:04:40 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/16 22:23:34 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/18 14:41:29 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "cw_vm.h"
+
+static void		cw_vm_header(void)
+{
+	int			fd;
+	char		*line;
+
+	if ((fd = open("header.txt", O_RDONLY)) != -1)
+		while (ft_readtonl(fd, &line, 116) > 0)
+		{
+			ft_printf("{bold}{orangered}%s{}", line);
+			ft_strdel(&line);
+		}
+}
 
 static void		cw_vm_init_struct_vm(t_cw_vm *vm)
 {
@@ -40,6 +53,7 @@ int				main(int argc, char **argv)
 	t_cw_vm		vm;
 	int			ret;
 
+	cw_vm_header();
 	if (argc < 2)
 		return (cw_vm_usage());
 	cw_vm_init_struct_vm(&vm);
