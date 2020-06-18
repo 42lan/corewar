@@ -6,7 +6,7 @@
 /*   By: bleplat <bleplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 19:09:19 by bleplat           #+#    #+#             */
-/*   Updated: 2020/06/17 20:48:32 by bleplat          ###   ########.fr       */
+/*   Updated: 2020/06/18 06:19:16 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,5 @@ int			cw_asmr(int error, int index, t_cw_linst *linst)
 		ft_dprintf(2, "%s\n", linst->raw);
 	if (index >= 0 && linst)
 		cw_asmr_cursor(index, linst->raw);
-	ft_putchar('\n');
 	return (error);
 }

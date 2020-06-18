@@ -6,7 +6,7 @@
 /*   By: bleplat <bleplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 18:20:08 by bleplat           #+#    #+#             */
-/*   Updated: 2020/06/17 19:45:42 by bleplat          ###   ########.fr       */
+/*   Updated: 2020/06/18 06:11:26 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@
 ** syntax on the provided file.
 ** Positive values are non-critical.
 */
+
+# define CW_ASMR_MIN 70
 
 # define CW_ASMR_NAME_TRUNCATED 70
 # define CW_ASMR_NAME_MISSING 71

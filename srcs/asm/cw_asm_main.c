@@ -6,7 +6,7 @@
 /*   By: bleplat <bleplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 18:21:56 by bleplat           #+#    #+#             */
-/*   Updated: 2020/06/17 18:46:04 by bleplat          ###   ########.fr       */
+/*   Updated: 2020/06/18 06:02:47 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,5 @@ int			main(int argc, char **argv)
 	if (rst >= 0)
 		rst = cw_asm_run(state);
 	cw_asm_destroy(&state);
-	return (cw_asm_error(rst));
+	return (ft_abs(cw_asm_error(rst)));
 }

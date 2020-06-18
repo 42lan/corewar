@@ -6,23 +6,30 @@
 /*   By: bleplat <bleplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 18:21:43 by bleplat           #+#    #+#             */
-/*   Updated: 2020/06/17 18:21:46 by bleplat          ###   ########.fr       */
+/*   Updated: 2020/06/18 06:39:15 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+#include "cw_asm.h"
+
 /*
-** Print an asm error code and return the same.
+** Print an non-asmr asm error code and return the same.
 */
 
 int			cw_asm_error(int code)
 {
 	if (code == 0)
 		return (code);
-	if (code < 0)
-		ft_dprintf(2, "Error %d!\n", code);
-	if (code > 0)
-		ft_dprintf(2, "Error %d!\n", code);
+	else if (code == CW_ASM_ERROR_UNKNOWN_OPTION)
+		ft_dprintf(2, "Unknown option.\n");
+	else if (code == CW_ASM_ERROR_MALFORMED_FILE)
+	{
+		ft_dprintf(2, "What are you trying to do? ");
+		ft_dprintf(2, "Please provide a valid champion source.\n");
+	}
+	else if (code < CW_ASMR_MIN)
+		ft_dprintf(2, "Exiting with code %d!\n", ft_abs(code));
 	return (code);
 }
