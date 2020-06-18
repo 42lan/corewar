@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 01:59:09 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/18 13:29:03 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/18 15:06:02 by jthierce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int					cw_vm_read_champion_name(int fd, t_cw_player *player)
 
 int					cw_vm_read_champion_null(int fd, char *part)
 {
-	char			str[CW_CHAMPION_NULL];
+	char			str[CW_CHAMPION_NULL + 1];
 
 	ft_bzero(str, CW_CHAMPION_NULL + 1);
 	if (read(fd, str, CW_CHAMPION_NULL) != CW_CHAMPION_NULL)
