@@ -12,7 +12,11 @@ if [ -z "$S" ]; then
 	printf "\e[31mYou must specify champion source file!\e[0m\n"
 	exit 1
 fi
-COR=$(echo $S | sed "s/\.s/\.cor/")
+COR=$(echo $S | sed "s/\.s$/\.cor/")
+if [ "$S" = "$COR" ]; then
+	printf "\e[31mThe champion source must be a .s!\e[0m\n"
+	exit 1
+fi
 
 # Prerequistes
 if [ -z "$(ls -1 . | grep 'oasm$')" ]; then
@@ -25,12 +29,14 @@ fi
 echo "$TITLE testing $S -> $COR $RESET"
 
 echo "${TITLE}EXPECTED: ${RESET}$C1"
+rm -f $COR
 ./oasm $S
-hd $COR > expected.hd
+hd $COR > expected.hd 2>/dev/null
 
 echo "${TITLE}RESULT: ${RESET}$C2"
-./asm $1
-hd $COR > result.hd
+rm -f $COR
+./asm $S
+hd $COR > result.hd 2>/dev/null
 
 echo "$RESET diff:"
 diff expected.hd result.hd
