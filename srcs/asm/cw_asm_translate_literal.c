@@ -18,7 +18,7 @@ static int	translate_iliteral(t_cw_asm *state, t_cw_linst *linst,
 	int		rst;
 
 	(void)state;
-	if ((rst = ft_atoi32check(&rst, &linst->raw[i_int])) < 0)
+	if ((rst = ft_atoi00check(&rst, &linst->raw[i_int])) < 0)
 		return (cw_asmr(CW_ASMR_INT_INVALID, i_int, linst));
 	if (!(linst->literal = cw_literal_create(type, &linst->raw[i_int])))
 		return (CW_ERROR_MALLOC_FAILED);

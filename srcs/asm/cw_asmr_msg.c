@@ -60,7 +60,8 @@ static void		details(t_cw_linst *linst, int error)
 	{
 		op = cw_op_get(linst->inst->opc);
 		if (error == CW_ASMR_ARG_COUNT)
-			ft_dprintf(2, "Op %s takes %d arguments.", op->name, op->arg_count);
+			ft_dprintf(2, "Op %s takes %d arguments.\n",
+						op->name, op->arg_count);
 	}
 }
 
