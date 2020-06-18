@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 05:31:10 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/17 04:40:17 by jthierce         ###   ########.fr       */
+/*   Updated: 2020/06/18 10:31:26 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 ** This instruction makes a jump at IND_SIZE index if the carry is set to 1
 */
 
-void		cw_vm_op_zjmp(t_cw_vm *vm)
+void		cw_vm_zjmp(t_cw_vm *vm)
 {
 	int		arg_val;
 	int		arg_pos;

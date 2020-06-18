@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 00:04:37 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/16 04:42:39 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/18 10:30:32 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 ** in the third
 */
 
-void		cw_vm_op_add(t_cw_vm *vm)
+void		cw_vm_add(t_cw_vm *vm)
 {
 	int		regs[3];
 	int		arg_val[3];

@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 17:14:37 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/17 01:47:43 by jthierce         ###   ########.fr       */
+/*   Updated: 2020/06/18 10:32:08 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "cw_vm.h"
 #include "cw_inst.h"
 
-static void		cw_vm_op_lld_dir_exec(t_cw_vm *vm)
+static void		cw_vm_lld_dir_exec(t_cw_vm *vm)
 {
 	int			index;
 	int			arg_pos;
@@ -30,7 +30,7 @@ static void		cw_vm_op_lld_dir_exec(t_cw_vm *vm)
 	}
 }
 
-static void		cw_vm_op_lld_ind_exec(t_cw_vm *vm)
+static void		cw_vm_lld_ind_exec(t_cw_vm *vm)
 {
 	int			index;
 	int			value;
@@ -57,15 +57,15 @@ static void		cw_vm_op_lld_ind_exec(t_cw_vm *vm)
 ** Same as ld but without IND_MOD
 */
 
-void			cw_vm_op_lld(t_cw_vm *vm)
+void			cw_vm_lld(t_cw_vm *vm)
 {
 	if (vm->inst.args_count >= 2
 		&& vm->inst.types[0] != T_REG && vm->inst.types[1] == T_REG)
 	{
 		if (vm->inst.types[0] == T_DIR)
-			cw_vm_op_lld_dir_exec(vm);
+			cw_vm_lld_dir_exec(vm);
 		else if (vm->inst.types[0] == T_IND)
-			cw_vm_op_lld_ind_exec(vm);
+			cw_vm_lld_ind_exec(vm);
 	}
 	vm->game.procs->pos = (vm->game.procs->pos + 2
 			+ cw_vm_add_pos(&vm->inst, 2, CW_DIR_SIZE_LLD)) % CW_MEM_SIZE;

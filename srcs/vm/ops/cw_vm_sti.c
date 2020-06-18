@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 17:13:22 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/17 04:34:38 by jthierce         ###   ########.fr       */
+/*   Updated: 2020/06/18 10:31:53 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "cw_vm.h"
 #include "cw_inst.h"
 
-static int		cw_vm_op_sti_dir(t_cw_vm *vm, int *pos)
+static int		cw_vm_sti_dir(t_cw_vm *vm, int *pos)
 {
 	int			arg_pos;
 	int			arg_val;
@@ -25,7 +25,7 @@ static int		cw_vm_op_sti_dir(t_cw_vm *vm, int *pos)
 	return (arg_val);
 }
 
-static int		cw_vm_op_sti_ind(t_cw_vm *vm, int *pos)
+static int		cw_vm_sti_ind(t_cw_vm *vm, int *pos)
 {
 	int16_t		arg_val;
 	int			arg_pos;
@@ -42,7 +42,7 @@ static int		cw_vm_op_sti_ind(t_cw_vm *vm, int *pos)
 	return (ind_val);
 }
 
-static int		cw_vm_op_sti_helper(t_cw_vm *vm, int *arg_val, int *pos)
+static int		cw_vm_sti_helper(t_cw_vm *vm, int *arg_val, int *pos)
 {
 	int			i;
 	int			index;
@@ -59,13 +59,13 @@ static int		cw_vm_op_sti_helper(t_cw_vm *vm, int *arg_val, int *pos)
 			(*pos)++;
 		}
 		else if (vm->inst.types[i] == T_DIR)
-			arg_val[i] = cw_vm_op_sti_dir(vm, pos);
+			arg_val[i] = cw_vm_sti_dir(vm, pos);
 		else if (vm->inst.types[i] == T_IND)
-			arg_val[i] = cw_vm_op_sti_ind(vm, pos);
+			arg_val[i] = cw_vm_sti_ind(vm, pos);
 	return (CW_SUCCESS);
 }
 
-static void		cw_vm_op_sti_body(t_cw_vm *vm)
+static void		cw_vm_sti_body(t_cw_vm *vm)
 {
 	int			pos;
 	int			idx_address;
@@ -73,7 +73,7 @@ static void		cw_vm_op_sti_body(t_cw_vm *vm)
 	int			arg_val[3];
 
 	pos = 3;
-	if (cw_vm_op_sti_helper(vm, arg_val, &pos) == CW_SUCCESS)
+	if (cw_vm_sti_helper(vm, arg_val, &pos) == CW_SUCCESS)
 	{
 		idx_address = (vm->game.procs->pos
 				+ (arg_val[1] + arg_val[2]) % CW_IDX_MOD) % CW_MEM_SIZE;
@@ -93,11 +93,11 @@ static void		cw_vm_op_sti_body(t_cw_vm *vm)
 ** as first argument
 */
 
-void			cw_vm_op_sti(t_cw_vm *vm)
+void			cw_vm_sti(t_cw_vm *vm)
 {
 	if (vm->inst.args_count >= 3
 		&& vm->inst.types[0] == T_REG && vm->inst.types[2] != T_IND)
-		cw_vm_op_sti_body(vm);
+		cw_vm_sti_body(vm);
 	vm->game.procs->pos = (vm->game.procs->pos + 2
 		+ cw_vm_add_pos(&vm->inst, 3, CW_DIR_SIZE_STI)) % CW_MEM_SIZE;
 }

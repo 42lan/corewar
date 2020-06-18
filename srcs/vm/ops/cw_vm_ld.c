@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 01:22:20 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/17 01:46:07 by jthierce         ###   ########.fr       */
+/*   Updated: 2020/06/18 10:30:13 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "cw_vm.h"
 #include "cw_inst.h"
 
-static void		cw_vm_op_ld_dir_exec(t_cw_vm *vm)
+static void		cw_vm_ld_dir_exec(t_cw_vm *vm)
 {
 	int			index;
 	int			arg_pos;
@@ -30,7 +30,7 @@ static void		cw_vm_op_ld_dir_exec(t_cw_vm *vm)
 	}
 }
 
-static void		cw_vm_op_ld_ind_exec(t_cw_vm *vm)
+static void		cw_vm_ld_ind_exec(t_cw_vm *vm)
 {
 	int			index;
 	int			value;
@@ -56,15 +56,15 @@ static void		cw_vm_op_ld_ind_exec(t_cw_vm *vm)
 ** This instruction loads the value of the first parameter in the register
 */
 
-void			cw_vm_op_ld(t_cw_vm *vm)
+void			cw_vm_ld(t_cw_vm *vm)
 {
 	if (vm->inst.args_count >= 2 && vm->inst.types[0] != T_REG
 		&& vm->inst.types[1] == T_REG)
 	{
 		if (vm->inst.types[0] == T_DIR)
-			cw_vm_op_ld_dir_exec(vm);
+			cw_vm_ld_dir_exec(vm);
 		else if (vm->inst.types[0] == T_IND)
-			cw_vm_op_ld_ind_exec(vm);
+			cw_vm_ld_ind_exec(vm);
 	}
 	vm->game.procs->pos = (vm->game.procs->pos + 2
 		+ cw_vm_add_pos(&vm->inst, 2, CW_DIR_SIZE_LD)) % CW_MEM_SIZE;

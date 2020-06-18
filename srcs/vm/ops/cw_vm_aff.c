@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 17:15:23 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/17 04:30:11 by jthierce         ###   ########.fr       */
+/*   Updated: 2020/06/18 10:32:29 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "cw_vm.h"
 #include "cw_inst.h"
 
-void		cw_vm_op_aff(t_cw_vm *vm)
+void		cw_vm_aff(t_cw_vm *vm)
 {
 	int		arg_val;
 	int		index;

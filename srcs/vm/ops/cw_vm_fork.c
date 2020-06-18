@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 17:13:59 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/18 09:52:45 by jthierce         ###   ########.fr       */
+/*   Updated: 2020/06/18 10:32:01 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,20 @@
 #include "cw_vm.h"
 #include "cw_inst.h"
 
+static void		cw_vm_fork_error(t_cw_vm *vm)
+{
+	ft_printf("{red}{bold}FORK:{normal} New processus can't be created");
+	ft_printf("for the player %d\n{}", vm->game.procs->id);
+}
+
 /*
 ** This operation creates an identical copy of the process and places it
 ** to the position (Argument1 % IDX_MOD) + position of parent cursor
 */
 
-void			cw_vm_op_fork(t_cw_vm *vm)
+void			cw_vm_fork(t_cw_vm *vm)
 {
 	int			idx_address;
-	int			new_pos;
 	int			arg_pos;
 	int16_t		arg_val;
 	t_cw_proc	*new;
@@ -37,14 +42,9 @@ void			cw_vm_op_fork(t_cw_vm *vm)
 		new->pos = idx_address;
 		new->next = vm->game.head;
 		vm->game.head = new;
-		new_pos = (vm->game.procs->pos + 1 + CW_DIR_SIZE_FORK) % CW_MEM_SIZE;
-		vm->game.procs->pos = new_pos;
 	}
 	else
-	{
-		ft_printf("{red}New processus can't be created" \
-				"for the player %d\n{}", vm->game.procs->id);
-		vm->game.procs->pos = (vm->game.procs->pos + 1 + CW_DIR_SIZE_FORK)
-		% CW_MEM_SIZE;
-	}
+		cw_vm_fork_error(vm);
+	vm->game.procs->pos = (vm->game.procs->pos + 1
+			+ CW_DIR_SIZE_FORK) % CW_MEM_SIZE;
 }
