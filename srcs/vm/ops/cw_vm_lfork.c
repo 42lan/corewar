@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 17:15:10 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/18 10:23:37 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/18 10:32:23 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "cw_vm.h"
 #include "cw_inst.h"
 
-static void		cw_vm_op_lfork_error(t_cw_vm *vm)
+static void		cw_vm_lfork_error(t_cw_vm *vm)
 {
 	ft_printf("{red}{bold}LFORK:{normal} New processus can't be created");
 	ft_printf("for the player %d\n{}", vm->game.procs->id);
@@ -25,7 +25,7 @@ static void		cw_vm_op_lfork_error(t_cw_vm *vm)
 ** to the position (Argument1) + position of parent cursor
 */
 
-void			cw_vm_op_lfork(t_cw_vm *vm)
+void			cw_vm_lfork(t_cw_vm *vm)
 {
 	int			idx_address;
 	int			arg_pos;
@@ -44,7 +44,7 @@ void			cw_vm_op_lfork(t_cw_vm *vm)
 		vm->game.head = new;
 	}
 	else
-		cw_vm_op_lfork_error(vm);
+		cw_vm_lfork_error(vm);
 	vm->game.procs->pos = (vm->game.procs->pos + 1
 			+ CW_DIR_SIZE_LFORK) % CW_MEM_SIZE;
 }

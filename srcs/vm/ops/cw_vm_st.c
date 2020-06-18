@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 19:32:09 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/17 01:49:38 by jthierce         ###   ########.fr       */
+/*   Updated: 2020/06/18 10:30:21 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "cw_vm.h"
 #include "cw_inst.h"
 
-static void		cw_vm_op_st_ind_exec(t_cw_vm *vm)
+static void		cw_vm_st_ind_exec(t_cw_vm *vm)
 {
 	int			reg_value;
 	int			reg_index;
@@ -39,7 +39,7 @@ static void		cw_vm_op_st_ind_exec(t_cw_vm *vm)
 ** This instruction stores the value of the first argument in the second
 */
 
-void			cw_vm_op_st(t_cw_vm *vm)
+void			cw_vm_st(t_cw_vm *vm)
 {
 	int			arg_val[2];
 
@@ -55,7 +55,7 @@ void			cw_vm_op_st(t_cw_vm *vm)
 					arg_val[1] - 1] = vm->game.procs->regs[arg_val[0] - 1];
 		}
 		else if (vm->inst.types[1] == T_IND)
-			cw_vm_op_st_ind_exec(vm);
+			cw_vm_st_ind_exec(vm);
 	}
 	vm->game.procs->pos = (vm->game.procs->pos + 2
 			+ cw_vm_add_pos(&vm->inst, 2, CW_DIR_SIZE_ST)) % CW_MEM_SIZE;

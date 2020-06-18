@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 16:59:44 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/17 01:47:18 by jthierce         ###   ########.fr       */
+/*   Updated: 2020/06/18 10:30:01 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 ** This instruction indicates that the player is alive
 */
 
-void		cw_vm_op_live(t_cw_vm *vm)
+void		cw_vm_live(t_cw_vm *vm)
 {
 	long	arg_val;
 	int		arg_pos;
