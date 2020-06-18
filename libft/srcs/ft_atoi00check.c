@@ -36,15 +36,13 @@ int			ft_atoi00checkc(int *out, const char *str, char end)
 		i++;
 	}
 	total = 0;
-	if (str[i] == '\0' || str[i] == end)
+	if (str[i] == '\0' || str[i] == end || !ft_isdigit(str[i]))
 		return (-1);
 	while (str[i] != end)
 	{
 		if (!ft_isdigit(str[i]))
-			return (-1);
+			break;
 		total = (total * 10) + (str[i] - '0');
-		if (total > ((long long)FT_INT32_MAX + 1))
-			return (-2);
 		i++;
 	}
 	return (ft_atoi00check_p2(out, total * sign));
@@ -55,9 +53,10 @@ int			ft_atoi00checkc(int *out, const char *str, char end)
 ** string is not a valid int.
 ** Return -1 on invalid character.
 ** This version doesnt check integer limits.
+** This version only perform basi tests on the begining of the chain.
 */
 
 int			ft_atoi00check(int *out, const char *str)
 {
-	return (ft_atoi32checkc(out, str, '\0'));
+	return (ft_atoi00checkc(out, str, '\0'));
 }
