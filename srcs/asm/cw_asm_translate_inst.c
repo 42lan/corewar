@@ -6,7 +6,7 @@
 /*   By: bleplat <bleplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 18:22:54 by bleplat           #+#    #+#             */
-/*   Updated: 2020/06/18 06:49:41 by bleplat          ###   ########.fr       */
+/*   Updated: 2020/06/18 15:27:44 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ static int	translate_inst2(t_cw_asm *state, t_cw_linst *linst,
 	while (i_arg < linst->inst->args_count)
 	{
 		if (!(linst->inst->types[i_arg] & op->arg_types[i_arg]))
-			return (cw_asmr(CW_ASMR_ARG_TYPE, i_arg, linst));
+			return (cw_asmr(CW_ASMR_ARG_TYPE, i_args, linst));
 		i_arg++;
 	}
 	return (CW_SUCCESS);
