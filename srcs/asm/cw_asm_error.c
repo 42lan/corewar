@@ -6,7 +6,7 @@
 /*   By: bleplat <bleplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 18:21:43 by bleplat           #+#    #+#             */
-/*   Updated: 2020/06/18 07:55:23 by user             ###   ########.fr       */
+/*   Updated: 2020/06/18 14:35:51 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,16 @@ int			cw_asm_error(int code)
 {
 	if (code == 0)
 		return (code);
+	else if (code == CW_ASM_ERROR_UNKNOWN_OPTION)
+		ft_dprintf(2, "Unknown option.\n");
+	else if (code == CW_ERROR_OPENING_OUTPUT_FILE)
+		ft_dprintf(2, "Failed to open output file.\n");
+	else if (code == CW_ERROR_OPENING_INPUT_FILE)
+		ft_dprintf(2, "Failed to open input file.\n");
+	else if (code == CW_ERROR_WRITING_OUTPUT_FILE)
+		ft_dprintf(2, "Failed to write to output file.\n");
+	else if (code == CW_ERROR_READING_INPUT_FILE)
+		ft_dprintf(2, "Failed to read input file.\n");
 	else if (code == CW_ASM_ERROR_UNKNOWN_OPTION)
 		ft_dprintf(2, "Unknown option.\n");
 	else if (code == CW_ASM_ERROR_MALFORMED_FILE)
