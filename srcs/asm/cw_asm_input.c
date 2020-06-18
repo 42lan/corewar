@@ -6,7 +6,7 @@
 /*   By: bleplat <bleplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 18:21:52 by bleplat           #+#    #+#             */
-/*   Updated: 2020/06/18 07:47:42 by user             ###   ########.fr       */
+/*   Updated: 2020/06/18 07:52:50 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int				cw_asm_input_fd(t_cw_asm *state, int fd)
 		if (state->linsts->item_count > 0xFFFF)
 			return (CW_ASM_ERROR_MALFORMED_FILE);
 	}
-	if (rst < 1)
+	if (rst < 0)
 		return (CW_ASM_ERROR_MALFORMED_FILE);
 	return (rst);
 }
