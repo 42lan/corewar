@@ -6,7 +6,7 @@
 /*   By: bleplat <bleplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 18:23:06 by bleplat           #+#    #+#             */
-/*   Updated: 2020/06/18 05:43:46 by user             ###   ########.fr       */
+/*   Updated: 2020/06/18 07:58:50 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ int			cw_asm_translate_label(t_cw_asm *state, t_cw_linst *linst)
 		i_end++;
 	if (linst->raw[i_end] != CW_LABEL_CHAR)
 		return (CW_SUCCESS);
+	if (i_label == i_end)
+		return (cw_asmr(CW_ASMR_SYNTAX, i_label, linst));
 	return (cw_asm_translate_label2(state, linst, i_label));
 }
 
