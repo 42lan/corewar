@@ -6,7 +6,7 @@
 /*   By: bleplat <bleplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 18:23:35 by bleplat           #+#    #+#             */
-/*   Updated: 2020/06/17 18:51:22 by bleplat          ###   ########.fr       */
+/*   Updated: 2020/06/18 06:49:56 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int	write_comment(t_cw_champion *champion, int fd)
 
 	rst = 0;
 	len = champion->comment ? ft_strlen(champion->comment) : 0;
-	if (len > CW_PROG_NAME_LENGTH)
+	if (len > CW_COMMENT_LENGTH)
 		return (write(fd, champion->comment, CW_COMMENT_LENGTH));
 	rst |= write(fd, champion->comment, len);
 	while (len < CW_COMMENT_LENGTH)

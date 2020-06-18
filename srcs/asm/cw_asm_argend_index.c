@@ -22,6 +22,8 @@ int				cw_asm_argend_index(t_cw_linst *linst, int index)
 	{
 		if (linst->raw[index] == CW_SEP_CHAR || ft_isblank(linst->raw[index]))
 			return (index);
+		if (linst->raw[index] == CW_COMMENT_CHAR || linst->raw[index] == ';')
+			return (index);
 		index++;
 	}
 	return (index);
