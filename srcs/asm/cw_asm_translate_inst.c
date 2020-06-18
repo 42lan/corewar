@@ -6,7 +6,7 @@
 /*   By: bleplat <bleplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 18:22:54 by bleplat           #+#    #+#             */
-/*   Updated: 2020/06/18 05:42:55 by user             ###   ########.fr       */
+/*   Updated: 2020/06/18 06:49:41 by bleplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,10 @@ static int	translate_arg(t_cw_asm *state, t_cw_inst *inst, char *str)
 	{
 		inst->types[inst->args_count] = CW_T_REG;
 		str += 1;
-		if (ft_atoi00check(&inst->args[inst->args_count], str) < 0)
-			return (CW_ASMR_INT_INVALID);
+		rst = ft_atoi00check(&inst->args[inst->args_count], str);
+		if (rst < 0 || inst->args[inst->args_count] < 0
+			|| inst->args[inst->args_count] > 99)
+			return (CW_ASMR_SYNTAX);
 	}
 	else
 	{
