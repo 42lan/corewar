@@ -6,7 +6,7 @@
 /*   By: bleplat <bleplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 18:23:21 by bleplat           #+#    #+#             */
-/*   Updated: 2020/06/17 18:49:20 by bleplat          ###   ########.fr       */
+/*   Updated: 2020/06/18 06:34:54 by bleplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int				cw_literal_size(t_cw_literal *literal)
 	if (literal->type == CW_LITERAL_TYPE_INT32)
 		return (4);
 	if (literal->type == CW_LITERAL_TYPE_PADDING)
-		return (ft_atoi(literal->value));
+		return (ft_abs(ft_atoi(literal->value)));
 	return (0);
 }
 
@@ -97,5 +97,5 @@ void			cw_literal_write(t_cw_literal *literal, unsigned char *out)
 	if (literal->type == CW_LITERAL_TYPE_INT32)
 		ft_bigendian32_write((unsigned char*)out, ft_atoi(literal->value));
 	if (literal->type == CW_LITERAL_TYPE_PADDING)
-		ft_bzero(out, ft_atoi(literal->value));
+		ft_bzero(out, ft_abs(ft_atoi(literal->value)));
 }
