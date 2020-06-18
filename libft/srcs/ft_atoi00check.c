@@ -6,7 +6,7 @@
 /*   By: bleplat <bleplat@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 22:04:51 by bleplat           #+#    #+#             */
-/*   Updated: 2020/03/03 22:04:51 by bleplat          ###   ########.fr       */
+/*   Updated: 2020/06/18 06:11:50 by bleplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int			ft_atoi00checkc(int *out, const char *str, char end)
 	while (str[i] != end)
 	{
 		if (!ft_isdigit(str[i]))
-			break;
+			break ;
 		total = (total * 10) + (str[i] - '0');
 		i++;
 	}

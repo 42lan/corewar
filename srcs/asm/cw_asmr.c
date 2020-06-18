@@ -6,7 +6,7 @@
 /*   By: bleplat <bleplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 19:09:19 by bleplat           #+#    #+#             */
-/*   Updated: 2020/06/18 06:19:16 by user             ###   ########.fr       */
+/*   Updated: 2020/06/18 06:08:36 by bleplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void		cw_asmr_cursor(int index, char *from)
 	{
 		if (index < from_len && from[i] == '\t')
 			write(2, "\t", 1);
-		else			
+		else
 			write(2, " ", 1);
 		i++;
 	}

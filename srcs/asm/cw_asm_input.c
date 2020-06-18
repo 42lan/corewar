@@ -6,7 +6,7 @@
 /*   By: bleplat <bleplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 18:21:52 by bleplat           #+#    #+#             */
-/*   Updated: 2020/06/18 07:52:50 by user             ###   ########.fr       */
+/*   Updated: 2020/06/18 06:09:06 by bleplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int				cw_asm_input_fd(t_cw_asm *state, int fd)
 	int			rst;
 	char		*line;
 	t_cw_linst	*linst;
-	
+
 	rst = CW_ASM_ERROR_MALFORMED_FILE;
 	while ((rst = ft_readtonl(fd, &line, CW_COMMENT_LENGTH + 40)) > 0)
 	{

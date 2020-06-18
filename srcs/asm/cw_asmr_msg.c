@@ -6,7 +6,7 @@
 /*   By: bleplat <bleplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 19:25:45 by bleplat           #+#    #+#             */
-/*   Updated: 2020/06/17 20:40:42 by bleplat          ###   ########.fr       */
+/*   Updated: 2020/06/18 06:09:26 by bleplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static char		*get1(int error)
 	if (error == CW_ASMR_COMMENT_TRUNCATED)
 		return ("Champion comment too long, will be truncated.");
 	if (error == CW_ASMR_COMMENT_MISSING)
-		return ("Champion comment empty.");	
+		return ("Champion comment empty.");
 	if (error == CW_ASMR_CODE_TOO_LONG)
 		return ("Champion code may be too long.");
 	if (error == CW_ASMR_SYNTAX)
