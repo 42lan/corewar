@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 17:13:59 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/17 01:45:35 by jthierce         ###   ########.fr       */
+/*   Updated: 2020/06/18 09:52:45 by jthierce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,10 @@ void			cw_vm_op_fork(t_cw_vm *vm)
 		vm->game.procs->pos = new_pos;
 	}
 	else
+	{
 		ft_printf("{red}New processus can't be created" \
 				"for the player %d\n{}", vm->game.procs->id);
+		vm->game.procs->pos = (vm->game.procs->pos + 1 + CW_DIR_SIZE_FORK)
+		% CW_MEM_SIZE;
+	}
 }
