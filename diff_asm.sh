@@ -31,6 +31,6 @@ hd $COR > expected.hd
 echo "${TITLE}RESULT: ${RESET}$C2"
 ./asm $1
 hd $COR > result.hd
-diff expected.hd result.hd
 
 echo "$RESET diff:"
+diff expected.hd result.hd
