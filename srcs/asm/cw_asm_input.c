@@ -34,6 +34,8 @@ int				cw_asm_input_fd(t_cw_asm *state, int fd)
 		linst->raw = line;
 		line = NULL;
 		linst = NULL;
+		if (state->linsts->item_count > 0xFFFF)
+			return (CW_ASM_ERROR_MALFORMED_FILE);
 	}
 	return (rst);
 }

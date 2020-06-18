@@ -31,7 +31,7 @@ static char		*get1(int error)
 	if (error == CW_ASMR_STRING_INVALID)
 		return ("Invalid string.");
 	if (error == CW_ASMR_INT_INVALID)
-		return ("Invalid integer.");
+		return ("Invalid integer in argument.");
 	if (error == CW_ASMR_LABEL_DUPLICATE)
 		return ("Label is already defined.");
 	if (error == CW_ASMR_LABEL_MISSING)

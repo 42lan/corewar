@@ -23,6 +23,7 @@ int		cw_asm_dismember_string(t_cw_asm *state, t_cw_linst *linst, int index)
 {
 	int		rst;
 
+	(void)state;
 	if (linst->raw[index] == '\"')
 		index++;
 	else
@@ -33,8 +34,8 @@ int		cw_asm_dismember_string(t_cw_asm *state, t_cw_linst *linst, int index)
 		index++;
 	else
 		return (cw_asmr(CW_ASMR_STRING_INVALID, index, linst));
-	if ((rst = cw_asm_nothing_at_end(state, linst, index)) < 0)
-		return (rst);
+	if ((rst = cw_asm_nothing_at_end(linst, index)) < 0)
+		return (cw_asmr(rst, index, linst));
 	linst->raw[0] = '\0';
 	linst->raw[index - 1] = '\0';
 	return (CW_SUCCESS);

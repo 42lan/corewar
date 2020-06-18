@@ -29,7 +29,7 @@ static int	translate_arg2(t_cw_asm *state, t_cw_inst *inst, char *str)
 	else
 	{
 ft_printf(" atoying '%s'\n", str);//
-		if (ft_atoi32check(&inst->args[inst->args_count], str) < 0)
+		if (ft_atoi00check(&inst->args[inst->args_count], str) < 0)
 			return (CW_ASMR_INT_INVALID);
 	}
 	return (CW_SUCCESS);
@@ -50,13 +50,13 @@ ft_printf(" translating argument '%s'\n", str);//
 	{
 		inst->types[inst->args_count] = CW_T_REG;
 		str += 1;
-ft_printf(" atoying '%s'\n", str);//
-		if (ft_atoi32check(&inst->args[inst->args_count], str) < 0)
+ft_printf(" atoyinG '%s'\n", str);//
+		if (ft_atoi00check(&inst->args[inst->args_count], str) < 0)
 			return (CW_ASMR_INT_INVALID);
 	}
 	else
 	{
-		if ((rst = translate_arg2(state, inst, str)))
+		if ((rst = translate_arg2(state, inst, str)) < 0)
 			return (rst);
 	}
 	inst->args_count += 1;
@@ -78,17 +78,19 @@ static int	translate_inst3(t_cw_asm *state, t_cw_linst *linst, int i_arg)
 	linst->raw[i_end] = '\0';
 	rst = translate_arg(state, linst->inst, &linst->raw[i_arg]);
 	linst->raw[i_end] = bck;
+	ft_printf("{dim green} --\n");
 	if (rst < 0)
-		return (rst);
+		return (cw_asmr(rst, i_arg, linst));
+	ft_printf("{dim green} --+\n");
 	// Next arg
-	if (cw_asm_nothing_at_end(state, linst, i_end) == CW_SUCCESS)
+	if (cw_asm_nothing_at_end(linst, i_end) == CW_SUCCESS)
 		return (CW_SUCCESS);
 	if (linst->inst->args_count >= 3)
 		return (cw_asmr(CW_ASMR_ARG_COUNT, i_arg, linst));
 	if ((i_arg = cw_asm_nextarg_index(linst, i_end)) < 0)
 		return (cw_asmr(CW_ASMR_SYNTAX, i_arg, linst));
 	rst = translate_inst3(state, linst, i_arg);
-	cw_asmr(rst, i_arg, linst);
+	//cw_asmr(rst, i_arg, linst);
 	return (rst);
 }
 
@@ -108,6 +110,7 @@ static int	translate_inst2(t_cw_asm *state, t_cw_linst *linst,
 	linst->inst->has_coding_byte = op->has_coding_byte;
 	if ((rst = translate_inst3(state, linst, i_args)) < 0)
 		return (rst);
+	ft_printf("{dim green} --+++++\n");
 	if (linst->inst->args_count != op->arg_count)
 		return (cw_asmr(CW_ASMR_ARG_COUNT, i_args, linst));
 	i_arg = 0;
@@ -132,7 +135,7 @@ int			cw_asm_translate_inst(t_cw_asm *state, t_cw_linst *linst)
 	const t_cw_op	*op;
 
 	i_op = cw_asm_skip_label_index(linst);
-	if (cw_asm_nothing_at_end(state, linst, i_op) == CW_SUCCESS)
+	if (cw_asm_nothing_at_end(linst, i_op) == CW_SUCCESS)
 		return (CW_SUCCESS);
 	i_op = cw_asm_skip_spaces_index(linst, i_op);
 	i_end = cw_asm_skip_alnums_index(linst, i_op);

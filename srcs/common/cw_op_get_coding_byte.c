@@ -21,5 +21,5 @@
 
 t_cw_coding_byte		cw_op_get_coding_byte(t_cw_arg_type type, int index)
 {
-	return (cw_op_get_coding_code(type) << index);
+	return (cw_op_get_coding_code(type) << (6 - (index * 2)));
 }

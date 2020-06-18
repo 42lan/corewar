@@ -45,7 +45,7 @@ int			cw_asmr(int error, int index, t_cw_linst *linst)
 	if (error < 0)
 		ft_dprintf(2, "{red}Error{}: ");
 	else
-		ft_dprintf(2, "{orange}Warning{}: ");
+		ft_dprintf(2, "{light yellow}Warning{}: ");
 	cw_asmr_msg(error, linst);
 	if (linst)
 		ft_dprintf(2, "%s\n", linst->raw);

@@ -256,7 +256,7 @@ $(LIBFTMO):
 .PHONY: geterror
 geterror:
 	@echo $?
-	grep -E "_ERROR_|_WARNING_" includes/cw_errors.h
+	grep -E "_ERROR_|_ASMR_" includes/cw_errors.h
 
 .PHONY: help
 help:

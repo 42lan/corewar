@@ -82,9 +82,7 @@ int						cw_asm_output(t_cw_asm *state);
 
 int						cw_asm_get_label_index(t_cw_asm *state, char *name);
 int						cw_asm_get_label_offset(t_cw_asm *state, int index);
-int						cw_asm_nothing_at_end(t_cw_asm *state,
-												t_cw_linst *linst,
-												int index);
+int						cw_asm_nothing_at_end(t_cw_linst *linst, int index);
 int						cw_asm_dismember_string(t_cw_asm *state,
 												t_cw_linst *linst,
 												int index);
