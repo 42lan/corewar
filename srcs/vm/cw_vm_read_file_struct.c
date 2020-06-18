@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 01:59:09 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/17 22:12:22 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/18 13:29:03 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int					cw_vm_read_champion_name(int fd, t_cw_player *player)
 {
 	char			name[CW_PROG_NAME_LENGTH + 1];
 
+	ft_bzero(name, CW_PROG_NAME_LENGTH + 1);
 	if (read(fd, name, CW_PROG_NAME_LENGTH) != CW_PROG_NAME_LENGTH)
 	{
 		ft_dprintf(2, "{red}ERROR READ CHAMPION NAME\n{}");
@@ -51,6 +52,7 @@ int					cw_vm_read_champion_null(int fd, char *part)
 {
 	char			str[CW_CHAMPION_NULL];
 
+	ft_bzero(str, CW_CHAMPION_NULL + 1);
 	if (read(fd, str, CW_CHAMPION_NULL) != CW_CHAMPION_NULL)
 	{
 		ft_dprintf(2, "{red}ERROR READ CHAMPION NULL\n{}");
@@ -74,6 +76,7 @@ int					cw_vm_read_exec_code_len(int fd, t_cw_player *player)
 	int32_t			code_len_int;
 	unsigned char	code_len[4];
 
+	ft_bzero(code_len, 4);
 	if (read(fd, code_len, CW_EXEC_CODE_LEN) != CW_EXEC_CODE_LEN)
 	{
 		ft_dprintf(2, "{red}ERROR READ CHAMPION EXEC CODE LEN\n{}");
@@ -98,6 +101,7 @@ int					cw_vm_read_champion_comment(int fd, t_cw_player *player)
 {
 	char			comment[CW_COMMENT_LENGTH + 1];
 
+	ft_bzero(comment, CW_COMMENT_LENGTH + 1);
 	if (read(fd, comment, CW_COMMENT_LENGTH) != CW_COMMENT_LENGTH)
 	{
 		ft_dprintf(2, "{red}ERROR READ CHAMPION COMMENT\n{}");
