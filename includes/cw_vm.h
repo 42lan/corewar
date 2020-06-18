@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 15:01:47 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/17 21:15:27 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/18 12:31:30 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,17 @@
 # include "cw_vm_parsing.h"
 # include "cw_vm_player.h"
 
-typedef struct		s_cw_proc t_cw_proc;
-
 typedef struct		s_cw_proc
 {
-	t_bool			carry;
-	int				opc;
-	int				last_live;
-	int				wait_cycles;
-	int				pos;
-	int				jump;
-	int				id;
-	int				regs[CW_REG_NUMBER];
-	t_cw_proc		*next;
+	t_bool				carry;
+	int					opc;
+	int					last_live;
+	int					wait_cycles;
+	int					pos;
+	int					jump;
+	int					id;
+	int					regs[CW_REG_NUMBER];
+	struct s_cw_proc	*next;
 }					t_cw_proc;
 
 typedef struct		s_cw_game
