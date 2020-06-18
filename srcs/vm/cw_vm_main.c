@@ -6,7 +6,7 @@
 /*   By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 18:04:40 by jthierce          #+#    #+#             */
-/*   Updated: 2020/06/18 14:41:29 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/18 16:36:52 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static void		cw_vm_header(void)
 			ft_printf("{bold}{orangered}%s{}", line);
 			ft_strdel(&line);
 		}
+	close(fd);
 }
 
 static void		cw_vm_init_struct_vm(t_cw_vm *vm)
