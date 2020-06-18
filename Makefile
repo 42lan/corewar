@@ -6,7 +6,7 @@
 #    By: jthierce <jthierce@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by bleplat           #+#    #+#              #
-#    Updated: 2020/06/17 21:57:29 by amalsago         ###   ########.fr        #
+#    Updated: 2020/06/18 15:53:17 by amalsago         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -195,9 +195,7 @@ $(LIBFT):
 .PHONY: clean
 clean:
 	@printf "\e[93m" || true
-	rm -f $(OBJ)
-	rmdir $(OBJ_SUBDIRS) || true
-	rmdir $(OBJ_DIR) || true
+	rm -rf $(OBJ_DIR)
 	make -C $(LIBFT_DIR) $@
 	@printf "\e[0m" || true
 
